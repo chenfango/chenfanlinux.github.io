@@ -4,34 +4,11 @@
 
     
   <url>
-    <loc>http://www.chenfanlinux.org/2017/12/10/hello-world/</loc>
-    <lastmod>2017-12-04T10:49:49.000Z</lastmod>
-    <data>
-        <display>
-        <title>How to use hexo!</title>
-        <pubTime>2017-12-10T09:32:13.603Z</pubTime>
-        
-        <tag>hexo</tag>
-         
-         
-           
-             
-              <breadCrumb title="hexo" url="http://www.chenfanlinux.org/categories/hexo/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-    
-    
-    
-  <url>
     <loc>http://www.chenfanlinux.org/2017/12/04/my-first-article/</loc>
-    <lastmod>2017-12-04T05:28:44.000Z</lastmod>
+    <lastmod>2017-12-10T14:43:36.000Z</lastmod>
     <data>
         <display>
-        <title>hexo安装与部署</title>
+        <title>hexo安装与介绍</title>
         <pubTime>2017-12-04T03:05:54.000Z</pubTime>
         
         <tag>hexo</tag>
@@ -45,5 +22,8 @@
     </data>
     </url>
 
+    
+    
+    
     
 </urlset>

@@ -2,9 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.chenfanlinux.org/2017/12/10/hello-world/</loc>
+    <loc>http://www.chenfanlinux.org/2017/12/04/my-first-article/</loc>
     
-    <lastmod>2017-12-04T10:49:49.000Z</lastmod>
+    <lastmod>2017-12-10T14:43:36.000Z</lastmod>
     
   </url>
   
@@ -26,13 +26,6 @@
     <loc>http://www.chenfanlinux.org/tags/index.html</loc>
     
     <lastmod>2017-12-04T08:08:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.chenfanlinux.org/2017/12/04/my-first-article/</loc>
-    
-    <lastmod>2017-12-04T05:28:44.000Z</lastmod>
     
   </url>
   
