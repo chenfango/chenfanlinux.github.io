@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.chenfanlinux.org/"/>
-  <updated>2017-12-10T14:57:38.000Z</updated>
+  <updated>2017-12-11T10:12:48.000Z</updated>
   <id>http://www.chenfanlinux.org/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>zabbx基础安装</title>
+    <link href="http://www.chenfanlinux.org/2017/12/11/zabbx%E5%9F%BA%E7%A1%80%E5%AE%89%E8%A3%85/"/>
+    <id>http://www.chenfanlinux.org/2017/12/11/zabbx基础安装/</id>
+    <published>2017-12-11T10:07:48.000Z</published>
+    <updated>2017-12-11T10:12:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一、安装部署zabbix-3-4"><a href="#一、安装部署zabbix-3-4" class="headerlink" title="一、安装部署zabbix 3.4"></a>一、安装部署zabbix 3.4</h1><p><a href="https://baike.baidu.com/item/zabbix/6780368?fr=aladdin" target="_blank" rel="noopener">Zabbix</a> 是由 Alexei Vladishev 开发的一种网络监视、管理系统，基于 Server-Client 架构。可用于监视各种网络服务、服务器和网络机器等状态。</p><h2 id="1-zabbix基础说明"><a href="#1-zabbix基础说明" class="headerlink" title="1.zabbix基础说明"></a>1.zabbix基础说明</h2><h3 id="1-1-zabbix使用说明"><a href="#1-1-zabbix使用说明" class="headerlink" title="1.1  zabbix使用说明"></a>1.1  zabbix使用说明</h3><ul><li><p><a href="https://www.zabbix.com/documentation/3.4/zh/manual" target="_blank" rel="noopener">zabbix3.4软件中文使用手册</a></p></li><li><p><a href="http://repo.zabbix.com/zabbix/3.4/rhel/7/x86_64/" target="_blank" rel="noopener">zabbix3.4版本安装包路径</a></p></li></ul><h3 id="1-2-zabbix-3-4版本说明"><a href="#1-2-zabbix-3-4版本说明" class="headerlink" title="1.2 zabbix 3.4版本说明"></a>1.2 zabbix 3.4版本说明</h3><p>Zabbix Server端安装的软件：</p><ul><li>zabbix-server-mysql</li><li>zabbix-get</li><li>mysql</li><li>zabbix-web</li><li>zabbix-web-mysql</li></ul><p>Zabbix Clinet 端安装的软件</p><ul><li>zabbix-agent</li><li>zabbix-sender</li></ul><h2 id="2-zabbix系统环境配置"><a href="#2-zabbix系统环境配置" class="headerlink" title="2.zabbix系统环境配置"></a>2.zabbix系统环境配置</h2><h3 id="2-1-系统环境"><a href="#2-1-系统环境" class="headerlink" title="2.1 系统环境"></a>2.1 系统环境</h3><pre><code># cat /etc/redhat-releaseCentOS Linux release 7.4.1708 (Core)</code></pre><h3 id="2-2-永久修改主机名"><a href="#2-2-永久修改主机名" class="headerlink" title="2.2 永久修改主机名"></a>2.2 永久修改主机名</h3><pre><code># hostnamectl --static set-hostname zabbix-server</code></pre><h3 id="2-3-关闭防火墙及selinux"><a href="#2-3-关闭防火墙及selinux" class="headerlink" title="2.3 关闭防火墙及selinux"></a>2.3 关闭防火墙及selinux</h3><pre><code># systemctl stop firewalld.service# systemctl daemon-reload# systemctl disable firewalld.service# sed -i &apos;s/SELINUX=enforcing/SELINUX=disabled/g&apos; /etc/selinux/config# grep SELINUX=disabled /etc/selinux/config# setenforce 0# getenforce  Disabled</code></pre><a id="more"></a><h2 id="3-数据库的安装与配置"><a href="#3-数据库的安装与配置" class="headerlink" title="3.数据库的安装与配置"></a>3.数据库的安装与配置</h2><h3 id="3-1-MariaDB概述"><a href="#3-1-MariaDB概述" class="headerlink" title="3.1 MariaDB概述"></a>3.1 MariaDB概述</h3><p>MariaDB数据库管理系统是MySQL的一个分支，主要由开源社区在维护，采用GPL授权许可。<br>开发这个分支的原因是：甲骨文公司收购了MySQL后，有将MySQL闭源的潜在风险，因此社区采用分支的方式来避开这个风险。MariaDB的目的是完全兼容MySQL，包括API和命令行，使之能轻松成为MySQL的代替品。</p><h3 id="3-2-安装mariadb"><a href="#3-2-安装mariadb" class="headerlink" title="3.2 安装mariadb"></a>3.2 安装mariadb</h3><pre><code># yum install mariadb-server mariadb -y# rpm -qa |grep mariamariadb-5.5.56-2.el7.x86_64mariadb-server-5.5.56-2.el7.x86_64mariadb-libs-5.5.56-2.el7.x86_64</code></pre><h3 id="3-3-配置数据库服务"><a href="#3-3-配置数据库服务" class="headerlink" title="3.3 配置数据库服务"></a>3.3 配置数据库服务</h3><pre><code># vim /etc/my.cnf添加如下两行：innodb_file_per_table=onskip_name_resolve=on</code></pre><h3 id="3-4-启动mariadb数据库并设置开机自启动"><a href="#3-4-启动mariadb数据库并设置开机自启动" class="headerlink" title="3.4 启动mariadb数据库并设置开机自启动"></a>3.4 启动mariadb数据库并设置开机自启动</h3><pre><code># systemctl start mariadb# systemctl enable mariadb</code></pre><h3 id="3-5-设置mariadb数据库的安全配置"><a href="#3-5-设置mariadb数据库的安全配置" class="headerlink" title="3.5 设置mariadb数据库的安全配置"></a>3.5 设置mariadb数据库的安全配置</h3><pre><code># mysql_secure_installation  //根据需求设置密码password:test# mysql -uroot -ptest //登录mysql</code></pre><h3 id="3-6-创建数据库zabbix数据库并授权用户"><a href="#3-6-创建数据库zabbix数据库并授权用户" class="headerlink" title="3.6 创建数据库zabbix数据库并授权用户"></a>3.6 创建数据库zabbix数据库并授权用户</h3><p>创建zabbix数据库，并创建zbuser用户具有库的访问权限。</p><pre><code>&gt; CREATE DATABASE  zabbix  DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;&gt; GRANT ALL PRIVILEGES ON zabbix.* TO zbuser@localhost IDENTIFIED BY &apos;test&apos;;&gt; FLUSH PRIVILEGES ;# mysql -uzbuser -ptest zabbix //登录测试</code></pre><h2 id="4-安装配置zabbix-3-4"><a href="#4-安装配置zabbix-3-4" class="headerlink" title="4.安装配置zabbix.3.4"></a>4.安装配置zabbix.3.4</h2><h3 id="4-1-zabbix相关软件包的安装"><a href="#4-1-zabbix相关软件包的安装" class="headerlink" title="4.1 zabbix相关软件包的安装"></a>4.1 zabbix相关软件包的安装</h3><h4 id="4-1-1-安装zabbix相关的yum源"><a href="#4-1-1-安装zabbix相关的yum源" class="headerlink" title="4.1.1 安装zabbix相关的yum源"></a>4.1.1 安装zabbix相关的yum源</h4><pre><code># rpm -ivh http://repo.zabbix.com/zabbix/3.4/rhel/7/x86_64/zabbix-release-3.4-1.el7.centos.noarch.rpm</code></pre><h4 id="4-1-2-安装zabbix相关包"><a href="#4-1-2-安装zabbix相关包" class="headerlink" title="4.1.2 安装zabbix相关包"></a>4.1.2 安装zabbix相关包</h4><p>zabbix服务端需要安装：zabbix-server-mysql zabbix-web-mysql  zabbix-get<br>zabbix被监控主机端安装的软件：：zabbix-agent, zabbix-sender</p><pre><code># yum install zabbix-server-mysql zabbix-web-mysql zabbix-get zabbix-agent zabbix-sender -y# rpm -qa |grep zabbix zabbix-web-mysql-3.4.4-2.el7.noarch zabbix-get-3.4.4-2.el7.x86_64 zabbix-web-3.4.4-2.el7.noarch zabbix-agent-3.4.4-2.el7.x86_64 zabbix-release-3.4-1.el7.centos.noarch zabbix-server-mysql-3.4.4-2.el7.x86_64 zabbix-sender-3.4.4-2.el7.x86_64</code></pre><h3 id="4-2-zabbix相关数据导入数据库"><a href="#4-2-zabbix相关数据导入数据库" class="headerlink" title="4.2 zabbix相关数据导入数据库"></a>4.2 zabbix相关数据导入数据库</h3><pre><code># cd /usr/share/doc/zabbix-server-mysql-3.4.4/# zcat create.sql.gz |mysql -uzbuser -ptest zabbix</code></pre><h3 id="4-3-修改数据库相关配置"><a href="#4-3-修改数据库相关配置" class="headerlink" title="4.3 修改数据库相关配置"></a>4.3 修改数据库相关配置</h3><pre><code># vim /etc/zabbix/zabbix_server.conf# grep -n &apos;^&apos;[a-Z] /etc/zabbix/zabbix_server.conf38:LogFile=/var/log/zabbix/zabbix_server.log49:LogFileSize=072:PidFile=/var/run/zabbix/zabbix_server.pid82:SocketDir=/var/run/zabbix91:DBHost=localhost101:DBName=zabbix117:DBUser=zbuser125:DBPassword=test132:DBSocket=/var/lib/mysql/mysql.sock316:SNMPTrapperFile=/var/log/snmptrap/snmptrap.log434:Timeout=4476:AlertScriptsPath=/usr/lib/zabbix/alertscripts486:ExternalScripts=/usr/lib/zabbix/externalscripts522:LogSlowQueries=3000</code></pre><h3 id="4-4-启动zabbix-server并设置开机启动"><a href="#4-4-启动zabbix-server并设置开机启动" class="headerlink" title="4.4 启动zabbix server并设置开机启动"></a>4.4 启动zabbix server并设置开机启动</h3><pre><code># systemctl enable zabbix-server# systemctl start zabbix-server</code></pre><h3 id="4-5-编辑Zabbix前端PHP配置-更改时区"><a href="#4-5-编辑Zabbix前端PHP配置-更改时区" class="headerlink" title="4.5 编辑Zabbix前端PHP配置,更改时区"></a>4.5 编辑Zabbix前端PHP配置,更改时区</h3><pre><code># vim /etc/httpd/conf.d/zabbix.confphp_value date.timezone Asia/Shanghaiphp_value date.timezone Asia/Shanghai</code></pre><h3 id="4-6-启动httpd并设置开机启动"><a href="#4-6-启动httpd并设置开机启动" class="headerlink" title="4.6 启动httpd并设置开机启动"></a>4.6 启动httpd并设置开机启动</h3><pre><code># systemctl start httpd# systemctl enable httpd</code></pre><h3 id="4-7-图形界面安装配置zabbix"><a href="#4-7-图形界面安装配置zabbix" class="headerlink" title="4.7 图形界面安装配置zabbix"></a>4.7 图形界面安装配置zabbix</h3><p>浏览器输入<a href="http://server_ip/zabbix,根据图形引导信息,配置zabbix信息。" target="_blank" rel="noopener">http://server_ip/zabbix,根据图形引导信息,配置zabbix信息。</a></p><p><img src="https://cdn-std.dprcdn.net/files/acc_582513/nggAUz" alt="1"></p><p><img src="https://cdn-std.dprcdn.net/files/acc_582513/TUgNnW" alt="2"></p><p><img src="https://cdn-std.dprcdn.net/files/acc_582513/0742rj" alt="3"></p><p><img src="https://cdn-std.dprcdn.net/files/acc_582513/Iv6t7z" alt="4"></p><p><img src="https://cdn-std.dprcdn.net/files/acc_582513/VNlpQC" alt="5"></p><p><strong>zabbix初始登录账户和密码为： Admin  zabbix</strong></p><h2 id="5-zabbxi-agent安装及配置"><a href="#5-zabbxi-agent安装及配置" class="headerlink" title="5.zabbxi-agent安装及配置"></a>5.zabbxi-agent安装及配置</h2><h3 id="5-1-安装zabbxi-agent"><a href="#5-1-安装zabbxi-agent" class="headerlink" title="5.1 安装zabbxi-agent"></a>5.1 安装zabbxi-agent</h3><pre><code># yum install zabbix-agent  zabbix-sender -y# grep -n &apos;^&apos;[a-Z] /etc/zabbix/zabbix_agentd.conf 13:PidFile=/var/run/zabbix/zabbix_agentd.pid 32:LogFile=/var/log/zabbix/zabbix_agentd.log 43:LogFileSize=0 95:Server=127.0.0.1 136:ServerActive=127.0.0.1 147:Hostname=zabbix-server 265:Include=/etc/zabbix/zabbix_agentd.d/*.conf</code></pre><p>Server：被动模式，允许哪台服务器连接Agent。<br>ServerActive：主动模式，向哪台服务器传送数据。</p><h3 id="5-2-启动zabbix-agent"><a href="#5-2-启动zabbix-agent" class="headerlink" title="5.2 启动zabbix-agent"></a>5.2 启动zabbix-agent</h3><pre><code># systemctl start zabbix-agent# systemctl enable zabbix-agent</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一、安装部署zabbix-3-4&quot;&gt;&lt;a href=&quot;#一、安装部署zabbix-3-4&quot; class=&quot;headerlink&quot; title=&quot;一、安装部署zabbix 3.4&quot;&gt;&lt;/a&gt;一、安装部署zabbix 3.4&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://baike.baidu.com/item/zabbix/6780368?fr=aladdin&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Zabbix&lt;/a&gt; 是由 Alexei Vladishev 开发的一种网络监视、管理系统，基于 Server-Client 架构。可用于监视各种网络服务、服务器和网络机器等状态。&lt;/p&gt;
+&lt;h2 id=&quot;1-zabbix基础说明&quot;&gt;&lt;a href=&quot;#1-zabbix基础说明&quot; class=&quot;headerlink&quot; title=&quot;1.zabbix基础说明&quot;&gt;&lt;/a&gt;1.zabbix基础说明&lt;/h2&gt;&lt;h3 id=&quot;1-1-zabbix使用说明&quot;&gt;&lt;a href=&quot;#1-1-zabbix使用说明&quot; class=&quot;headerlink&quot; title=&quot;1.1  zabbix使用说明&quot;&gt;&lt;/a&gt;1.1  zabbix使用说明&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://www.zabbix.com/documentation/3.4/zh/manual&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;zabbix3.4软件中文使用手册&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://repo.zabbix.com/zabbix/3.4/rhel/7/x86_64/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;zabbix3.4版本安装包路径&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;1-2-zabbix-3-4版本说明&quot;&gt;&lt;a href=&quot;#1-2-zabbix-3-4版本说明&quot; class=&quot;headerlink&quot; title=&quot;1.2 zabbix 3.4版本说明&quot;&gt;&lt;/a&gt;1.2 zabbix 3.4版本说明&lt;/h3&gt;&lt;p&gt;Zabbix Server端安装的软件：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;zabbix-server-mysql&lt;/li&gt;
+&lt;li&gt;zabbix-get&lt;/li&gt;
+&lt;li&gt;mysql&lt;/li&gt;
+&lt;li&gt;zabbix-web&lt;/li&gt;
+&lt;li&gt;zabbix-web-mysql&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Zabbix Clinet 端安装的软件&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;zabbix-agent&lt;/li&gt;
+&lt;li&gt;zabbix-sender&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;2-zabbix系统环境配置&quot;&gt;&lt;a href=&quot;#2-zabbix系统环境配置&quot; class=&quot;headerlink&quot; title=&quot;2.zabbix系统环境配置&quot;&gt;&lt;/a&gt;2.zabbix系统环境配置&lt;/h2&gt;&lt;h3 id=&quot;2-1-系统环境&quot;&gt;&lt;a href=&quot;#2-1-系统环境&quot; class=&quot;headerlink&quot; title=&quot;2.1 系统环境&quot;&gt;&lt;/a&gt;2.1 系统环境&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;# cat /etc/redhat-release
+CentOS Linux release 7.4.1708 (Core)
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;2-2-永久修改主机名&quot;&gt;&lt;a href=&quot;#2-2-永久修改主机名&quot; class=&quot;headerlink&quot; title=&quot;2.2 永久修改主机名&quot;&gt;&lt;/a&gt;2.2 永久修改主机名&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;# hostnamectl --static set-hostname zabbix-server
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;2-3-关闭防火墙及selinux&quot;&gt;&lt;a href=&quot;#2-3-关闭防火墙及selinux&quot; class=&quot;headerlink&quot; title=&quot;2.3 关闭防火墙及selinux&quot;&gt;&lt;/a&gt;2.3 关闭防火墙及selinux&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;# systemctl stop firewalld.service
+# systemctl daemon-reload
+# systemctl disable firewalld.service
+
+# sed -i &amp;apos;s/SELINUX=enforcing/SELINUX=disabled/g&amp;apos; /etc/selinux/config
+# grep SELINUX=disabled /etc/selinux/config
+# setenforce 0
+# getenforce
+  Disabled
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="linux服务" scheme="http://www.chenfanlinux.org/categories/linux%E6%9C%8D%E5%8A%A1/"/>
+    
+    
+      <category term="zabbix" scheme="http://www.chenfanlinux.org/tags/zabbix/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo安装与介绍</title>
