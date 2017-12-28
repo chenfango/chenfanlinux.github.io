@@ -94,10 +94,12 @@
 
 
 
-  <meta name="keywords" content="流程控制," />
+  <meta name="keywords" content="Docker," />
 
 
 
+
+  
 
 
   <link rel="alternate" href="/atom.xml" title="陈凡的博客" type="application/atom+xml" />
@@ -107,18 +109,23 @@
 
 
 
-<meta name="description" content="if语句 if语句是用来检查一个条件：如果条件为真(true)，我们运行一个语句块（你为if块），否则(else)，我们执行另一个语句块（称为else块），else子语句是可选的。  单条件示例：如果num变量大于1，那么就输出num大，否则就输出num小，num值为5 代码： #!/usr/bin/env pytho">
-<meta name="keywords" content="流程控制">
+<meta name="description" content="##docker基础概念与架构 什么是docker?Docker 使用 Google 公司推出的 Go 语言 进行开发实现，基于 Linux 内核的 cgroup，namespace，以及 AUFS 类的 Union FS 等技术，对进程进行封装隔离，属于 操作系统层面的虚拟化技术。由于隔离的进程独立于宿主和其它的隔离">
+<meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python基础之流程控制">
-<meta property="og:url" content="http://www.chenfanlinux.org/2017/12/19/python基础之流程控制/index.html">
+<meta property="og:title" content="Docker入门之基础概念与架构(一)">
+<meta property="og:url" content="http://www.chenfanlinux.org/2017/12/28/Docker入门之基础概念与架构-一/index.html">
 <meta property="og:site_name" content="陈凡的博客">
-<meta property="og:description" content="if语句 if语句是用来检查一个条件：如果条件为真(true)，我们运行一个语句块（你为if块），否则(else)，我们执行另一个语句块（称为else块），else子语句是可选的。  单条件示例：如果num变量大于1，那么就输出num大，否则就输出num小，num值为5 代码： #!/usr/bin/env python # -*- coding:utf-8 -*- num = 5 if num">
+<meta property="og:description" content="##docker基础概念与架构 什么是docker?Docker 使用 Google 公司推出的 Go 语言 进行开发实现，基于 Linux 内核的 cgroup，namespace，以及 AUFS 类的 Union FS 等技术，对进程进行封装隔离，属于 操作系统层面的虚拟化技术。由于隔离的进程独立于宿主和其它的隔离的进程，在容器中运行的程序只能看到容器的内容和分配给该容器的设备,因此也称其为容">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-19T14:42:07.000Z">
+<meta property="og:image" content="https://cdn-std.dprcdn.net/files/acc_582513/vyEvvG">
+<meta property="og:image" content="https://cdn-std.dprcdn.net/files/acc_582513/hEWM0Z">
+<meta property="og:image" content="https://cdn-std.dprcdn.net/files/acc_582513/6RGWHJ">
+<meta property="og:image" content="https://cdn-std.dprcdn.net/files/acc_582513/AOBiup">
+<meta property="og:updated_time" content="2017-12-28T01:13:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python基础之流程控制">
-<meta name="twitter:description" content="if语句 if语句是用来检查一个条件：如果条件为真(true)，我们运行一个语句块（你为if块），否则(else)，我们执行另一个语句块（称为else块），else子语句是可选的。  单条件示例：如果num变量大于1，那么就输出num大，否则就输出num小，num值为5 代码： #!/usr/bin/env python # -*- coding:utf-8 -*- num = 5 if num">
+<meta name="twitter:title" content="Docker入门之基础概念与架构(一)">
+<meta name="twitter:description" content="##docker基础概念与架构 什么是docker?Docker 使用 Google 公司推出的 Go 语言 进行开发实现，基于 Linux 内核的 cgroup，namespace，以及 AUFS 类的 Union FS 等技术，对进程进行封装隔离，属于 操作系统层面的虚拟化技术。由于隔离的进程独立于宿主和其它的隔离的进程，在容器中运行的程序只能看到容器的内容和分配给该容器的设备,因此也称其为容">
+<meta name="twitter:image" content="https://cdn-std.dprcdn.net/files/acc_582513/vyEvvG">
 
 
 
@@ -148,13 +155,13 @@
 
 
 
-  <link rel="canonical" href="http://www.chenfanlinux.org/2017/12/19/python基础之流程控制/"/>
+  <link rel="canonical" href="http://www.chenfanlinux.org/2017/12/28/Docker入门之基础概念与架构-一/"/>
 
 
 
 
 
-  <title>python基础之流程控制 | 陈凡的博客</title>
+  <title>Docker入门之基础概念与架构(一) | 陈凡的博客</title>
   
 
 
@@ -340,7 +347,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2017/12/19/python基础之流程控制/">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2017/12/28/Docker入门之基础概念与架构-一/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陈凡">
@@ -357,7 +364,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python基础之流程控制</h1>
+          <h1 class="post-title" itemprop="name headline">Docker入门之基础概念与架构(一)</h1>
         
 
         <div class="post-meta">
@@ -369,8 +376,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-19T22:31:23+08:00">
-                2017-12-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-28T09:11:33+08:00">
+                2017-12-28
               </time>
             
 
@@ -392,8 +399,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python基础知识/" itemprop="url" rel="index">
-                    <span itemprop="name">python基础知识</span>
+                  <a href="/categories/Docker系列/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker系列</span>
                   </a>
                 </span>
 
@@ -411,8 +418,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/12/19/python基础之流程控制/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/12/19/python基础之流程控制/" itemprop="commentsCount"></span>
+                <a href="/2017/12/28/Docker入门之基础概念与架构-一/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/12/28/Docker入门之基础概念与架构-一/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -440,7 +447,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,242
+                  1,170
                 </span>
               
 
@@ -456,7 +463,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  9
+                  4
                 </span>
               
             </div>
@@ -477,219 +484,53 @@
       
 
       
-        <h2 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h2><blockquote>
-<p>if语句是用来检查一个条件：如果条件为真(true)，我们运行一个语句块（你为if块），否则(else)，我们执行另一个语句块（称为else块），else子语句是可选的。</p>
-</blockquote>
-<h3 id="单条件"><a href="#单条件" class="headerlink" title="单条件"></a>单条件</h3><p>示例：如果num变量大于1，那么就输出num大，否则就输出num小，num值为5</p>
-<p><strong>代码：</strong></p>
-<pre><code>#!/usr/bin/env python
-# -*- coding:utf-8 -*-
-num = 5
-if num &gt; 1:
-print(&quot;num大&quot;)
-else:
-print(&quot;num小&quot;)
-</code></pre><p><strong>结果：</strong></p>
-<pre><code>python num.py
-num大
-</code></pre><h3 id="多条件"><a href="#多条件" class="headerlink" title="多条件"></a>多条件</h3><p>示例：请输入一个整数，如果输入的为负数，负数转变为0,输出print(‘Negative changed to zero’);如果输入的为0，则输出Zero;如果输入的为1，则输出Single；输入其他则，输出More。</p>
-<p><strong>代码：</strong></p>
-<pre><code>#__author: Administrator
-#date: 2017/12/19
-x = int(input(&apos;Please enter an integer: &apos;))
-if x &lt; 0:
-    x = 0
-    print(&apos;Negative changed to zero&apos;)
-elif x == 0:
-    print(&apos;Zero&apos;)
-elif x == 1:
-    print(&apos;Single&apos;)
-else:
-    print(&apos;More&apos;)
-</code></pre><p><strong>结果：</strong></p>
-<pre><code>Please enter an integer: -1
-Negative changed to zero
-</code></pre><a id="more"></a>
-<h3 id="三元运算"><a href="#三元运算" class="headerlink" title="三元运算"></a>三元运算</h3><blockquote>
-<p>如果条件成立，那么就把值1赋值给var，如果条件不成立，就把值2赋值给var</p>
-</blockquote>
-<p><strong>语法：</strong></p>
-<p><code>var = 值1 if 条件 else 值2</code></p>
-<p><strong>示例：</strong></p>
-<pre><code>&gt;&gt;&gt; var = &quot;True&quot; if 1 == 1 else &quot;False&quot;
-&gt;&gt;&gt; var
-&apos;True&apos;
-</code></pre><h2 id="while语句"><a href="#while语句" class="headerlink" title="while语句"></a>while语句</h2><h3 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h3><blockquote>
-<p>while 是Python中的循环语句. 事实它上是一个条件循环语句. 与 if 声明相比, 如果 if 后的条件为真, 就会执行一次相应的代码块. 而 while 中的代码块会一直循环执行, 直到循环条件不再为真.</p>
-</blockquote>
-<p><strong>语法：</strong></p>
-<pre><code>while expression:
-       suite_to_repeat
-</code></pre><p>while 循环的suit_to_repeat子句会一直循环执行, 直到 expression 值为布尔假. 这种 类型的循环机制常常用在计数循环中。</p>
-<p><strong>代码：</strong></p>
-<pre><code>#__author: Administrator
-#date: 2017/12/19
-count = 0
-while (count &lt; 5):
-    print(&apos;The index is: &apos;,count)
-    count += 1
-</code></pre><p><strong>结果：</strong></p>
-<pre><code>The index is:  0
-The index is:  1
-The index is:  2
-The index is:  3
-The index is:  4
-</code></pre><h3 id="无限循环"><a href="#无限循环" class="headerlink" title="无限循环"></a>无限循环</h3><p>你必须小心地使用 while 循环, 因为有可能它的条件永远不会为布尔假. 这样一来循环就永远不会结束. 这些”无限”的循环不一定是坏事, 许多通讯服务器的客户端/服务器系统就是通过它来工作的. 这取决于循环是否需要一直执行下去, 如果不是, 那么这个循环是否会结束; 也就是说, 条件表达式会不会计算后得到布尔假?</p>
-<pre><code>while True:
-    handle, indata = wait_for_client_connect()
-    outdata = process_request(indata)
-    ack_result_to_client(handle, outdata)
-</code></pre><p>例如上边的代码就是故意被设置为无限循环的，因为 True 无论如何都不会变成 False. 这是因为服务器代码是用来等待客户端(可能通过网络)来连接的. 这些客户端向服务器发送请求, 服务器处理请求.<br>请求被处理后, 服务器将向客户端返回数据, 而此时客户端可能断开连接或是发送另一个请求. 对于服务器而言它已经完成了对这个客户端的任务, 它会返回最外层循环等待下一个连接.</p>
-<h3 id="while使用-else-语句"><a href="#while使用-else-语句" class="headerlink" title="while使用 else 语句"></a>while使用 else 语句</h3><p>在 python 中，for … else 表示这样的意思，for 中的语句和普通的没有区别，else 中的语句会在循环正常执行完（即 for 不是通过 break 跳出而中断的）的情况下执行.while … else 也是一样,其在循环条件不满足的时候,会开始执行else语句,通过break中断的情况下,不会执行else.</p>
-<p><strong>代码：</strong></p>
-<pre><code>#__author: Administrator
-#date: 2017/12/19
-count = 0
-while (count &lt; 5):
-    print(count,&apos;is less than 5&apos;)
-    count += 1
-else:
-    print(count,&apos;is not less than 5&apos;)
-</code></pre><p><strong>结果：</strong></p>
-<pre><code>0 is less than 5
-1 is less than 5
-2 is less than 5
-3 is less than 5
-4 is less than 5
-5 is not less than 5
-</code></pre><h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><h3 id="基础用法-1"><a href="#基础用法-1" class="headerlink" title="基础用法"></a>基础用法</h3><blockquote>
-<p>Python 提供给我们的另一个循环机制就是 for 语句, 它提供了 Python 中最强大的循环结构. 它可以遍历序列成员(链表或字符串). for循环会访问一个可迭代对象(例如序列或是迭代器)中的所有元素, 并在所有条目都处理过后结束循环.</p>
-</blockquote>
-<p><strong>语法：</strong></p>
-<pre><code>for iter_var in iterable:
-        suite_to_repeat
-</code></pre><p>每次循环, iter_var 迭代变量被设置为可迭代对象(序列, 迭代器, 或者是其他支持迭代的对象)的当前元素, 提供给 suite_to_repeat 语句块使用.</p>
-<p><strong>代码：</strong></p>
-<pre><code>#__author: Administrator
-#date: 2017/12/19
-words = [&apos;cat&apos;, &apos;window&apos;, &apos;defenestrate&apos;]
-for w in words:
-    print(w,len(w))
-</code></pre><p><strong>结果：</strong></p>
-<pre><code>cat 3
-window 6
-defenestrate 12
-</code></pre><h3 id="for使用-else-语句"><a href="#for使用-else-语句" class="headerlink" title="for使用 else 语句"></a>for使用 else 语句</h3><blockquote>
-<p>for 循环也可以有 else 用于循环后处理(post-processing). 它和 while 循环中的 else 处理方式相同. 只要 for 循环是正常结束的(不是通过 break ), else 子句就会执行.</p>
-</blockquote>
-<p>代码：</p>
-<pre><code>#__author: Administrator
-#date: 2017/12/19
-s = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;,&apos;e&apos;]
-found = False
-for c in s:
-    if c.find(&apos;c&apos;) != -1:
-        found = True
-        print(&quot;发现c&quot;)
-        break
-if not found:
-    print(&quot;未发现c&quot;)
-</code></pre><p>等价于下面的代码:</p>
-<pre><code>#__author: Administrator
-#date: 2017/12/19
-s = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;,&apos;e&apos;]
-for c in s:
-    if c.find(&apos;c&apos;) != -1:
-        print(&quot;发现c&quot;)
-        break
-else:
-    print(&quot;未发现c&quot;)
-</code></pre><h2 id="break和continue语句"><a href="#break和continue语句" class="headerlink" title="break和continue语句"></a>break和continue语句</h2><h3 id="break语句"><a href="#break语句" class="headerlink" title="break语句"></a>break语句</h3><blockquote>
-<p>Python 中的 break 语句可以结束当前循环然后跳转到下条语句, 类似 C 中的传统 break . 常用在当某个外部条件被触发(一般通过 if 语句检查), 需要立即从循环中退出时. break 语句可以用在 while 和 for 循环中.</p>
-</blockquote>
-<p><strong>代码：</strong></p>
-<pre><code>&gt;&gt;&gt; for i in &quot;hello&quot;:
-...     if i ==&apos;l&apos;:
-...         break
-...     print(i)
-...
-</code></pre><p><strong>结果：</strong></p>
-<pre><code>h
-e
-</code></pre><h3 id="continue语句"><a href="#continue语句" class="headerlink" title="continue语句"></a>continue语句</h3><blockquote>
-<p>不管是 Python、 C、Java 还是其它任何支持 continue 语句的结构化语言中, 一些初学者有这样的一个误解: continue 语句”立即启动循环的下一次迭代”. 实际上, 当遇到 continue 语句时, 程序会终止当前循环, 并忽略剩余的语句, 然后回到循环的顶端. 在开始下一次迭代前, 如果是条件循环, 我们将验证条件表达式. 如果是迭代循环, 我们将验证是否还有元素可以迭代. 只有在验证成功的情况下, 我们才会开始下一次迭代.</p>
-</blockquote>
-<p>Python 里的 continue 语句和其他高级语言中的传统 continue 并没有什么不同. 它可以被用在 while 和 for 循环里. while 循环是条件性的, 而 for 循环是迭代的, 所以 continue 在开始下一次循环前要满足一些先决条件, 否则循环会正常结束.</p>
-<p><strong>代码：</strong></p>
-<pre><code>&gt;&gt;&gt; for i in &quot;hello&quot;:
-...     if i ==&apos;l&apos;:
-...         continue
-...     print(i)
-...
-</code></pre><p><strong>结果：</strong></p>
-<pre><code>h
-e
-o
-</code></pre><h2 id="总结循环中的else语句"><a href="#总结循环中的else语句" class="headerlink" title="总结循环中的else语句"></a>总结循环中的else语句</h2><blockquote>
-<p>循环一般可以分为两种，for循环或while循环，上文都有明确的介绍。循环可以有一个 else 子句；它在循环迭代完整个列表（对于 for ）或执行条件为 false （对于 while ）不被break中止的情况下执行，循环被 break 中止的情况下不会执行else语句。</p>
-</blockquote>
-<p><strong>示例：</strong> 在数字2-9中搜索素数</p>
-<p><strong>代码：</strong></p>
-<pre><code>#__author: Administrator
-#date: 2017/12/19
-&apos;&apos;&apos;
-在数字2-9之间搜索素数
-素数的定义:除了1和它自身外，不能被其他自然数整除的数叫做质数.
-n 被除数
-x 除数
-&apos;&apos;&apos;
-for n in range(2,10):
-    for x in range(2,n):
-        if n % x == 0:
-            print(n,&apos;equals&apos;,x,&apos;*&apos;,n//x)
-            break
-    else:
-        print(n,&apos;is a prime number&apos;)
-</code></pre><p><strong>结果：</strong></p>
-<pre><code>2 is a prime number
-3 is a prime number
-4 equals 2 * 2
-5 is a prime number
-6 equals 2 * 3
-7 is a prime number
-8 equals 2 * 4
-9 equals 3 * 3
-</code></pre><h2 id="range-函数"><a href="#range-函数" class="headerlink" title="range() 函数"></a>range() 函数</h2><blockquote>
-<p>如果你需要一个数值序列，内置函数 range() 会很方便，它生成一个等差级数链表（不包含结束的end值）</p>
-</blockquote>
-<p><strong>语法：</strong></p>
-<p><code>range(start, end, step=1)</code></p>
-<pre><code>&gt;&gt;&gt; for i in range(5):
-...     print(i)
-...
-0
-1
-2
-3
-4
-
-&gt;&gt;&gt; list(range(2,2))
-[]
-
-range(0, 10, 3)
-   0, 3, 6, 9
-
-range(-10, -100, -30)
-  -10, -40, -70
-</code></pre><p>range(10) 生成了一个包含 10 个值的链表，它用链表的索引值填充了这个长度为 10 的列表，所生成的链表中不包括范围中的结束值。也可以让 range() 操作从另一个数值开始，不指定时为0,或者可以指定一个不同的步进值（甚至是负数，有时这也被称为 “步长”）</p>
-<p><strong>如果你只是打印一个序列的话会发生奇怪的事情</strong></p>
-<pre><code>&gt;&gt;&gt; print(range(10))
-range(0, 10)
-</code></pre><p>在不同方面 range() 函数返回的对象表现为它是一个列表，但事实上它并不是。当你迭代它时，它是一个能够像期望的序列返回连续项的对象；但为了节省空间，它并不真正构造列表。</p>
-<p>我们称此类对象是 可迭代的，即适合作为那些期望从某些东西中获得连续项直到结束的函数或结构的一个目标（参数）。我们已经见过的 for 语句就是这样一个迭代器。list() 函数是另外一个（ 迭代器 ），它从可迭代（对象）中创建列表:</p>
-<pre><code>&gt;&gt;&gt; list(range(5))
-[0, 1, 2, 3, 4]
-</code></pre><p>稍后我们会看到更多返回可迭代（对象）和以可迭代（对象）作为参数的函数。</p>
+        <p>##docker基础概念与架构</p>
+<h3 id="什么是docker"><a href="#什么是docker" class="headerlink" title="什么是docker?"></a>什么是docker?</h3><p><a href="https://www.docker.com" target="_blank" rel="noopener">Docker</a> 使用 Google 公司推出的 Go 语言 进行开发实现，基于 Linux 内核的 <a href="https://zh.wikipedia.org/wiki/Cgroups" target="_blank" rel="noopener">cgroup</a>，<a href="https://en.wikipedia.org/wiki/Linux_namespaces" target="_blank" rel="noopener">namespace</a>，以及 <a href="https://en.wikipedia.org/wiki/Aufs" target="_blank" rel="noopener">AUFS</a> 类的 <a href="https://en.wikipedia.org/wiki/Union_mount" target="_blank" rel="noopener">Union FS</a> 等技术，对进程进行封装隔离，属于 <a href="https://en.wikipedia.org/wiki/Operating-system-level_virtualization" target="_blank" rel="noopener">操作系统层面的虚拟化技术</a>。由于隔离的进程独立于宿主和其它的隔离的进程，在容器中运行的程序只能看到容器的内容和分配给该容器的设备,因此也称其为容器。最初实现是基于 <a href="https://linuxcontainers.org/lxc/introduction/" target="_blank" rel="noopener">LXC</a>，Docker 在容器的基础上，进行了进一步的封装，从文件系统、网络互联到进程隔离等等，极大的简化了容器的创建和维护。使得 Docker 技术比虚拟机技术更为轻便、快捷。</p>
+<ul>
+<li>Docker容器本质上是宿主机上的一个进程，Docker通过namespace实现了资源隔离。</li>
+<li>Docker有五个命名空间：进程、网络、挂载、宿主和共享内存，为了隔离有问题的应用，运用Namespace将进程隔离，为进程或进程组创建已隔离的运行空间，为进程提供不同的命名空间视图；这样，每一个隔离出来的进程组，对外就表现为一个container。</li>
+<li>Namespaces充当隔离的第一级，确保一个容器中运行一个进程而且不能看到或影响容器外的其它进程。</li>
+<li>cgroups是LXC的重要组成部分，实现了资源的限制，通过写时复制机制copy-on-write实现了高效的文件操作。</li>
+<li>UnionFS（文件系统）作为容器的构建块。为了支持Docker的轻量级以及速度快的特性，它创建了用户层</li>
+</ul>
+<h3 id="为什么使用docker？"><a href="#为什么使用docker？" class="headerlink" title="为什么使用docker？"></a>为什么使用docker？</h3><p>传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程直接运行于宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比传统虚拟机更为轻便。</p>
+<ul>
+<li>容器技术与传统虚拟机虚拟化方式对比：</li>
+</ul>
+<p><img src="https://cdn-std.dprcdn.net/files/acc_582513/vyEvvG" alt="传统虚拟机"></p>
+<p><img src="https://cdn-std.dprcdn.net/files/acc_582513/hEWM0Z" alt="Docker"></p>
+<ul>
+<li>容器技术与传统虚拟机性能对比：</li>
+</ul>
+<p><img src="https://cdn-std.dprcdn.net/files/acc_582513/6RGWHJ" alt="性能对比"></p>
+<a id="more"></a>
+<h3 id="Docker给DevOps带来的好处"><a href="#Docker给DevOps带来的好处" class="headerlink" title="Docker给DevOps带来的好处"></a>Docker给DevOps带来的好处</h3><ul>
+<li><p>更快速的交付和部署<br>开发人员可以使用镜像快速的构建标准开发环境；开发完成后，测试和运维人员可以使用开发人员提供的docker镜像快速部署应用，可以避免开发和测试运维人员之间的环境差异导致的部署问题。</p>
+</li>
+<li><p>更高效的资源利用<br>Docker容器的运行不需要额外的虚拟化管理程序支持，它是内核级的虚拟化，在占用更少资源的情况实现更高的性能。</p>
+</li>
+<li><p>更方便的迁移和扩展<br>Docker容器几乎可以在任意的平台上运行，包括物理机、虚拟机、公有云、私有云、服务器等。这种兼容使得用户可以在不同的平台之间很方便的完成应用迁移。</p>
+</li>
+<li><p>更简单的更新管理<br>使用Dockerfile，只需要小小的配置修改，就可以替代以往大量的更新工作，并且所有修改都以增量方式进行分发和更新。</p>
+</li>
+</ul>
+<h3 id="Docker的技术架构"><a href="#Docker的技术架构" class="headerlink" title="Docker的技术架构"></a>Docker的技术架构</h3><p>Docker有三个组件和三个基本元素,可以快速浏览下图来了解这些组建和元素，以及它们的关系。</p>
+<p><img src="https://cdn-std.dprcdn.net/files/acc_582513/AOBiup" alt="Docker技术架构"></p>
+<p><strong>三个组件分别是：</strong></p>
+<ul>
+<li>Docker Client 是用户界面，它支持用户与Docker Daemon之间通信。</li>
+<li>Docker Daemon运行于主机上，处理服务请求。</li>
+<li>Docker Index是中央registry，支持拥有公有与私有访问权限的Docker容器镜像的备份。</li>
+</ul>
+<p><strong>三个基本要素分别是：</strong></p>
+<ul>
+<li><p>Docker Image<br>是一个构建容器的只读模板，它包含了容器启动所需的所有信息，包括运行程序和配置数据。每个镜像都源于一个基本的镜像，然后根据Dockerfile中的指令创建模板。对于每个指令，就是在镜像上创建一个新的层面。</p>
+</li>
+<li><p>Docker Containers<br>负责应用程序的运行，包括操作系统、用户添加的文件以及元数据。运行容器源于我们在第一步中创建的镜像。当容器被启动后，一个读写层会被添加到镜像的顶层。当分配到合适的网络和IP地址后，需要的应用程序就可以在容器中运行了。</p>
+</li>
+<li><p>DockerFile是文件指令集，用来说明如何自动创建Docker镜像。</p>
+</li>
+</ul>
 
       
     </div>
@@ -748,7 +589,7 @@ range(0, 10)
         <div class="post-tags">
           
          
-            <a href="/tags/流程控制/" rel="tag"><i class="fa fa-tag"></i>流程控制</a>
+            <a href="/tags/Docker/" rel="tag"><i class="fa fa-tag"></i>Docker</a>
           
         </div>
       
@@ -761,8 +602,8 @@ range(0, 10)
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/11/zabbx基础安装/" rel="next" title="zabbx基础安装">
-                <i class="fa fa-chevron-left"></i> zabbx基础安装
+              <a href="/2017/12/24/编辑器之神-vim/" rel="next" title="编辑器之神-vim">
+                <i class="fa fa-chevron-left"></i> 编辑器之神-vim
               </a>
             
           </div>
@@ -770,10 +611,6 @@ range(0, 10)
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/24/编辑器之神-vim/" rel="prev" title="编辑器之神-vim">
-                编辑器之神-vim <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -975,7 +812,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#if语句"><span class="nav-number">1.</span> <span class="nav-text">if语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单条件"><span class="nav-number">1.1.</span> <span class="nav-text">单条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多条件"><span class="nav-number">1.2.</span> <span class="nav-text">多条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三元运算"><span class="nav-number">1.3.</span> <span class="nav-text">三元运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#while语句"><span class="nav-number">2.</span> <span class="nav-text">while语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础用法"><span class="nav-number">2.1.</span> <span class="nav-text">基础用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无限循环"><span class="nav-number">2.2.</span> <span class="nav-text">无限循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#while使用-else-语句"><span class="nav-number">2.3.</span> <span class="nav-text">while使用 else 语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for循环"><span class="nav-number">3.</span> <span class="nav-text">for循环</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础用法-1"><span class="nav-number">3.1.</span> <span class="nav-text">基础用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for使用-else-语句"><span class="nav-number">3.2.</span> <span class="nav-text">for使用 else 语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#break和continue语句"><span class="nav-number">4.</span> <span class="nav-text">break和continue语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#break语句"><span class="nav-number">4.1.</span> <span class="nav-text">break语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#continue语句"><span class="nav-number">4.2.</span> <span class="nav-text">continue语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结循环中的else语句"><span class="nav-number">5.</span> <span class="nav-text">总结循环中的else语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#range-函数"><span class="nav-number">6.</span> <span class="nav-text">range() 函数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是docker"><span class="nav-number">1.</span> <span class="nav-text">什么是docker?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么使用docker？"><span class="nav-number">2.</span> <span class="nav-text">为什么使用docker？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker给DevOps带来的好处"><span class="nav-number">3.</span> <span class="nav-text">Docker给DevOps带来的好处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker的技术架构"><span class="nav-number">4.</span> <span class="nav-text">Docker的技术架构</span></a></li></ol></div>
             
 
           </div>
@@ -1189,7 +1026,7 @@ var jiathis_config={
 		_hcwp.push({widget:"Bloggerstream", widget_id: 98812, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2017/12/19/python基础之流程控制/"});
+		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2017/12/28/Docker入门之基础概念与架构-一/"});
 		
 
 		(function() {
