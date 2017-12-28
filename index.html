@@ -436,7 +436,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,170
+                  1,162
                 </span>
               
 
@@ -474,8 +474,7 @@
 
       
         
-          <p>##docker基础概念与架构</p>
-<h3 id="什么是docker"><a href="#什么是docker" class="headerlink" title="什么是docker?"></a>什么是docker?</h3><p><a href="https://www.docker.com" target="_blank" rel="noopener">Docker</a> 使用 Google 公司推出的 Go 语言 进行开发实现，基于 Linux 内核的 <a href="https://zh.wikipedia.org/wiki/Cgroups" target="_blank" rel="noopener">cgroup</a>，<a href="https://en.wikipedia.org/wiki/Linux_namespaces" target="_blank" rel="noopener">namespace</a>，以及 <a href="https://en.wikipedia.org/wiki/Aufs" target="_blank" rel="noopener">AUFS</a> 类的 <a href="https://en.wikipedia.org/wiki/Union_mount" target="_blank" rel="noopener">Union FS</a> 等技术，对进程进行封装隔离，属于 <a href="https://en.wikipedia.org/wiki/Operating-system-level_virtualization" target="_blank" rel="noopener">操作系统层面的虚拟化技术</a>。由于隔离的进程独立于宿主和其它的隔离的进程，在容器中运行的程序只能看到容器的内容和分配给该容器的设备,因此也称其为容器。最初实现是基于 <a href="https://linuxcontainers.org/lxc/introduction/" target="_blank" rel="noopener">LXC</a>，Docker 在容器的基础上，进行了进一步的封装，从文件系统、网络互联到进程隔离等等，极大的简化了容器的创建和维护。使得 Docker 技术比虚拟机技术更为轻便、快捷。</p>
+          <h3 id="什么是docker"><a href="#什么是docker" class="headerlink" title="什么是docker?"></a>什么是docker?</h3><p><a href="https://www.docker.com" target="_blank" rel="noopener">Docker</a> 使用 Google 公司推出的 Go 语言 进行开发实现，基于 Linux 内核的 <a href="https://zh.wikipedia.org/wiki/Cgroups" target="_blank" rel="noopener">cgroup</a>，<a href="https://en.wikipedia.org/wiki/Linux_namespaces" target="_blank" rel="noopener">namespace</a>，以及 <a href="https://en.wikipedia.org/wiki/Aufs" target="_blank" rel="noopener">AUFS</a> 类的 <a href="https://en.wikipedia.org/wiki/Union_mount" target="_blank" rel="noopener">Union FS</a> 等技术，对进程进行封装隔离，属于 <a href="https://en.wikipedia.org/wiki/Operating-system-level_virtualization" target="_blank" rel="noopener">操作系统层面的虚拟化技术</a>。由于隔离的进程独立于宿主和其它的隔离的进程，在容器中运行的程序只能看到容器的内容和分配给该容器的设备,因此也称其为容器。最初实现是基于 <a href="https://linuxcontainers.org/lxc/introduction/" target="_blank" rel="noopener">LXC</a>，Docker 在容器的基础上，进行了进一步的封装，从文件系统、网络互联到进程隔离等等，极大的简化了容器的创建和维护。使得 Docker 技术比虚拟机技术更为轻便、快捷。</p>
 <ul>
 <li>Docker容器本质上是宿主机上的一个进程，Docker通过namespace实现了资源隔离。</li>
 <li>Docker有五个命名空间：进程、网络、挂载、宿主和共享内存，为了隔离有问题的应用，运用Namespace将进程隔离，为进程或进程组创建已隔离的运行空间，为进程提供不同的命名空间视图；这样，每一个隔离出来的进程组，对外就表现为一个container。</li>
