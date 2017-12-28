@@ -119,7 +119,7 @@
 <meta property="og:image" content="https://cdn-std.dprcdn.net/files/acc_582513/hEWM0Z">
 <meta property="og:image" content="https://cdn-std.dprcdn.net/files/acc_582513/6RGWHJ">
 <meta property="og:image" content="https://cdn-std.dprcdn.net/files/acc_582513/AOBiup">
-<meta property="og:updated_time" content="2017-12-28T02:01:34.000Z">
+<meta property="og:updated_time" content="2017-12-28T03:58:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker入门之基础概念与架构(一)">
 <meta name="twitter:description" content="什么是docker?Docker 使用 Google 公司推出的 Go 语言 进行开发实现，基于 Linux 内核的 cgroup，namespace，以及 AUFS 类的 Union FS 等技术，对进程进行封装隔离，属于 操作系统层面的虚拟化技术。由于隔离的进程独立于宿主和其它的隔离的进程，在容器中运行的程序只能看到容器的内容和分配给该容器的设备,因此也称其为容器。最初实现是基于 LXC，Do">
@@ -445,7 +445,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,162
+                  1,631
                 </span>
               
 
@@ -461,7 +461,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  6
                 </span>
               
             </div>
@@ -516,19 +516,72 @@
 <p><strong>三个组件分别是：</strong></p>
 <ul>
 <li>Docker Client 是用户界面，它支持用户与Docker Daemon之间通信。</li>
-<li>Docker Daemon运行于主机上，处理服务请求。</li>
-<li>Docker Index是中央registry，支持拥有公有与私有访问权限的Docker容器镜像的备份。</li>
+<li>Docker Daemon 运行于主机上，处理服务请求。</li>
+<li>Docker Index 是中央registry，支持拥有公有与私有访问权限的Docker容器镜像的备份。</li>
 </ul>
 <p><strong>三个基本要素分别是：</strong></p>
 <ul>
-<li><p>Docker Image<br>是一个构建容器的只读模板，它包含了容器启动所需的所有信息，包括运行程序和配置数据。每个镜像都源于一个基本的镜像，然后根据Dockerfile中的指令创建模板。对于每个指令，就是在镜像上创建一个新的层面。</p>
+<li><p>Docker Image<br>一个构建容器的只读模板，它包含了容器启动所需的所有信息，包括运行程序和配置数据。每个镜像都源于一个基本的镜像，然后根据Dockerfile中的指令创建模板。对于每个指令，就是在镜像上创建一个新的层面。</p>
 </li>
 <li><p>Docker Containers<br>负责应用程序的运行，包括操作系统、用户添加的文件以及元数据。运行容器源于我们在第一步中创建的镜像。当容器被启动后，一个读写层会被添加到镜像的顶层。当分配到合适的网络和IP地址后，需要的应用程序就可以在容器中运行了。</p>
 </li>
 <li><p>DockerFile是文件指令集，用来说明如何自动创建Docker镜像。</p>
 </li>
 </ul>
-
+<h3 id="Centos7开始安装Docker"><a href="#Centos7开始安装Docker" class="headerlink" title="Centos7开始安装Docker"></a>Centos7开始安装Docker</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>在Linux上安装Docker并配置加速器，Docker目前被分为两个版本：</p>
+<ul>
+<li>Community-Edition：社区版 </li>
+<li>Enterprise-Edition：企业版</li>
+</ul>
+<h4 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h4><p><strong>卸载旧版本的Docker服务</strong></p>
+<pre><code>$ yum remove docker \
+docker-common \  
+container-selinux \  
+docker-selinux \
+docker-engine
+</code></pre><p><strong>安装yum-utils，它提供yum-config-manager实用程序</strong>  </p>
+<pre><code>$ yum install -y yum-utils
+</code></pre><p><strong>添加Docker的CE存储库(官网)</strong></p>
+<pre><code>$ yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+</code></pre><p><strong>添加Docker的CE存储库(国内)</strong></p>
+<pre><code>$ yum-config-manager \
+    --add-repo \
+    http://mirrors.ustc.edu.cn/docker-ce/linux/centos/docker-ce.repo
+</code></pre><p><strong>更新软件包的索引列表</strong></p>
+<pre><code>$ yum makecache fast    
+</code></pre><p><strong>安装最新版的Docker服务</strong></p>
+<pre><code>yum install -y docker-ce
+</code></pre><p><strong>启动Docker服务</strong></p>
+<pre><code>systemctl start docker
+</code></pre><p><strong>Docker服务随机自启</strong></p>
+<pre><code>systemctl enable docker
+</code></pre><p><strong>卸载Docker服务</strong>  </p>
+<p>   # 卸载软件包</p>
+<pre><code>$ yum remove -y docker-ce
+</code></pre><p>卸载Docker后,/var/lib/docker/目录下会保留原Docker的镜像,网络,存储卷等文件. 如果需要全新安装Docker,需要删除/var/lib/docker/目录.    </p>
+<pre><code>$ rm -rf /var/lib/docker
+</code></pre><p><strong>查看docker版本信息</strong></p>
+<p>   # 获取版本信息的简介</p>
+<pre><code>$ docker -v
+</code></pre><p>   # 获取详细的版本信息</p>
+<pre><code>$ docker version
+</code></pre><h4 id="配置Docker加速器"><a href="#配置Docker加速器" class="headerlink" title="配置Docker加速器"></a>配置Docker加速器</h4><ol>
+<li><p>由于众所周知的原因(墙)，从Docker Hub难以高效地下载镜像，除了使用VPN或代理之外，<br>最为有效的方式就是使用Docker国内镜像；  </p>
+</li>
+<li><p>DaoCloud为首个提供国内免费Docker Hub镜像的团体，可以使用DaoCloud团队提供的<br>Docker Hub Mirror服务代替Docker官网的Docker Hub； </p>
+</li>
+<li><p>官网：传送门，注册用户并登录；  </p>
+</li>
+<li><p>登录以后，在自己管理界面点击加速器标签，根据弹出页面配置加速器；  </p>
+</li>
+</ol>
+<blockquote>
+<p>该脚本可以将 –registry-mirror 加入到你的 Docker 配置文件 /etc/docker/daemon.json 中。适用于 Ubuntu14.04、Debian、CentOS6 、CentOS7、Fedora、Arch Linux、openSUSE Leap 42.1，其他版本可能有细微不同</p>
+</blockquote>
+<pre><code>curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://9fa458c0.m.daocloud.io
+</code></pre>
       
     </div>
     
@@ -809,7 +862,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是docker"><span class="nav-number">1.</span> <span class="nav-text">什么是docker?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么使用docker？"><span class="nav-number">2.</span> <span class="nav-text">为什么使用docker？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker给DevOps带来的好处"><span class="nav-number">3.</span> <span class="nav-text">Docker给DevOps带来的好处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker的技术架构"><span class="nav-number">4.</span> <span class="nav-text">Docker的技术架构</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是docker"><span class="nav-number">1.</span> <span class="nav-text">什么是docker?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么使用docker？"><span class="nav-number">2.</span> <span class="nav-text">为什么使用docker？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker给DevOps带来的好处"><span class="nav-number">3.</span> <span class="nav-text">Docker给DevOps带来的好处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker的技术架构"><span class="nav-number">4.</span> <span class="nav-text">Docker的技术架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Centos7开始安装Docker"><span class="nav-number">5.</span> <span class="nav-text">Centos7开始安装Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介"><span class="nav-number">5.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装步骤"><span class="nav-number">5.2.</span> <span class="nav-text">安装步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置Docker加速器"><span class="nav-number">5.3.</span> <span class="nav-text">配置Docker加速器</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -846,7 +899,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">6.3k</span>
+    <span title="Site words total count">6.7k</span>
   
 </div>
 
