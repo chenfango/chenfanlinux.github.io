@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="hexo," />
+  <meta name="keywords" content="Bash," />
 
 
 
@@ -107,18 +107,20 @@
 
 
 
-<meta name="description" content="Hexo 是高效的静态站点生成框架，她基于 Node.js。 通过 Hexo 你可以轻松地使用 Markdown 编写文章，除了 Markdown 本身的语法之外，还可以使用 Hexo 提供的 标签插件 来快速的插入特定形式的内容。在这篇文章中，假定你已经成功安装了 Hexo，并使用 Hexo 提供的命令创建了一个站点">
-<meta name="keywords" content="hexo">
+<meta name="description" content="什么是shell? 通常,替我们工作的是”硬件”,而控制硬件的是”内核”。用户利用”shell”控制着一些内核提供的”工具”,来控制硬件替我们工作。由于内核听不懂人类语言,所以shell从本质来说就是一个UI(用户界面)应用程序,让内核控制着硬件正确无误的工作，如图1-1 硬件-内核-shell 所示，可以清晰的看到他">
+<meta name="keywords" content="Bash">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo安装与介绍">
-<meta property="og:url" content="http://www.chenfanlinux.org/2017/12/04/my-first-article/index.html">
+<meta property="og:title" content="Bash特性汇总">
+<meta property="og:url" content="http://www.chenfanlinux.org/2018/01/05/Bash特性汇总/index.html">
 <meta property="og:site_name" content="陈凡的博客">
-<meta property="og:description" content="Hexo 是高效的静态站点生成框架，她基于 Node.js。 通过 Hexo 你可以轻松地使用 Markdown 编写文章，除了 Markdown 本身的语法之外，还可以使用 Hexo 提供的 标签插件 来快速的插入特定形式的内容。在这篇文章中，假定你已经成功安装了 Hexo，并使用 Hexo 提供的命令创建了一个站点。 安装hexo安装前提安装 Hexo 相当简单。然而在安装前，您必须检查电脑中">
+<meta property="og:description" content="什么是shell? 通常,替我们工作的是”硬件”,而控制硬件的是”内核”。用户利用”shell”控制着一些内核提供的”工具”,来控制硬件替我们工作。由于内核听不懂人类语言,所以shell从本质来说就是一个UI(用户界面)应用程序,让内核控制着硬件正确无误的工作，如图1-1 硬件-内核-shell 所示，可以清晰的看到他们的关系。   Bash shell功能特性history命令记忆功能 在Bas">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-10T14:57:38.000Z">
+<meta property="og:image" content="https://cdn-std.dprcdn.net/files/acc_582513/DDfPGJ">
+<meta property="og:updated_time" content="2018-01-05T05:33:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo安装与介绍">
-<meta name="twitter:description" content="Hexo 是高效的静态站点生成框架，她基于 Node.js。 通过 Hexo 你可以轻松地使用 Markdown 编写文章，除了 Markdown 本身的语法之外，还可以使用 Hexo 提供的 标签插件 来快速的插入特定形式的内容。在这篇文章中，假定你已经成功安装了 Hexo，并使用 Hexo 提供的命令创建了一个站点。 安装hexo安装前提安装 Hexo 相当简单。然而在安装前，您必须检查电脑中">
+<meta name="twitter:title" content="Bash特性汇总">
+<meta name="twitter:description" content="什么是shell? 通常,替我们工作的是”硬件”,而控制硬件的是”内核”。用户利用”shell”控制着一些内核提供的”工具”,来控制硬件替我们工作。由于内核听不懂人类语言,所以shell从本质来说就是一个UI(用户界面)应用程序,让内核控制着硬件正确无误的工作，如图1-1 硬件-内核-shell 所示，可以清晰的看到他们的关系。   Bash shell功能特性history命令记忆功能 在Bas">
+<meta name="twitter:image" content="https://cdn-std.dprcdn.net/files/acc_582513/DDfPGJ">
 
 
 
@@ -148,13 +150,13 @@
 
 
 
-  <link rel="canonical" href="http://www.chenfanlinux.org/2017/12/04/my-first-article/"/>
+  <link rel="canonical" href="http://www.chenfanlinux.org/2018/01/05/Bash特性汇总/"/>
 
 
 
 
 
-  <title>hexo安装与介绍 | 陈凡的博客</title>
+  <title>Bash特性汇总 | 陈凡的博客</title>
   
 
 
@@ -340,7 +342,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2017/12/04/my-first-article/">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/05/Bash特性汇总/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陈凡">
@@ -357,7 +359,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">hexo安装与介绍</h1>
+          <h1 class="post-title" itemprop="name headline">Bash特性汇总</h1>
         
 
         <div class="post-meta">
@@ -369,8 +371,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-04T11:05:54+08:00">
-                2017-12-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-05T12:35:53+08:00">
+                2018-01-05
               </time>
             
 
@@ -392,8 +394,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
+                  <a href="/categories/Bash基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Bash基础</span>
                   </a>
                 </span>
 
@@ -411,8 +413,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/12/04/my-first-article/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/12/04/my-first-article/" itemprop="commentsCount"></span>
+                <a href="/2018/01/05/Bash特性汇总/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/05/Bash特性汇总/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -440,7 +442,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  775
+                  1,724
                 </span>
               
 
@@ -456,7 +458,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  6
                 </span>
               
             </div>
@@ -477,68 +479,255 @@
       
 
       
-        <p>Hexo 是高效的静态站点生成框架，她基于 Node.js。 通过 Hexo 你可以轻松地使用 Markdown 编写文章，除了 <a href="https://daringfireball.net/projects/markdown/" target="_blank" rel="noopener">Markdown</a> 本身的语法之外，还可以使用 Hexo 提供的 标签插件 来快速的插入特定形式的内容。在这篇文章中，假定你已经成功安装了 Hexo，并使用 Hexo 提供的命令创建了一个站点。</p>
-<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><h3 id="安装前提"><a href="#安装前提" class="headerlink" title="安装前提"></a>安装前提</h3><p>安装 Hexo 相当简单。然而在安装前，您必须检查电脑中是否已安装下列应用程序：</p>
+        <h2 id="什么是shell"><a href="#什么是shell" class="headerlink" title="什么是shell?"></a>什么是shell?</h2><blockquote>
+<p>通常,替我们工作的是”硬件”,而控制硬件的是”内核”。用户利用”shell”控制着一些内核提供的”工具”,来控制硬件替我们工作。由于内核听不懂人类语言,所以shell从本质来说就是一个UI(用户界面)应用程序,让内核控制着硬件正确无误的工作，如图1-1 硬件-内核-shell 所示，可以清晰的看到他们的关系。</p>
+</blockquote>
+<p><img src="https://cdn-std.dprcdn.net/files/acc_582513/DDfPGJ" alt="硬件-内核"></p>
+<h2 id="Bash-shell功能特性"><a href="#Bash-shell功能特性" class="headerlink" title="Bash shell功能特性"></a>Bash shell功能特性</h2><h3 id="history命令记忆功能"><a href="#history命令记忆功能" class="headerlink" title="history命令记忆功能"></a>history命令记忆功能</h3><blockquote>
+<p>在Bash里面,我们只要在命令行按”上、下键”或者更强大的”Ctrl+r”,就可以找到之前输入的历史命令,这依赖于Bash的命令记录功能,记录的文件位于家目录下的.bash_history。登录shell后新执行的命令只会记录在缓存中,这些命令会在用户退出时追加到命令历史文件中,我们通过history命令可以查看历史命令.</p>
+</blockquote>
+<p><strong>命令历史相关的环境变量:</strong></p>
 <ul>
-<li><p><a href="https://nodejs.org/dist/v8.9.1/node-v8.9.1-x64.msi" target="_blank" rel="noopener">Node.js</a></p>
+<li>HISTSIZE: 命令历史记录的条数</li>
+<li>HISTFILE: ~/.bash_history</li>
+</ul>
+<p><strong>命令历史调用相关的命令:</strong></p>
+<ul>
+<li><p>调用历史中的命令:</p>
+<ul>
+<li>!#: 重复执行第#条指令</li>
+<li>!!: 重复上一条命令</li>
+<li>!string: 匹配以string开头的命令</li>
+</ul>
 </li>
-<li><p><a href="https://git-for-windows.github.io" target="_blank" rel="noopener">Git</a></p>
+<li><p>调用上一条命令的最后一个参数:</p>
+<ul>
+<li>!$</li>
+<li>ESC . （先按esc,释放然后按.）</li>
+</ul>
 </li>
 </ul>
-<blockquote>
-<p>安装git时候，由于众所周知的原因，从上面的链接下载git for windows最好挂上一个代理，否则下载速度十分缓慢。也可以参考<a href="https://github.com/waylau/git-for-win" target="_blank" rel="noopener">这个页面</a>，收录了存储于百度云的下载地址。</p>
+<a id="more"></a>
+<h3 id="命令与文件补全功能"><a href="#命令与文件补全功能" class="headerlink" title="命令与文件补全功能"></a>命令与文件补全功能</h3><blockquote>
+<p>常在bash中使用热键[Tab]是一个好习惯,因为它可以减少键盘的输入和保证命令的输出的正确性。</p>
 </blockquote>
-<h3 id="开始安装hexo"><a href="#开始安装hexo" class="headerlink" title="开始安装hexo"></a>开始安装hexo</h3><p>windows上安装所有必备的应用程序安装完成后，打开Git Bash命令行模式，即可使用 npm 安装 Hexo。</p>
-<pre><code>$ cd F:\
-$ mkdir blog //windows下创建博客目录
-$ npm install -g hexo-cli    //安装hexo基础包
-</code></pre><h3 id="建立静态站点"><a href="#建立静态站点" class="headerlink" title="建立静态站点"></a>建立静态站点</h3><p>使用hexo建站非常的方便快捷，迅速就能在本地建立一个静态站点。安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。</p>
-<pre><code>$ hexo init blog  //初始化博客目录
-$ cd blog
-$ npm install    //开始安装
-</code></pre><p>新建完成后，指定文件夹的目录如下：</p>
-<pre><code>.
-├── _config.yml  //站点配置文件
-├── package.json //应用程序信息
-├── scaffolds   //模版文件夹
-├── source      //资源文件夹 
-|   ├── _drafts
-|   └── _posts
-└── themes     //主题文件夹
-</code></pre><h3 id="hexo基础命令介绍"><a href="#hexo基础命令介绍" class="headerlink" title="hexo基础命令介绍"></a>hexo基础命令介绍</h3><p>hexo有一些常用的指令，明确这些指令的用途和方法，方便我们更高效的管理和构建炫酷的静态网站。</p>
 <ul>
-<li>init </li>
-<li>new</li>
-<li>generate</li>
-<li>publish</li>
-<li>server</li>
-<li>deploy</li>
-<li>clean</li>
-<li>list</li>
+<li>接在一串命令的第一个字后面,则为命令的补全</li>
+<li>接在一床命令的第二个字以后时,则为文件的补全</li>
 </ul>
-<h4 id="init"><a href="#init" class="headerlink" title="init"></a>init</h4><pre><code>$ hexo init [folder]
-</code></pre><p>新建一个网站。如果没有设置 folder ，Hexo 默认在目前的文件夹建立网站。</p>
-<h4 id="new"><a href="#new" class="headerlink" title="new"></a>new</h4><pre><code>$ hexo new [layout] &lt;title&gt;
-$ hexo new &quot;postName&quot; //新建文章
-$ hexo new page &quot;pageName&quot; //新建页面
-</code></pre><p>新建一篇文章。如果没有设置 layout 的话，默认使用 <a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="noopener">_config.yml</a> 中的 default_layout 参数代替。如果标题包含空格的话，请使用引号括起来。</p>
-<h4 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h4><pre><code>$ hexo clean
-</code></pre><p>清除缓存文件 (db.json) 和已生成的静态文件 (public)。<br>在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。</p>
-<h4 id="generate"><a href="#generate" class="headerlink" title="generate"></a>generate</h4><pre><code>$ hexo generate   //或者使用 hexo g 
-</code></pre><a id="more"></a>
-<p>生成静态文件,每次我们修改完一些配置后,可以使用hexo clean清理一下历史数据,然后再hexo g生成静态文件。</p>
-<h4 id="server"><a href="#server" class="headerlink" title="server"></a>server</h4><p>启动服务器。默认情况下，访问网址为  <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 。</p>
-<pre><code>$ hexo server
-</code></pre><blockquote>
-<p>选项<br>描述<br>-p      重设端口<br>-s      只使用静态文件<br>-l  启动日记记录，使用覆盖记录格式 </p>
+<h3 id="命令别名的功能"><a href="#命令别名的功能" class="headerlink" title="命令别名的功能"></a>命令别名的功能</h3><blockquote>
+<p>通过给常用命令设置别名的方式,减少命令的输出长度,提升工作效率。命令行键入alias命令,可以查看系统配置的alias命令,将命令别名记录在全局配置环境配置文件/etc/profile或~/.bashrc都是一种持久生效的方式.</p>
 </blockquote>
-<h4 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h4><p>部署网站,将本地网站推送到远程仓库。</p>
-<pre><code>$ hexo deploy
-</code></pre><blockquote>
-<p>参数<br>描述<br>-g, –generate    部署之前预先生成静态文件</p>
+<pre><code>[root@chenfanlinux ~]# alias
+alias cp=&apos;cp -i&apos;
+alias egrep=&apos;egrep --color=auto&apos;
+alias fgrep=&apos;fgrep --color=auto&apos;
+alias grep=&apos;grep --color=auto&apos;
+alias l.=&apos;ls -d .* --color=auto&apos;
+alias ll=&apos;ls -l --color=auto&apos;
+alias ls=&apos;ls --color=auto&apos;
+alias mv=&apos;mv -i&apos;
+alias rm=&apos;rm -i&apos;
+alias which=&apos;alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde&apos;
+</code></pre><p>   <strong>注意:由于shell脚本中的别名不生效，\cp的含义是脱去别名的设置。</strong></p>
+<h3 id="命令行展开功能"><a href="#命令行展开功能" class="headerlink" title="命令行展开功能"></a>命令行展开功能</h3><blockquote>
+<p>{}:可以承载一个以逗号分隔的列表,并将其展开为多个路径.</p>
 </blockquote>
-<p>该命令可以简写为：</p>
-<pre><code>$ hexo d
+<pre><code>$ mkdir /tmp/{a,b} &lt;==&gt;  $ mkdir /tmp/a;mkdir /tmp/b
+$ mkdir /tmp/{tom,jerry}/hi &lt;==&gt;  $ mkidr /tmp/tom/hi;mkdir /tmp/jerry/hi
+</code></pre><h3 id="作业-jobs-、前台-fg-、后台-bg-控制"><a href="#作业-jobs-、前台-fg-、后台-bg-控制" class="headerlink" title="作业(jobs)、前台(fg)、后台(bg)控制"></a>作业(jobs)、前台(fg)、后台(bg)控制</h3><blockquote>
+<p>使用前台、后台控制,可以让工作进行得更加的顺利.我们可以随时将作业放置到后台执行,不用担心使用了[Ctrl]+c键来停掉该程序。在单用户登录环境中，达到了多任务的目标。</p>
+</blockquote>
+<ul>
+<li>前台作业: 通过终端启动,且启动后一直占据终端</li>
+<li><p>后台作业: 通过终端启动,但启动后即转入后台运行(释放终端)</p>
+</li>
+<li><p><strong>如何让作业运行于后台?</strong></p>
+<ul>
+<li><p>运行中的作业<br><code>Ctrl+Z</code></p>
+</li>
+<li><p>尚未启动的作业<br><code>COMMAND &amp;</code><br><strong><em>此类作业虽然被送往后台运行,但其依然与终端相关,<br>因为退出登录后作业将停止运行;如果希望送往后台,剥离与终端的关系。</em></strong></p>
+</li>
+<li><p>剥离作业与终端的关系<br><code>nohup COMMAND &amp;</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>作业控制相关命令:</strong></p>
+<ul>
+<li>查看所有作业情况<br><code>jobs</code></li>
+<li>指定的后台作业调回前台<br><code>fg [[%]JOB_NUM]</code></li>
+<li>让送往后台的作业在后台继续运行<br><code>bg [[%]JOB_NUM]</code></li>
+<li>终止指定的作业<br><code>kill [%JOB_NUM]</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h3><blockquote>
+<p>除了完整的字符串之外,bash还支持许多通配符来帮助用户查询和执行命令。下表列出常见的通配符,仅供参考。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">符号</th>
+<th style="text-align:center">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">*</td>
+<td style="text-align:center">通配符,代表0个或多个字符(或数字)</td>
+</tr>
+<tr>
+<td style="text-align:center">?</td>
+<td style="text-align:center">通配符,代表一个有一个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">#</td>
+<td style="text-align:center">注释,常在脚本中,被视为说明</td>
+</tr>
+<tr>
+<td style="text-align:center">\</td>
+<td style="text-align:center">转义字符,将特殊字符或通配符还原成一般字符</td>
+</tr>
+<tr>
+<td style="text-align:center">~</td>
+<td style="text-align:center">用户的家目录</td>
+</tr>
+<tr>
+<td style="text-align:center">$</td>
+<td style="text-align:center">变量之前需要加的变量替换值</td>
+</tr>
+<tr>
+<td style="text-align:center">&amp;</td>
+<td style="text-align:center">将命令转为后台执行</td>
+</tr>
+<tr>
+<td style="text-align:center">!</td>
+<td style="text-align:center">逻辑运算符(not)意思</td>
+</tr>
+<tr>
+<td style="text-align:center">/</td>
+<td style="text-align:center">路径分隔符</td>
+</tr>
+<tr>
+<td style="text-align:center">&gt; &gt;&gt;</td>
+<td style="text-align:center">重定向与追加重定向</td>
+</tr>
+<tr>
+<td style="text-align:center">‘</td>
+<td style="text-align:center">单引号,不具有变量置换功能</td>
+</tr>
+<tr>
+<td style="text-align:center">“</td>
+<td style="text-align:center">具有变量置换功能</td>
+</tr>
+<tr>
+<td style="text-align:center">``</td>
+<td style="text-align:center">中间为可以执行的命令</td>
+</tr>
+<tr>
+<td style="text-align:center">()</td>
+<td style="text-align:center">中间为子shell的起始于结束</td>
+</tr>
+<tr>
+<td style="text-align:center">[] [^]</td>
+<td style="text-align:center">中间为字符的组合</td>
+</tr>
+<tr>
+<td style="text-align:center">{}</td>
+<td style="text-align:center">中间为命令区块的组合</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">组合按键</th>
+<th style="text-align:center">执行结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Ctrl+c</td>
+<td style="text-align:center">终止当前的命令</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl+a</td>
+<td style="text-align:center">跳转至命令开始处</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl+e</td>
+<td style="text-align:center">跳转至命令结尾处</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl+u</td>
+<td style="text-align:center">删除命令行首至光标所在处的所有内容</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl+k</td>
+<td style="text-align:center">删除光标所在行至命令行尾部的内容</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl+z</td>
+<td style="text-align:center">暂停当前命令的执行</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl+l</td>
+<td style="text-align:center">清屏,相当于clear命令</td>
+</tr>
+</tbody>
+</table>
+<p><strong>匹配字符举例</strong></p>
+<ul>
+<li>* 任意长度的任意字符</li>
+<li>? 任意单个字符</li>
+<li><p>[] 只能匹配指定范围内的任意单个字符</p>
+<ul>
+<li>[0-9] 所有数字中挑一个</li>
+<li>[a-z] 不分区字符大小写</li>
+<li>[A-Z] 大写字母</li>
+<li>[[:lower:]] 小写字母</li>
+<li>[^0-9a-z] 特殊字符</li>
+</ul>
+</li>
+<li><p>[^] 匹配指定范围外的任意单个字符</p>
+</li>
+<li><p>专用字符集合:</p>
+<ul>
+<li>[:digit:]:任意数字,相当于0-9</li>
+<li>[:lower:]:任意小写字母</li>
+<li>[:upper:]:任意大写字母</li>
+<li>[:alpha:]:任意大小写字母</li>
+<li>[:alnum:]:任意数字或字母</li>
+<li>[:space:]:空格</li>
+<li>[:punct:]:标点符号</li>
+</ul>
+</li>
+</ul>
+<h3 id="命令执行的判断依据-amp-amp"><a href="#命令执行的判断依据-amp-amp" class="headerlink" title="命令执行的判断依据(; &amp;&amp; ||)"></a>命令执行的判断依据(; &amp;&amp; ||)</h3><blockquote>
+<p>通常来说命令的运行状态会返回两种结果,执行成功则返回0，执行错误则返回非0。而多个命令的执行通常,从前至后,而且命令的执行还具有一定的逻辑关系,上一个命令的执行成功与否,某种程序可用决定下一个命令的执行。</p>
+</blockquote>
+<p><strong>一次执行多个命令,命令之间没有关联。</strong></p>
+<pre><code>[root@chenfanlinux ~]# toch test.txt ; echo &quot;I  touch test.txt&quot;
+-bash: toch: 未找到命令
+I touch test.txt
+</code></pre><p><strong>命令相互关联,上一个命令执行成功,才会执行下一个命令。</strong></p>
+<pre><code>[root@chenfanlinux ~]# toch test.txt &amp;&amp; echo &quot;I touch test.txt&quot;
+-bash: toch: 未找到命令
+</code></pre><p><strong>命令相关关联,上一个命令执行失败,才会执行下一个命令。</strong></p>
+<pre><code>[root@chenfanlinux ~]# toch test.txt || echo &quot;I touch test.txt&quot;
+-bash: toch: 未找到命令
+I touch test.txt
+
+[root@chenfanlinux ~]# touch test.txt || echo &quot;I touch test.txt&quot;
+注意:这里不会执行echo &quot;I touch test.txt&quot;
+</code></pre><p><strong>如果第一个命令执行成功,则执行第二个命令,否则执行第三个命令。</strong></p>
+<pre><code>[root@chenfanlinux ~]# touch test.txt &amp;&amp;  echo &quot;我是第二个命令&quot; || echo &quot;我是第三个命令&quot;
+我是第二个命令
+[root@chenfanlinux ~]# tuch test.txt &amp;&amp;  echo &quot;我是第二个命令&quot; || echo &quot;我是第三个命令&quot;
+-bash: tuch: 未找到命令
+我是第三个命令
 </code></pre>
       
     </div>
@@ -597,7 +786,7 @@ $ hexo new page &quot;pageName&quot; //新建页面
         <div class="post-tags">
           
          
-            <a href="/tags/hexo/" rel="tag"><i class="fa fa-tag"></i>hexo</a>
+            <a href="/tags/Bash/" rel="tag"><i class="fa fa-tag"></i>Bash</a>
           
         </div>
       
@@ -610,15 +799,15 @@ $ hexo new page &quot;pageName&quot; //新建页面
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/12/28/Docker入门之基础概念与架构-一/" rel="next" title="Docker入门之基础概念与架构(一)">
+                <i class="fa fa-chevron-left"></i> Docker入门之基础概念与架构(一)
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/11/zabbx基础安装/" rel="prev" title="zabbx基础安装">
-                zabbx基础安装 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -820,7 +1009,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装hexo"><span class="nav-number">1.</span> <span class="nav-text">安装hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装前提"><span class="nav-number">1.1.</span> <span class="nav-text">安装前提</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开始安装hexo"><span class="nav-number">1.2.</span> <span class="nav-text">开始安装hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立静态站点"><span class="nav-number">1.3.</span> <span class="nav-text">建立静态站点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo基础命令介绍"><span class="nav-number">1.4.</span> <span class="nav-text">hexo基础命令介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#init"><span class="nav-number">1.4.1.</span> <span class="nav-text">init</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#new"><span class="nav-number">1.4.2.</span> <span class="nav-text">new</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#clean"><span class="nav-number">1.4.3.</span> <span class="nav-text">clean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#generate"><span class="nav-number">1.4.4.</span> <span class="nav-text">generate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#server"><span class="nav-number">1.4.5.</span> <span class="nav-text">server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#deploy"><span class="nav-number">1.4.6.</span> <span class="nav-text">deploy</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是shell"><span class="nav-number">1.</span> <span class="nav-text">什么是shell?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bash-shell功能特性"><span class="nav-number">2.</span> <span class="nav-text">Bash shell功能特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#history命令记忆功能"><span class="nav-number">2.1.</span> <span class="nav-text">history命令记忆功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令与文件补全功能"><span class="nav-number">2.2.</span> <span class="nav-text">命令与文件补全功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令别名的功能"><span class="nav-number">2.3.</span> <span class="nav-text">命令别名的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行展开功能"><span class="nav-number">2.4.</span> <span class="nav-text">命令行展开功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作业-jobs-、前台-fg-、后台-bg-控制"><span class="nav-number">2.5.</span> <span class="nav-text">作业(jobs)、前台(fg)、后台(bg)控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通配符"><span class="nav-number">2.6.</span> <span class="nav-text">通配符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令执行的判断依据-amp-amp"><span class="nav-number">2.7.</span> <span class="nav-text">命令执行的判断依据(; && ||)</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1033,7 +1222,7 @@ var jiathis_config={
 		_hcwp.push({widget:"Bloggerstream", widget_id: 98812, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2017/12/04/my-first-article/"});
+		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2018/01/05/Bash特性汇总/"});
 		
 
 		(function() {
