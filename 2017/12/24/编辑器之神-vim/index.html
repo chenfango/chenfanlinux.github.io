@@ -117,7 +117,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://cdn-std.dprcdn.net/files/acc_582513/bEfzpN">
 <meta property="og:image" content="https://cdn-std.dprcdn.net/files/acc_582513/SDuEA">
-<meta property="og:updated_time" content="2017-12-24T14:53:33.000Z">
+<meta property="og:updated_time" content="2018-01-05T06:57:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编辑器之神-vim">
 <meta name="twitter:description" content="vim简介vi是“Visual interface”的简称，它不像Word或WPS那样可以对字体、格式、段落等其他属性进行编排，它只是一个文本编辑程序。 vi没有菜单，只有命令，且命令繁多。vim(VIM - Vi IMproved)是vi的加强版本，在vi的基础上增加了如下功能。   增加了多级撤销 多窗口操作 提高了稳定性，减少了崩溃以及崩溃后也可以恢复 关键字自动补全以及上下文相关的补全">
@@ -443,7 +443,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,059
+                  1,182
                 </span>
               
 
@@ -882,9 +882,15 @@
 </tbody>
 </table>
 <p><strong>可视模式</strong></p>
-<blockquote>
-<p>v: 按字符移动,选中文本<br>V: 按行移动,选中文本可视模式可以配合 d, y, &gt;&gt;, &lt;&lt; 实现对文本块的删除,复制,左右移动</p>
-</blockquote>
+<ul>
+<li>v: 按字符移动,选中文本    </li>
+<li>V: 按行移动,选中文本可视模式可以配合 d, y, &gt;&gt;, &lt;&lt; 实现对文本块的删除,复制,左右移动 </li>
+<li>Ctrl+v: 列操作模式  <ul>
+<li>删除某一列内容：先ctrl+v,然后通过上下左右键,选择需要操作的文本，键入d,则可以删除选中的列内容。</li>
+<li>插入操作: 先ctrl+v,然后上下左右键，选择需要操作的列,键入shift+i(在列前面插入)或shift+a(在列后面插入)指定的内容；接下来按Esc才能看到插入生效,再键入Esc,回到命令行模式,保存退出。</li>
+</ul>
+</li>
+</ul>
 <h3 id="查找命令与替换"><a href="#查找命令与替换" class="headerlink" title="查找命令与替换"></a>查找命令与替换</h3><ul>
 <li><strong>字符串查找</strong></li>
 </ul>
@@ -1260,7 +1266,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">8.5k</span>
+    <span title="Site words total count">8.6k</span>
   
 </div>
 
