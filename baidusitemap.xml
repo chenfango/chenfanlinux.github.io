@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://www.chenfanlinux.org/2017/12/28/Docker%E5%85%A5%E9%97%A8%E4%B9%8B%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%9E%B6%E6%9E%84-%E4%B8%80/</loc>
+    <lastmod>2018-01-08T05:21:20.000Z</lastmod>
+    <data>
+        <display>
+        <title>Docker入门之基础概念与架构(一)</title>
+        <pubTime>2017-12-28T01:11:33.000Z</pubTime>
+        
+        <tag>Docker</tag>
+         
+         
+           
+             
+              <breadCrumb title="Docker系列" url="http://www.chenfanlinux.org/categories/Docker%E7%B3%BB%E5%88%97/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.chenfanlinux.org/2017/12/24/%E7%BC%96%E8%BE%91%E5%99%A8%E4%B9%8B%E7%A5%9E-vim/</loc>
     <lastmod>2018-01-05T06:57:44.000Z</lastmod>
     <data>
@@ -37,26 +57,6 @@
            
              
               <breadCrumb title="Bash基础" url="http://www.chenfanlinux.org/categories/Bash%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.chenfanlinux.org/2017/12/28/Docker%E5%85%A5%E9%97%A8%E4%B9%8B%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%9E%B6%E6%9E%84-%E4%B8%80/</loc>
-    <lastmod>2017-12-28T04:15:52.000Z</lastmod>
-    <data>
-        <display>
-        <title>Docker入门之基础概念与架构(一)</title>
-        <pubTime>2017-12-28T01:11:33.000Z</pubTime>
-        
-        <tag>Docker</tag>
-         
-         
-           
-             
-              <breadCrumb title="Docker系列" url="http://www.chenfanlinux.org/categories/Docker%E7%B3%BB%E5%88%97/"/>
           
         </display>
     </data>
