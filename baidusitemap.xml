@@ -4,6 +4,106 @@
 
     
   <url>
+    <loc>http://www.chenfanlinux.org/2018/01/10/Docker%E5%85%A5%E9%97%A8%E4%B9%8B%E9%95%9C%E5%83%8F%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%AE%A1%E7%90%86-%E4%BA%8C/</loc>
+    <lastmod>2018-01-10T07:43:38.000Z</lastmod>
+    <data>
+        <display>
+        <title>Docker入门之镜像基础概念与管理(二)</title>
+        <pubTime>2018-01-10T07:35:23.000Z</pubTime>
+        
+        <tag>Docker</tag>
+         
+         
+           
+             
+              <breadCrumb title="Docker系列" url="http://www.chenfanlinux.org/categories/Docker%E7%B3%BB%E5%88%97/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.chenfanlinux.org/2017/12/24/%E7%BC%96%E8%BE%91%E5%99%A8%E4%B9%8B%E7%A5%9E-vim/</loc>
+    <lastmod>2018-01-10T07:40:13.000Z</lastmod>
+    <data>
+        <display>
+        <title>编辑器之神-vim</title>
+        <pubTime>2017-12-24T02:24:27.000Z</pubTime>
+        
+        <tag>Vim</tag>
+         
+         
+           
+             
+              <breadCrumb title="Tools利器" url="http://www.chenfanlinux.org/categories/Tools%E5%88%A9%E5%99%A8/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.chenfanlinux.org/2017/12/11/zabbx%E5%9F%BA%E7%A1%80%E5%AE%89%E8%A3%85/</loc>
+    <lastmod>2018-01-10T07:39:49.000Z</lastmod>
+    <data>
+        <display>
+        <title>zabbx基础安装</title>
+        <pubTime>2017-12-11T10:07:48.000Z</pubTime>
+        
+        <tag>Zabbix</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux服务" url="http://www.chenfanlinux.org/categories/Linux%E6%9C%8D%E5%8A%A1/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.chenfanlinux.org/2017/12/04/my-first-article/</loc>
+    <lastmod>2018-01-10T07:39:28.000Z</lastmod>
+    <data>
+        <display>
+        <title>hexo安装与介绍</title>
+        <pubTime>2017-12-04T03:05:54.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="Hexo" url="http://www.chenfanlinux.org/categories/Hexo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.chenfanlinux.org/2017/12/19/python%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/</loc>
+    <lastmod>2018-01-10T07:36:14.000Z</lastmod>
+    <data>
+        <display>
+        <title>python基础之流程控制</title>
+        <pubTime>2017-12-19T14:31:23.000Z</pubTime>
+        
+        <tag>流程控制</tag>
+         
+         
+           
+             
+              <breadCrumb title="python基础知识" url="http://www.chenfanlinux.org/categories/python%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.chenfanlinux.org/2017/12/28/Docker%E5%85%A5%E9%97%A8%E4%B9%8B%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%9E%B6%E6%9E%84-%E4%B8%80/</loc>
     <lastmod>2018-01-08T05:21:20.000Z</lastmod>
     <data>
@@ -24,26 +124,6 @@
 
     
   <url>
-    <loc>http://www.chenfanlinux.org/2017/12/24/%E7%BC%96%E8%BE%91%E5%99%A8%E4%B9%8B%E7%A5%9E-vim/</loc>
-    <lastmod>2018-01-05T06:57:44.000Z</lastmod>
-    <data>
-        <display>
-        <title>编辑器之神-vim</title>
-        <pubTime>2017-12-24T02:24:27.000Z</pubTime>
-        
-        <tag>vim</tag>
-         
-         
-           
-             
-              <breadCrumb title="tools利器" url="http://www.chenfanlinux.org/categories/tools%E5%88%A9%E5%99%A8/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.chenfanlinux.org/2018/01/05/Bash%E7%89%B9%E6%80%A7%E6%B1%87%E6%80%BB/</loc>
     <lastmod>2018-01-05T05:33:31.000Z</lastmod>
     <data>
@@ -57,66 +137,6 @@
            
              
               <breadCrumb title="Bash基础" url="http://www.chenfanlinux.org/categories/Bash%E5%9F%BA%E7%A1%80/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.chenfanlinux.org/2017/12/19/python%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/</loc>
-    <lastmod>2017-12-19T14:42:07.000Z</lastmod>
-    <data>
-        <display>
-        <title>python基础之流程控制</title>
-        <pubTime>2017-12-19T14:31:23.000Z</pubTime>
-        
-        <tag>流程控制</tag>
-         
-         
-           
-             
-              <breadCrumb title="python基础知识" url="http://www.chenfanlinux.org/categories/python%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.chenfanlinux.org/2017/12/11/zabbx%E5%9F%BA%E7%A1%80%E5%AE%89%E8%A3%85/</loc>
-    <lastmod>2017-12-11T10:12:48.000Z</lastmod>
-    <data>
-        <display>
-        <title>zabbx基础安装</title>
-        <pubTime>2017-12-11T10:07:48.000Z</pubTime>
-        
-        <tag>zabbix</tag>
-         
-         
-           
-             
-              <breadCrumb title="linux服务" url="http://www.chenfanlinux.org/categories/linux%E6%9C%8D%E5%8A%A1/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.chenfanlinux.org/2017/12/04/my-first-article/</loc>
-    <lastmod>2017-12-10T14:57:38.000Z</lastmod>
-    <data>
-        <display>
-        <title>hexo安装与介绍</title>
-        <pubTime>2017-12-04T03:05:54.000Z</pubTime>
-        
-        <tag>hexo</tag>
-         
-         
-           
-             
-              <breadCrumb title="hexo" url="http://www.chenfanlinux.org/categories/hexo/"/>
           
         </display>
     </data>
