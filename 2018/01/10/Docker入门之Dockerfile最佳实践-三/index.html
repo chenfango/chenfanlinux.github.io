@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="Bash," />
+  <meta name="keywords" content="Docker," />
 
 
 
@@ -107,20 +107,18 @@
 
 
 
-<meta name="description" content="什么是shell? 通常,替我们工作的是”硬件”,而控制硬件的是”内核”。用户利用”shell”控制着一些内核提供的”工具”,来控制硬件替我们工作。由于内核听不懂人类语言,所以shell从本质来说就是一个UI(用户界面)应用程序,让内核控制着硬件正确无误的工作，如图1-1 硬件-内核-shell 所示，可以清晰的看到他">
-<meta name="keywords" content="Bash">
+<meta name="description" content="认识Dockerfile简介Dockerfile是一个文本格式的配置文件，用户可以使用Dockerfile快速构建自定义的镜像。 下面展示一个规范的DockerFile文件。 # # DOCKER-VERSION    1.12.6 # Dockerizing ubuntu14.04: Dockerfile for b">
+<meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Bash特性汇总">
-<meta property="og:url" content="http://www.chenfanlinux.org/2018/01/05/Bash特性汇总/index.html">
+<meta property="og:title" content="Docker入门之Dockerfile最佳实践(三)">
+<meta property="og:url" content="http://www.chenfanlinux.org/2018/01/10/Docker入门之Dockerfile最佳实践-三/index.html">
 <meta property="og:site_name" content="陈凡的博客">
-<meta property="og:description" content="什么是shell? 通常,替我们工作的是”硬件”,而控制硬件的是”内核”。用户利用”shell”控制着一些内核提供的”工具”,来控制硬件替我们工作。由于内核听不懂人类语言,所以shell从本质来说就是一个UI(用户界面)应用程序,让内核控制着硬件正确无误的工作，如图1-1 硬件-内核-shell 所示，可以清晰的看到他们的关系。   Bash shell功能特性history命令记忆功能 在Bas">
+<meta property="og:description" content="认识Dockerfile简介Dockerfile是一个文本格式的配置文件，用户可以使用Dockerfile快速构建自定义的镜像。 下面展示一个规范的DockerFile文件。 # # DOCKER-VERSION    1.12.6 # Dockerizing ubuntu14.04: Dockerfile for building ubuntu images #  # 非注释首行必须指定基础镜像">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://cdn-std.dprcdn.net/files/acc_582513/DDfPGJ">
-<meta property="og:updated_time" content="2018-01-05T05:33:31.000Z">
+<meta property="og:updated_time" content="2018-01-10T09:46:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bash特性汇总">
-<meta name="twitter:description" content="什么是shell? 通常,替我们工作的是”硬件”,而控制硬件的是”内核”。用户利用”shell”控制着一些内核提供的”工具”,来控制硬件替我们工作。由于内核听不懂人类语言,所以shell从本质来说就是一个UI(用户界面)应用程序,让内核控制着硬件正确无误的工作，如图1-1 硬件-内核-shell 所示，可以清晰的看到他们的关系。   Bash shell功能特性history命令记忆功能 在Bas">
-<meta name="twitter:image" content="https://cdn-std.dprcdn.net/files/acc_582513/DDfPGJ">
+<meta name="twitter:title" content="Docker入门之Dockerfile最佳实践(三)">
+<meta name="twitter:description" content="认识Dockerfile简介Dockerfile是一个文本格式的配置文件，用户可以使用Dockerfile快速构建自定义的镜像。 下面展示一个规范的DockerFile文件。 # # DOCKER-VERSION    1.12.6 # Dockerizing ubuntu14.04: Dockerfile for building ubuntu images #  # 非注释首行必须指定基础镜像">
 
 
 
@@ -150,13 +148,13 @@
 
 
 
-  <link rel="canonical" href="http://www.chenfanlinux.org/2018/01/05/Bash特性汇总/"/>
+  <link rel="canonical" href="http://www.chenfanlinux.org/2018/01/10/Docker入门之Dockerfile最佳实践-三/"/>
 
 
 
 
 
-  <title>Bash特性汇总 | 陈凡的博客</title>
+  <title>Docker入门之Dockerfile最佳实践(三) | 陈凡的博客</title>
   
 
 
@@ -342,7 +340,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/05/Bash特性汇总/">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/10/Docker入门之Dockerfile最佳实践-三/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陈凡">
@@ -359,7 +357,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Bash特性汇总</h1>
+          <h1 class="post-title" itemprop="name headline">Docker入门之Dockerfile最佳实践(三)</h1>
         
 
         <div class="post-meta">
@@ -371,8 +369,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-05T12:35:53+08:00">
-                2018-01-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T17:21:22+08:00">
+                2018-01-10
               </time>
             
 
@@ -394,8 +392,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Bash基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Bash基础</span>
+                  <a href="/categories/Docker系列/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker系列</span>
                   </a>
                 </span>
 
@@ -413,8 +411,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/01/05/Bash特性汇总/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/05/Bash特性汇总/" itemprop="commentsCount"></span>
+                <a href="/2018/01/10/Docker入门之Dockerfile最佳实践-三/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/10/Docker入门之Dockerfile最佳实践-三/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -442,7 +440,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,724
+                  1,206
                 </span>
               
 
@@ -458,7 +456,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  6
+                  5
                 </span>
               
             </div>
@@ -479,256 +477,128 @@
       
 
       
-        <h2 id="什么是shell"><a href="#什么是shell" class="headerlink" title="什么是shell?"></a>什么是shell?</h2><blockquote>
-<p>通常,替我们工作的是”硬件”,而控制硬件的是”内核”。用户利用”shell”控制着一些内核提供的”工具”,来控制硬件替我们工作。由于内核听不懂人类语言,所以shell从本质来说就是一个UI(用户界面)应用程序,让内核控制着硬件正确无误的工作，如图1-1 硬件-内核-shell 所示，可以清晰的看到他们的关系。</p>
-</blockquote>
-<p><img src="https://cdn-std.dprcdn.net/files/acc_582513/DDfPGJ" alt="硬件-内核"></p>
-<h2 id="Bash-shell功能特性"><a href="#Bash-shell功能特性" class="headerlink" title="Bash shell功能特性"></a>Bash shell功能特性</h2><h3 id="history命令记忆功能"><a href="#history命令记忆功能" class="headerlink" title="history命令记忆功能"></a>history命令记忆功能</h3><blockquote>
-<p>在Bash里面,我们只要在命令行按”上、下键”或者更强大的”Ctrl+r”,就可以找到之前输入的历史命令,这依赖于Bash的命令记录功能,记录的文件位于家目录下的.bash_history。登录shell后新执行的命令只会记录在缓存中,这些命令会在用户退出时追加到命令历史文件中,我们通过history命令可以查看历史命令.</p>
-</blockquote>
-<p><strong>命令历史相关的环境变量:</strong></p>
-<ul>
-<li>HISTSIZE: 命令历史记录的条数</li>
-<li>HISTFILE: ~/.bash_history</li>
-</ul>
-<p><strong>命令历史调用相关的命令:</strong></p>
-<ul>
-<li><p>调用历史中的命令:</p>
-<ul>
-<li>!#: 重复执行第#条指令</li>
-<li>!!: 重复上一条命令</li>
-<li>!string: 匹配以string开头的命令</li>
-</ul>
-</li>
-<li><p>调用上一条命令的最后一个参数:</p>
-<ul>
-<li>!$</li>
-<li>ESC . （先按esc,释放然后按.）</li>
-</ul>
-</li>
-</ul>
-<a id="more"></a>
-<h3 id="命令与文件补全功能"><a href="#命令与文件补全功能" class="headerlink" title="命令与文件补全功能"></a>命令与文件补全功能</h3><blockquote>
-<p>常在bash中使用热键[Tab]是一个好习惯,因为它可以减少键盘的输入和保证命令的输出的正确性。</p>
-</blockquote>
-<ul>
-<li>接在一串命令的第一个字后面,则为命令的补全</li>
-<li>接在一床命令的第二个字以后时,则为文件的补全</li>
-</ul>
-<h3 id="命令别名的功能"><a href="#命令别名的功能" class="headerlink" title="命令别名的功能"></a>命令别名的功能</h3><blockquote>
-<p>通过给常用命令设置别名的方式,减少命令的输出长度,提升工作效率。命令行键入alias命令,可以查看系统配置的alias命令,将命令别名记录在全局配置环境配置文件/etc/profile或~/.bashrc都是一种持久生效的方式.</p>
-</blockquote>
-<pre><code>[root@chenfanlinux ~]# alias
-alias cp=&apos;cp -i&apos;
-alias egrep=&apos;egrep --color=auto&apos;
-alias fgrep=&apos;fgrep --color=auto&apos;
-alias grep=&apos;grep --color=auto&apos;
-alias l.=&apos;ls -d .* --color=auto&apos;
-alias ll=&apos;ls -l --color=auto&apos;
-alias ls=&apos;ls --color=auto&apos;
-alias mv=&apos;mv -i&apos;
-alias rm=&apos;rm -i&apos;
-alias which=&apos;alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde&apos;
-</code></pre><p>   <strong>注意:由于shell脚本中的别名不生效，\cp的含义是脱去别名的设置。</strong></p>
-<h3 id="命令行展开功能"><a href="#命令行展开功能" class="headerlink" title="命令行展开功能"></a>命令行展开功能</h3><blockquote>
-<p>{}:可以承载一个以逗号分隔的列表,并将其展开为多个路径.</p>
-</blockquote>
-<pre><code>$ mkdir /tmp/{a,b} &lt;==&gt;  $ mkdir /tmp/a;mkdir /tmp/b
-$ mkdir /tmp/{tom,jerry}/hi &lt;==&gt;  $ mkidr /tmp/tom/hi;mkdir /tmp/jerry/hi
-</code></pre><h3 id="作业-jobs-、前台-fg-、后台-bg-控制"><a href="#作业-jobs-、前台-fg-、后台-bg-控制" class="headerlink" title="作业(jobs)、前台(fg)、后台(bg)控制"></a>作业(jobs)、前台(fg)、后台(bg)控制</h3><blockquote>
-<p>使用前台、后台控制,可以让工作进行得更加的顺利.我们可以随时将作业放置到后台执行,不用担心使用了[Ctrl]+c键来停掉该程序。在单用户登录环境中，达到了多任务的目标。</p>
-</blockquote>
-<ul>
-<li>前台作业: 通过终端启动,且启动后一直占据终端</li>
-<li><p>后台作业: 通过终端启动,但启动后即转入后台运行(释放终端)</p>
-</li>
-<li><p><strong>如何让作业运行于后台?</strong></p>
-<ul>
-<li><p>运行中的作业<br><code>Ctrl+Z</code></p>
-</li>
-<li><p>尚未启动的作业<br><code>COMMAND &amp;</code><br><strong><em>此类作业虽然被送往后台运行,但其依然与终端相关,<br>因为退出登录后作业将停止运行;如果希望送往后台,剥离与终端的关系。</em></strong></p>
-</li>
-<li><p>剥离作业与终端的关系<br><code>nohup COMMAND &amp;</code></p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p><strong>作业控制相关命令:</strong></p>
-<ul>
-<li>查看所有作业情况<br><code>jobs</code></li>
-<li>指定的后台作业调回前台<br><code>fg [[%]JOB_NUM]</code></li>
-<li>让送往后台的作业在后台继续运行<br><code>bg [[%]JOB_NUM]</code></li>
-<li>终止指定的作业<br><code>kill [%JOB_NUM]</code></li>
-</ul>
-</li>
-</ul>
-<h3 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h3><blockquote>
-<p>除了完整的字符串之外,bash还支持许多通配符来帮助用户查询和执行命令。下表列出常见的通配符,仅供参考。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">符号</th>
-<th style="text-align:center">内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">*</td>
-<td style="text-align:center">通配符,代表0个或多个字符(或数字)</td>
-</tr>
-<tr>
-<td style="text-align:center">?</td>
-<td style="text-align:center">通配符,代表一个有一个字符</td>
-</tr>
-<tr>
-<td style="text-align:center">#</td>
-<td style="text-align:center">注释,常在脚本中,被视为说明</td>
-</tr>
-<tr>
-<td style="text-align:center">\</td>
-<td style="text-align:center">转义字符,将特殊字符或通配符还原成一般字符</td>
-</tr>
-<tr>
-<td style="text-align:center">~</td>
-<td style="text-align:center">用户的家目录</td>
-</tr>
-<tr>
-<td style="text-align:center">$</td>
-<td style="text-align:center">变量之前需要加的变量替换值</td>
-</tr>
-<tr>
-<td style="text-align:center">&amp;</td>
-<td style="text-align:center">将命令转为后台执行</td>
-</tr>
-<tr>
-<td style="text-align:center">!</td>
-<td style="text-align:center">逻辑运算符(not)意思</td>
-</tr>
-<tr>
-<td style="text-align:center">/</td>
-<td style="text-align:center">路径分隔符</td>
-</tr>
-<tr>
-<td style="text-align:center">&gt; &gt;&gt;</td>
-<td style="text-align:center">重定向与追加重定向</td>
-</tr>
-<tr>
-<td style="text-align:center">‘</td>
-<td style="text-align:center">单引号,不具有变量置换功能</td>
-</tr>
-<tr>
-<td style="text-align:center">“</td>
-<td style="text-align:center">具有变量置换功能</td>
-</tr>
-<tr>
-<td style="text-align:center">``</td>
-<td style="text-align:center">中间为可以执行的命令</td>
-</tr>
-<tr>
-<td style="text-align:center">()</td>
-<td style="text-align:center">中间为子shell的起始于结束</td>
-</tr>
-<tr>
-<td style="text-align:center">[] [^]</td>
-<td style="text-align:center">中间为字符的组合</td>
-</tr>
-<tr>
-<td style="text-align:center">{}</td>
-<td style="text-align:center">中间为命令区块的组合</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">组合按键</th>
-<th style="text-align:center">执行结果</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Ctrl+c</td>
-<td style="text-align:center">终止当前的命令</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+a</td>
-<td style="text-align:center">跳转至命令开始处</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+e</td>
-<td style="text-align:center">跳转至命令结尾处</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+u</td>
-<td style="text-align:center">删除命令行首至光标所在处的所有内容</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+k</td>
-<td style="text-align:center">删除光标所在行至命令行尾部的内容</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+z</td>
-<td style="text-align:center">暂停当前命令的执行</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+l</td>
-<td style="text-align:center">清屏,相当于clear命令</td>
-</tr>
-</tbody>
-</table>
-<p><strong>匹配字符举例</strong></p>
-<ul>
-<li>* 任意长度的任意字符</li>
-<li>? 任意单个字符</li>
-<li><p>[] 只能匹配指定范围内的任意单个字符</p>
-<ul>
-<li>[0-9] 所有数字中挑一个</li>
-<li>[a-z] 不分区字符大小写</li>
-<li>[A-Z] 大写字母</li>
-<li>[[:lower:]] 小写字母</li>
-<li>[^0-9a-z] 特殊字符</li>
-</ul>
-</li>
-<li><p>[^] 匹配指定范围外的任意单个字符</p>
-</li>
-<li><p>专用字符集合:</p>
-<ul>
-<li>[:digit:]:任意数字,相当于0-9</li>
-<li>[:lower:]:任意小写字母</li>
-<li>[:upper:]:任意大写字母</li>
-<li>[:alpha:]:任意大小写字母</li>
-<li>[:alnum:]:任意数字或字母</li>
-<li>[:space:]:空格</li>
-<li>[:punct:]:标点符号</li>
-</ul>
-</li>
-</ul>
-<h3 id="命令执行的判断依据-amp-amp"><a href="#命令执行的判断依据-amp-amp" class="headerlink" title="命令执行的判断依据(; &amp;&amp; ||)"></a>命令执行的判断依据(; &amp;&amp; ||)</h3><blockquote>
-<p>通常来说命令的运行状态会返回两种结果,执行成功则返回0，执行错误则返回非0。而多个命令的执行通常,从前至后,而且命令的执行还具有一定的逻辑关系,上一个命令的执行成功与否,某种程序可用决定下一个命令的执行。</p>
-</blockquote>
-<p><strong>一次执行多个命令,命令之间没有关联。</strong></p>
-<pre><code>[root@chenfanlinux ~]# toch test.txt ; echo &quot;I  touch test.txt&quot;
--bash: toch: 未找到命令
-I touch test.txt
-</code></pre><p><strong>命令相互关联,上一个命令执行成功,才会执行下一个命令。</strong></p>
-<pre><code>[root@chenfanlinux ~]# toch test.txt &amp;&amp; echo &quot;I touch test.txt&quot;
--bash: toch: 未找到命令
-</code></pre><p><strong>命令相关关联,上一个命令执行失败,才会执行下一个命令。</strong></p>
-<pre><code>[root@chenfanlinux ~]# toch test.txt || echo &quot;I touch test.txt&quot;
--bash: toch: 未找到命令
-I touch test.txt
+        <h2 id="认识Dockerfile"><a href="#认识Dockerfile" class="headerlink" title="认识Dockerfile"></a>认识Dockerfile</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Dockerfile是一个文本格式的配置文件，用户可以使用Dockerfile快速构建自定义的镜像。 下面展示一个规范的DockerFile文件。</p>
+<pre><code>#
+# DOCKER-VERSION    1.12.6
+# Dockerizing ubuntu14.04: Dockerfile for building ubuntu images
+#
 
-[root@chenfanlinux ~]# touch test.txt || echo &quot;I touch test.txt&quot;
-注意:这里不会执行echo &quot;I touch test.txt&quot;
-</code></pre><p><strong>如果第一个命令执行成功,则执行第二个命令,否则执行第三个命令。</strong></p>
-<pre><code>[root@chenfanlinux ~]# touch test.txt &amp;&amp;  echo &quot;我是第二个命令&quot; || echo &quot;我是第三个命令&quot;
-我是第二个命令
-[root@chenfanlinux ~]# tuch test.txt &amp;&amp;  echo &quot;我是第二个命令&quot; || echo &quot;我是第三个命令&quot;
--bash: tuch: 未找到命令
-我是第三个命令
-</code></pre>
+# 非注释首行必须指定基础镜像
+FROM ubuntu:14.04
+# 维护者信息
+MAINTAINER chenfan &lt;1144102576@qq.com&gt;
+
+# 指定环境变量
+ENV TZ &quot;Asia/Shanghai&quot;
+ENV TERM xterm
+
+# 拷贝文件(Dockerfile所在目录的相对路径)到容器中
+ADD sources.list /etc/apt/sources.list
+COPY .bash_aliases /root/.bash_aliases
+
+# 在当前镜像的基础上执行指定命令并提交为新的镜像
+RUN \
+    apt-get update &amp;&amp; \
+    apt-get -y upgrade &amp;&amp; \
+    apt-get install -y build-essential &amp;&amp; \
+    apt-get install -y software-properties-common &amp;&amp; \
+    apt-get install -y curl htop unzip vim wget &amp;&amp; \
+    rm -rf /var/lib/apt/lists/*
+
+# 指定工作目录
+WORKDIR /root
+
+# 暴露的端口号(映射端口)
+EXPOSE 22
+
+# 指定容器启动时，默认运行的命令
+CMD [&quot;/bin/bash&quot;]
+</code></pre><a id="more"></a>
+<h2 id="指令详解"><a href="#指令详解" class="headerlink" title="指令详解"></a>指令详解</h2><h3 id="FROM"><a href="#FROM" class="headerlink" title="FROM"></a>FROM</h3><ul>
+<li>描述：用于指定基础镜像，且非注释首行必须是FROM；</li>
+<li>格式：FROM  &lt;image&gt; [:&lt;tag&gt;]</li>
+</ul>
+<h3 id="MAINTAINER"><a href="#MAINTAINER" class="headerlink" title="MAINTAINER"></a>MAINTAINER</h3><ul>
+<li>描述：指定维护者信息；</li>
+<li>格式：MAINTAINER &lt;name&gt; &lt;email&gt;</li>
+</ul>
+<h3 id="RUN"><a href="#RUN" class="headerlink" title="RUN"></a>RUN</h3><ul>
+<li>描述：在当前镜像基础上执行指定命令，并提交为新的镜像，当命令较长时可以使用\来换行；</li>
+<li>格式：<ul>
+<li>使用shell终端运行命令，即/bin/sh -c：RUN &lt;command&gt;</li>
+<li>使用exec执行，使用其他终端时可使用：RUN [“executable”, “param”, “param”…]</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>示例：<br><code>RUN [&quot;/bin/bash&quot;,&quot;-c&quot;,&quot;echo hello&quot;]</code></li>
+</ul>
+<h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3><ul>
+<li>描述：指定启动容器时执行的命令，且每个Dockerfile仅能拥有一条CMD指令，若有多条，仅最后一条被执行，若用户在启动容器时指定了运行命令，则会覆盖掉CMD指定的命令；</li>
+<li>格式：<ul>
+<li>CMD [“executable”,”param1”,”param2”] (exec form, this is the preferred form)</li>
+<li>CMD [“param1”,”param2”] (as default parameters to ENTRYPOINT)</li>
+<li>CMD command param1 param2 (shell form)</li>
+<li>第一种用法：运行一个可执行的文件并提供参数。</li>
+<li>第二种用法：为ENTRYPOINT指定参数。</li>
+<li>第三种用法(shell form)：是以”/bin/sh -c”的方法执行的命令。</li>
+</ul>
+</li>
+</ul>
+<p><strong>注意</strong>：CMD可以为ENTRYPOINT提供参数，ENTRYPOINT本身也可以包含参数，但是你可以把那些可能需要变动的参数写到CMD里而把那些不需要变动的参数写到ENTRYPOINT里面。把可能需要变动的参数写到CMD里面。然后你可以在docker run里指定参数，CMD里的参数就会被覆盖掉而ENTRYPOINT里的不被覆盖。</p>
+<h3 id="EXPOSE"><a href="#EXPOSE" class="headerlink" title="EXPOSE"></a>EXPOSE</h3><ul>
+<li>描述：指定容器暴露的端口号，在启动容器时需要通过参数-P或-p来映射；</li>
+<li>格式：EXPOSE &lt;port&gt;[ &lt;port&gt;…]</li>
+<li>示例：<code>EXPOSE 22 80 443</code></li>
+</ul>
+<h3 id="ENV"><a href="#ENV" class="headerlink" title="ENV"></a>ENV</h3><ul>
+<li>描述：指定一个环境变量，供后续的RUN指令使用，并持久在容器中；</li>
+<li>格式：ENV &lt;key&gt; &lt;value&gt;</li>
+</ul>
+<h3 id="ADD"><a href="#ADD" class="headerlink" title="ADD"></a>ADD</h3><ul>
+<li>描述：拷贝文件(Dockerfile所在目录的相对路径或是URL)到容器中，若源文件为tar文件，自动解压为目录；</li>
+<li>格式：ADD &lt;src&gt; &lt;dest&gt;</li>
+</ul>
+<h3 id="ENTRYPOINT"><a href="#ENTRYPOINT" class="headerlink" title="ENTRYPOINT"></a>ENTRYPOINT</h3><ul>
+<li>描述：指定启动容器时执行的命令，且不可被覆盖，每个Dockerfile仅能拥有一条ENTRYPOINT指令，若有多条，仅最后一条被执行；</li>
+<li>格式：<ul>
+<li>使用exec执行(推荐使用)：ENTRYPOINT [“executable”, “param”, “param”…]</li>
+<li>使用shell终端运行命令，供需交互的应用使用：ENTRYPOINT &lt;command&gt; &lt;param&gt; &lt;param&gt;…</li>
+</ul>
+</li>
+</ul>
+<p>注意：</p>
+<ul>
+<li>ENTRYPOINT接收来自于docker run和CMD参数；将可变的参数放在CMD中,不变的参数放置于ENTRYPOINT中。</li>
+<li>ENTRYPOINT有两种写法，第二种(shell form)会屏蔽掉docker run时后面加的命令和CMD里的参数。</li>
+<li>ENTRYPOINT并不默认为[“/bin/sh -c”]</li>
+</ul>
+<h3 id="VOLUME"><a href="#VOLUME" class="headerlink" title="VOLUME"></a>VOLUME</h3><ul>
+<li>描述：创建一个可以从本地主机或其他容器挂载的挂载点，一般用来存放数据库与持久化数据等；</li>
+<li>格式：VOLUME [“/data”]</li>
+</ul>
+<h3 id="USER"><a href="#USER" class="headerlink" title="USER"></a>USER</h3><ul>
+<li>描述：指定运行容器时的用户名或UID，供后续的RUN指令使用，并持久在容器中；</li>
+<li>格式：USER daemon</li>
+</ul>
+<h3 id="WORKDIR"><a href="#WORKDIR" class="headerlink" title="WORKDIR"></a>WORKDIR</h3><ul>
+<li>描述：指定当前工作目录，相当于cd命令，供后续的RUN、CMD、ENTRYPOINT指令使用；</li>
+<li>格式：WORKDIR &lt;path&gt;</li>
+</ul>
+<h3 id="ONBUILD"><a href="#ONBUILD" class="headerlink" title="ONBUILD"></a>ONBUILD</h3><ul>
+<li>描述：配置当所创建的镜像作为其它新创建镜像的基础镜像时，所执行的操作指令；</li>
+<li>格式：ONBUILD [INSTRUCTION]</li>
+<li>示例：<code>ONBUILD RUN apt-get update</code></li>
+</ul>
+<h2 id="构建镜像"><a href="#构建镜像" class="headerlink" title="构建镜像"></a>构建镜像</h2><h3 id="构建镜像的步骤"><a href="#构建镜像的步骤" class="headerlink" title="构建镜像的步骤"></a>构建镜像的步骤</h3><ul>
+<li>将Dockerfile文件编写完成以后，可以通过docker build命令来创建镜像；</li>
+<li>构建镜像时，推荐将需要使用的包及Dockerfile文件放在同一个目录中；</li>
+<li>若需要指定镜像的标签信息，使用-t选项,系统默认从build context目录下去寻找Dockerfile，也可以通过-f选项指定Dockerfile的位置。</li>
+</ul>
+<h3 id="构建镜像示例"><a href="#构建镜像示例" class="headerlink" title="构建镜像示例"></a>构建镜像示例</h3><p><strong>格式：</strong></p>
+<p><code>docker build -t ubuntu:chenfan PATH -f Dockerfile_Path .</code></p>
+<p><strong>说明：</strong><br>运行 docker build 命令，-t 将新镜像命名为 ubuntu:chenfan，命令末尾的 . 指明 build context 为当前目录。Docker 默认会从 build context 中查找 Dockerfile 文件，我们也可以通过 -f 参数指定 Dockerfile 的位置。</p>
+
       
     </div>
     
@@ -786,7 +656,7 @@ I touch test.txt
         <div class="post-tags">
           
          
-            <a href="/tags/Bash/" rel="tag"><i class="fa fa-tag"></i>Bash</a>
+            <a href="/tags/Docker/" rel="tag"><i class="fa fa-tag"></i>Docker</a>
           
         </div>
       
@@ -799,8 +669,8 @@ I touch test.txt
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/28/Docker入门之基础概念与架构-一/" rel="next" title="Docker入门之基础概念与架构(一)">
-                <i class="fa fa-chevron-left"></i> Docker入门之基础概念与架构(一)
+              <a href="/2018/01/10/Docker入门之镜像基础概念与管理-二/" rel="next" title="Docker入门之镜像基础概念与管理(二)">
+                <i class="fa fa-chevron-left"></i> Docker入门之镜像基础概念与管理(二)
               </a>
             
           </div>
@@ -808,10 +678,6 @@ I touch test.txt
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/10/Docker入门之镜像基础概念与管理-二/" rel="prev" title="Docker入门之镜像基础概念与管理(二)">
-                Docker入门之镜像基础概念与管理(二) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1013,7 +879,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是shell"><span class="nav-number">1.</span> <span class="nav-text">什么是shell?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bash-shell功能特性"><span class="nav-number">2.</span> <span class="nav-text">Bash shell功能特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#history命令记忆功能"><span class="nav-number">2.1.</span> <span class="nav-text">history命令记忆功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令与文件补全功能"><span class="nav-number">2.2.</span> <span class="nav-text">命令与文件补全功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令别名的功能"><span class="nav-number">2.3.</span> <span class="nav-text">命令别名的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行展开功能"><span class="nav-number">2.4.</span> <span class="nav-text">命令行展开功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作业-jobs-、前台-fg-、后台-bg-控制"><span class="nav-number">2.5.</span> <span class="nav-text">作业(jobs)、前台(fg)、后台(bg)控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通配符"><span class="nav-number">2.6.</span> <span class="nav-text">通配符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令执行的判断依据-amp-amp"><span class="nav-number">2.7.</span> <span class="nav-text">命令执行的判断依据(; && ||)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#认识Dockerfile"><span class="nav-number">1.</span> <span class="nav-text">认识Dockerfile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指令详解"><span class="nav-number">2.</span> <span class="nav-text">指令详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FROM"><span class="nav-number">2.1.</span> <span class="nav-text">FROM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MAINTAINER"><span class="nav-number">2.2.</span> <span class="nav-text">MAINTAINER</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RUN"><span class="nav-number">2.3.</span> <span class="nav-text">RUN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD"><span class="nav-number">2.4.</span> <span class="nav-text">CMD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXPOSE"><span class="nav-number">2.5.</span> <span class="nav-text">EXPOSE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ENV"><span class="nav-number">2.6.</span> <span class="nav-text">ENV</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ADD"><span class="nav-number">2.7.</span> <span class="nav-text">ADD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ENTRYPOINT"><span class="nav-number">2.8.</span> <span class="nav-text">ENTRYPOINT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VOLUME"><span class="nav-number">2.9.</span> <span class="nav-text">VOLUME</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#USER"><span class="nav-number">2.10.</span> <span class="nav-text">USER</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WORKDIR"><span class="nav-number">2.11.</span> <span class="nav-text">WORKDIR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ONBUILD"><span class="nav-number">2.12.</span> <span class="nav-text">ONBUILD</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建镜像"><span class="nav-number">3.</span> <span class="nav-text">构建镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构建镜像的步骤"><span class="nav-number">3.1.</span> <span class="nav-text">构建镜像的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建镜像示例"><span class="nav-number">3.2.</span> <span class="nav-text">构建镜像示例</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1226,7 +1092,7 @@ var jiathis_config={
 		_hcwp.push({widget:"Bloggerstream", widget_id: 98812, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2018/01/05/Bash特性汇总/"});
+		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2018/01/10/Docker入门之Dockerfile最佳实践-三/"});
 		
 
 		(function() {

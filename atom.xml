@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.chenfanlinux.org/"/>
-  <updated>2018-01-10T07:43:38.000Z</updated>
+  <updated>2018-01-10T09:46:53.000Z</updated>
   <id>http://www.chenfanlinux.org/</id>
   
   <author>
@@ -15,6 +15,64 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Docker入门之Dockerfile最佳实践(三)</title>
+    <link href="http://www.chenfanlinux.org/2018/01/10/Docker%E5%85%A5%E9%97%A8%E4%B9%8BDockerfile%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E4%B8%89/"/>
+    <id>http://www.chenfanlinux.org/2018/01/10/Docker入门之Dockerfile最佳实践-三/</id>
+    <published>2018-01-10T09:21:22.000Z</published>
+    <updated>2018-01-10T09:46:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="认识Dockerfile"><a href="#认识Dockerfile" class="headerlink" title="认识Dockerfile"></a>认识Dockerfile</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Dockerfile是一个文本格式的配置文件，用户可以使用Dockerfile快速构建自定义的镜像。 下面展示一个规范的DockerFile文件。</p><pre><code>## DOCKER-VERSION    1.12.6# Dockerizing ubuntu14.04: Dockerfile for building ubuntu images## 非注释首行必须指定基础镜像FROM ubuntu:14.04# 维护者信息MAINTAINER chenfan &lt;1144102576@qq.com&gt;# 指定环境变量ENV TZ &quot;Asia/Shanghai&quot;ENV TERM xterm# 拷贝文件(Dockerfile所在目录的相对路径)到容器中ADD sources.list /etc/apt/sources.listCOPY .bash_aliases /root/.bash_aliases# 在当前镜像的基础上执行指定命令并提交为新的镜像RUN \    apt-get update &amp;&amp; \    apt-get -y upgrade &amp;&amp; \    apt-get install -y build-essential &amp;&amp; \    apt-get install -y software-properties-common &amp;&amp; \    apt-get install -y curl htop unzip vim wget &amp;&amp; \    rm -rf /var/lib/apt/lists/*# 指定工作目录WORKDIR /root# 暴露的端口号(映射端口)EXPOSE 22# 指定容器启动时，默认运行的命令CMD [&quot;/bin/bash&quot;]</code></pre><a id="more"></a><h2 id="指令详解"><a href="#指令详解" class="headerlink" title="指令详解"></a>指令详解</h2><h3 id="FROM"><a href="#FROM" class="headerlink" title="FROM"></a>FROM</h3><ul><li>描述：用于指定基础镜像，且非注释首行必须是FROM；</li><li>格式：FROM  &lt;image&gt; [:&lt;tag&gt;]</li></ul><h3 id="MAINTAINER"><a href="#MAINTAINER" class="headerlink" title="MAINTAINER"></a>MAINTAINER</h3><ul><li>描述：指定维护者信息；</li><li>格式：MAINTAINER &lt;name&gt; &lt;email&gt;</li></ul><h3 id="RUN"><a href="#RUN" class="headerlink" title="RUN"></a>RUN</h3><ul><li>描述：在当前镜像基础上执行指定命令，并提交为新的镜像，当命令较长时可以使用\来换行；</li><li>格式：<ul><li>使用shell终端运行命令，即/bin/sh -c：RUN &lt;command&gt;</li><li>使用exec执行，使用其他终端时可使用：RUN [“executable”, “param”, “param”…]</li></ul></li></ul><ul><li>示例：<br><code>RUN [&quot;/bin/bash&quot;,&quot;-c&quot;,&quot;echo hello&quot;]</code></li></ul><h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3><ul><li>描述：指定启动容器时执行的命令，且每个Dockerfile仅能拥有一条CMD指令，若有多条，仅最后一条被执行，若用户在启动容器时指定了运行命令，则会覆盖掉CMD指定的命令；</li><li>格式：<ul><li>CMD [“executable”,”param1”,”param2”] (exec form, this is the preferred form)</li><li>CMD [“param1”,”param2”] (as default parameters to ENTRYPOINT)</li><li>CMD command param1 param2 (shell form)</li><li>第一种用法：运行一个可执行的文件并提供参数。</li><li>第二种用法：为ENTRYPOINT指定参数。</li><li>第三种用法(shell form)：是以”/bin/sh -c”的方法执行的命令。</li></ul></li></ul><p><strong>注意</strong>：CMD可以为ENTRYPOINT提供参数，ENTRYPOINT本身也可以包含参数，但是你可以把那些可能需要变动的参数写到CMD里而把那些不需要变动的参数写到ENTRYPOINT里面。把可能需要变动的参数写到CMD里面。然后你可以在docker run里指定参数，CMD里的参数就会被覆盖掉而ENTRYPOINT里的不被覆盖。</p><h3 id="EXPOSE"><a href="#EXPOSE" class="headerlink" title="EXPOSE"></a>EXPOSE</h3><ul><li>描述：指定容器暴露的端口号，在启动容器时需要通过参数-P或-p来映射；</li><li>格式：EXPOSE &lt;port&gt;[ &lt;port&gt;…]</li><li>示例：<code>EXPOSE 22 80 443</code></li></ul><h3 id="ENV"><a href="#ENV" class="headerlink" title="ENV"></a>ENV</h3><ul><li>描述：指定一个环境变量，供后续的RUN指令使用，并持久在容器中；</li><li>格式：ENV &lt;key&gt; &lt;value&gt;</li></ul><h3 id="ADD"><a href="#ADD" class="headerlink" title="ADD"></a>ADD</h3><ul><li>描述：拷贝文件(Dockerfile所在目录的相对路径或是URL)到容器中，若源文件为tar文件，自动解压为目录；</li><li>格式：ADD &lt;src&gt; &lt;dest&gt;</li></ul><h3 id="ENTRYPOINT"><a href="#ENTRYPOINT" class="headerlink" title="ENTRYPOINT"></a>ENTRYPOINT</h3><ul><li>描述：指定启动容器时执行的命令，且不可被覆盖，每个Dockerfile仅能拥有一条ENTRYPOINT指令，若有多条，仅最后一条被执行；</li><li>格式：<ul><li>使用exec执行(推荐使用)：ENTRYPOINT [“executable”, “param”, “param”…]</li><li>使用shell终端运行命令，供需交互的应用使用：ENTRYPOINT &lt;command&gt; &lt;param&gt; &lt;param&gt;…</li></ul></li></ul><p>注意：</p><ul><li>ENTRYPOINT接收来自于docker run和CMD参数；将可变的参数放在CMD中,不变的参数放置于ENTRYPOINT中。</li><li>ENTRYPOINT有两种写法，第二种(shell form)会屏蔽掉docker run时后面加的命令和CMD里的参数。</li><li>ENTRYPOINT并不默认为[“/bin/sh -c”]</li></ul><h3 id="VOLUME"><a href="#VOLUME" class="headerlink" title="VOLUME"></a>VOLUME</h3><ul><li>描述：创建一个可以从本地主机或其他容器挂载的挂载点，一般用来存放数据库与持久化数据等；</li><li>格式：VOLUME [“/data”]</li></ul><h3 id="USER"><a href="#USER" class="headerlink" title="USER"></a>USER</h3><ul><li>描述：指定运行容器时的用户名或UID，供后续的RUN指令使用，并持久在容器中；</li><li>格式：USER daemon</li></ul><h3 id="WORKDIR"><a href="#WORKDIR" class="headerlink" title="WORKDIR"></a>WORKDIR</h3><ul><li>描述：指定当前工作目录，相当于cd命令，供后续的RUN、CMD、ENTRYPOINT指令使用；</li><li>格式：WORKDIR &lt;path&gt;</li></ul><h3 id="ONBUILD"><a href="#ONBUILD" class="headerlink" title="ONBUILD"></a>ONBUILD</h3><ul><li>描述：配置当所创建的镜像作为其它新创建镜像的基础镜像时，所执行的操作指令；</li><li>格式：ONBUILD [INSTRUCTION]</li><li>示例：<code>ONBUILD RUN apt-get update</code></li></ul><h2 id="构建镜像"><a href="#构建镜像" class="headerlink" title="构建镜像"></a>构建镜像</h2><h3 id="构建镜像的步骤"><a href="#构建镜像的步骤" class="headerlink" title="构建镜像的步骤"></a>构建镜像的步骤</h3><ul><li>将Dockerfile文件编写完成以后，可以通过docker build命令来创建镜像；</li><li>构建镜像时，推荐将需要使用的包及Dockerfile文件放在同一个目录中；</li><li>若需要指定镜像的标签信息，使用-t选项,系统默认从build context目录下去寻找Dockerfile，也可以通过-f选项指定Dockerfile的位置。</li></ul><h3 id="构建镜像示例"><a href="#构建镜像示例" class="headerlink" title="构建镜像示例"></a>构建镜像示例</h3><p><strong>格式：</strong></p><p><code>docker build -t ubuntu:chenfan PATH -f Dockerfile_Path .</code></p><p><strong>说明：</strong><br>运行 docker build 命令，-t 将新镜像命名为 ubuntu:chenfan，命令末尾的 . 指明 build context 为当前目录。Docker 默认会从 build context 中查找 Dockerfile 文件，我们也可以通过 -f 参数指定 Dockerfile 的位置。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;认识Dockerfile&quot;&gt;&lt;a href=&quot;#认识Dockerfile&quot; class=&quot;headerlink&quot; title=&quot;认识Dockerfile&quot;&gt;&lt;/a&gt;认识Dockerfile&lt;/h2&gt;&lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h3&gt;&lt;p&gt;Dockerfile是一个文本格式的配置文件，用户可以使用Dockerfile快速构建自定义的镜像。 下面展示一个规范的DockerFile文件。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#
+# DOCKER-VERSION    1.12.6
+# Dockerizing ubuntu14.04: Dockerfile for building ubuntu images
+#
+
+# 非注释首行必须指定基础镜像
+FROM ubuntu:14.04
+# 维护者信息
+MAINTAINER chenfan &amp;lt;1144102576@qq.com&amp;gt;
+
+# 指定环境变量
+ENV TZ &amp;quot;Asia/Shanghai&amp;quot;
+ENV TERM xterm
+
+# 拷贝文件(Dockerfile所在目录的相对路径)到容器中
+ADD sources.list /etc/apt/sources.list
+COPY .bash_aliases /root/.bash_aliases
+
+# 在当前镜像的基础上执行指定命令并提交为新的镜像
+RUN \
+    apt-get update &amp;amp;&amp;amp; \
+    apt-get -y upgrade &amp;amp;&amp;amp; \
+    apt-get install -y build-essential &amp;amp;&amp;amp; \
+    apt-get install -y software-properties-common &amp;amp;&amp;amp; \
+    apt-get install -y curl htop unzip vim wget &amp;amp;&amp;amp; \
+    rm -rf /var/lib/apt/lists/*
+
+# 指定工作目录
+WORKDIR /root
+
+# 暴露的端口号(映射端口)
+EXPOSE 22
+
+# 指定容器启动时，默认运行的命令
+CMD [&amp;quot;/bin/bash&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="Docker系列" scheme="http://www.chenfanlinux.org/categories/Docker%E7%B3%BB%E5%88%97/"/>
+    
+    
+      <category term="Docker" scheme="http://www.chenfanlinux.org/tags/Docker/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker入门之镜像基础概念与管理(二)</title>
