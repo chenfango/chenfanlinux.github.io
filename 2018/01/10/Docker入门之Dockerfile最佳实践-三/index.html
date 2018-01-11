@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="陈凡的博客">
 <meta property="og:description" content="认识Dockerfile简介Dockerfile是一个文本格式的配置文件，用户可以使用Dockerfile快速构建自定义的镜像。 下面展示一个规范的DockerFile文件。 # # DOCKER-VERSION    1.12.6 # Dockerizing ubuntu14.04: Dockerfile for building ubuntu images #  # 非注释首行必须指定基础镜像">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-10T09:46:53.000Z">
+<meta property="og:updated_time" content="2018-01-11T02:06:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker入门之Dockerfile最佳实践(三)">
 <meta name="twitter:description" content="认识Dockerfile简介Dockerfile是一个文本格式的配置文件，用户可以使用Dockerfile快速构建自定义的镜像。 下面展示一个规范的DockerFile文件。 # # DOCKER-VERSION    1.12.6 # Dockerizing ubuntu14.04: Dockerfile for building ubuntu images #  # 非注释首行必须指定基础镜像">
@@ -440,7 +440,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,206
+                  1,287
                 </span>
               
 
@@ -594,6 +594,13 @@ CMD [&quot;/bin/bash&quot;]
 <li>将Dockerfile文件编写完成以后，可以通过docker build命令来创建镜像；</li>
 <li>构建镜像时，推荐将需要使用的包及Dockerfile文件放在同一个目录中；</li>
 <li>若需要指定镜像的标签信息，使用-t选项,系统默认从build context目录下去寻找Dockerfile，也可以通过-f选项指定Dockerfile的位置。</li>
+</ul>
+<h3 id="Dockerfile执行步骤"><a href="#Dockerfile执行步骤" class="headerlink" title="Dockerfile执行步骤"></a>Dockerfile执行步骤</h3><ul>
+<li>从 base 镜像运行一个容器。</li>
+<li>执行一条指令，对容器做修改。</li>
+<li>执行类似 docker commit 的操作，生成一个新的镜像层。</li>
+<li>Docker 再基于刚刚提交的镜像运行一个新容器。</li>
+<li>重复 2-4 步，直到 Dockerfile 中的所有指令执行完毕</li>
 </ul>
 <h3 id="构建镜像示例"><a href="#构建镜像示例" class="headerlink" title="构建镜像示例"></a>构建镜像示例</h3><p><strong>格式：</strong></p>
 <p><code>docker build -t ubuntu:chenfan PATH -f Dockerfile_Path .</code></p>
@@ -879,7 +886,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#认识Dockerfile"><span class="nav-number">1.</span> <span class="nav-text">认识Dockerfile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指令详解"><span class="nav-number">2.</span> <span class="nav-text">指令详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FROM"><span class="nav-number">2.1.</span> <span class="nav-text">FROM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MAINTAINER"><span class="nav-number">2.2.</span> <span class="nav-text">MAINTAINER</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RUN"><span class="nav-number">2.3.</span> <span class="nav-text">RUN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD"><span class="nav-number">2.4.</span> <span class="nav-text">CMD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXPOSE"><span class="nav-number">2.5.</span> <span class="nav-text">EXPOSE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ENV"><span class="nav-number">2.6.</span> <span class="nav-text">ENV</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ADD"><span class="nav-number">2.7.</span> <span class="nav-text">ADD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ENTRYPOINT"><span class="nav-number">2.8.</span> <span class="nav-text">ENTRYPOINT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VOLUME"><span class="nav-number">2.9.</span> <span class="nav-text">VOLUME</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#USER"><span class="nav-number">2.10.</span> <span class="nav-text">USER</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WORKDIR"><span class="nav-number">2.11.</span> <span class="nav-text">WORKDIR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ONBUILD"><span class="nav-number">2.12.</span> <span class="nav-text">ONBUILD</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建镜像"><span class="nav-number">3.</span> <span class="nav-text">构建镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构建镜像的步骤"><span class="nav-number">3.1.</span> <span class="nav-text">构建镜像的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建镜像示例"><span class="nav-number">3.2.</span> <span class="nav-text">构建镜像示例</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#认识Dockerfile"><span class="nav-number">1.</span> <span class="nav-text">认识Dockerfile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指令详解"><span class="nav-number">2.</span> <span class="nav-text">指令详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FROM"><span class="nav-number">2.1.</span> <span class="nav-text">FROM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MAINTAINER"><span class="nav-number">2.2.</span> <span class="nav-text">MAINTAINER</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RUN"><span class="nav-number">2.3.</span> <span class="nav-text">RUN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD"><span class="nav-number">2.4.</span> <span class="nav-text">CMD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXPOSE"><span class="nav-number">2.5.</span> <span class="nav-text">EXPOSE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ENV"><span class="nav-number">2.6.</span> <span class="nav-text">ENV</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ADD"><span class="nav-number">2.7.</span> <span class="nav-text">ADD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ENTRYPOINT"><span class="nav-number">2.8.</span> <span class="nav-text">ENTRYPOINT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VOLUME"><span class="nav-number">2.9.</span> <span class="nav-text">VOLUME</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#USER"><span class="nav-number">2.10.</span> <span class="nav-text">USER</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WORKDIR"><span class="nav-number">2.11.</span> <span class="nav-text">WORKDIR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ONBUILD"><span class="nav-number">2.12.</span> <span class="nav-text">ONBUILD</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建镜像"><span class="nav-number">3.</span> <span class="nav-text">构建镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构建镜像的步骤"><span class="nav-number">3.1.</span> <span class="nav-text">构建镜像的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dockerfile执行步骤"><span class="nav-number">3.2.</span> <span class="nav-text">Dockerfile执行步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建镜像示例"><span class="nav-number">3.3.</span> <span class="nav-text">构建镜像示例</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -915,7 +922,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">12.6k</span>
+    <span title="Site words total count">12.7k</span>
   
 </div>
 
