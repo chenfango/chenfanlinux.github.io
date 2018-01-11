@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="陈凡的博客">
 <meta property="og:description" content="认识Dockerfile简介Dockerfile是一个文本格式的配置文件，用户可以使用Dockerfile快速构建自定义的镜像。 下面展示一个规范的DockerFile文件。 # # DOCKER-VERSION    1.12.6 # Dockerizing ubuntu14.04: Dockerfile for building ubuntu images #  # 非注释首行必须指定基础镜像">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-11T02:44:32.000Z">
+<meta property="og:updated_time" content="2018-01-11T03:01:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker入门之Dockerfile最佳实践(三)">
 <meta name="twitter:description" content="认识Dockerfile简介Dockerfile是一个文本格式的配置文件，用户可以使用Dockerfile快速构建自定义的镜像。 下面展示一个规范的DockerFile文件。 # # DOCKER-VERSION    1.12.6 # Dockerizing ubuntu14.04: Dockerfile for building ubuntu images #  # 非注释首行必须指定基础镜像">
@@ -440,7 +440,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,339
+                  1,485
                 </span>
               
 
@@ -456,7 +456,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  6
                 </span>
               
             </div>
@@ -574,8 +574,8 @@ CMD [&quot;/bin/bash&quot;]
 </ul>
 <p>注意：</p>
 <ul>
-<li>ENTRYPOINT接收来自于docker run和CMD参数；将可变的参数放在CMD中,不变的参数放置于ENTRYPOINT中。</li>
-<li>ENTRYPOINT有两种写法，第二种(shell form)会屏蔽掉docker run时后面加的命令和CMD里的参数。</li>
+<li>ENTRYPOINT接收来自于docker run和CMD提供的额外参数,docker run会覆盖CMD的参数；将可变的参数放在CMD中,不变的参数放置于ENTRYPOINT中。</li>
+<li>ENTRYPOINT有两种写法,推荐使用exec格式，第二种(shell form)会屏蔽掉docker run时后面加的命令和CMD里的参数。</li>
 <li>ENTRYPOINT并不默认为[“/bin/sh -c”]</li>
 </ul>
 <h3 id="VOLUME"><a href="#VOLUME" class="headerlink" title="VOLUME"></a>VOLUME</h3><ul>
@@ -606,6 +606,11 @@ CMD [&quot;/bin/bash&quot;]
 <li>执行类似 docker commit 的操作，生成一个新的镜像层。</li>
 <li>Docker 再基于刚刚提交的镜像运行一个新容器。</li>
 <li>重复 2-4 步，直到 Dockerfile 中的所有指令执行完毕</li>
+</ul>
+<h3 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h3><ul>
+<li>使用 RUN 指令安装应用和软件包，构建镜像。  </li>
+<li>如果 Docker 镜像的用途是运行应用程序或服务，比如运行一个 MySQL，应该优先使用 Exec 格式的 ENTRYPOINT 指令。CMD 可为 ENTRYPOINT 提供额外的默认参数，同时可利用 docker run 命令行替换默认参数。 </li>
+<li>如果想为容器设置默认的启动命令，可使用 CMD 指令。用户可在 docker run 命令行中替换此默认命令。  </li>
 </ul>
 <h3 id="构建镜像示例"><a href="#构建镜像示例" class="headerlink" title="构建镜像示例"></a>构建镜像示例</h3><p><strong>格式：</strong></p>
 <p><code>docker build -t ubuntu:chenfan PATH -f Dockerfile_Path .</code></p>
@@ -690,6 +695,10 @@ CMD [&quot;/bin/bash&quot;]
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/11/Docker入门之容器管理-四/" rel="prev" title="Docker入门之容器管理(四)">
+                Docker入门之容器管理(四) <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -801,7 +810,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -891,7 +900,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#认识Dockerfile"><span class="nav-number">1.</span> <span class="nav-text">认识Dockerfile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指令详解"><span class="nav-number">2.</span> <span class="nav-text">指令详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FROM"><span class="nav-number">2.1.</span> <span class="nav-text">FROM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MAINTAINER"><span class="nav-number">2.2.</span> <span class="nav-text">MAINTAINER</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RUN"><span class="nav-number">2.3.</span> <span class="nav-text">RUN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD"><span class="nav-number">2.4.</span> <span class="nav-text">CMD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXPOSE"><span class="nav-number">2.5.</span> <span class="nav-text">EXPOSE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ENV"><span class="nav-number">2.6.</span> <span class="nav-text">ENV</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ADD"><span class="nav-number">2.7.</span> <span class="nav-text">ADD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#COPY"><span class="nav-number">2.8.</span> <span class="nav-text">COPY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ENTRYPOINT"><span class="nav-number">2.9.</span> <span class="nav-text">ENTRYPOINT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VOLUME"><span class="nav-number">2.10.</span> <span class="nav-text">VOLUME</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#USER"><span class="nav-number">2.11.</span> <span class="nav-text">USER</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WORKDIR"><span class="nav-number">2.12.</span> <span class="nav-text">WORKDIR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ONBUILD"><span class="nav-number">2.13.</span> <span class="nav-text">ONBUILD</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建镜像"><span class="nav-number">3.</span> <span class="nav-text">构建镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构建镜像的步骤"><span class="nav-number">3.1.</span> <span class="nav-text">构建镜像的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dockerfile执行步骤"><span class="nav-number">3.2.</span> <span class="nav-text">Dockerfile执行步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建镜像示例"><span class="nav-number">3.3.</span> <span class="nav-text">构建镜像示例</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#认识Dockerfile"><span class="nav-number">1.</span> <span class="nav-text">认识Dockerfile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指令详解"><span class="nav-number">2.</span> <span class="nav-text">指令详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FROM"><span class="nav-number">2.1.</span> <span class="nav-text">FROM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MAINTAINER"><span class="nav-number">2.2.</span> <span class="nav-text">MAINTAINER</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RUN"><span class="nav-number">2.3.</span> <span class="nav-text">RUN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD"><span class="nav-number">2.4.</span> <span class="nav-text">CMD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXPOSE"><span class="nav-number">2.5.</span> <span class="nav-text">EXPOSE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ENV"><span class="nav-number">2.6.</span> <span class="nav-text">ENV</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ADD"><span class="nav-number">2.7.</span> <span class="nav-text">ADD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#COPY"><span class="nav-number">2.8.</span> <span class="nav-text">COPY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ENTRYPOINT"><span class="nav-number">2.9.</span> <span class="nav-text">ENTRYPOINT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VOLUME"><span class="nav-number">2.10.</span> <span class="nav-text">VOLUME</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#USER"><span class="nav-number">2.11.</span> <span class="nav-text">USER</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WORKDIR"><span class="nav-number">2.12.</span> <span class="nav-text">WORKDIR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ONBUILD"><span class="nav-number">2.13.</span> <span class="nav-text">ONBUILD</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建镜像"><span class="nav-number">3.</span> <span class="nav-text">构建镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构建镜像的步骤"><span class="nav-number">3.1.</span> <span class="nav-text">构建镜像的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dockerfile执行步骤"><span class="nav-number">3.2.</span> <span class="nav-text">Dockerfile执行步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最佳实践"><span class="nav-number">3.3.</span> <span class="nav-text">最佳实践</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建镜像示例"><span class="nav-number">3.4.</span> <span class="nav-text">构建镜像示例</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -927,7 +936,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">12.8k</span>
+    <span title="Site words total count">15.2k</span>
   
 </div>
 
