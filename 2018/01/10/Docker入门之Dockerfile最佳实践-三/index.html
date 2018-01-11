@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="陈凡的博客">
 <meta property="og:description" content="认识Dockerfile简介Dockerfile是一个文本格式的配置文件，用户可以使用Dockerfile快速构建自定义的镜像。 下面展示一个规范的DockerFile文件。 # # DOCKER-VERSION    1.12.6 # Dockerizing ubuntu14.04: Dockerfile for building ubuntu images #  # 非注释首行必须指定基础镜像">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-11T02:22:52.000Z">
+<meta property="og:updated_time" content="2018-01-11T02:44:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker入门之Dockerfile最佳实践(三)">
 <meta name="twitter:description" content="认识Dockerfile简介Dockerfile是一个文本格式的配置文件，用户可以使用Dockerfile快速构建自定义的镜像。 下面展示一个规范的DockerFile文件。 # # DOCKER-VERSION    1.12.6 # Dockerizing ubuntu14.04: Dockerfile for building ubuntu images #  # 非注释首行必须指定基础镜像">
@@ -440,7 +440,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,326
+                  1,339
                 </span>
               
 
@@ -523,7 +523,7 @@ CMD [&quot;/bin/bash&quot;]
 <li>格式：MAINTAINER &lt;name&gt; &lt;email&gt;</li>
 </ul>
 <h3 id="RUN"><a href="#RUN" class="headerlink" title="RUN"></a>RUN</h3><ul>
-<li>描述：在当前镜像基础上执行指定命令，并提交为新的镜像，当命令较长时可以使用\来换行；</li>
+<li>描述：在当前镜像基础上执行指定命令，并提交为新的镜像，当命令较长时可以使用\来换行,RUN命令经常被用作安装软件包；</li>
 <li>格式：<ul>
 <li>使用shell终端运行命令，即/bin/sh -c：RUN &lt;command&gt;</li>
 <li>使用exec执行，使用其他终端时可使用：RUN [“executable”, “param”, “param”…]</li>
@@ -927,7 +927,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">12.7k</span>
+    <span title="Site words total count">12.8k</span>
   
 </div>
 
