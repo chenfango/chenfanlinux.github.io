@@ -115,13 +115,13 @@
 <meta property="og:site_name" content="陈凡的博客">
 <meta property="og:description" content="Docker中自带的网络类型 在Docker容器技术中，网络部分算是比较复杂的一部分。了解Docker提供了几种原生的网络，了解容器与外界通信以及外界对容器如何进行访问，这是本文的重点。  Docker 安装时会自动在 host 上创建三个网络，我们可用 docker network ls 命令查看： [root@localhost ~]# docker network ls  NETWORK I">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://cdn-sec.droplr.net/files/acc_582513/pi0ifx?response-content-disposition=inline%3B%20filename%3D%25E6%259C%25AA%25E5%2591%25BD%25E5%2590%258D%25E6%2596%2587%25E4%25BB%25B6%2520(4">
-<meta property="og:image" content="https://cdn-sec.droplr.net/files/acc_582513/K9RVP7?response-content-disposition=inline%3B%20filename%3D%25E6%259C%25AA%25E5%2591%25BD%25E5%2590%258D%25E6%2596%2587%25E4%25BB%25B6%2520(2">
-<meta property="og:updated_time" content="2018-01-12T10:39:54.000Z">
+<meta property="og:image" content="https://s1.ax1x.com/2018/01/12/p8XD6U.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/01/12/p8X2kR.md.png">
+<meta property="og:updated_time" content="2018-01-12T11:04:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker入门之网络管理(五)">
 <meta name="twitter:description" content="Docker中自带的网络类型 在Docker容器技术中，网络部分算是比较复杂的一部分。了解Docker提供了几种原生的网络，了解容器与外界通信以及外界对容器如何进行访问，这是本文的重点。  Docker 安装时会自动在 host 上创建三个网络，我们可用 docker network ls 命令查看： [root@localhost ~]# docker network ls  NETWORK I">
-<meta name="twitter:image" content="https://cdn-sec.droplr.net/files/acc_582513/pi0ifx?response-content-disposition=inline%3B%20filename%3D%25E6%259C%25AA%25E5%2591%25BD%25E5%2590%258D%25E6%2596%2587%25E4%25BB%25B6%2520(4">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/01/12/p8XD6U.md.png">
 
 
 
@@ -443,7 +443,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,461
+                  3,429
                 </span>
               
 
@@ -657,7 +657,7 @@ docker0        8000.02425cb5b194    no        vetha36b044
     TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 </code></pre><p>可以看到bridge网络的 子网”Subnet”: “172.17.0.0/16”； 网关”Gateway”: “172.17.0.1”；容器的网络为”IPv4Address”: “172.17.0.2/16”；可以看出容器的网络由bridge子网分配一个ip地址，而网关就是dokcer0 172.17.0.1。  </p>
 <p>因此可以得出当前docker环境下的网络拓扑图如下：</p>
-<p><img src="https://cdn-sec.droplr.net/files/acc_582513/pi0ifx?response-content-disposition=inline%3B%20filename%3D%25E6%259C%25AA%25E5%2591%25BD%25E5%2590%258D%25E6%2596%2587%25E4%25BB%25B6%2520(4" alt="Docker容器网络拓扑图">.png&amp;Expires=1515753109&amp;Key-Pair-Id=APKAJTEIOJM3LSMN33SA&amp;Signature=Gy49qZGoXHzRryos1HNxB4yN6cHWiwtz4p2nguUKih4-1Y1Clbjl6~qxR9lSkBu3fJHRZ3BKc6KGr~sXQPRMfW~NHBp-GMp3p2KidPsc2Z5AgdDsm-RBmhs3H1eySTSkoCMRNy-~4omdXP-jgSgyWSyNLsc2QSvgOSWgLHFb6QM_)</p>
+<p><img src="https://s1.ax1x.com/2018/01/12/p8XD6U.md.png" alt="Docker网络拓扑"></p>
 <p>容器创建时，docker 会自动从 172.17.0.0/16 中分配一个 IP，这里 16 位的掩码保证有足够多的 IP 可以供容器使用。</p>
 <h2 id="用户自定义网络"><a href="#用户自定义网络" class="headerlink" title="用户自定义网络"></a>用户自定义网络</h2><blockquote>
 <p>除了Docker提供的上面三种none、host、bridge网络，用户还可以根据需求自定义网络。Docker 提供三种 user-defined 网络驱动：bridge, overlay 和 macvlan。overlay 和 macvlan 用于创建跨主机的网络。</p>
@@ -840,7 +840,7 @@ docker: Error response from daemon: user specified IP address is supported only 
 <h3 id="当前Docker的网络拓扑"><a href="#当前Docker的网络拓扑" class="headerlink" title="当前Docker的网络拓扑"></a>当前Docker的网络拓扑</h3><blockquote>
 <p>经过上面创建了两个bridge网络 <strong>br01</strong> 、<strong>br02</strong>。 <strong>br01</strong>是系统分配的网络地址，<strong>br02</strong>是我们指定的网络地址，并且指定 br02 为网络地址，运行了两个httpd应用。其中一个应用利用 –ip 指定了容器的静态IP，另一个是系统分配的IP地址。</p>
 </blockquote>
-<p><img src="https://cdn-sec.droplr.net/files/acc_582513/K9RVP7?response-content-disposition=inline%3B%20filename%3D%25E6%259C%25AA%25E5%2591%25BD%25E5%2590%258D%25E6%2596%2587%25E4%25BB%25B6%2520(2" alt="Docker网络拓扑">.png&amp;Expires=1515753603&amp;Key-Pair-Id=APKAJTEIOJM3LSMN33SA&amp;Signature=FLICG1zLSVIMRalJC2VbPQX1yevbBd1W5EjuVtb5MSrI40F~zjy~o8p3ipUlgvlNMYtOA7gcHlYOep8UhrD-JPq9nvAZ1VQ3ObS0ms0BxbIfufWWVvI1B5pT9r9V-88lnzP6G3JpvvTLxATbG0oz5t5tSn-B2IZey0-~l3OrzNg_)</p>
+<p><img src="https://s1.ax1x.com/2018/01/12/p8X2kR.md.png" alt="Docker网络拓扑"></p>
 
       
     </div>
@@ -1158,7 +1158,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">18.7k</span>
+    <span title="Site words total count">18.6k</span>
   
 </div>
 
