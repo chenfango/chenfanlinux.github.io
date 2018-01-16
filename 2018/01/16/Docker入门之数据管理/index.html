@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Docker," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="陈凡的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="如何存储Docker数据Docker 为容器提供了两种存放数据的资源：  Storage Driver 管理的镜像层和容器层。 Data Volume  Storage Driver 容器由最上面一个可写的容器层，以及若干只读的镜像层组成，容器的数据就存放在这些层中。这样的分层结构最大的特性是 Copy-on-Writ">
+<meta name="keywords" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker入门之数据管理(六)">
+<meta property="og:url" content="http://www.chenfanlinux.org/2018/01/16/Docker入门之数据管理/index.html">
+<meta property="og:site_name" content="陈凡的博客">
+<meta property="og:description" content="如何存储Docker数据Docker 为容器提供了两种存放数据的资源：  Storage Driver 管理的镜像层和容器层。 Data Volume  Storage Driver 容器由最上面一个可写的容器层，以及若干只读的镜像层组成，容器的数据就存放在这些层中。这样的分层结构最大的特性是 Copy-on-Write：  新数据会直接存放在最上面的容器层。 修改现有数据会先从镜像层将数据复制到">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax1x.com/2018/01/15/pUMMh4.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/01/15/pa1Hwq.png">
+<meta property="og:updated_time" content="2018-01-16T09:08:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker入门之数据管理(六)">
+<meta name="twitter:description" content="如何存储Docker数据Docker 为容器提供了两种存放数据的资源：  Storage Driver 管理的镜像层和容器层。 Data Volume  Storage Driver 容器由最上面一个可写的容器层，以及若干只读的镜像层组成，容器的数据就存放在这些层中。这样的分层结构最大的特性是 Copy-on-Write：  新数据会直接存放在最上面的容器层。 修改现有数据会先从镜像层将数据复制到">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/01/15/pUMMh4.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'X18Q8YOK7R',
+      apiKey: '4cf6f4ea962b4c633859ca376c0d6ae9',
+      indexName: 'chenfanlinux',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfanlinux.org/2018/01/16/Docker入门之数据管理/"/>
+
+
+
+
+
+  <title>Docker入门之数据管理(六) | 陈凡的博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?your-analytics-id";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+ 
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">陈凡的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">chenfanlinux.com</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/16/Docker入门之数据管理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Docker入门之数据管理(六)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-16T16:33:51+08:00">
+                2018-01-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker系列/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker系列</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/16/Docker入门之数据管理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/16/Docker入门之数据管理/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,827
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="如何存储Docker数据"><a href="#如何存储Docker数据" class="headerlink" title="如何存储Docker数据"></a>如何存储Docker数据</h2><p>Docker 为容器提供了两种存放数据的资源：</p>
+<ul>
+<li>Storage Driver 管理的镜像层和容器层。</li>
+<li>Data Volume</li>
+</ul>
+<p><strong>Storage Driver</strong></p>
+<p>容器由最上面一个可写的容器层，以及若干只读的镜像层组成，容器的数据就存放在这些层中。这样的分层结构最大的特性是 <strong><em>Copy-on-Write</em></strong>：</p>
+<ul>
+<li>新数据会直接存放在最上面的容器层。</li>
+<li>修改现有数据会先从镜像层将数据复制到容器层，修改后的数据直接保存在容器层中，镜像层保持不变。</li>
+<li>如果多个层中有命名相同的文件，用户只能看到最上面那层中的文件。</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2018/01/15/pUMMh4.jpg" alt=""><br>Storage Driver 实现了多层数据的堆叠并为用户提供一个单一的合并之后的统一视图。适合无状态的应用，不需要持久化存储数据。</p>
+<p><strong>Data Volume</strong></p>
+<p>Data Volume 本质上是 Docker Host 文件系统中的目录或文件，能够直接被 mount 到容器的文件系统中。适合于持久化数据的需求的数据存储，容器启动时需要加载已有的数据，容器销毁时希望保留产生的新数据，也就是说，这类容器是有状态的。Data Volume有如下特点:</p>
+<ul>
+<li>Data Volume 是目录或文件，而非没有格式化的磁盘（块设备）。</li>
+<li>容器可以读写 volume 中的数据。</li>
+<li>volume 数据可以被永久的保存，即使使用它的容器已经销毁。</li>
+</ul>
+<h2 id="Data-volume的类型"><a href="#Data-volume的类型" class="headerlink" title="Data volume的类型"></a>Data volume的类型</h2><p>在具体的使用上，docker 提供了两种类型的 volume：bind mount 和 docker managed volume。</p>
+<h3 id="bind-mount"><a href="#bind-mount" class="headerlink" title="bind mount"></a>bind mount</h3><p>bind mount 是将 host 上已存在的目录或文件 mount 到容器。</p>
+<pre><code>[root@chenfanlinux ~]# mkdir /root/htdocs
+[root@chenfanlinux ~]# echo &quot;Welcome to chenfanlinux.org&quot; &gt;/root/htdocs/index.html
+[root@chenfanlinux ~]# docker run -d -p 80:80 -v /root/htdocs:/usr/local/apache2/htdocs httpd
+c7a396731c62e35b0704e16ffa6ea0a4b4d7e3488cd220dca0d41958eff46c30
+[root@chenfanlinux ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND              CREATED             STATUS              PORTS                NAMES
+c7a396731c62        httpd               &quot;httpd-foreground&quot;   15 seconds ago      Up 14 seconds       0.0.0.0:80-&gt;80/tcp   serene_mccarthy
+[root@chenfanlinux ~]# curl &apos;http://127.0.0.1:80&apos;
+Welcome to chenfanlinux.org
+</code></pre><p>通过 <strong><em>-v &lt;host path&gt;:&lt;container path&gt;</em></strong> 这种格式将host上的/root/htdocs挂载到容器/usr/local/apache2/htdocs目录下。由于/root/htdocs目录下有文件，会隐藏容器/usr/local/apache2/htdocs下的文件内容。</p>
+<p>当我们更新一下/root/htdocs目录下的文件内容时，看看容器里的文件是否发生变化。</p>
+<pre><code>[root@chenfanlinux htdocs]# echo &apos;this is www.chenfanlinux.org&apos;&gt; index.html
+[root@chenfanlinux htdocs]# ls
+index.html
+[root@chenfanlinux htdocs]# curl &apos;http://127.0.0.1&apos;
+this is www.chenfanlinux.org
+</code></pre><p>这里的host 目录的/root/htdocs和容器/usr/local/apache2/htdocs属于共享目录，它们会共享数据。<br>下面我们将容器销毁，看看对 bind mount 有什么影响：</p>
+<pre><code>[root@chenfanlinux htdocs]# docker stop 177051349c19
+177051349c19
+[root@chenfanlinux htdocs]# docker rm 177051349c19
+177051349c19
+[root@chenfanlinux htdocs]# cat /root/htdocs/index.html
+this is www.chenfanlinux.org
+</code></pre><p>可以看到/root/htdocs数据依然存在，bind mount是文件系统中的数据，容器在销毁时，这些数据不会删除。</p>
+<p>bind mount 时还可以指定数据的读写权限，默认是可读可写，可指定为只读，ro 设置了只读权限，在容器中是无法对 bind mount 数据进行修改的。只有 host 有权修改数据，提高了安全性。</p>
+<pre><code>[root@chenfanlinux htdocs]# docker run -d -p 80:80 -v /root/htdocs:/usr/local/apache2/htdocs:ro  httpd
+d0d2fa8b29b120a8c20d88a20a77b18018bb348d6605218af09ec35f2ec59785
+[root@chenfanlinux htdocs]# docker exec -it d0d2fa8b29b1 /bin/bash
+root@d0d2fa8b29b1:/usr/local/apache2#
+root@d0d2fa8b29b1:/usr/local/apache2# echo &apos;host path:container path:perm&apos; &gt;htdoc
+bash: htdocs//index.htm: Read-only file system
+</code></pre><p>mount point 有很多应用场景，比如我们可以将源代码目录 mount 到容器中，在 host 中修改代码就能看到应用的实时效果。再比如将 mysql 容器的数据放在 bind mount 里，这样 host 可以方便地备份和迁移数据。</p>
+<p>bind mount 的使用直观高效，易于理解，但它也有不足的地方：bind mount 需要指定 host 文件系统的特定路径，这就限制了容器的可移植性，当需要将容器迁移到其他 host，而该 host 没有要 mount 的数据或者数据不在相同的路径时，操作会失败。移植性更好的方式是 docker managed volume，下面就会讨论。<br><a id="more"></a></p>
+<h3 id="docker-managed-volume"><a href="#docker-managed-volume" class="headerlink" title="docker managed volume"></a>docker managed volume</h3><p><strong><em>docker managed volume</em></strong> 与 <strong><em>bind mount</em></strong> 在使用上的最大区别是不需要指定 mount 源，指明 mount point 就行了。还是以 httpd 容器为例：</p>
+<pre><code>[root@chenfanlinux ~]# docker run -d -p 80:80 -v /usr/local/apache2/htdocs httpd
+8dcabf706808e73c2801d1f0cc52bad84c7a9206dc35b3284edfaf5086addc30
+[root@chenfanlinux ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND              CREATED             STATUS              PORTS                NAMES
+8dcabf706808        httpd               &quot;httpd-foreground&quot;   34 seconds ago      Up 33 seconds       0.0.0.0:80-&gt;80/tcp   kind_mirzakh
+</code></pre><p>我们通过 -v 告诉 docker 需要一个 data volume，并将其 mount 到 /usr/local/apache2/htdocs。这样不需要指定 host 上面的 data volume，只需要指定容器中的 mount point 即可。那么host上的data volume肯定是由系统自动指定的，通过 <code>docker inspect container id</code> 可以看到host上的 data volume 。</p>
+<pre><code>[root@chenfanlinux ~]# docker inspect e23d25dc38c1
+..................
+ &quot;Mounts&quot;: [
+        {
+            &quot;Type&quot;: &quot;volume&quot;,
+            &quot;Name&quot;: &quot;57b81889f9ed419b26ef6c87a7ce8e62372febc85ee573cf162d4d96fecc1986&quot;,
+            &quot;Source&quot;: &quot;/var/lib/docker/volumes/57b81889f9ed419b26ef6c87a7ce8e62372febc85ee573cf162d4d96fecc1986/_data&quot;,
+            &quot;Destination&quot;: &quot;/usr/local/apache2/htdocs&quot;,
+            &quot;Driver&quot;: &quot;local&quot;,
+            &quot;Mode&quot;: &quot;&quot;,
+            &quot;RW&quot;: true,
+            &quot;Propagation&quot;: &quot;&quot;
+        }
+    ],
+
+ .........................
+</code></pre><p>可以看到<strong>Source</strong>就是 data volume为/var/lib/docker/volumes/57b81889f9ed419b26ef6c87a7ce8e62372febc85ee573cf162d4d96fecc1986/_data，mount point就是 <strong>Destination</strong> 挂载点 /usr/local/apache2/htdoc。这里的data volome是系统指定的。</p>
+<p>进一步研究 源host volome和目标 mount point的关系</p>
+<pre><code>[root@chenfanlinux ~]# cat  /var/lib/docker/volumes/57b81889f9ed419b26ef6c87a7ce8e62372febc85ee573cf162d4d96fecc1986/_data/index.html
+&lt;html&gt;&lt;body&gt;&lt;h1&gt;It works!&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;
+[root@chenfanlinux ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND              CREATED             STATUS              PORTS                NAMES
+8dcabf706808        httpd               &quot;httpd-foreground&quot;   4 minutes ago       Up 4 minutes        0.0.0.0:80-&gt;80/tcp   kind_mirzakhani
+
+[root@chenfanlinux ~]# docker exec -it 8dcabf706808 /bin/bash
+root@8dcabf706808:/usr/local/apache2# cat htdocs/index.html
+&lt;html&gt;&lt;body&gt;&lt;h1&gt;It works!&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;
+</code></pre><p>可以发现data volume和 mount point下的数据是一致的，这是因为当mount point指向host data volume，会将容器的数据复制到host目录中。</p>
+<p>docker managed volume 的创建过程如下：</p>
+<ul>
+<li>容器启动时，简单的告诉 docker “我需要一个 volume 存放数据，帮我 mount 到目录 /abc”。</li>
+<li>docker 在 /var/lib/docker/volumes 中生成一个随机目录作为 mount 源。</li>
+<li>如果 /abc 已经存在，则将数据复制到 mount 源。</li>
+<li>将 volume mount 到 /abc。</li>
+</ul>
+<p>我们也可以用 <code>docker volume ls</code> 命令看查看系统有哪些data volume， 只能查看 docker managed volume，看不到bind mount。<br>通过 <code>docker volume inspect VOLUME NAME</code> 来查看具体的 volume信息。</p>
+<pre><code>[root@chenfanlinux ~]#  docker volume ls
+DRIVER              VOLUME NAME
+local               57b81889f9ed419b26ef6c87a7ce8e62372febc85ee573cf162d4d96fecc1986
+local               73eeefd987d049878abeab0f4b9521e8e041ab8af9ab9cbf417e612690d63d20
+local               ae070fe09d1f55198364c45b40f2deaa48fdd4005faf986b7450aeb24773c39c
+local               ceb6f3f1f987c45afaa80fbc15ddf2d51a85583e7793e3e8be277cc31efa4aa2
+local               f69f555dcd6816d602df1308ce4b845e8d24948a50bdbdfbba10b9ee5a21e540
+
+[root@chenfanlinux ~]# docker volume inspect 57b81889f9ed419b26ef6c87a7ce8e62372febc85ee573cf162d4d96fecc1986
+[
+{
+    &quot;CreatedAt&quot;: &quot;2018-01-12T22:54:09+08:00&quot;,
+    &quot;Driver&quot;: &quot;local&quot;,
+    &quot;Labels&quot;: null,
+    &quot;Mountpoint&quot;: &quot;/var/lib/docker/volumes/57b81889f9ed419b26ef6c87a7ce8e62372febc85ee573cf162d4d96fecc1986/_data&quot;,
+    &quot;Name&quot;: &quot;57b81889f9ed419b26ef6c87a7ce8e62372febc85ee573cf162d4d96fecc1986&quot;,
+    &quot;Options&quot;: {},
+    &quot;Scope&quot;: &quot;local&quot;
+}
+]
+</code></pre><h3 id="bind-mount-对比-docker-manage-volume"><a href="#bind-mount-对比-docker-manage-volume" class="headerlink" title="bind mount 对比 docker manage volume"></a>bind mount 对比 docker manage volume</h3><p><img src="https://s1.ax1x.com/2018/01/15/pa1Hwq.png" alt=""></p>
+<h2 id="volume如何共享数据？"><a href="#volume如何共享数据？" class="headerlink" title="volume如何共享数据？"></a>volume如何共享数据？</h2><h3 id="容器与host共享数据"><a href="#容器与host共享数据" class="headerlink" title="容器与host共享数据"></a>容器与host共享数据</h3><p>bind mount和docker managed volume都可以实现容器与host之间共享数据，但他们的方式有所区别。<br>bind mount:直接将要共享的目录mount到容器中，会隐藏容器中对应目录的内容，显示 data volume内容。<br>docker managed volume:这种机制是容器启动的时候，将挂载点需要共享的数据复制到host volume中。</p>
+<pre><code>[root@docker ~]# docker run -d -p 80:80 -v /usr/local/apache2/htdocs httpd
+c7a396731c62e35b0704e16ffa6ea0a4b4d7e3488cd220dca0d41958eff46c30
+[root@docker ~]# curl &apos;http://127.0.0.1:80&apos;
+&lt;html&gt;&lt;body&gt;&lt;h1&gt;It works!&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;
+[root@docker ~]# docker cp htdocs/index.html c7a396731c62:/usr/local/apache2/htdocs
+[root@docker ~]# curl &apos;http://127.0.0.1:80&apos;
+welcome to chenfanlinux.org
+</code></pre><p><code>docker cp  host_path container_path</code> 可以在容器和 host 之间拷贝数据，当然我们也可以直接通过 Linux 的 cp 命令复制到 /var/lib/docker/volumes/xxx。</p>
+<h3 id="容器之间共享数据"><a href="#容器之间共享数据" class="headerlink" title="容器之间共享数据"></a>容器之间共享数据</h3><p>将要共享的数据放在bind mount中，然后将其mount到多个容器中，三个web应用共享/root/htdocs目录下的内容。</p>
+<pre><code>[root@docker ~]# docker run -d -p 8081:80 -v /root/htdocs:/usr/local/apache2/htdocs httpd
+6de2eea95249c6cd534424100b692b4b9df3ad6246e533405ae54a4f5e224e3f
+[root@docker ~]# docker run -d -p 8082:80 -v /root/htdocs:/usr/local/apache2/htdocs httpd
+ecd5da2b050dddbacc12c0c3c976ef26f173ad7968e4664060bb480fbdabd91d
+[root@docker ~]# docker run -d -p 8083:80 -v /root/htdocs:/usr/local/apache2/htdocs httpd
+9a56caf5dc8520a8c20d88a20a77b18018bb348d6605218af09ec35f2ec59785
+
+[root@docker ~]# curl &apos;http://127.0.0.1:8081&apos;
+welcome to chenfanlinux.org
+[root@docker ~]# curl &apos;http://127.0.0.1:8082&apos;
+welcome to chenfanlinux.org
+[root@docker ~]# curl &apos;http://127.0.0.1:8083&apos;
+welcome to chenfanlinux.org
+[root@docker ~]# docker exec -it 9a56caf5dc85 /bin/bash
+root@9a56caf5dc85:/usr/local/apache2# echo &apos;this is new page&apos; &gt;htdocs/index.html
+[root@docker ~]# curl &apos;http://127.0.0.1:8081&apos;
+this is new page
+[root@docker ~]# curl &apos;http://127.0.0.1:8082&apos;
+this is new page
+[root@docker ~]# curl &apos;http://127.0.0.1:8083&apos;
+this is new page
+</code></pre><p><strong>volume container</strong> 是专门为其他容器提供 volume 的容器。它提供的卷可以是 bind mount，也可以是 docker managed volume。</p>
+<p>创建一个 <strong>volume container</strong>,命令为vc01,而且提供两种类型的 data volume。volume contained的作用只是提供数据，本身不需要运行状态。</p>
+<pre><code>[root@docker ~]# docker create --name=vc01 -v /root/htdocs:/usr/local/apache2/htdocs -v /docker_manage_data  busybox
+e23d25dc38c15f91dd9ad4833878a3d965f77f101e91f6c9b2873cef284b3c97
+[root@docker ~]# docker inspect e23d25dc38c15f91dd9ad4833878a3d965f77f101e91f6c9b2873cef284b3c97
+        &quot;Mounts&quot;: [
+        {
+            &quot;Type&quot;: &quot;bind&quot;,
+            &quot;Source&quot;: &quot;/root/htdocs&quot;,
+            &quot;Destination&quot;: &quot;/usr/local/apache2/htdocs&quot;,
+            &quot;Mode&quot;: &quot;&quot;,
+            &quot;RW&quot;: true,
+            &quot;Propagation&quot;: &quot;rprivate&quot;
+        },
+        {
+            &quot;Type&quot;: &quot;volume&quot;,
+            &quot;Name&quot;: &quot;ceb7995923bfbb0b425f36a492698db6f3f1f987c45afaa80fbc15ddf2d51a85&quot;,
+            &quot;Source&quot;: &quot;/var/lib/docker/volumes/ceb7995923bfbb0b425f36a492698db6f3f1f987c45afaa80fbc15ddf2d51a85/_data&quot;,
+            &quot;Destination&quot;: &quot;/docker_manage_data&quot;,
+            &quot;Driver&quot;: &quot;local&quot;,
+            &quot;Mode&quot;: &quot;&quot;,
+            &quot;RW&quot;: true,
+            &quot;Propagation&quot;: &quot;&quot;
+        }
+    ],
+</code></pre><p>其他容器可以通过 –volumes-from 使用 <strong>vc01</strong>这个 volume container：</p>
+<pre><code>[root@docker ~]# docker run --name web01 -d -p 80 --volumes-from vc01 httpd
+583e7793e3e8be277cc31efa4aa27c9136b224b3258fafe87be5a8839a827c66
+[root@docker ~]# docker run --name web02 -d -p 80 --volumes-from vc01 httpd
+d826c43f2f0fa7e669ed69c59b6d37b00714f84fe490e26139c1a6c2b04225cb
+[root@docker ~]# docker run --name web03 -d -p 80 --volumes-from vc01 httpd
+8a5955198364c45b40f2deaa48fdd4005faf986b7450aeb24773c39c0c5d3189
+
+[root@docker ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND              CREATED             STATUS              PORTS                   NAMES
+8a5955198364        httpd               &quot;httpd-foreground&quot;   2 minutes ago       Up 2 minutes        0.0.0.0:32770-&gt;80/tcp   web03
+d826c43f2f0f        httpd               &quot;httpd-foreground&quot;   3 minutes ago       Up 2 minutes        0.0.0.0:32769-&gt;80/tcp   web02
+583e7793e3e8        httpd               &quot;httpd-foreground&quot;   3 minutes ago       Up 3 minutes        0.0.0.0:32768-&gt;80/tcp   web01
+[root@docker ~]# curl &apos;http://127.0.0.1:32770&apos;
+this is new page
+[root@docker ~]# curl &apos;http://127.0.0.1:32769&apos;
+this is new page
+[root@docker ~]# curl &apos;http://127.0.0.1:32768&apos;
+this is new page
+[root@docker ~]# echo &apos;This is shared bind mount&apos; &gt;/root/htdocs/index.html
+[root@docker ~]# curl &apos;http://127.0.0.1:32770&apos;
+This is shared bind mount
+[root@docker ~]# curl &apos;http://127.0.0.1:32768&apos;
+This is shared bind mount
+[root@docker ~]# curl &apos;http://127.0.0.1:32769&apos;
+This is shared bind mount
+</code></pre><p>可见，三个容器已经成功共享了 volume container 中的 volume。</p>
+<ul>
+<li><p>与 bind mount 相比，不必为每一个容器指定 host path，所有 path 都在 volume container 中定义好了，容器只需与 volume container 关联，实现了容器与 host 的解耦。</p>
+</li>
+<li><p>使用 volume container 的容器其 mount point 是一致的，有利于配置的规范和标准化，但也带来一定的局限，使用时需要综合考虑。</p>
+</li>
+</ul>
+<p><strong>data-packed volume container</strong><br>volume container 的数据归根到底还是在 host 里，有没有办法将数据完全放到 volume container 中，同时又能与其他容器共享呢？</p>
+<p>当然可以，通常我们称这种容器为 data-packed volume container。其原理是将数据打包到镜像中，然后通过 docker managed volume 共享。</p>
+<p>先创建一个vc_datapacked镜像</p>
+<pre><code>[root@docker ~]# mkdir build
+[root@docker ~]# cd build
+[root@docker build]# mkdir htdocs
+[root@docker build]# echo &apos;This  data-packed volume container&apos; &gt;htdocs/index.html
+[root@docker build]# cat Dockerfile
+FROM busybox:latest
+ADD htdocs /usr/local/apache2/htdocs
+VOLUME /usr/local/apache2/htdocs
+
+[root@docker build]# docker build -t vc_datapacked  .
+Sending build context to Docker daemon  3.584kB
+Step 1/3 : FROM busybox:latest
+ ---&gt; 807fd4df40d1
+Step 2/3 : ADD htdocs /usr/local/apache2/htdocs
+ ---&gt; 73edca1e0721
+Step 3/3 : VOLUME /usr/local/apache2/htdocs
+ ---&gt; Running in 9cbf417e6126
+Removing intermediate container 9cbf417e6126
+ ---&gt; 218f809be766
+Successfully built 218f809be766
+Successfully tagged vc_datapacked:latest
+</code></pre><p>再创建一个共享的volume contained (datapacked)</p>
+<pre><code>[root@docker build]# docker inspect datapacked
+[root@docker build]# docker create --name datapacked vc_datapacked
+     &quot;Mounts&quot;: [
+        {
+            &quot;Type&quot;: &quot;volume&quot;,
+            &quot;Name&quot;: &quot;cb02a8020d38d9d7e8f68dcabf706808e73c2801d1f0cc52bad84c7a9206dc35&quot;,
+            &quot;Source&quot;: &quot;/var/lib/docker/volumes/cb02a8020d38d9d7e8f68dcabf706808e73c2801d1f0cc52bad84c7a9206dc35/_data&quot;,
+            &quot;Destination&quot;: &quot;/usr/local/apache2/htdocs&quot;,
+            &quot;Driver&quot;: &quot;local&quot;,
+            &quot;Mode&quot;: &quot;&quot;,
+            &quot;RW&quot;: true,
+            &quot;Propagation&quot;: &quot;&quot;
+        }
+    ],
+</code></pre><p>启动一个httpd应用，共享datapacked 数据</p>
+<pre><code>[root@docker build]# docker run -d -p 8081:80 --volumes-from datapacked httpd
+[root@docker build]# curl http://127.0.0.1:8081
+This  data-packed volume container
+</code></pre><p>本质来说，这是一种dokcer managed volume的应用，只是将需要共享的数据放在了volume容器的镜像中。data-packed volume container 是自包含的，不依赖 host 提供数据，具有很强的移植性，非常适合 只使用 静态数据的场景，比如应用的配置信息、web server 的静态文件等。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏2块钱,帮我买杯咖啡,继续创作,谢谢大家！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="陈凡 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliyipay.jpg" alt="陈凡 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+        -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+         
+            <a href="/tags/Docker/" rel="tag"><i class="fa fa-tag"></i>Docker</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/14/Docker入门之网络管理-五/" rel="next" title="Docker入门之网络管理(五)">
+                <i class="fa fa-chevron-left"></i> Docker入门之网络管理(五)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/upload/avatar.gif"
+                alt="陈凡" />
+            
+              <p class="site-author-name" itemprop="name">陈凡</p>
+              <p class="site-description motion-element" itemprop="description">Life is short,I need Python!</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/chenfanlinux" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:chenfan216@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/3942411590" target="_blank" title="微博">
+                    
+                      <i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/love-hero-80" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何存储Docker数据"><span class="nav-number">1.</span> <span class="nav-text">如何存储Docker数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-volume的类型"><span class="nav-number">2.</span> <span class="nav-text">Data volume的类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bind-mount"><span class="nav-number">2.1.</span> <span class="nav-text">bind mount</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-managed-volume"><span class="nav-number">2.2.</span> <span class="nav-text">docker managed volume</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bind-mount-对比-docker-manage-volume"><span class="nav-number">2.3.</span> <span class="nav-text">bind mount 对比 docker manage volume</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#volume如何共享数据？"><span class="nav-number">3.</span> <span class="nav-text">volume如何共享数据？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#容器与host共享数据"><span class="nav-number">3.1.</span> <span class="nav-text">容器与host共享数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器之间共享数据"><span class="nav-number">3.2.</span> <span class="nav-text">容器之间共享数据</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+<script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=ipZXdvME3sKg6viC20OoTCYATcaOJ6SQH2wdaJEUHfc"></script>
+
+<div id="music163player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=525241230&auto=0&height=66"></iframe>
+</div>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈凡</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">25.6k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div> 
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+ <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 98812, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2018/01/16/Docker入门之数据管理/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/98812/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+<!--页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>  
+
+
+
+<!-- 
+<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-1 count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script> -->
+
+
+</body>
+</html>
