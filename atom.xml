@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.chenfanlinux.org/"/>
-  <updated>2018-01-16T09:08:05.000Z</updated>
+  <updated>2018-01-17T08:03:15.000Z</updated>
   <id>http://www.chenfanlinux.org/</id>
   
   <author>
@@ -15,6 +15,55 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Bash编程入门之变量基础(二)</title>
+    <link href="http://www.chenfanlinux.org/2018/01/17/Bash%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%E4%B9%8B%E5%8F%98%E9%87%8F%E5%9F%BA%E7%A1%80-%E4%B8%80/"/>
+    <id>http://www.chenfanlinux.org/2018/01/17/Bash编程入门之变量基础-一/</id>
+    <published>2018-01-17T07:39:19.000Z</published>
+    <updated>2018-01-17T08:03:15.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="变量基础"><a href="#变量基础" class="headerlink" title="变量基础"></a>变量基础</h2><h3 id="什么是变量？"><a href="#什么是变量？" class="headerlink" title="什么是变量？"></a>什么是变量？</h3><blockquote><p>变量的实质是命名的内存空间，变量是一个用固定的字符串（也可能是字符数字等的组合），替代更多更复杂的内容，这个内容里可能还会包含变量和路径，字符串等其他的内容。对于代码一块某个值得改变，只需要改变变量值得内容，不需要全局修改。</p></blockquote><p><strong>变量的类型</strong><br>根据变量的生效范围等标准:</p><ul><li>本地变量：生效范围为当前的shell进程,对当前shell之外的其他进程,包括当前进程的父子shell都无效</li><li>环境变量: 生效范围为当前进程及其子进程</li><li>局部变量: 生效范围为当前进程的某代码片段(通常指函数上下文)</li><li>特殊变量: 包括位置变量和进程状态变量</li></ul><h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><blockquote><p>环境变量用于定义shell的运行环境，保证Shell命令的正确执行，通过环境变量来确定登陆用户名、命令路径、终端类型、登陆目录等，所有的环境变量都是系统全局变量，可用于所有子进程中，这包括编辑器、Shell脚本和各类应用。</p></blockquote><p>环境变量可以在命令行中设置，当用户退出时这些变量值也会丢失，因此最好在用户家目录下的.bash_profile文件中或全局配置/etc/bashrc,/etc/profile文件或者/etc/profile.d/中定义。将环境变量放入上述的文件中，每次用户登陆时这些变量值都将被初始化。</p><p>可以通过一下的命令查看环境变量</p><ul><li>env（只显示全局变量）</li><li>set（所有的变量）</li><li>declare（所有变量，包括函数、整数和已导出的）</li></ul><p><strong>定义环境变量</strong></p><pre><code>[root@dokcer ~]# export NAME=chenfanlinux[root@dokcer ~]# declare -x NAME=chenfan</code></pre><p><strong>显示与取消环境变量</strong></p><pre><code>[root@dokcer ~]# echo $NAME chenfan[root@dokcer ~]# $ unset NAME</code></pre><a id="more"></a><h3 id="本地变量"><a href="#本地变量" class="headerlink" title="本地变量"></a>本地变量</h3><p>本地变量在用户当前的Shell生存期内脚本或命令行使用。这个值只在用户当前Shell生存期中有意义，如果在shell中启动另一个进程或退出，本地变量的值无效。</p><p><strong>变量的命名规范</strong></p><ul><li>变量名只能为字母，数字，下划线，字母开头。</li><li>规范的变量名定义方法：见名只意</li><li>避免无意义字符或数字：例如下面的COUNT，并不知道其确切含义；</li></ul><p><strong>变量赋值</strong></p><ol><li>可以是直接字符串: name=”username” 或 name=’username’</li><li>变量引用: name=”$username” 或 ${username}</li><li>命令引用: name= `COMMAND` 或 name=$(COMMAND)</li></ol><p><strong>变量引用</strong><br>${name}或$name</p><ul><li>“$name” : 弱引用,其中变量引用会被替换为变量值，</li><li>‘$name’ : 强引用,其中变量引用不会被替换为变量值,而保持原字符串</li></ul><p>最好以${NAME}加大括号或”$NAME”外面加双引号方式引用变量。</p><p><strong>区分单引号和双引号</strong></p><pre><code>[root@yiwutest ~]# echo &apos;Today is `date`&apos;Today is `date`[root@yiwutest ~]# echo &quot;Today is `date`&quot;Today is Wed Jan 17 14:49:51 CST 2018</code></pre><ul><li>单引号    单引号内的所有内容都原样输出，或者描述为单引号里面看到的是什么就会输出什么。</li><li>双引号    把双引号内的所有内容都输出出来，如果内容中有命令（要反引下）、变量、特殊转移符等，会先把变量、命令、转义符解析出来，然后在输出最终内容来。</li><li>无引号    把内容输出出来，会将含有空格的字符串视为一个整体输出出来。</li></ul><p><strong>区分 $name 和 ${name}</strong><br>{变量}可以界定变量名的范围，用于变量之间的组合使用或变量与字符串的组合。</p><pre><code>[root@docker ~]# name=&apos;chenfan&apos;[root@docker ~]# echo &quot;$name_123&quot;[root@docker ~]# echo &quot;${name}_123&quot;chenfan_123[root@docker ~]# test1=&apos;chenfan&apos;[root@docker ~]# test2=&apos;fan&apos;[root@yiwutest ~]# echo &quot;${test1}_$test2&quot;chenfan_fan[root@yiwutest ~]# echo &quot;$test1_${test2}&quot;fan</code></pre><h3 id="特殊变量"><a href="#特殊变量" class="headerlink" title="特殊变量"></a>特殊变量</h3><p><strong>位置变量</strong></p><ul><li><p>$0    获取当前执行的shell脚本文件名，包括脚本路径</p></li><li><p>$n    获取当前执行的shell脚本的第n个参数值，n=1..9，当n为0时表示脚本的文件名，如果n大于9就要用大括号括起来${10}</p></li><li><p>$*    获取当前的shell的所有参数，将所有的命令行参数视为单个字符串，相当于“$1$2$3$4$5”..注意与$#的区别</p></li><li><p>$#    获取当前shell命令行中参数的总个数</p></li><li><p>$@    这额程序的所有参数$1 $2 $3 …，这是将参数传递给其他程序的最佳方式，因为他会保留内嵌在每个参数里的任意空白</p></li></ul><p><strong>进程状态变量</strong></p><ul><li>$$  获取当前shell脚本的进程号（PID）</li><li>$!  执行上一个指令的PID</li><li>$?  获取执行上一个指令的返回值（0为成功，非0为失败）</li><li>$_  在此之前执行的命令或脚本的最后一个参数</li></ul><h3 id="数值计算的命令"><a href="#数值计算的命令" class="headerlink" title="数值计算的命令"></a>数值计算的命令</h3><p>变量的数值计算常见的有如下几个命令：</p><ul><li>(())</li><li>let</li><li>expr</li><li>bc(小数)$[]</li></ul><p>shell的算术运算符号常置于 $((“…….”)) 的语法中，如果要执行简单的整数运算，只需将特定的算术表达式用” $((表达式))”括起来即可。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;变量基础&quot;&gt;&lt;a href=&quot;#变量基础&quot; class=&quot;headerlink&quot; title=&quot;变量基础&quot;&gt;&lt;/a&gt;变量基础&lt;/h2&gt;&lt;h3 id=&quot;什么是变量？&quot;&gt;&lt;a href=&quot;#什么是变量？&quot; class=&quot;headerlink&quot; title=&quot;什么是变量？&quot;&gt;&lt;/a&gt;什么是变量？&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;变量的实质是命名的内存空间，变量是一个用固定的字符串（也可能是字符数字等的组合），替代更多更复杂的内容，这个内容里可能还会包含变量和路径，字符串等其他的内容。对于代码一块某个值得改变，只需要改变变量值得内容，不需要全局修改。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;变量的类型&lt;/strong&gt;&lt;br&gt;根据变量的生效范围等标准:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;本地变量：生效范围为当前的shell进程,对当前shell之外的其他进程,包括当前进程的父子shell都无效&lt;/li&gt;
+&lt;li&gt;环境变量: 生效范围为当前进程及其子进程&lt;/li&gt;
+&lt;li&gt;局部变量: 生效范围为当前进程的某代码片段(通常指函数上下文)&lt;/li&gt;
+&lt;li&gt;特殊变量: 包括位置变量和进程状态变量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;环境变量&quot;&gt;&lt;a href=&quot;#环境变量&quot; class=&quot;headerlink&quot; title=&quot;环境变量&quot;&gt;&lt;/a&gt;环境变量&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;环境变量用于定义shell的运行环境，保证Shell命令的正确执行，通过环境变量来确定登陆用户名、命令路径、终端类型、登陆目录等，所有的环境变量都是系统全局变量，可用于所有子进程中，这包括编辑器、Shell脚本和各类应用。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;环境变量可以在命令行中设置，当用户退出时这些变量值也会丢失，因此最好在用户家目录下的.bash_profile文件中或全局配置/etc/bashrc,/etc/profile文件或者/etc/profile.d/中定义。将环境变量放入上述的文件中，每次用户登陆时这些变量值都将被初始化。&lt;/p&gt;
+&lt;p&gt;可以通过一下的命令查看环境变量&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;env（只显示全局变量）&lt;/li&gt;
+&lt;li&gt;set（所有的变量）&lt;/li&gt;
+&lt;li&gt;declare（所有变量，包括函数、整数和已导出的）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;定义环境变量&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[root@dokcer ~]# export NAME=chenfanlinux
+[root@dokcer ~]# declare -x NAME=chenfan
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;显示与取消环境变量&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[root@dokcer ~]# echo $NAME
+ chenfan
+[root@dokcer ~]# $ unset NAME
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="Bash Shell编程" scheme="http://www.chenfanlinux.org/categories/Bash-Shell%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="Bash" scheme="http://www.chenfanlinux.org/tags/Bash/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker入门之数据管理(六)</title>
@@ -347,11 +396,11 @@ CMD [&amp;quot;/hello&amp;quot;]
   </entry>
   
   <entry>
-    <title>Bash特性汇总</title>
+    <title>Bash 编程入门之Bash特性汇总(一)</title>
     <link href="http://www.chenfanlinux.org/2018/01/05/Bash%E7%89%B9%E6%80%A7%E6%B1%87%E6%80%BB/"/>
     <id>http://www.chenfanlinux.org/2018/01/05/Bash特性汇总/</id>
     <published>2018-01-05T04:35:53.000Z</published>
-    <updated>2018-01-05T05:33:31.000Z</updated>
+    <updated>2018-01-17T08:03:10.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="什么是shell"><a href="#什么是shell" class="headerlink" title="什么是shell?"></a>什么是shell?</h2><blockquote><p>通常,替我们工作的是”硬件”,而控制硬件的是”内核”。用户利用”shell”控制着一些内核提供的”工具”,来控制硬件替我们工作。由于内核听不懂人类语言,所以shell从本质来说就是一个UI(用户界面)应用程序,让内核控制着硬件正确无误的工作，如图1-1 硬件-内核-shell 所示，可以清晰的看到他们的关系。</p></blockquote><p><img src="https://cdn-std.dprcdn.net/files/acc_582513/DDfPGJ" alt="硬件-内核"></p><h2 id="Bash-shell功能特性"><a href="#Bash-shell功能特性" class="headerlink" title="Bash shell功能特性"></a>Bash shell功能特性</h2><h3 id="history命令记忆功能"><a href="#history命令记忆功能" class="headerlink" title="history命令记忆功能"></a>history命令记忆功能</h3><blockquote><p>在Bash里面,我们只要在命令行按”上、下键”或者更强大的”Ctrl+r”,就可以找到之前输入的历史命令,这依赖于Bash的命令记录功能,记录的文件位于家目录下的.bash_history。登录shell后新执行的命令只会记录在缓存中,这些命令会在用户退出时追加到命令历史文件中,我们通过history命令可以查看历史命令.</p></blockquote><p><strong>命令历史相关的环境变量:</strong></p><ul><li>HISTSIZE: 命令历史记录的条数</li><li>HISTFILE: ~/.bash_history</li></ul><p><strong>命令历史调用相关的命令:</strong></p><ul><li><p>调用历史中的命令:</p><ul><li>!#: 重复执行第#条指令</li><li>!!: 重复上一条命令</li><li>!string: 匹配以string开头的命令</li></ul></li><li><p>调用上一条命令的最后一个参数:</p><ul><li>!$</li><li>ESC . （先按esc,释放然后按.）</li></ul></li></ul><a id="more"></a><h3 id="命令与文件补全功能"><a href="#命令与文件补全功能" class="headerlink" title="命令与文件补全功能"></a>命令与文件补全功能</h3><blockquote><p>常在bash中使用热键[Tab]是一个好习惯,因为它可以减少键盘的输入和保证命令的输出的正确性。</p></blockquote><ul><li>接在一串命令的第一个字后面,则为命令的补全</li><li>接在一床命令的第二个字以后时,则为文件的补全</li></ul><h3 id="命令别名的功能"><a href="#命令别名的功能" class="headerlink" title="命令别名的功能"></a>命令别名的功能</h3><blockquote><p>通过给常用命令设置别名的方式,减少命令的输出长度,提升工作效率。命令行键入alias命令,可以查看系统配置的alias命令,将命令别名记录在全局配置环境配置文件/etc/profile或~/.bashrc都是一种持久生效的方式.</p></blockquote><pre><code>[root@chenfanlinux ~]# aliasalias cp=&apos;cp -i&apos;alias egrep=&apos;egrep --color=auto&apos;alias fgrep=&apos;fgrep --color=auto&apos;alias grep=&apos;grep --color=auto&apos;alias l.=&apos;ls -d .* --color=auto&apos;alias ll=&apos;ls -l --color=auto&apos;alias ls=&apos;ls --color=auto&apos;alias mv=&apos;mv -i&apos;alias rm=&apos;rm -i&apos;alias which=&apos;alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde&apos;</code></pre><p>   <strong>注意:由于shell脚本中的别名不生效，\cp的含义是脱去别名的设置。</strong></p><h3 id="命令行展开功能"><a href="#命令行展开功能" class="headerlink" title="命令行展开功能"></a>命令行展开功能</h3><blockquote><p>{}:可以承载一个以逗号分隔的列表,并将其展开为多个路径.</p></blockquote><pre><code>$ mkdir /tmp/{a,b} &lt;==&gt;  $ mkdir /tmp/a;mkdir /tmp/b$ mkdir /tmp/{tom,jerry}/hi &lt;==&gt;  $ mkidr /tmp/tom/hi;mkdir /tmp/jerry/hi</code></pre><h3 id="作业-jobs-、前台-fg-、后台-bg-控制"><a href="#作业-jobs-、前台-fg-、后台-bg-控制" class="headerlink" title="作业(jobs)、前台(fg)、后台(bg)控制"></a>作业(jobs)、前台(fg)、后台(bg)控制</h3><blockquote><p>使用前台、后台控制,可以让工作进行得更加的顺利.我们可以随时将作业放置到后台执行,不用担心使用了[Ctrl]+c键来停掉该程序。在单用户登录环境中，达到了多任务的目标。</p></blockquote><ul><li>前台作业: 通过终端启动,且启动后一直占据终端</li><li><p>后台作业: 通过终端启动,但启动后即转入后台运行(释放终端)</p></li><li><p><strong>如何让作业运行于后台?</strong></p><ul><li><p>运行中的作业<br><code>Ctrl+Z</code></p></li><li><p>尚未启动的作业<br><code>COMMAND &amp;</code><br><strong><em>此类作业虽然被送往后台运行,但其依然与终端相关,<br>因为退出登录后作业将停止运行;如果希望送往后台,剥离与终端的关系。</em></strong></p></li><li><p>剥离作业与终端的关系<br><code>nohup COMMAND &amp;</code></p></li></ul></li></ul><ul><li><p><strong>作业控制相关命令:</strong></p><ul><li>查看所有作业情况<br><code>jobs</code></li><li>指定的后台作业调回前台<br><code>fg [[%]JOB_NUM]</code></li><li>让送往后台的作业在后台继续运行<br><code>bg [[%]JOB_NUM]</code></li><li>终止指定的作业<br><code>kill [%JOB_NUM]</code></li></ul></li></ul><h3 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h3><blockquote><p>除了完整的字符串之外,bash还支持许多通配符来帮助用户查询和执行命令。下表列出常见的通配符,仅供参考。</p></blockquote><table><thead><tr><th style="text-align:center">符号</th><th style="text-align:center">内容</th></tr></thead><tbody><tr><td style="text-align:center">*</td><td style="text-align:center">通配符,代表0个或多个字符(或数字)</td></tr><tr><td style="text-align:center">?</td><td style="text-align:center">通配符,代表一个有一个字符</td></tr><tr><td style="text-align:center">#</td><td style="text-align:center">注释,常在脚本中,被视为说明</td></tr><tr><td style="text-align:center">\</td><td style="text-align:center">转义字符,将特殊字符或通配符还原成一般字符</td></tr><tr><td style="text-align:center">~</td><td style="text-align:center">用户的家目录</td></tr><tr><td style="text-align:center">$</td><td style="text-align:center">变量之前需要加的变量替换值</td></tr><tr><td style="text-align:center">&amp;</td><td style="text-align:center">将命令转为后台执行</td></tr><tr><td style="text-align:center">!</td><td style="text-align:center">逻辑运算符(not)意思</td></tr><tr><td style="text-align:center">/</td><td style="text-align:center">路径分隔符</td></tr><tr><td style="text-align:center">&gt; &gt;&gt;</td><td style="text-align:center">重定向与追加重定向</td></tr><tr><td style="text-align:center">‘</td><td style="text-align:center">单引号,不具有变量置换功能</td></tr><tr><td style="text-align:center">“</td><td style="text-align:center">具有变量置换功能</td></tr><tr><td style="text-align:center">``</td><td style="text-align:center">中间为可以执行的命令</td></tr><tr><td style="text-align:center">()</td><td style="text-align:center">中间为子shell的起始于结束</td></tr><tr><td style="text-align:center">[] [^]</td><td style="text-align:center">中间为字符的组合</td></tr><tr><td style="text-align:center">{}</td><td style="text-align:center">中间为命令区块的组合</td></tr></tbody></table><table><thead><tr><th style="text-align:center">组合按键</th><th style="text-align:center">执行结果</th></tr></thead><tbody><tr><td style="text-align:center">Ctrl+c</td><td style="text-align:center">终止当前的命令</td></tr><tr><td style="text-align:center">Ctrl+a</td><td style="text-align:center">跳转至命令开始处</td></tr><tr><td style="text-align:center">Ctrl+e</td><td style="text-align:center">跳转至命令结尾处</td></tr><tr><td style="text-align:center">Ctrl+u</td><td style="text-align:center">删除命令行首至光标所在处的所有内容</td></tr><tr><td style="text-align:center">Ctrl+k</td><td style="text-align:center">删除光标所在行至命令行尾部的内容</td></tr><tr><td style="text-align:center">Ctrl+z</td><td style="text-align:center">暂停当前命令的执行</td></tr><tr><td style="text-align:center">Ctrl+l</td><td style="text-align:center">清屏,相当于clear命令</td></tr></tbody></table><p><strong>匹配字符举例</strong></p><ul><li>* 任意长度的任意字符</li><li>? 任意单个字符</li><li><p>[] 只能匹配指定范围内的任意单个字符</p><ul><li>[0-9] 所有数字中挑一个</li><li>[a-z] 不分区字符大小写</li><li>[A-Z] 大写字母</li><li>[[:lower:]] 小写字母</li><li>[^0-9a-z] 特殊字符</li></ul></li><li><p>[^] 匹配指定范围外的任意单个字符</p></li><li><p>专用字符集合:</p><ul><li>[:digit:]:任意数字,相当于0-9</li><li>[:lower:]:任意小写字母</li><li>[:upper:]:任意大写字母</li><li>[:alpha:]:任意大小写字母</li><li>[:alnum:]:任意数字或字母</li><li>[:space:]:空格</li><li>[:punct:]:标点符号</li></ul></li></ul><h3 id="命令执行的判断依据-amp-amp"><a href="#命令执行的判断依据-amp-amp" class="headerlink" title="命令执行的判断依据(; &amp;&amp; ||)"></a>命令执行的判断依据(; &amp;&amp; ||)</h3><blockquote><p>通常来说命令的运行状态会返回两种结果,执行成功则返回0，执行错误则返回非0。而多个命令的执行通常,从前至后,而且命令的执行还具有一定的逻辑关系,上一个命令的执行成功与否,某种程序可用决定下一个命令的执行。</p></blockquote><p><strong>一次执行多个命令,命令之间没有关联。</strong></p><pre><code>[root@chenfanlinux ~]# toch test.txt ; echo &quot;I  touch test.txt&quot;-bash: toch: 未找到命令I touch test.txt</code></pre><p><strong>命令相互关联,上一个命令执行成功,才会执行下一个命令。</strong></p><pre><code>[root@chenfanlinux ~]# toch test.txt &amp;&amp; echo &quot;I touch test.txt&quot;-bash: toch: 未找到命令</code></pre><p><strong>命令相关关联,上一个命令执行失败,才会执行下一个命令。</strong></p><pre><code>[root@chenfanlinux ~]# toch test.txt || echo &quot;I touch test.txt&quot;-bash: toch: 未找到命令I touch test.txt[root@chenfanlinux ~]# touch test.txt || echo &quot;I touch test.txt&quot;注意:这里不会执行echo &quot;I touch test.txt&quot;</code></pre><p><strong>如果第一个命令执行成功,则执行第二个命令,否则执行第三个命令。</strong></p><pre><code>[root@chenfanlinux ~]# touch test.txt &amp;&amp;  echo &quot;我是第二个命令&quot; || echo &quot;我是第三个命令&quot;我是第二个命令[root@chenfanlinux ~]# tuch test.txt &amp;&amp;  echo &quot;我是第二个命令&quot; || echo &quot;我是第三个命令&quot;-bash: tuch: 未找到命令我是第三个命令</code></pre>]]></content>
     
@@ -388,7 +437,7 @@ CMD [&amp;quot;/hello&amp;quot;]
     
     </summary>
     
-      <category term="Bash基础" scheme="http://www.chenfanlinux.org/categories/Bash%E5%9F%BA%E7%A1%80/"/>
+      <category term="Bash Shell编程" scheme="http://www.chenfanlinux.org/categories/Bash-Shell%E7%BC%96%E7%A8%8B/"/>
     
     
       <category term="Bash" scheme="http://www.chenfanlinux.org/tags/Bash/"/>
