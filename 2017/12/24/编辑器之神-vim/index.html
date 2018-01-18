@@ -117,7 +117,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://cdn-std.dprcdn.net/files/acc_582513/bEfzpN">
 <meta property="og:image" content="https://cdn-std.dprcdn.net/files/acc_582513/SDuEA">
-<meta property="og:updated_time" content="2018-01-11T06:55:01.000Z">
+<meta property="og:updated_time" content="2018-01-17T14:04:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编辑器之神-Vim">
 <meta name="twitter:description" content="vim简介vi是“Visual interface”的简称，它不像Word或WPS那样可以对字体、格式、段落等其他属性进行编排，它只是一个文本编辑程序。 vi没有菜单，只有命令，且命令繁多。vim(VIM - Vi IMproved)是vi的加强版本，在vi的基础上增加了如下功能。   增加了多级撤销 多窗口操作 提高了稳定性，减少了崩溃以及崩溃后也可以恢复 关键字自动补全以及上下文相关的补全">
@@ -443,7 +443,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,182
+                  1,302
                 </span>
               
 
@@ -459,7 +459,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  5
                 </span>
               
             </div>
@@ -945,6 +945,17 @@
 </tr>
 </tbody>
 </table>
+<h3 id="多窗口操作"><a href="#多窗口操作" class="headerlink" title="多窗口操作"></a>多窗口操作</h3><p><strong>同时打开多个文件</strong><br>横向分割显示：<br><code>vim -o filename1 filename2</code></p>
+<p>纵向分割显示:<br><code>vim -O filename1 filename2</code></p>
+<p><strong>已打开的文件再开一个窗口</strong></p>
+<p>开一个横向的窗口:<br>ctrl+w+s</p>
+<p>开一个纵向的窗口:<br>ctrl+w+v</p>
+<p><strong>窗口间跳转</strong></p>
+<p>ctrl+w hjkl(左下上右)</p>
+<p><strong>关闭窗口</strong></p>
+<p>关闭光标所在的窗口：<br>:q 或 :close</p>
+<p>关闭除光标所在的窗口之外的其他窗口：<br>:only</p>
+<p>关闭所有窗口：<br>:qa</p>
 
       
     </div>
@@ -1140,7 +1151,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1230,7 +1241,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#vim简介"><span class="nav-number">1.</span> <span class="nav-text">vim简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vim的工作模式"><span class="nav-number">2.</span> <span class="nav-text">vim的工作模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#光标移动"><span class="nav-number">3.</span> <span class="nav-text">光标移动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#滚屏与跳转"><span class="nav-number">4.</span> <span class="nav-text">滚屏与跳转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文本插入操作"><span class="nav-number">5.</span> <span class="nav-text">文本插入操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文本删除"><span class="nav-number">6.</span> <span class="nav-text">文本删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文本复制、剪切与粘贴"><span class="nav-number">7.</span> <span class="nav-text">文本复制、剪切与粘贴</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找命令与替换"><span class="nav-number">8.</span> <span class="nav-text">查找命令与替换</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#vim简介"><span class="nav-number">1.</span> <span class="nav-text">vim简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vim的工作模式"><span class="nav-number">2.</span> <span class="nav-text">vim的工作模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#光标移动"><span class="nav-number">3.</span> <span class="nav-text">光标移动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#滚屏与跳转"><span class="nav-number">4.</span> <span class="nav-text">滚屏与跳转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文本插入操作"><span class="nav-number">5.</span> <span class="nav-text">文本插入操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文本删除"><span class="nav-number">6.</span> <span class="nav-text">文本删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文本复制、剪切与粘贴"><span class="nav-number">7.</span> <span class="nav-text">文本复制、剪切与粘贴</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找命令与替换"><span class="nav-number">8.</span> <span class="nav-text">查找命令与替换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多窗口操作"><span class="nav-number">9.</span> <span class="nav-text">多窗口操作</span></a></li></ol></div>
             
 
           </div>
@@ -1266,7 +1277,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">26.9k</span>
+    <span title="Site words total count">27.9k</span>
   
 </div>
 

@@ -4,6 +4,46 @@
 
     
   <url>
+    <loc>http://www.chenfanlinux.org/2018/01/18/Bash%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%E4%B9%8B%E6%9D%A1%E4%BB%B6%E6%B5%8B%E8%AF%95-%E4%B8%89/</loc>
+    <lastmod>2018-01-18T02:34:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>Bash编程入门之条件测试(三)</title>
+        <pubTime>2018-01-18T02:23:09.000Z</pubTime>
+        
+        <tag>Bash</tag>
+         
+         
+           
+             
+              <breadCrumb title="Bash Shell编程" url="http://www.chenfanlinux.org/categories/Bash-Shell%E7%BC%96%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.chenfanlinux.org/2017/12/24/%E7%BC%96%E8%BE%91%E5%99%A8%E4%B9%8B%E7%A5%9E-vim/</loc>
+    <lastmod>2018-01-17T14:04:18.000Z</lastmod>
+    <data>
+        <display>
+        <title>编辑器之神-Vim</title>
+        <pubTime>2017-12-24T02:24:27.000Z</pubTime>
+        
+        <tag>Vim</tag>
+         
+         
+           
+             
+              <breadCrumb title="Tools利器" url="http://www.chenfanlinux.org/categories/Tools%E5%88%A9%E5%99%A8/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.chenfanlinux.org/2018/01/17/Bash%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%E4%B9%8B%E5%8F%98%E9%87%8F%E5%9F%BA%E7%A1%80-%E4%B8%80/</loc>
     <lastmod>2018-01-17T08:03:15.000Z</lastmod>
     <data>
@@ -137,26 +177,6 @@
            
              
               <breadCrumb title="Python基础知识" url="http://www.chenfanlinux.org/categories/Python%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.chenfanlinux.org/2017/12/24/%E7%BC%96%E8%BE%91%E5%99%A8%E4%B9%8B%E7%A5%9E-vim/</loc>
-    <lastmod>2018-01-11T06:55:01.000Z</lastmod>
-    <data>
-        <display>
-        <title>编辑器之神-Vim</title>
-        <pubTime>2017-12-24T02:24:27.000Z</pubTime>
-        
-        <tag>Vim</tag>
-         
-         
-           
-             
-              <breadCrumb title="Tools利器" url="http://www.chenfanlinux.org/categories/Tools%E5%88%A9%E5%99%A8/"/>
           
         </display>
     </data>
