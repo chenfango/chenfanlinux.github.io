@@ -117,7 +117,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s1.ax1x.com/2018/01/21/pWMHH0.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/01/21/pWjX24.png">
-<meta property="og:updated_time" content="2018-01-21T09:35:10.000Z">
+<meta property="og:updated_time" content="2018-01-21T13:29:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Shell通配符与正则表达式">
 <meta name="twitter:description" content="通配符是系统level,而正则表达式需要相关工具的支持:grep,awk,vi,perl。在文本过滤工具里,都是用正则表达式，比如像awk,sed等，是针对文件的内容的。通配符多用在文件名上,比如查找find,ls,cp,等等。  通配符 通配符的作用是用于模糊查询时通配文件名中某些不确定的字符, 通配符只有三个元字符 ？ * []  Bash中的通配符   通配符 作用     ? 匹配任意单">
@@ -489,25 +489,25 @@
 <h3 id="Bash中的通配符"><a href="#Bash中的通配符" class="headerlink" title="Bash中的通配符"></a>Bash中的通配符</h3><table>
 <thead>
 <tr>
-<th>通配符</th>
+<th style="text-align:center">通配符</th>
 <th style="text-align:center">作用</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>?</td>
+<td style="text-align:center">?</td>
 <td style="text-align:center">匹配任意单个字符，不包括路径标识”/“</td>
 </tr>
 <tr>
-<td>*</td>
+<td style="text-align:center">*</td>
 <td style="text-align:center">匹配任意长度的字符，包括空字符,不包括路径标识”/“</td>
 </tr>
 <tr>
-<td>**</td>
+<td style="text-align:center">**</td>
 <td style="text-align:center">匹配任意级别目录(bash 4.0以上版本支持,不包括路径标识”/“</td>
 </tr>
 <tr>
-<td>[]</td>
+<td style="text-align:center">[]</td>
 <td style="text-align:center">匹配一个单字符范围,如[a-z],[0-9],不包括路径标识”/“</td>
 </tr>
 </tbody>
@@ -555,45 +555,45 @@
 <table>
 <thead>
 <tr>
-<th>元字符</th>
+<th style="text-align:center">元字符</th>
 <th style="text-align:center">描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>.</td>
+<td style="text-align:center">.</td>
 <td style="text-align:center">匹配任意单字符，如a, b, 1等等，不包括空白字符</td>
 </tr>
 <tr>
-<td>^</td>
+<td style="text-align:center">^</td>
 <td style="text-align:center">不匹配任何字符，代表锚定行首,如^abc代表以abc开头的模式中</td>
 </tr>
 <tr>
-<td>$</td>
+<td style="text-align:center">$</td>
 <td style="text-align:center">不匹配任何字符，代表锚定行尾,如abc$代表以abc结尾的模式</td>
 </tr>
 <tr>
-<td>[]</td>
+<td style="text-align:center">[]</td>
 <td style="text-align:center">代表匹配括号内任意一个单字符,如[abc]代表匹配a或b或c任意一个</td>
 </tr>
 <tr>
-<td>[^]</td>
+<td style="text-align:center">[^]</td>
 <td style="text-align:center">[^pattern]    代表取反匹配,不匹配pattern的模式,如abc代表除abc之外的其他单字符</td>
 </tr>
 <tr>
-<td>*</td>
+<td style="text-align:center">*</td>
 <td style="text-align:center">代表匹配前面一个单字符任意次(包括0次) ,如a*b代表匹配b,ab,aab…</td>
 </tr>
 <tr>
-<td>\</td>
+<td style="text-align:center">\</td>
 <td style="text-align:center">转义字符，\会匹配\这个字符</td>
 </tr>
 <tr>
-<td>()</td>
+<td style="text-align:center">()</td>
 <td style="text-align:center">后项引用，后续将详细介绍</td>
 </tr>
 <tr>
-<td>{}</td>
+<td style="text-align:center">{}</td>
 <td style="text-align:center">重复前面字符的次数,后续将详细介绍</td>
 </tr>
 </tbody>
