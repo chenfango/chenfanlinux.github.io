@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="Bash," />
+  <meta name="keywords" content="Sed," />
 
 
 
@@ -107,20 +107,20 @@
 
 
 
-<meta name="description" content="条件测试语法 在bash的各种流程控制结构中通常要进行各种测试，然后根据测试结果执行不同的操作，有时也会通过与if等条件语句相结合，让我们可以方便的完成判断。  语法支持三种格式的条件测试语法  test&amp;lt;测试表达式&amp;gt; [ &amp;lt;测试表达式&amp;gt; ] [[ &amp;lt">
-<meta name="keywords" content="Bash">
+<meta name="description" content="Sed 全称Stream Editor,Sed从本质上来讲其实是一种非交互式的编辑器。  sed的处理流程 sed中script执行是有先后顺序的   读入一行内行到缓存空间(模式空间) 从script中取出一条命令, 判断是否匹配pattern(一般为正则表达式) 如果不匹配, 则忽略后续命令, 回到第二步取下一条命">
+<meta name="keywords" content="Sed">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Bash编程入门之条件测试(三)">
-<meta property="og:url" content="http://www.chenfanlinux.org/2018/01/18/Bash编程入门之条件测试-三/index.html">
+<meta property="og:title" content="流编辑器sed学习笔记">
+<meta property="og:url" content="http://www.chenfanlinux.org/2018/01/21/流编辑器sed学习笔记/index.html">
 <meta property="og:site_name" content="陈凡的博客">
-<meta property="og:description" content="条件测试语法 在bash的各种流程控制结构中通常要进行各种测试，然后根据测试结果执行不同的操作，有时也会通过与if等条件语句相结合，让我们可以方便的完成判断。  语法支持三种格式的条件测试语法  test&amp;lt;测试表达式&amp;gt; [ &amp;lt;测试表达式&amp;gt; ] [[ &amp;lt;测试表达式&amp;gt; ]]  格式1和格式2是等价的，格式3为扩展的test命令 在[[]]中可以使用通配符进行匹配。&amp;">
+<meta property="og:description" content="Sed 全称Stream Editor,Sed从本质上来讲其实是一种非交互式的编辑器。  sed的处理流程 sed中script执行是有先后顺序的   读入一行内行到缓存空间(模式空间) 从script中取出一条命令, 判断是否匹配pattern(一般为正则表达式) 如果不匹配, 则忽略后续命令, 回到第二步取下一条命令 如果匹配, 则对缓存的行执行后续的编辑命令; 完成后, 回到第二步继续取下一">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s1.ax1x.com/2018/01/18/ps8WEF.png">
-<meta property="og:updated_time" content="2018-01-18T02:34:46.000Z">
+<meta property="og:image" content="https://s1.ax1x.com/2018/01/21/pfgjyQ.png">
+<meta property="og:updated_time" content="2018-01-21T15:27:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bash编程入门之条件测试(三)">
-<meta name="twitter:description" content="条件测试语法 在bash的各种流程控制结构中通常要进行各种测试，然后根据测试结果执行不同的操作，有时也会通过与if等条件语句相结合，让我们可以方便的完成判断。  语法支持三种格式的条件测试语法  test&amp;lt;测试表达式&amp;gt; [ &amp;lt;测试表达式&amp;gt; ] [[ &amp;lt;测试表达式&amp;gt; ]]  格式1和格式2是等价的，格式3为扩展的test命令 在[[]]中可以使用通配符进行匹配。&amp;">
-<meta name="twitter:image" content="https://s1.ax1x.com/2018/01/18/ps8WEF.png">
+<meta name="twitter:title" content="流编辑器sed学习笔记">
+<meta name="twitter:description" content="Sed 全称Stream Editor,Sed从本质上来讲其实是一种非交互式的编辑器。  sed的处理流程 sed中script执行是有先后顺序的   读入一行内行到缓存空间(模式空间) 从script中取出一条命令, 判断是否匹配pattern(一般为正则表达式) 如果不匹配, 则忽略后续命令, 回到第二步取下一条命令 如果匹配, 则对缓存的行执行后续的编辑命令; 完成后, 回到第二步继续取下一">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/01/21/pfgjyQ.png">
 
 
 
@@ -150,13 +150,13 @@
 
 
 
-  <link rel="canonical" href="http://www.chenfanlinux.org/2018/01/18/Bash编程入门之条件测试-三/"/>
+  <link rel="canonical" href="http://www.chenfanlinux.org/2018/01/21/流编辑器sed学习笔记/"/>
 
 
 
 
 
-  <title>Bash编程入门之条件测试(三) | 陈凡的博客</title>
+  <title>流编辑器sed学习笔记 | 陈凡的博客</title>
   
 
 
@@ -342,7 +342,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/18/Bash编程入门之条件测试-三/">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/21/流编辑器sed学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陈凡">
@@ -359,7 +359,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Bash编程入门之条件测试(三)</h1>
+          <h1 class="post-title" itemprop="name headline">流编辑器sed学习笔记</h1>
         
 
         <div class="post-meta">
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-18T10:23:09+08:00">
-                2018-01-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T23:25:16+08:00">
+                2018-01-21
               </time>
             
 
@@ -394,8 +394,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Bash-Shell编程/" itemprop="url" rel="index">
-                    <span itemprop="name">Bash Shell编程</span>
+                  <a href="/categories/Linux基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux基础</span>
                   </a>
                 </span>
 
@@ -413,8 +413,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/01/18/Bash编程入门之条件测试-三/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/18/Bash编程入门之条件测试-三/" itemprop="commentsCount"></span>
+                <a href="/2018/01/21/流编辑器sed学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/21/流编辑器sed学习笔记/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -442,7 +442,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  912
+                  829
                 </span>
               
 
@@ -479,208 +479,113 @@
       
 
       
-        <h2 id="条件测试语法"><a href="#条件测试语法" class="headerlink" title="条件测试语法"></a>条件测试语法</h2><blockquote>
-<p>在bash的各种流程控制结构中通常要进行各种测试，然后根据测试结果执行不同的操作，有时也会通过与if等条件语句相结合，让我们可以方便的完成判断。</p>
+        <h2 id="Sed"><a href="#Sed" class="headerlink" title="Sed"></a>Sed</h2><blockquote>
+<p>全称Stream Editor,Sed从本质上来讲其实是一种非交互式的编辑器。</p>
 </blockquote>
-<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>支持三种格式的条件测试语法</p>
+<h3 id="sed的处理流程"><a href="#sed的处理流程" class="headerlink" title="sed的处理流程"></a>sed的处理流程</h3><blockquote>
+<p>sed中script执行是有先后顺序的</p>
+</blockquote>
+<ol>
+<li>读入一行内行到缓存空间(模式空间)</li>
+<li>从script中取出一条命令, 判断是否匹配pattern(一般为正则表达式)</li>
+<li>如果不匹配, 则忽略后续命令, 回到第二步取下一条命令</li>
+<li>如果匹配, 则对缓存的行执行后续的编辑命令; 完成后, 回到第二步继续取下一条命令</li>
+<li>当所有命令应用后, 输出缓存行的内容, 回到第一步读取下一行</li>
+<li>当所有行处理完则执行结束</li>
+</ol>
+<h3 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h3><p><code>sed [options] &#39;script&#39; inputfile</code><br>对于script的语法有两种约定，分别是</p>
 <ul>
-<li>test&lt;测试表达式&gt;</li>
-<li>[ &lt;测试表达式&gt; ]</li>
-<li>[[ &lt;测试表达式&gt; ]]</li>
+<li>[address]command              指可以为任意地址包括地址对</li>
+<li>[line-address]command         只能为单个地址</li>
 </ul>
-<p><strong>格式1和格式2是等价的，格式3为扩展的test命令</strong></p>
-<p>在[[]]中可以使用通配符进行匹配。&amp;&amp;、||、&gt;、&lt;等操作符可以应用与[[]]中，但不能应用与[]中。</p>
-<h3 id="范例"><a href="#范例" class="headerlink" title="范例"></a>范例</h3><p><strong>文件存在则输出1，文件不存在则输出0</strong></p>
-<pre><code>[root@chenfanlinux ~]#  [ -f /etc/passwd ] &amp;&amp; echo 1||echo 0
-1
-[root@chenfanlinux ~]# test -f /etc/passwd &amp;&amp; echo 1||echo 0
-1
-[root@chenfanlinux ~]#  [[ -f /etc/passwd ]] &amp;&amp; echo 1||echo 0
-1
-[root@chenfanlinux ~]#  [[ -f /etc/passd ]] &amp;&amp; echo 1||echo 0
-0
-</code></pre><a id="more"></a>
-<p><strong>非!的写法</strong><br>test.txt文件如果不存在，则创建。</p>
-<pre><code>[root@chenfanlinux ~]# test ! -f test1.txt &amp;&amp; touch test.txt || ehco &quot;test1.txt已经存在&quot;
-[root@chenfanlinux ~]# test ! -f test1.txt &amp;&amp; touch test1.txt || echo &quot;test1.txt已经存在&quot;
-test1.txt已经存在
-[root@chenfanlinux ~]# [ ! -f test.txt ] &amp;&amp; touch test.txt || echo &apos;test.txt已经存在&apos;
-[root@chenfanlinux~]# [ ! -f test.txt ] &amp;&amp; touch test.txt || echo &apos;test.txt已经存在&apos;
-test.txt已经存在
-</code></pre><h2 id="test-或-测试语法"><a href="#test-或-测试语法" class="headerlink" title="test 或 [] 测试语法"></a>test 或 [] 测试语法</h2><p>从功能上来看 <code>test 测试表达式</code> 命令等同于 <code>[测试表达式]</code> ，因此这里将它们归纳在一起进行总结。</p>
-<h3 id="数值测试"><a href="#数值测试" class="headerlink" title="数值测试"></a>数值测试</h3><p><strong>参数说明</strong></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">参数</th>
-<th style="text-align:center">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">-eq</td>
-<td style="text-align:center">等于则为真</td>
-</tr>
-<tr>
-<td style="text-align:center">-ne</td>
-<td style="text-align:center">不等于则为真</td>
-</tr>
-<tr>
-<td style="text-align:center">-gt</td>
-<td style="text-align:center">大于则为真</td>
-</tr>
-<tr>
-<td style="text-align:center">-ge</td>
-<td style="text-align:center">大于等于则为真</td>
-</tr>
-<tr>
-<td style="text-align:center">-lt</td>
-<td style="text-align:center">小于则为真</td>
-</tr>
-<tr>
-<td style="text-align:center">-le</td>
-<td style="text-align:center">小于则为真</td>
-</tr>
-</tbody>
-</table>
-<p><strong>范例</strong></p>
-<p><strong><em>判断两个数是否相等</em></strong></p>
-<pre><code>[root@chenfanlinux ~]# num1=1
-[root@chenfanlinux ~]#chenfanlinux num2=2
-[root@chenfanlinux ~]# [ $num1 -eq $num2 ] &amp;&amp; echo &quot;两个数相等&quot; || echo &quot;两个数不相等&quot;
-两个数不相等
-</code></pre><p><strong><em>数值运算</em></strong></p>
-<pre><code>[root@chenfanlinux ~]# a=5
-[root@chenfanlinux ~]# b=6
-[root@chenfanlinux ~]# c=$[a+b]
-[root@chenfanlinux ~]# echo $c
-11
-
-[root@chenfanlinux ~]# ((c=a+b))
-[root@chenfanlinux ~]# echo $c
-11
-
-[root@chenfanlinux ~]# c=`expr $a + $b`
-[root@chenfanlinux ~]# echo $c
-11
-
-[root@chenfanlinux ~]# let c=$a+$b
-[root@chenfanlinux ~]# echo $c
-11
-</code></pre><ul>
-<li>(())</li>
-<li>let</li>
-<li>expr</li>
-<li>bc(小数)</li>
-<li>$[]</li>
+<h3 id="常用选项"><a href="#常用选项" class="headerlink" title="常用选项"></a>常用选项</h3><pre><code>-n: 不输出模式空间中的内容至屏幕
+-e: 多点编辑
+-r: 支持使用扩展的正则表达式
+-i: 修改原文件
+</code></pre><h3 id="地址定界"><a href="#地址定界" class="headerlink" title="地址定界"></a>地址定界</h3><ul>
+<li>no-address:对全文进行处理</li>
+<li><p>line-address 单地址</p>
+<ul>
+<li>n1  指定的行,数字表示</li>
+<li>/pattern/ 被此处模式所能匹配到的每一行</li>
 </ul>
-<h3 id="字符串测试"><a href="#字符串测试" class="headerlink" title="字符串测试"></a>字符串测试</h3><p><strong>参数说明</strong></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">参数</th>
-<th style="text-align:center">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">“串1” = “串2”</td>
-<td style="text-align:center">若串1等于串2则真，可以使用”==”代替”=”</td>
-</tr>
-<tr>
-<td style="text-align:center">“串1” ！= “串2”</td>
-<td style="text-align:center">若串1不等于串2则真，但不能用”!==” 代替”!=”</td>
-</tr>
-<tr>
-<td style="text-align:center">-z “字符串”</td>
-<td style="text-align:center">若串长度为0则真，-z可以理解为zero</td>
-</tr>
-<tr>
-<td style="text-align:center">-n “字符串”</td>
-<td style="text-align:center">若串长度不为0则真，-n可以理解为no zero</td>
-</tr>
-</tbody>
-</table>
-<p><strong>范例</strong></p>
-<p><strong><em>比较两个字符串是否相同</em></strong></p>
-<pre><code>num1=&quot;chenfan&quot;
-num2=&quot;chenfanlinux&quot;
-if [ &quot;$num1&quot; = &quot;$num2&quot; ]
-then
-    echo &apos;两个字符串相等!&apos;
-else
-    echo &apos;两个字符串不相等!&apos;
-fi
-</code></pre><h3 id="文件测试"><a href="#文件测试" class="headerlink" title="文件测试"></a>文件测试</h3><p><strong>参数说明</strong></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">参数</th>
-<th style="text-align:center">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">-e 文件名</td>
-<td style="text-align:center">如果文件存在则为真</td>
-</tr>
-<tr>
-<td style="text-align:center">-r 文件名</td>
-<td style="text-align:center">如果文件存在且可读则为真</td>
-</tr>
-<tr>
-<td style="text-align:center">-w 文件名</td>
-<td style="text-align:center">如果文件存在且可写则为真</td>
-</tr>
-<tr>
-<td style="text-align:center">-x 文件名</td>
-<td style="text-align:center">如果文件存在且可执行则为真</td>
-</tr>
-<tr>
-<td style="text-align:center">-s 文件名</td>
-<td style="text-align:center">如果文件存在且至少有一个字符则为真</td>
-</tr>
-<tr>
-<td style="text-align:center">-d 文件名</td>
-<td style="text-align:center">如果文件存在且为目录则为真</td>
-</tr>
-<tr>
-<td style="text-align:center">-f 文件名</td>
-<td style="text-align:center">如果文件存在且为普通文件则为真</td>
-</tr>
-<tr>
-<td style="text-align:center">-c 文件名</td>
-<td style="text-align:center">如果文件存在且为字符型特殊文件则为真</td>
-</tr>
-<tr>
-<td style="text-align:center">-b 文件名</td>
-<td style="text-align:center">如果文件存在且为块特殊文件则为真</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>以上表格中的字符串测试操作符号务必要用 “字符串” 引起来。</p>
-</blockquote>
-<p><strong>范例</strong></p>
-<p><strong><em>文件存在则打印存在</em></strong></p>
-<pre><code>cd /bin
-if test -e ./bash
-then
-    echo &apos;文件已存在!&apos;
-else
-    echo &apos;文件不存在!&apos;
-fi
-</code></pre><h3 id="逻辑操作符"><a href="#逻辑操作符" class="headerlink" title="逻辑操作符"></a>逻辑操作符</h3><p><strong>参数说明</strong></p>
-<p><img src="https://s1.ax1x.com/2018/01/18/ps8WEF.png" alt="逻辑操作符"> </p>
-<p><strong>范例</strong></p>
-<p><strong><em>判断文件是否同时存在</em></strong></p>
-<pre><code>[root@chenfanlinux ~]# f1=&apos;/etc/rc.local&apos;
-[root@chenfanlinux ~]# f2=&apos;/etc/pass&apos;
+</li>
+<li><p>address 地址对</p>
+<ul>
+<li>n1,n2</li>
+<li>n1,+n2</li>
+<li>/pattern1/,/pattern2/</li>
+<li>n1,/pattern1/</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<h3 id="sed基础命令"><a href="#sed基础命令" class="headerlink" title="sed基础命令"></a>sed基础命令</h3><p><img src="https://s1.ax1x.com/2018/01/21/pfgjyQ.png" alt="sed基础命令"></p>
+<h3 id="sed命令实践"><a href="#sed命令实践" class="headerlink" title="sed命令实践"></a>sed命令实践</h3><p><strong>删除匹配的某行</strong></p>
+<pre><code>[root@docker ~]# sed &apos;/^UUID/d&apos; /etc/fstab
 
-[root@chenfanlinux ~]# [ -f &quot;$f1&quot; -o -f &quot;$f2&quot; ] &amp;&amp; echo 1|| echo 0
-1
-[root@chenfanlinux ~]# [ -f &quot;$f1&quot; -a -f &quot;$f2&quot; ] &amp;&amp; echo 1|| echo 0
-0
+#
+# /etc/fstab
+# Created by anaconda on Fri Nov 17 00:04:38 2017
+#
+# Accessible filesystems, by reference, are maintained under &apos;/dev/disk&apos;
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+#fhfh
+/dev/mapper/centos-root /                       xfs     defaults        0 0
+/dev/mapper/centos-swap swap                    swap    defaults        0 0
+</code></pre><p><strong>显示模式空间中内容,仅打印模式空间中被匹配</strong></p>
+<pre><code>[root@docker ~]# sed -n &apos;/^UUID/p&apos; /etc/fstab
+UUID=377d33fc-dff8-4bb1-9620-20ae6638453d /boot    xfs     defaults        0 0
+</code></pre><p><strong>a \text 在行后面追加文本: 支持使用\n实现多行追加</strong></p>
+<pre><code>[root@docker ~]# sed &apos;/^UUID/a \hello boy\nwelcome to chenfanlinux.org&apos; /etc/fstab
+# /etc/fstab
+# Created by anaconda on Fri Nov 17 00:04:38 2017
+#
+# Accessible filesystems, by reference, are maintained under &apos;/dev/disk&apos;
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+/dev/mapper/centos-root /                       xfs     defaults        0 0
+UUID=377d33fc-dff8-4bb1-9620-20ae6638453d /boot                   xfs     defaults        0 0
+hello boy
+welcome to chenfanlinux.org
+/dev/mapper/centos-swap swap                    swap    defaults        0 0
+</code></pre><p><strong>i \text 在符合条件的行前面追加文本</strong></p>
+<pre><code>[root@docker ~]#  sed &apos;/^UUID/i \hello world\nwelcome&apos; /etc/fstab
+# /etc/fstab
+# Created by anaconda on Fri Nov 17 00:04:38 2017
+#
+# Accessible filesystems, by reference, are maintained under &apos;/dev/disk&apos;
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+/dev/mapper/centos-root /                       xfs     defaults        0 0
+hello world
+welcome
+UUID=377d33fc-dff8-4bb1-9620-20ae6638453d /boot                   xfs     defaults        0 0
+/dev/mapper/centos-swap swap                    swap    defaults        0 0
+</code></pre><p><strong>c \text 替换符合添加的行</strong></p>
+<pre><code>[root@docker ~]#  sed &apos;/^UUID/c \hello world\nwelcome&apos; /etc/fstab
+
+#
+# /etc/fstab
+# Created by anaconda on Fri Nov 17 00:04:38 2017
+#
+# Accessible filesystems, by reference, are maintained under &apos;/dev/disk&apos;
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+/dev/mapper/centos-root /                       xfs     defaults        0 0
+hello world
+welcome
+/dev/mapper/centos-swap swap                    swap    defaults        0 0
+</code></pre><p><strong>s///: 支持使用其他分隔符,如$@@@、$###</strong></p>
+<p>格式： <code>[address]s/pattern/replacement/flag</code></p>
+<p><strong>flag:</strong></p>
+<ul>
+<li>g: 全局替换</li>
+<li>p: 显示替换成功的行</li>
+<li>w /path/to/somefile: 将替换成功的结果保存至指定文件中</li>
+</ul>
+<p><strong><em>替换匹配r..t的字符，并在其后加er</em></strong></p>
+<pre><code>[root@docker ~]# sed -n &apos;s/\(r..t\)#\1er/p&apos; /etc/passwd
+rooter:x:0:0:root:/root:/bin/bash
+operator:x:11:0:operator:/rooter:/sbin/nologin
+ftp:x:14:50:FTP User:/var/fterp:/sbin/nologin
 </code></pre>
       
     </div>
@@ -739,7 +644,7 @@ fi
         <div class="post-tags">
           
          
-            <a href="/tags/Bash/" rel="tag"><i class="fa fa-tag"></i>Bash</a>
+            <a href="/tags/Sed/" rel="tag"><i class="fa fa-tag"></i>Sed</a>
           
         </div>
       
@@ -752,8 +657,8 @@ fi
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/17/Bash编程入门之变量基础-一/" rel="next" title="Bash编程入门之变量基础(二)">
-                <i class="fa fa-chevron-left"></i> Bash编程入门之变量基础(二)
+              <a href="/2018/01/21/Shell通配符与正则表达式/" rel="next" title="Shell通配符与正则表达式">
+                <i class="fa fa-chevron-left"></i> Shell通配符与正则表达式
               </a>
             
           </div>
@@ -761,10 +666,6 @@ fi
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/21/Shell通配符与正则表达式/" rel="prev" title="Shell通配符与正则表达式">
-                Shell通配符与正则表达式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -966,7 +867,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#条件测试语法"><span class="nav-number">1.</span> <span class="nav-text">条件测试语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">1.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#范例"><span class="nav-number">1.2.</span> <span class="nav-text">范例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#test-或-测试语法"><span class="nav-number">2.</span> <span class="nav-text">test 或 [] 测试语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数值测试"><span class="nav-number">2.1.</span> <span class="nav-text">数值测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串测试"><span class="nav-number">2.2.</span> <span class="nav-text">字符串测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件测试"><span class="nav-number">2.3.</span> <span class="nav-text">文件测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑操作符"><span class="nav-number">2.4.</span> <span class="nav-text">逻辑操作符</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sed"><span class="nav-number">1.</span> <span class="nav-text">Sed</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sed的处理流程"><span class="nav-number">1.1.</span> <span class="nav-text">sed的处理流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令格式"><span class="nav-number">1.2.</span> <span class="nav-text">命令格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用选项"><span class="nav-number">1.3.</span> <span class="nav-text">常用选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址定界"><span class="nav-number">1.4.</span> <span class="nav-text">地址定界</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sed基础命令"><span class="nav-number">1.5.</span> <span class="nav-text">sed基础命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sed命令实践"><span class="nav-number">1.6.</span> <span class="nav-text">sed命令实践</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1179,7 +1080,7 @@ var jiathis_config={
 		_hcwp.push({widget:"Bloggerstream", widget_id: 98812, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2018/01/18/Bash编程入门之条件测试-三/"});
+		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2018/01/21/流编辑器sed学习笔记/"});
 		
 
 		(function() {
