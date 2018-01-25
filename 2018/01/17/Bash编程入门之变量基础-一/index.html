@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="陈凡的个人站点">
 <meta property="og:description" content="变量基础什么是变量？ 变量的实质是命名的内存空间，变量是一个用固定的字符串（也可能是字符数字等的组合），替代更多更复杂的内容，这个内容里可能还会包含变量和路径，字符串等其他的内容。对于代码一块某个值得改变，只需要改变变量值得内容，不需要全局修改。  变量的类型根据变量的生效范围等标准:  本地变量：生效范围为当前的shell进程,对当前shell之外的其他进程,包括当前进程的父子shell都无效">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-25T04:12:31.000Z">
+<meta property="og:updated_time" content="2018-01-25T04:19:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bash编程入门之变量基础(二)">
 <meta name="twitter:description" content="变量基础什么是变量？ 变量的实质是命名的内存空间，变量是一个用固定的字符串（也可能是字符数字等的组合），替代更多更复杂的内容，这个内容里可能还会包含变量和路径，字符串等其他的内容。对于代码一块某个值得改变，只需要改变变量值得内容，不需要全局修改。  变量的类型根据变量的生效范围等标准:  本地变量：生效范围为当前的shell进程,对当前shell之外的其他进程,包括当前进程的父子shell都无效">
@@ -440,7 +440,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,552
+                  1,551
                 </span>
               
 
@@ -575,7 +575,7 @@ fan
 <li>bc(小数)$[]</li>
 </ul>
 <p>shell的算术运算符号常置于 $((“…….”)) 的语法中，如果要执行简单的整数运算，只需将特定的算术表达式用” $((表达式))”括起来即可;使用let命令,它用于执行一个或多个表达式,变量计算中不需要使用$来引用变量。</p>
-<h3 id="字符串变量截取"><a href="#字符串变量截取" class="headerlink" title="字符串变量截取"></a>字符串变量截取</h3><p>变量web=”<a href="http://www.chenfanlinux.org/index.html&quot;，接下来介绍几种不同的变量截图的方法。">http://www.chenfanlinux.org/index.html&quot;，接下来介绍几种不同的变量截图的方法。</a></p>
+<h3 id="字符串变量截取"><a href="#字符串变量截取" class="headerlink" title="字符串变量截取"></a>字符串变量截取</h3><p>变量web=”<a href="http://www.chenfanlinux.org/index.html&quot;，接下来介绍几种不同的变量截取方法。">http://www.chenfanlinux.org/index.html&quot;，接下来介绍几种不同的变量截取方法。</a></p>
 <p>（1）#*fs 删除第一个匹配到的分隔符及其左侧的内容,这里的以fs是”/“为例 </p>
 <pre><code>[root@chenfanlinux ~]# echo $web
 http://www.chenfanlinux.org/index.html
