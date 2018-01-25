@@ -4,6 +4,66 @@
 
     
   <url>
+    <loc>http://www.chenfanlinux.org/2018/01/25/Bash%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%E4%B9%8B%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6-%E5%9B%9B/</loc>
+    <lastmod>2018-01-25T03:20:07.000Z</lastmod>
+    <data>
+        <display>
+        <title>Bash编程入门之流程控制(四)</title>
+        <pubTime>2018-01-25T03:17:48.000Z</pubTime>
+        
+        <tag>Bash</tag>
+         
+         
+           
+             
+              <breadCrumb title="Bash Shell编程" url="http://www.chenfanlinux.org/categories/Bash-Shell%E7%BC%96%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.chenfanlinux.org/2018/01/18/Bash%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%E4%B9%8B%E6%9D%A1%E4%BB%B6%E6%B5%8B%E8%AF%95-%E4%B8%89/</loc>
+    <lastmod>2018-01-25T03:09:19.000Z</lastmod>
+    <data>
+        <display>
+        <title>Bash编程入门之条件测试(三)</title>
+        <pubTime>2018-01-18T02:23:09.000Z</pubTime>
+        
+        <tag>Bash</tag>
+         
+         
+           
+             
+              <breadCrumb title="Bash Shell编程" url="http://www.chenfanlinux.org/categories/Bash-Shell%E7%BC%96%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.chenfanlinux.org/2018/01/17/Bash%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%E4%B9%8B%E5%8F%98%E9%87%8F%E5%9F%BA%E7%A1%80-%E4%B8%80/</loc>
+    <lastmod>2018-01-25T03:05:13.000Z</lastmod>
+    <data>
+        <display>
+        <title>Bash编程入门之变量基础(二)</title>
+        <pubTime>2018-01-17T07:39:19.000Z</pubTime>
+        
+        <tag>Bash</tag>
+         
+         
+           
+             
+              <breadCrumb title="Bash Shell编程" url="http://www.chenfanlinux.org/categories/Bash-Shell%E7%BC%96%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.chenfanlinux.org/2018/01/23/awk%E5%BA%94%E7%94%A8%E6%8C%87%E5%8D%97/</loc>
     <lastmod>2018-01-23T01:10:05.000Z</lastmod>
     <data>
@@ -64,26 +124,6 @@
 
     
   <url>
-    <loc>http://www.chenfanlinux.org/2018/01/18/Bash%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%E4%B9%8B%E6%9D%A1%E4%BB%B6%E6%B5%8B%E8%AF%95-%E4%B8%89/</loc>
-    <lastmod>2018-01-18T02:34:46.000Z</lastmod>
-    <data>
-        <display>
-        <title>Bash编程入门之条件测试(三)</title>
-        <pubTime>2018-01-18T02:23:09.000Z</pubTime>
-        
-        <tag>Bash</tag>
-         
-         
-           
-             
-              <breadCrumb title="Bash Shell编程" url="http://www.chenfanlinux.org/categories/Bash-Shell%E7%BC%96%E7%A8%8B/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.chenfanlinux.org/2017/12/24/%E7%BC%96%E8%BE%91%E5%99%A8%E4%B9%8B%E7%A5%9E-vim/</loc>
     <lastmod>2018-01-17T14:04:18.000Z</lastmod>
     <data>
@@ -97,26 +137,6 @@
            
              
               <breadCrumb title="Tools利器" url="http://www.chenfanlinux.org/categories/Tools%E5%88%A9%E5%99%A8/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.chenfanlinux.org/2018/01/17/Bash%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%E4%B9%8B%E5%8F%98%E9%87%8F%E5%9F%BA%E7%A1%80-%E4%B8%80/</loc>
-    <lastmod>2018-01-17T08:03:15.000Z</lastmod>
-    <data>
-        <display>
-        <title>Bash编程入门之变量基础(二)</title>
-        <pubTime>2018-01-17T07:39:19.000Z</pubTime>
-        
-        <tag>Bash</tag>
-         
-         
-           
-             
-              <breadCrumb title="Bash Shell编程" url="http://www.chenfanlinux.org/categories/Bash-Shell%E7%BC%96%E7%A8%8B/"/>
           
         </display>
     </data>

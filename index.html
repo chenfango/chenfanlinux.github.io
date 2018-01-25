@@ -339,6 +339,221 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/25/Bash编程入门之流程控制-四/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/25/Bash编程入门之流程控制-四/" itemprop="url">Bash编程入门之流程控制(四)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-25T11:17:48+08:00">
+                2018-01-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Bash-Shell编程/" itemprop="url" rel="index">
+                    <span itemprop="name">Bash Shell编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/25/Bash编程入门之流程控制-四/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/25/Bash编程入门之流程控制-四/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  650
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h2><blockquote>
+<p>bash shell中会根据命令的执行状态结果(0或1),来表示条件的true或false,根据不同的条件,选择的执行不同的语句,来达到流程控制的目的。</p>
+</blockquote>
+<h3 id="单分支-if结构"><a href="#单分支-if结构" class="headerlink" title="单分支 if结构"></a>单分支 if结构</h3><pre><code>if CONDITON;then
+    if-true
+fi
+---------------------------------------------
+if  [[ expression  ]];then
+    if-true
+fi
+</code></pre><p><strong><em>注意：此处的CONDITION相当于bash中的命令,根据命令的执行状态结构，来选择语句是否执行。</em></strong></p>
+<h3 id="双分支-if-else结构"><a href="#双分支-if-else结构" class="headerlink" title="双分支 if/else结构"></a>双分支 if/else结构</h3><pre><code>if CONDITION;then
+    if-true
+else
+    if-false
+fi
+
+----------------------------------------------
+if  [[ expression ]];then
+   if-true
+else
+  if-false
+fi
+</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/25/Bash编程入门之流程控制-四/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    
+    <div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/23/awk应用指南/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1359,7 +1574,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,298
+                  1,335
                 </span>
               
 
@@ -2419,235 +2634,6 @@ CMD [&quot;/bin/bash&quot;]
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/10/Docker入门之镜像基础概念与管理-二/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/10/Docker入门之镜像基础概念与管理-二/" itemprop="url">Docker入门之镜像管理(二)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T15:35:23+08:00">
-                2018-01-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Docker系列/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker系列</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/01/10/Docker入门之镜像基础概念与管理-二/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/10/Docker入门之镜像基础概念与管理-二/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2,405
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  9
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="认识最小的镜像（hello-world-）"><a href="#认识最小的镜像（hello-world-）" class="headerlink" title="认识最小的镜像（hello-world ）"></a>认识最小的镜像（hello-world ）</h2><blockquote>
-<p>镜像是 Docker 容器的基石，容器是镜像的运行实例，有了镜像才能启动容器。理解清楚镜像的内部结构,我们才能够按照需求构建符合要求的镜像。hello-world 是 Docker 官方提供的一个镜像，通常用来验证 Docker 是否安装成功。</p>
-</blockquote>
-<p>我们先通过 docker pull 从 Docker Hub 下载它</p>
-<pre><code>[root@docker ~]# docker pull hello-world
-Using default tag: latest
-latest: Pulling from library/hello-world
-ca4f61b1923c: Pull complete
-Digest: sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7
-Status: Downloaded newer image for hello-world:latest
-</code></pre><p>可以使用 docker images 命令查看镜像的信息，可以看到镜像非常的小,只有1.85k</p>
-<pre><code>[root@docker ~]# docker images |grep hello-world
-hello-world  latest       f2a91732366c     6 weeks ago         1.85kB
-</code></pre><p>最后通过 docker run 运行镜像</p>
-<pre><code>[root@docker ~]# docker run hello-world
-
-Hello from Docker!
-This message shows that your installation appears to be working correctly.
-
-To generate this message, Docker took the following steps:
- 1. The Docker client contacted the Docker daemon.
- 2. The Docker daemon pulled the &quot;hello-world&quot; image from the Docker Hub.
-    (amd64)
- 3. The Docker daemon created a new container from that image which runs the
-    executable that produces the output you are currently reading.
- 4. The Docker daemon streamed that output to the Docker client, which sent it
-    to your terminal.
-</code></pre><p>那么该镜像运行怎么就输出上面这一串信息的呢？如果对 Docker 了解一点的话自然会去找该镜像的 Dockerfile，Dockerfile 详细描述了该镜像是如何建立的以及运行时执行的命令。从 Docker Hub 上 <a href="https://hub.docker.com/r/library/hello-world/" target="_blank" rel="noopener">hello-world</a> 的库简介 找到其 <a href="https://github.com/docker-library/hello-world/blob/b7a78b7ccca62cc478919b101f3ab1334899df2b/Dockerfile" target="_blank" rel="noopener">Dockerfile</a> 在 github 上，简简单单的三条语句。</p>
-<p><img src="https://cdn-std.dprcdn.net/files/acc_582513/4q6B6C" alt="hello-world Dockerfile"><br><strong>hello-world的Dockerfile如下:</strong></p>
-<pre><code>FROM scratch
-ADD hello /
-CMD [&quot;/hello&quot;]
-</code></pre><ul>
-<li><p>第一条FROM指令是 Docker 用来指定该镜像是基于哪个基础镜像构建的，这里指定为 scratch，实际上 scratch 镜像是一个空镜像，用来构建基础镜像或者极小的镜像。</p>
-</li>
-<li><p>第二条ADD指令表示从 Dockerfile 所在目录拷贝文件到指定路径下，这里拷贝 hello 文件到根目录下，这里的hello文件是一个二进制可执行文件。</p>
-</li>
-<li><p>第三条CMD指令用来指示当运行 docker run 命令运行该镜像时要执行的命令，这里执行 /hello，就是执行第二步拷贝到根目录下的 hello 文件。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/10/Docker入门之镜像基础概念与管理-二/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    
-    <div>
-  
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2702,7 +2688,7 @@ CMD [&quot;/hello&quot;]
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2812,7 +2798,7 @@ CMD [&quot;/hello&quot;]
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">32.5k</span>
+    <span title="Site words total count">33.2k</span>
   
 </div>
 
