@@ -4,6 +4,46 @@
 
     
   <url>
+    <loc>http://www.chenfanlinux.org/2017/12/04/my-first-article/</loc>
+    <lastmod>2018-01-26T04:03:23.000Z</lastmod>
+    <data>
+        <display>
+        <title>Hexo安装与介绍</title>
+        <pubTime>2017-12-04T03:05:54.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="hexo" url="http://www.chenfanlinux.org/categories/hexo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.chenfanlinux.org/2018/01/23/awk%E5%BA%94%E7%94%A8%E6%8C%87%E5%8D%97/</loc>
+    <lastmod>2018-01-26T03:58:12.000Z</lastmod>
+    <data>
+        <display>
+        <title>awk应用指南</title>
+        <pubTime>2018-01-23T01:08:59.000Z</pubTime>
+        
+        <tag>Awk</tag>
+         
+         
+           
+             
+              <breadCrumb title="linux基础" url="http://www.chenfanlinux.org/categories/linux%E5%9F%BA%E7%A1%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.chenfanlinux.org/2018/01/26/awk%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2018-01-26T03:53:34.000Z</lastmod>
     <data>
@@ -318,26 +358,6 @@
            
              
               <breadCrumb title="Bash Shell编程" url="http://www.chenfanlinux.org/categories/Bash-Shell%E7%BC%96%E7%A8%8B/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.chenfanlinux.org/2017/12/04/my-first-article/</loc>
-    <lastmod>2018-01-11T06:54:36.000Z</lastmod>
-    <data>
-        <display>
-        <title>Hexo安装与介绍</title>
-        <pubTime>2017-12-04T03:05:54.000Z</pubTime>
-        
-        <tag>Hexo</tag>
-         
-         
-           
-             
-              <breadCrumb title="Hexo" url="http://www.chenfanlinux.org/categories/Hexo/"/>
           
         </display>
     </data>
