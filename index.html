@@ -782,234 +782,6 @@ fi
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/23/awk应用指南/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/23/awk应用指南/" itemprop="url">awk应用指南</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-23T09:08:59+08:00">
-                2018-01-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux基础/" itemprop="url" rel="index">
-                    <span itemprop="name">linux基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/01/23/awk应用指南/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/23/awk应用指南/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,498
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  6
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="awk简介"><a href="#awk简介" class="headerlink" title="awk简介"></a>awk简介</h2><blockquote>
-<p>awk是一种编程语言，用于在linux/unix下对文本和数据进行处理。数据可以来自标准输入、一个或多个文件，或其它命令的输出。它支持用户自定义函数和动态正则表达式等先进功能，是linux/unix下的一个强大编程工具。</p>
-</blockquote>
-<h3 id="特性介绍"><a href="#特性介绍" class="headerlink" title="特性介绍"></a>特性介绍</h3><ul>
-<li>awk的处理文本和数据的方式是这样的，它逐行扫描文件，从第一行到最后一行，寻找匹配的特定模式的行，并在这些行上进行你想要的操作。</li>
-<li>如果没有指定处理动作，则把匹配的行显示到标准输出(屏幕)；如果没有指定模式，则所有被操作所指定的行都被处理。</li>
-<li>下面介绍的awk是以GUN的gawk为例的，在linux系统中已把awk链接到gawk，所以下面全部以awk进行介绍。</li>
-</ul>
-<h2 id="awk命令格式和选项"><a href="#awk命令格式和选项" class="headerlink" title="awk命令格式和选项"></a>awk命令格式和选项</h2><h3 id="awk的语法"><a href="#awk的语法" class="headerlink" title="awk的语法"></a>awk的语法</h3><ul>
-<li>awk [options] ‘script’ var=value file(s)</li>
-<li>awk [options] -f scriptfile var=value file(s)</li>
-</ul>
-<p><code>script= PATTERN {ACTION STATEMENTS}</code></p>
-<ul>
-<li>PATTERN: 模式,用于地址定界</li>
-<li>ACTION STATEMENTS:动作语句,语句之间用分号分隔</li>
-</ul>
-<h3 id="2-2-命令选项"><a href="#2-2-命令选项" class="headerlink" title="2.2. 命令选项"></a>2.2. 命令选项</h3><pre><code>-F fs ：指定输入文件折分隔符，fs是一个字符串或者是一个正则表达式，如-F:
--v var=val ： 自定义变量
-</code></pre><h2 id="awk的模式与动作"><a href="#awk的模式与动作" class="headerlink" title="awk的模式与动作"></a>awk的模式与动作</h2><blockquote>
-<p>awk脚本是由模式(PATTERN)和操作语句(ACTION STATEMENTS)两个部分组成,下面将详细介绍这两个部分。</p>
-</blockquote>
-<h3 id="模式-地址定界"><a href="#模式-地址定界" class="headerlink" title="模式(地址定界)"></a>模式(地址定界)</h3><ul>
-<li>empty: 匹配每一行。</li>
-<li>/regular expression/: 正则表达式,仅处理被模式匹配到的行。<br><code>awk -F: &#39;!/^UUID/{print $1}&#39; /etc/fstab</code></li>
-<li>relation expression: 关系表达式,结果有”真”有假: 结果为”真”的行才会被处理。<br><code>awk -F: &#39;$3&lt;1000{print $1,$3}&#39; /etc/passwd</code><br><code>awk -F: &#39;$NF~/bash$/{print $1,$NF}&#39; /etc/passwd</code></li>
-<li>line ranges:行范围<ul>
-<li>(NR&gt;2&amp;&amp;NR&lt;10)  行匹配</li>
-<li>/pattern1/,/pattern2/ 第一次匹配模式1起始和第一次匹配模式2终</li>
-</ul>
-</li>
-<li>BEGIN/END模式<ul>
-<li>BEGIN{}: 仅在开始处理文件中的文本之前执行一次，通常可在这里设置全局变量。</li>
-<li>END{}: 仅在文本处理完成后执行一次<br><code>awk -F: &#39;BEGIN{print &quot;     username   uid\n---------------&quot;} {print $1,$3} END {print &quot;==============\n  end&quot;}&#39; /etc/passwd</code></li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/23/awk应用指南/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    
-    <div>
-  
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/21/流编辑器sed学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2634,6 +2406,234 @@ a141b831a16e        ubuntu
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/10/Docker入门之Dockerfile最佳实践-三/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/10/Docker入门之Dockerfile最佳实践-三/" itemprop="url">Docker入门之Dockerfile最佳实践(三)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T17:21:22+08:00">
+                2018-01-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker系列/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker系列</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/10/Docker入门之Dockerfile最佳实践-三/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/10/Docker入门之Dockerfile最佳实践-三/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,485
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="认识Dockerfile"><a href="#认识Dockerfile" class="headerlink" title="认识Dockerfile"></a>认识Dockerfile</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Dockerfile是一个文本格式的配置文件，用户可以使用Dockerfile快速构建自定义的镜像。 下面展示一个规范的DockerFile文件。</p>
+<pre><code>#
+# DOCKER-VERSION    1.12.6
+# Dockerizing ubuntu14.04: Dockerfile for building ubuntu images
+#
+
+# 非注释首行必须指定基础镜像
+FROM ubuntu:14.04
+# 维护者信息
+MAINTAINER chenfan &lt;1144102576@qq.com&gt;
+
+# 指定环境变量
+ENV TZ &quot;Asia/Shanghai&quot;
+ENV TERM xterm
+
+# 拷贝文件(Dockerfile所在目录的相对路径)到容器中
+ADD sources.list /etc/apt/sources.list
+COPY .bash_aliases /root/.bash_aliases
+
+# 在当前镜像的基础上执行指定命令并提交为新的镜像
+RUN \
+    apt-get update &amp;&amp; \
+    apt-get -y upgrade &amp;&amp; \
+    apt-get install -y build-essential &amp;&amp; \
+    apt-get install -y software-properties-common &amp;&amp; \
+    apt-get install -y curl htop unzip vim wget &amp;&amp; \
+    rm -rf /var/lib/apt/lists/*
+
+# 指定工作目录
+WORKDIR /root
+
+# 暴露的端口号(映射端口)
+EXPOSE 22
+
+# 指定容器启动时，默认运行的命令
+CMD [&quot;/bin/bash&quot;]
+</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/10/Docker入门之Dockerfile最佳实践-三/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    
+    <div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -2688,7 +2688,7 @@ a141b831a16e        ubuntu
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2710,7 +2710,7 @@ a141b831a16e        ubuntu
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2798,7 +2798,7 @@ a141b831a16e        ubuntu
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">34.9k</span>
+    <span title="Site words total count">33.4k</span>
   
 </div>
 
