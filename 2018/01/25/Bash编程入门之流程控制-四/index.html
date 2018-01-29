@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="陈凡的个人站点">
 <meta property="og:description" content="条件判断 bash shell中会根据命令的执行状态结果(0或1),来表示条件的true或false,根据不同的条件,选择的执行不同的语句,来达到流程控制的目的。  单分支 if结构if CONDITON;then     if-true fi --------------------------------------------- if  [[ expression  ]];then">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-26T03:45:10.000Z">
+<meta property="og:updated_time" content="2018-01-29T10:10:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bash编程入门之流程控制(四)">
 <meta name="twitter:description" content="条件判断 bash shell中会根据命令的执行状态结果(0或1),来表示条件的true或false,根据不同的条件,选择的执行不同的语句,来达到流程控制的目的。  单分支 if结构if CONDITON;then     if-true fi --------------------------------------------- if  [[ expression  ]];then">
@@ -440,7 +440,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  650
+                  763
                 </span>
               
 
@@ -583,6 +583,18 @@ done
 </li>
 <li>变量引用<br>$@,$*</li>
 </ul>
+<p><strong>for循环的特殊用法</strong></p>
+<pre><code>for ((控制变量初始化;条件表达式;控制变量的修正表达式));do
+循环体
+done
+
+ \\范例
+ declare -i sum=0
+ for ((i=0;i&lt;=100;i++));do
+ let sum+=$i
+ done
+ echo &quot;$sum&quot;
+</code></pre><p><strong><em>控制变量的初始化:仅在运行循环代码段时执行一次</em></strong><br><strong><em>控制变量的修正表达式:每轮循环结束会先进行控制变量修正运算,而后进行条件判断。</em></strong></p>
 <h3 id="跳出循环"><a href="#跳出循环" class="headerlink" title="跳出循环"></a>跳出循环</h3><blockquote>
 <p>在循环过程中，有时候需要在未达到循环结束条件时强制跳出循环，Shell使用两个命令来实现该功能：break和continue。</p>
 </blockquote>
@@ -909,7 +921,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">34.9k</span>
+    <span title="Site words total count">35.0k</span>
   
 </div>
 
