@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="陈凡的个人站点">
 <meta property="og:description" content="数据库概念及相关术语什么是数据库？数据库（Database）是按照数据结构来组织、存储和管理数据的仓库，每个数据库都有一个或多个不同的API用于创建，访问，管理，搜索和复制所保存的数据。我们也可以将数据存储在文件中，但是在文件中读写数据速度相对较慢。所以，现在我们使用关系型数据库管理系统（RDBMS）来存储和管理的大数据量。所谓的关系型数据库，是建立在关系模型基础上的数据库，借助于集合代数等数学概">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-30T09:04:50.000Z">
+<meta property="og:updated_time" content="2018-01-30T09:24:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL基础概念及安装(一)">
 <meta name="twitter:description" content="数据库概念及相关术语什么是数据库？数据库（Database）是按照数据结构来组织、存储和管理数据的仓库，每个数据库都有一个或多个不同的API用于创建，访问，管理，搜索和复制所保存的数据。我们也可以将数据存储在文件中，但是在文件中读写数据速度相对较慢。所以，现在我们使用关系型数据库管理系统（RDBMS）来存储和管理的大数据量。所谓的关系型数据库，是建立在关系模型基础上的数据库，借助于集合代数等数学概">
@@ -569,18 +569,18 @@
 <h3 id="安装前准备"><a href="#安装前准备" class="headerlink" title="安装前准备"></a>安装前准备</h3><h4 id="准备用户"><a href="#准备用户" class="headerlink" title="准备用户"></a>准备用户</h4><blockquote>
 <p>因为MariaDB是通过用户身份进行运行的，因此要提前为其准备好运行账户和组。</p>
 </blockquote>
-<pre><code>[root@test ~]groupadd -r -g 306 mysql
-[root@test ~]useradd -r -g 306 -u 306 -s /sbin/nologin –m –d /app/data mysql
-[root@test ~]chown mysql:mysql /app/data
+<pre><code>[root@test ~] groupadd -r -g 306 mysql
+[root@test ~] useradd -r -g 306 -u 306 -s /sbin/nologin –m –d /app/data mysql
+[root@test ~] chown mysql:mysql /app/data
 </code></pre><p>改变目录/app/data目录的所有者和属组，我们可以用其当做数据库的存放目录，这也是我们之所以指定为其创建家目录的原因所在。</p>
-<h4 id="准备二进制程序包"><a href="#准备二进制程序包" class="headerlink" title="准备二进制程序包"></a>准备二进制程序包</h4><pre><code>[root@test ~]tar xf mariadb-VERSION-linux-x86_64.tar.gz -C /usr/local
-[root@test ~]cd /usr/local;ln -sv mariadb-VERSION mysql
-[root@test ~]chown -R root:mysql /usr/local/mysql/
+<h4 id="准备二进制程序包"><a href="#准备二进制程序包" class="headerlink" title="准备二进制程序包"></a>准备二进制程序包</h4><pre><code>[root@test ~] tar xf mariadb-VERSION-linux-x86_64.tar.gz -C /usr/local
+[root@test ~] cd /usr/local;ln -sv mariadb-VERSION mysql
+[root@test ~] chown -R root:mysql /usr/local/mysql/
 </code></pre><h4 id="为数据库准备配置文件"><a href="#为数据库准备配置文件" class="headerlink" title="为数据库准备配置文件"></a>为数据库准备配置文件</h4><blockquote>
 <p>数据库已经为我们准备了配置文件模板，我们可以通过这条命令查询并进行选择。而且有”my-small.cnf my-medium.cnf my-large.cnf my-huge.cnf”适合多种类型数据库的配置文件模板供我们选择。这里我们选择huge模板。</p>
 </blockquote>
 <pre><code>[root@test ~] cp /usr/local/mysql/support-files/my-large.cnf /etc/mysql/my.cnf
-[root@test ~] vim /etc/mysql/my.cnf
+    [root@test ~] vim /etc/mysql/my.cnf 
  datadir = /app/data 指定数据库位置,必须要指定到我们之前选定的数据库存放目录。
     innodb_file_per_table = on 允许每个表格单独存放,方便管理，可省略。
     skip_name_resolve = on 禁止主机名反向解析，加快登录速度，可省略。
@@ -598,13 +598,13 @@
 <h3 id="开始配置启动mysql"><a href="#开始配置启动mysql" class="headerlink" title="开始配置启动mysql"></a>开始配置启动mysql</h3><h4 id="为数据库准备配置文件-1"><a href="#为数据库准备配置文件-1" class="headerlink" title="为数据库准备配置文件"></a>为数据库准备配置文件</h4><blockquote>
 <p>创建数据库文件并不需要我们直接手动进行，数据库为我们准备了脚本，我们只需要执行脚本即可。注意必须在目录/usr/local/mysql中，我们才可以执行这个脚本。</p>
 </blockquote>
-<pre><code>[root@test ~]cd/usr/local/mysql/
-[root@test ~]./scripts/mysql_install_db --datadir=/app/data --user=mysql
+<pre><code>[root@test ~] cd/usr/local/mysql/
+[root@test ~] ./scripts/mysql_install_db --datadir=/app/data --user=mysql
 </code></pre><h4 id="创建日志文件"><a href="#创建日志文件" class="headerlink" title="创建日志文件"></a>创建日志文件</h4><blockquote>
 <p>为了方便对数据进行管理和排错，我们要自己手动创建数据库文件，并且要给予数据库的运行账户mysql以权限，让其可以写数据进去。</p>
 </blockquote>
-<pre><code>[root@test ~]touch /var/log/mysqld.log
-[root@test ~]chown mysql /var/log/mysqld.log
+<pre><code>[root@test ~] touch /var/log/mysqld.log
+[root@test ~] chown mysql /var/log/mysqld.log
 </code></pre><h4 id="配置服务脚本及开机自启"><a href="#配置服务脚本及开机自启" class="headerlink" title="配置服务脚本及开机自启"></a>配置服务脚本及开机自启</h4><pre><code>[root@test ~] install /usr/local/mysql/support-files/mysql.server /etc/rc.d/init.d/mysqld
 [root@test ~] chkconfig --add mysqld
 [root@test ~] chkconfig mysqld on
