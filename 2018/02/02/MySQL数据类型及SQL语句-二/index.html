@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="MySQL," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="陈凡的个人站点" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="MySQL数据类型 MySQL中定义数据字段的类型对你数据库的优化是非常重要的。MySQL支持多种类型，大致可以分为三类：数值、日期/时间和字符串(字符)类型。  数值类型 精确数值型 整形: TINYINT, SMALLINT, MEDIUMINT, INT, BIGINT 十进制: DECIMAL   近似数值型(">
+<meta name="keywords" content="MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL数据类型及SQL语句(二)">
+<meta property="og:url" content="http://www.chenfanlinux.org/2018/02/02/MySQL数据类型及SQL语句-二/index.html">
+<meta property="og:site_name" content="陈凡的个人站点">
+<meta property="og:description" content="MySQL数据类型 MySQL中定义数据字段的类型对你数据库的优化是非常重要的。MySQL支持多种类型，大致可以分为三类：数值、日期/时间和字符串(字符)类型。  数值类型 精确数值型 整形: TINYINT, SMALLINT, MEDIUMINT, INT, BIGINT 十进制: DECIMAL   近似数值型(浮点型): FLOAT DOUBLE     字符型 char使用固定长度的空间">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax1x.com/2018/01/31/9PaLMF.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/01/31/9PdYon.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/01/31/9PwwtI.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/02/01/9kw5Q0.png">
+<meta property="og:updated_time" content="2018-02-02T03:24:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL数据类型及SQL语句(二)">
+<meta name="twitter:description" content="MySQL数据类型 MySQL中定义数据字段的类型对你数据库的优化是非常重要的。MySQL支持多种类型，大致可以分为三类：数值、日期/时间和字符串(字符)类型。  数值类型 精确数值型 整形: TINYINT, SMALLINT, MEDIUMINT, INT, BIGINT 十进制: DECIMAL   近似数值型(浮点型): FLOAT DOUBLE     字符型 char使用固定长度的空间">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/01/31/9PaLMF.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'X18Q8YOK7R',
+      apiKey: '4cf6f4ea962b4c633859ca376c0d6ae9',
+      indexName: 'chenfanlinux',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfanlinux.org/2018/02/02/MySQL数据类型及SQL语句-二/"/>
+
+
+
+
+
+  <title>MySQL数据类型及SQL语句(二) | 陈凡的个人站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?your-analytics-id";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+ 
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">陈凡的个人站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">chenfanlinux.org</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/02/02/MySQL数据类型及SQL语句-二/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">MySQL数据类型及SQL语句(二)</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-02T11:22:50+08:00">
+                2018-02-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL基础入门/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL基础入门</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/02/MySQL数据类型及SQL语句-二/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/02/MySQL数据类型及SQL语句-二/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,881
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="MySQL数据类型"><a href="#MySQL数据类型" class="headerlink" title="MySQL数据类型"></a>MySQL数据类型</h2><blockquote>
+<p>MySQL中定义数据字段的类型对你数据库的优化是非常重要的。MySQL支持多种类型，大致可以分为三类：数值、日期/时间和字符串(字符)类型。</p>
+</blockquote>
+<h3 id="数值类型"><a href="#数值类型" class="headerlink" title="数值类型"></a>数值类型</h3><ul>
+<li>精确数值型<ul>
+<li>整形: TINYINT, SMALLINT, MEDIUMINT, INT, BIGINT</li>
+<li>十进制: DECIMAL</li>
+</ul>
+</li>
+<li>近似数值型(浮点型):<ul>
+<li>FLOAT</li>
+<li>DOUBLE</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2018/01/31/9PaLMF.png" alt="数值类型"></p>
+<h3 id="字符型"><a href="#字符型" class="headerlink" title="字符型"></a>字符型</h3><blockquote>
+<p>char使用固定长度的空间进行存储，char(4)存储4个字符，根据编码方式的不同占用不同的字节，gbk编码方式，不论是中文还是英文，每个字符占用2个字节的空间，utf8编码方式，每个字符占用3个字节的空间。如果需要存储的字符串的长度跟所有值的平均长度相差不大，适合用char，如MD5。</p>
+</blockquote>
+<ul>
+<li>CHAR,BINARY: 定长数据类型(CHAR不区分字符大小写,BINARY区分字符大小写)</li>
+<li>VARCHAR,VARBINARY: 变长数据类型,需要结束符</li>
+<li>TEXT: TINYTEXT, TEXT, MEDIUMTEXT, LOGTEXT</li>
+<li>BLOB: TINYBLOB, BLOB, MEDIUMBLOB, LONGBLOB</li>
+<li>ENUM,SET</li>
+</ul>
+<p><strong><em>注意：binary保存二进制字符串，就是说它们包含字节字符串而不是字符字符串，没有字符集限制</em></strong></p>
+<p><img src="https://s1.ax1x.com/2018/01/31/9PdYon.png" alt="字符类型"><br><strong><em>注意：CHAR,VARCHAR,TEXT 不区分字符大小写；BINARY,VARBINARY,BLOB 区分字符大小写</em></strong></p>
+<h3 id="日期和时间类型"><a href="#日期和时间类型" class="headerlink" title="日期和时间类型"></a>日期和时间类型</h3><ul>
+<li>DATE</li>
+<li>TIME</li>
+<li>DATETIME</li>
+<li>TIMESTAMP</li>
+<li>YEAR(2), YEAR(4)</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2018/01/31/9PwwtI.png" alt="日期时间型"></p>
+<h3 id="特殊类型"><a href="#特殊类型" class="headerlink" title="特殊类型"></a>特殊类型</h3><ul>
+<li>ENUM:从给定的字符串中选择一个字串</li>
+<li>SET:集合,从指定字符集合中选择多个组合成一种变化形式</li>
+</ul>
+<a id="more"></a>
+<h3 id="MySQL中字符大小写"><a href="#MySQL中字符大小写" class="headerlink" title="MySQL中字符大小写"></a>MySQL中字符大小写</h3><ol>
+<li>SQL关键字及函数名不区字符大小写；<ul>
+<li>SELECT, Select, select</li>
+<li>切记：遵循同一种风格</li>
+</ul>
+</li>
+<li>数据库、表、索引及视图的名称是否区分大小写取决于低层的OS及FS；</li>
+<li>存储过程、存储函数及事件调度器不区分字符大小写；但触发器区分；</li>
+<li>表别名不区分大小写；</li>
+<li>字段中字符数据，类型为binary、blog、varbinary时区分大小写；其它的不区分；</li>
+</ol>
+<h3 id="数据类型的修饰符"><a href="#数据类型的修饰符" class="headerlink" title="数据类型的修饰符"></a>数据类型的修饰符</h3><h4 id="整形修饰符"><a href="#整形修饰符" class="headerlink" title="整形修饰符"></a>整形修饰符</h4><ul>
+<li>NOT NULL</li>
+<li>NULL</li>
+<li>DEFAULT NUMBER</li>
+<li>AUTO_INCREMENT:自动增长,需要下面三个条件的支持。<ul>
+<li>UNSIGNED: 无符号,必须放在仅放在字段类型后</li>
+<li>PRIMARY KEY | UNIQUE KEY</li>
+<li>NOT NULL</li>
+</ul>
+</li>
+</ul>
+<p>例如:<br><code>CREATE TABLE t1 (id INT UNSIGNED AUTO_INCREMNET PRIMAY KEY NOT NULL,name VARCHAR(5) NOT NULL);</code></p>
+<h4 id="字符型修饰符"><a href="#字符型修饰符" class="headerlink" title="字符型修饰符"></a>字符型修饰符</h4><blockquote>
+<p>字符类型的修饰符: 定义在字段类型之后</p>
+</blockquote>
+<ul>
+<li>NOT NULL: 非空约束</li>
+<li>NULL: 默认为空</li>
+<li>DEFAULT ‘STRING’: 指明默认值</li>
+<li>CHARACTE SET ‘’: 使用字符集</li>
+<li>COLLATION: 使用的排序规则</li>
+</ul>
+<p>查看字符集和排序规则: 在数据库上定义后,表可以继承,一般无须定义</p>
+<p><code>mysql&gt;SHOW CHARACTER SET;</code><br><code>mysql&gt;SHOW COLLATION;</code></p>
+<p>字符有通配符：</p>
+<ul>
+<li>%: 匹配任意长度的任意字符</li>
+<li>_: 匹配任意单个字符；</li>
+</ul>
+<h4 id="日期时间型的修饰符"><a href="#日期时间型的修饰符" class="headerlink" title="日期时间型的修饰符:"></a>日期时间型的修饰符:</h4><ul>
+<li>NOUT NULL</li>
+<li>NULL</li>
+<li>DEFAULT</li>
+</ul>
+<h2 id="SQL语句"><a href="#SQL语句" class="headerlink" title="SQL语句"></a>SQL语句</h2><blockquote>
+<p><a href="https://zh.wikipedia.org/wiki/SQL" target="_blank" rel="noopener">SQL</a>（Structured Query Language),结构化查询语言，是关系数据库的标准语言;集数据定义语言（ DDL),数据操纵语言（ DML),<br>数据控制语言（ DCL）功能于一体。</p>
+</blockquote>
+<h3 id="SQL动词"><a href="#SQL动词" class="headerlink" title="SQL动词"></a>SQL动词</h3><table>
+<thead>
+<tr>
+<th>SQL功能</th>
+<th style="text-align:center">动词</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据定义</td>
+<td style="text-align:center">CREATE, DROP, ALTER</td>
+</tr>
+<tr>
+<td>数据操作</td>
+<td style="text-align:center">SELECT, INSERT, DELETE, UPDATE</td>
+</tr>
+<tr>
+<td>数据控制</td>
+<td style="text-align:center">GRANT, REVOKE</td>
+</tr>
+</tbody>
+</table>
+<h3 id="MySQL三级模式"><a href="#MySQL三级模式" class="headerlink" title="MySQL三级模式"></a>MySQL三级模式</h3><p><img src="https://s1.ax1x.com/2018/02/01/9kw5Q0.png" alt=""></p>
+<h3 id="DDL-数据定义语言"><a href="#DDL-数据定义语言" class="headerlink" title="DDL 数据定义语言"></a>DDL 数据定义语言</h3><blockquote>
+<p><a href="https://zh.wikipedia.org/wiki/%E8%B3%87%E6%96%99%E5%AE%9A%E7%BE%A9%E8%AA%9E%E8%A8%80" target="_blank" rel="noopener">数据定义语言</a>（Data Definition Language，DDL）是SQL语言集中负责数据结构定义与数据库对象定义的语言，由CREATE、ALTER与DROP三个语法所组成，最早是由Codasyl（Conference on Data Systems Languages）数据模型开始，现在被纳入SQL指令中作为其中一个子集。</p>
+</blockquote>
+<h4 id="CREATE对象"><a href="#CREATE对象" class="headerlink" title="CREATE对象"></a>CREATE对象</h4><p>CREATE操作的对象包括: 数据库表，索引，视图，用户，存储过程，存储函数，触发器，时间调度器等</p>
+<pre><code>MariaDB [(none)]&gt; help create
+Many help items for your request exist.
+To make a more specific request, please type &apos;help &lt;item&gt;&apos;,
+where &lt;item&gt; is one of the following
+topics:
+   CREATE DATABASE  //数据库
+   CREATE EVENT    //事件
+   CREATE FUNCTION //函数
+   CREATE FUNCTION UDF //自定义函数
+   CREATE INDEX    //索引
+   CREATE PROCEDURE  //存储函数
+   CREATE SERVER     //服务器
+   CREATE TABLE   //表
+   CREATE TABLESPACE   //表空间
+   CREATE TRIGGER      //触发器
+   CREATE USER         //用户
+   CREATE VIEW         //视图
+   SHOW                //看CREATE语句过程
+   SHOW CREATE DATABASE
+   SHOW CREATE EVENT
+   SHOW CREATE FUNCTION
+   SHOW CREATE PROCEDURE
+   SHOW CREATE TABLE
+   SPATIAL
+</code></pre><h4 id="CREATE-DATABASE"><a href="#CREATE-DATABASE" class="headerlink" title="CREATE DATABASE"></a><a href="http://dev.mysql.com/doc/refman/5.5/en/create-database.html" target="_blank" rel="noopener">CREATE DATABASE</a></h4><p><strong>语法:</strong></p>
+<pre><code>MariaDB [(none)]&gt; help create database
+CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] db_name
+    [create_specification] ...
+
+create_specification:
+    [DEFAULT] CHARACTER SET [=] charset_name
+  | [DEFAULT] COLLATE [=] collation_name
+</code></pre><p><strong>实例:</strong><br><code>CREATE DATABASE IF NOT EXISTS test_db DEFAULT CHARACTER SET  utf8 COLLATE utf8_general_ci;</code></p>
+<h4 id="CREATE-TABLE"><a href="#CREATE-TABLE" class="headerlink" title="CREATE TABLE"></a><a href="https://dev.mysql.com/doc/refman/5.5/en/create-table.html" target="_blank" rel="noopener">CREATE TABLE</a></h4><p><strong>语法：</strong></p>
+<pre><code>CREATE TABLE [IF NOT EXISTS] tb_name
+(col1_def, col2_def,
+PRIMARY KEY(col_name,...),
+UNIQUE (col1,...), INDEX (col1,...))
+[table_option]
+------------------------
+table_option:
+ENGINE [=] engine_name
+COMMENT [=] &apos;string&apos;
+ROW_FORMAT [=] {DEFAULT|DYNAMIC|FIXED|COMPRESSED|REDUNDANT|COMPACT}
+TABLESPACE tablespace_name [STORAGE {DISK|MEMORY|DEFAULT}]
+</code></pre><p>显示表上的索引：<br><code>SHOW INDEXES FROM tb_name;</code></p>
+<p><strong><em>注意: Storage Engine是指的表类型,也即在表创建时指明其使用的存储引擎:同一个库中要使用同一种存储引擎类型</em></strong></p>
+<p><strong>范例:</strong><br><code>CREATE TABLE tb1 (id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,name CHAR(5) NOT NULL);</code></p>
+<p><strong>查看表结构：</strong><br><code>DESCRIBE tb1_name</code></p>
+<p><strong>查看表状态信息：</strong><br><code>SHOW [FULL] TABLE STATUS [{FROM|IN} db_name] [LIKE &#39;pattern&#39; | WHERE expr]</code></p>
+<p><strong>查看存储引擎：</strong><br><code>SELECT @@SESSION.default_storage_engine;</code></p>
+<h4 id="ALTER-TABLE"><a href="#ALTER-TABLE" class="headerlink" title="ALTER TABLE"></a><a href="https://dev.mysql.com/doc/refman/5.5/en/alter-table.html" target="_blank" rel="noopener">ALTER TABLE</a></h4><p><strong>语法：</strong></p>
+<pre><code>ALTER [ONLINE | OFFLINE] [IGNORE] TABLE tbl_name
+    [alter_specification [, alter_specification] ...]
+    [partition_options]
+
+    alter_specification:
+    table_options
+  | ADD [COLUMN] col_name column_definition
+        [FIRST | AFTER col_name ]
+  | ADD [COLUMN] (col_name column_definition,...)
+  | ADD {INDEX|KEY} [index_name]
+        [index_type] (index_col_name,...) [index_option] ...
+  | ALTER [COLUMN] col_name {SET DEFAULT literal | DROP DEFAULT}
+  | CHANGE [COLUMN] old_col_name new_col_name column_definition
+    [FIRST|AFTER col_name]
+  | DROP [COLUMN] col_name
+
+  ......
+</code></pre><p><strong>添加单列：</strong><br><code>ALTER TABLE tb_name ADD [COLUMN] col_name column_definition [FIRST|AFTER col_name]</code></p>
+<p>范例:</p>
+<pre><code>MariaDB [db1]&gt; ALTER TABLE tb1 ADD COLUMN sex ENUM(&apos;man&apos;,&apos;woman&apos;) AFTER name;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [db1]&gt; DESC tb1;
++-------+---------------------+------+-----+---------+----------------+
+| Field | Type                | Null | Key | Default | Extra          |
++-------+---------------------+------+-----+---------+----------------+
+| id    | int(10) unsigned    | NO   | PRI | NULL    | auto_increment |
+| name  | char(5)             | NO   |     | NULL    |                |
+| sex   | enum(&apos;man&apos;,&apos;woman&apos;) | YES  |     | NULL    |                |
++-------+---------------------+------+-----+---------+----------------+
+</code></pre><p><strong>删除列：</strong><br><code>ALTER TABLE tb_name DROP [column] col_name</code></p>
+<p>范例：</p>
+<pre><code>MariaDB [db1]&gt; ALTER TABLE tb1 DROP sex;
+Query OK, 0 rows affected (0.14 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [db1]&gt; DESC tb1;
++-------+------------------+------+-----+---------+----------------+
+| Field | Type             | Null | Key | Default | Extra          |
++-------+------------------+------+-----+---------+----------------+
+| id    | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| name  | char(5)          | NO   |     | NULL    |                |
++-------+------------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+</code></pre><p><strong>修改列的类型：</strong><br><code>ALTER TABLE tb_name MODIFY [COLUMN] col_name column_definition</code></p>
+<pre><code>MariaDB [db1]&gt; ALTER TABLE tb1 MODIFY  name  CHAR(6);
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [db1]&gt; DESC tb1;
++-------+------------------+------+-----+---------+----------------+
+| Field | Type             | Null | Key | Default | Extra          |
++-------+------------------+------+-----+---------+----------------+
+| id    | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| name  | char(6)          | YES  |     | NULL    |                |
++-------+------------------+------+-----+---------+----------------+
+2 rows in set (0.01 sec)
+</code></pre><h4 id="DROP-TABLE"><a href="#DROP-TABLE" class="headerlink" title="DROP TABLE"></a><a href="https://dev.mysql.com/doc/refman/5.5/en/drop-table.html" target="_blank" rel="noopener">DROP TABLE</a></h4><p><strong>语法：</strong></p>
+<pre><code>DROP [TEMPORARY] TABLE [IF EXISTS]
+    tbl_name [, tbl_name] ...
+    [RESTRICT | CASCADE]
+</code></pre><ul>
+<li>RESTRICT：删除表是有限制的<ul>
+<li>欲删除的基本表不能被其他表的约束所引用</li>
+<li>如果存在依赖该表的对象，则此表不能被删除</li>
+</ul>
+</li>
+<li>CASCADE: 在删除基本表的同时，相关的依赖对象一起删除</li>
+</ul>
+<h3 id="DML-数据操作语言"><a href="#DML-数据操作语言" class="headerlink" title="DML 数据操作语言"></a>DML 数据操作语言</h3><blockquote>
+<p><a href="http://www.360doc.com/content/16/0309/09/31217954_540682216.shtml" target="_blank" rel="noopener">数据操作语言</a>(Data Manipulation Language, DML）包含了数据库数据的增删改查操作，也是我们经常会见到的’CRUD’操作，其主要包括INSERT、SELECT、UPDATE和DELETE四条命令。</p>
+</blockquote>
+<h4 id="INSERT"><a href="#INSERT" class="headerlink" title="INSERT"></a>INSERT</h4><p><strong>语法：</strong></p>
+<pre><code>INSERT [INTO] tbl_name [(col_name [, col_name] ...)]
+{VALUES | VALUE} ( value [, value] ...) [, ( value [, value] ...)] ...
+
+//批量插入
+INSERT  [INTO] tbl_name [(col_name,...)] SELECT ...
+INSERT [INTO] tbl_name SET col_name={expr | DEFAULT}, ...
+</code></pre><p><strong>范例：</strong></p>
+<p>单行插入：</p>
+<pre><code>mysql&gt; INSERT INTO tb1 (name) VALUES (&apos;chenfan&apos;);
+ERROR 1406 (22001): Data too long for column &apos;name&apos; at row 1
+mysql&gt; INSERT INTO tb1 (name) VALUES (&apos;chen&apos;);
+Query OK, 1 row affected (0.06 sec)
+
+mysql&gt; SELECT * FROM tb1;
++----+------+
+| id | name |
++----+------+
+|  1 | chen |
++----+------+
+1 row in set (0.00 sec)
+</code></pre><p>插入查询到的数据:</p>
+<pre><code>mysql&gt; INSERT INTO tb1 (name) SELECT name FROM tb1;
+Query OK, 1 row affected (0.06 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql&gt; SELECT * FROM tb1;
++----+------+
+| id | name |
++----+------+
+|  1 | chen |
+|  2 | chen |
++----+------+
+2 rows in set (0.00 sec)
+</code></pre><h4 id="UPDATE"><a href="#UPDATE" class="headerlink" title="UPDATE"></a>UPDATE</h4><p><strong>语法:</strong></p>
+<pre><code>UPDATE [LOW_PRIORITY] [IGNORE] table_reference
+    SET assignment_list
+    [WHERE where_condition]
+    [ORDER BY col1[,...] {ASC|DESC}]
+    [LIMIT row_count]
+
+assignment:
+ col_name = value
+
+assignment_list:
+ assignment [, assignment] ...
+
+判断某字段值为空：IS NULL
+          不空：IS NOT NULL
+ASC：升序
+DESC：降序
+</code></pre><p><strong>范例：</strong></p>
+<pre><code>mysql&gt; SELECT * FROM tb1;
++----+------+
+| id | name |
++----+------+
+|  1 | chen |
+|  2 | chen |
++----+------+
+2 rows in set (0.00 sec)
+
+mysql&gt; UPDATE tb1 SET name=&apos;fan&apos; WHERE id=&apos;2&apos; ;
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; SELECT * FROM tb1;
++----+------+
+| id | name |
++----+------+
+|  1 | chen |
+|  2 | fan  |
++----+------+
+2 rows in set (0.00 sec)
+</code></pre><h4 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h4><p><strong>语法：</strong></p>
+<pre><code>DELETE FROM tbl_name [WHERE where_condition]
+    [ORDER BY ...] [LIMIT row_count]
+</code></pre><p><strong>范例：</strong></p>
+<pre><code>mysql&gt; DELETE FROM tb1 WHERE name=&apos;fan&apos;;
+Query OK, 1 row affected (0.06 sec)
+
+mysql&gt; SELECT * FROM tb1;
++----+------+
+| id | name |
++----+------+
+|  1 | chen |
++----+------+
+1 row in set (0.00 sec)
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏2块钱,帮我买杯咖啡,继续创作,谢谢大家！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="陈凡 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliyipay.jpg" alt="陈凡 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+        -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+         
+            <a href="/tags/MySQL/" rel="tag"><i class="fa fa-tag"></i>MySQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/30/MySQL基础概念及安装-一/" rel="next" title="MySQL基础概念及安装(一)">
+                <i class="fa fa-chevron-left"></i> MySQL基础概念及安装(一)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/upload/avatar.gif"
+                alt="陈凡" />
+            
+              <p class="site-author-name" itemprop="name">陈凡</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/chenfanlinux" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:chenfan216@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/3942411590" target="_blank" title="微博">
+                    
+                      <i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/love-hero-80" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL数据类型"><span class="nav-number">1.</span> <span class="nav-text">MySQL数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数值类型"><span class="nav-number">1.1.</span> <span class="nav-text">数值类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符型"><span class="nav-number">1.2.</span> <span class="nav-text">字符型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日期和时间类型"><span class="nav-number">1.3.</span> <span class="nav-text">日期和时间类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊类型"><span class="nav-number">1.4.</span> <span class="nav-text">特殊类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL中字符大小写"><span class="nav-number">1.5.</span> <span class="nav-text">MySQL中字符大小写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型的修饰符"><span class="nav-number">1.6.</span> <span class="nav-text">数据类型的修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#整形修饰符"><span class="nav-number">1.6.1.</span> <span class="nav-text">整形修饰符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符型修饰符"><span class="nav-number">1.6.2.</span> <span class="nav-text">字符型修饰符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#日期时间型的修饰符"><span class="nav-number">1.6.3.</span> <span class="nav-text">日期时间型的修饰符:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL语句"><span class="nav-number">2.</span> <span class="nav-text">SQL语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL动词"><span class="nav-number">2.1.</span> <span class="nav-text">SQL动词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL三级模式"><span class="nav-number">2.2.</span> <span class="nav-text">MySQL三级模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DDL-数据定义语言"><span class="nav-number">2.3.</span> <span class="nav-text">DDL 数据定义语言</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CREATE对象"><span class="nav-number">2.3.1.</span> <span class="nav-text">CREATE对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CREATE-DATABASE"><span class="nav-number">2.3.2.</span> <span class="nav-text">CREATE DATABASE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CREATE-TABLE"><span class="nav-number">2.3.3.</span> <span class="nav-text">CREATE TABLE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ALTER-TABLE"><span class="nav-number">2.3.4.</span> <span class="nav-text">ALTER TABLE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DROP-TABLE"><span class="nav-number">2.3.5.</span> <span class="nav-text">DROP TABLE</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DML-数据操作语言"><span class="nav-number">2.4.</span> <span class="nav-text">DML 数据操作语言</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#INSERT"><span class="nav-number">2.4.1.</span> <span class="nav-text">INSERT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UPDATE"><span class="nav-number">2.4.2.</span> <span class="nav-text">UPDATE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DELETE"><span class="nav-number">2.4.3.</span> <span class="nav-text">DELETE</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+<script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=ipZXdvME3sKg6viC20OoTCYATcaOJ6SQH2wdaJEUHfc"></script>
+
+<div id="music163player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=525241230&auto=0&height=66"></iframe>
+</div>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈凡</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">44.4k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div> 
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+ <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 98812, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2018/02/02/MySQL数据类型及SQL语句-二/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/98812/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+<!--页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>  
+
+
+
+<!-- 
+<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-1 count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script> -->
+
+
+</body>
+</html>
