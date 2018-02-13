@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="Bash," />
+  <meta name="keywords" content="Python," />
 
 
 
@@ -107,20 +107,21 @@
 
 
 
-<meta name="description" content="什么是shell? 通常,替我们工作的是”硬件”,而控制硬件的是”内核”。用户利用”shell”控制着一些内核提供的”工具”,来控制硬件替我们工作。由于内核听不懂人类语言,所以shell从本质来说就是一个UI(用户界面)应用程序,让内核控制着硬件正确无误的工作，如图1-1 硬件-内核-shell 所示，可以清晰的看到他">
-<meta name="keywords" content="Bash">
+<meta name="description" content="前言 在 Python 中， 每个值都有一种数据类型，但您并不需要声明变量的数据类型。那该方式是如何运作的呢？Python 根据每个变量的初始赋值情况分析其类型，并在内部对其进行跟踪。  内置数据类型分类 Booleans［布尔型］ 或为 True［真］ 或为 False［假］ Numbers［数值型］ 可以是 Int">
+<meta name="keywords" content="Python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Bash 编程入门之Bash特性汇总(一)">
-<meta property="og:url" content="http://www.chenfanlinux.org/2018/01/05/Bash特性汇总/index.html">
+<meta property="og:title" content="Python基础之内置数据类型(一)">
+<meta property="og:url" content="http://www.chenfanlinux.org/2018/02/13/Python基础之内置数据类型-一/index.html">
 <meta property="og:site_name" content="陈凡的个人站点">
-<meta property="og:description" content="什么是shell? 通常,替我们工作的是”硬件”,而控制硬件的是”内核”。用户利用”shell”控制着一些内核提供的”工具”,来控制硬件替我们工作。由于内核听不懂人类语言,所以shell从本质来说就是一个UI(用户界面)应用程序,让内核控制着硬件正确无误的工作，如图1-1 硬件-内核-shell 所示，可以清晰的看到他们的关系。   Bash shell功能特性history命令记忆功能 在Bas">
+<meta property="og:description" content="前言 在 Python 中， 每个值都有一种数据类型，但您并不需要声明变量的数据类型。那该方式是如何运作的呢？Python 根据每个变量的初始赋值情况分析其类型，并在内部对其进行跟踪。  内置数据类型分类 Booleans［布尔型］ 或为 True［真］ 或为 False［假］ Numbers［数值型］ 可以是 Integers［整数］（1 和 2）、Floats［浮点数］（1.1 和 1.2）、">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://cdn-std.dprcdn.net/files/acc_582513/DDfPGJ">
-<meta property="og:updated_time" content="2018-01-26T03:39:10.000Z">
+<meta property="og:image" content="https://s1.ax1x.com/2018/02/13/9YZkc9.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/02/13/9YVUSJ.png">
+<meta property="og:updated_time" content="2018-02-13T14:20:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bash 编程入门之Bash特性汇总(一)">
-<meta name="twitter:description" content="什么是shell? 通常,替我们工作的是”硬件”,而控制硬件的是”内核”。用户利用”shell”控制着一些内核提供的”工具”,来控制硬件替我们工作。由于内核听不懂人类语言,所以shell从本质来说就是一个UI(用户界面)应用程序,让内核控制着硬件正确无误的工作，如图1-1 硬件-内核-shell 所示，可以清晰的看到他们的关系。   Bash shell功能特性history命令记忆功能 在Bas">
-<meta name="twitter:image" content="https://cdn-std.dprcdn.net/files/acc_582513/DDfPGJ">
+<meta name="twitter:title" content="Python基础之内置数据类型(一)">
+<meta name="twitter:description" content="前言 在 Python 中， 每个值都有一种数据类型，但您并不需要声明变量的数据类型。那该方式是如何运作的呢？Python 根据每个变量的初始赋值情况分析其类型，并在内部对其进行跟踪。  内置数据类型分类 Booleans［布尔型］ 或为 True［真］ 或为 False［假］ Numbers［数值型］ 可以是 Integers［整数］（1 和 2）、Floats［浮点数］（1.1 和 1.2）、">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/02/13/9YZkc9.png">
 
 
 
@@ -150,13 +151,13 @@
 
 
 
-  <link rel="canonical" href="http://www.chenfanlinux.org/2018/01/05/Bash特性汇总/"/>
+  <link rel="canonical" href="http://www.chenfanlinux.org/2018/02/13/Python基础之内置数据类型-一/"/>
 
 
 
 
 
-  <title>Bash 编程入门之Bash特性汇总(一) | 陈凡的个人站点</title>
+  <title>Python基础之内置数据类型(一) | 陈凡的个人站点</title>
   
 
 
@@ -342,7 +343,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/05/Bash特性汇总/">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/02/13/Python基础之内置数据类型-一/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陈凡">
@@ -359,7 +360,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Bash 编程入门之Bash特性汇总(一)</h2>
+          <h2 class="post-title" itemprop="name headline">Python基础之内置数据类型(一)</h2>
         
 
         <div class="post-meta">
@@ -371,8 +372,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-05T12:35:53+08:00">
-                2018-01-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-13T22:14:07+08:00">
+                2018-02-13
               </time>
             
 
@@ -394,8 +395,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Bash-Shell编程/" itemprop="url" rel="index">
-                    <span itemprop="name">Bash Shell编程</span>
+                  <a href="/categories/Python基础知识/" itemprop="url" rel="index">
+                    <span itemprop="name">Python基础知识</span>
                   </a>
                 </span>
 
@@ -413,8 +414,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/01/05/Bash特性汇总/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/05/Bash特性汇总/" itemprop="commentsCount"></span>
+                <a href="/2018/02/13/Python基础之内置数据类型-一/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/13/Python基础之内置数据类型-一/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -442,7 +443,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,724
+                  1,207
                 </span>
               
 
@@ -458,7 +459,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  6
+                  5
                 </span>
               
             </div>
@@ -479,256 +480,136 @@
       
 
       
-        <h2 id="什么是shell"><a href="#什么是shell" class="headerlink" title="什么是shell?"></a>什么是shell?</h2><blockquote>
-<p>通常,替我们工作的是”硬件”,而控制硬件的是”内核”。用户利用”shell”控制着一些内核提供的”工具”,来控制硬件替我们工作。由于内核听不懂人类语言,所以shell从本质来说就是一个UI(用户界面)应用程序,让内核控制着硬件正确无误的工作，如图1-1 硬件-内核-shell 所示，可以清晰的看到他们的关系。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>在 Python 中， 每个值都有一种数据类型，但您并不需要声明变量的数据类型。那该方式是如何运作的呢？Python 根据每个变量的初始赋值情况分析其类型，并在内部对其进行跟踪。</p>
 </blockquote>
-<p><img src="https://cdn-std.dprcdn.net/files/acc_582513/DDfPGJ" alt="硬件-内核"></p>
-<h2 id="Bash-shell功能特性"><a href="#Bash-shell功能特性" class="headerlink" title="Bash shell功能特性"></a>Bash shell功能特性</h2><h3 id="history命令记忆功能"><a href="#history命令记忆功能" class="headerlink" title="history命令记忆功能"></a>history命令记忆功能</h3><blockquote>
-<p>在Bash里面,我们只要在命令行按”上、下键”或者更强大的”Ctrl+r”,就可以找到之前输入的历史命令,这依赖于Bash的命令记录功能,记录的文件位于家目录下的.bash_history。登录shell后新执行的命令只会记录在缓存中,这些命令会在用户退出时追加到命令历史文件中,我们通过history命令可以查看历史命令.</p>
-</blockquote>
-<p><strong>命令历史相关的环境变量:</strong></p>
-<ul>
-<li>HISTSIZE: 命令历史记录的条数</li>
-<li>HISTFILE: ~/.bash_history</li>
+<h3 id="内置数据类型分类"><a href="#内置数据类型分类" class="headerlink" title="内置数据类型分类"></a>内置数据类型分类</h3><ul>
+<li>Booleans［布尔型］ 或为 True［真］ 或为 False［假］</li>
+<li>Numbers［数值型］ 可以是 Integers［整数］（1 和 2）、Floats［浮点数］（1.1 和 1.2）、Fractions［分数］（1/2 和 2/3）；甚至是 Complex Number［复数］</li>
+<li>Strings［字符串型］ 是 Unicode 字符序列，例如： 一份 html 文档</li>
+<li>Bytes［字节］ 和 Byte Arrays［字节数组］， 例如: 一份 jpeg 图像文件</li>
+<li>Lists［列表］ 是值的有序序列</li>
+<li>Tuples［元组］ 是有序而不可变的值序列</li>
+<li>Sets［集合］ 是装满无序值的包裹</li>
+<li>Dictionaries［字典］ 是键值对的无序包裹</li>
 </ul>
-<p><strong>命令历史调用相关的命令:</strong></p>
-<ul>
-<li><p>调用历史中的命令:</p>
-<ul>
-<li>!#: 重复执行第#条指令</li>
-<li>!!: 重复上一条命令</li>
-<li>!string: 匹配以string开头的命令</li>
-</ul>
-</li>
-<li><p>调用上一条命令的最后一个参数:</p>
-<ul>
-<li>!$</li>
-<li>ESC . （先按esc,释放然后按.）</li>
-</ul>
-</li>
-</ul>
+<h2 id="布尔类型"><a href="#布尔类型" class="headerlink" title="布尔类型"></a>布尔类型</h2><p><strong>布尔类型或为真或为假。Python 有两个被巧妙地命名为 True 和 False 的常量，可用于对布尔类型的直接赋值。表达式也可以计算为布尔类型的值。数字 0、None、以及元素为空的容器类对象都可视作 bool False，反之为 True。</strong></p>
+<pre><code>&gt;&gt;&gt; bool(0)
+False
+&gt;&gt;&gt; bool(None)
+False
+&gt;&gt;&gt; bool([])
+False
+&gt;&gt;&gt; bool({})
+False
+&gt;&gt;&gt; bool(1)
+True
+&gt;&gt;&gt; bool([1,2])
+True
+</code></pre><h2 id="数字类型"><a href="#数字类型" class="headerlink" title="数字类型"></a>数字类型</h2><p>python本身支持整数以及浮点数。你可以对这些数字进行下表中的计算。</p>
+<p><img src="https://s1.ax1x.com/2018/02/13/9YZkc9.png" alt="数字类型"></p>
 <a id="more"></a>
-<h3 id="命令与文件补全功能"><a href="#命令与文件补全功能" class="headerlink" title="命令与文件补全功能"></a>命令与文件补全功能</h3><blockquote>
-<p>常在bash中使用热键[Tab]是一个好习惯,因为它可以减少键盘的输入和保证命令的输出的正确性。</p>
-</blockquote>
-<ul>
-<li>接在一串命令的第一个字后面,则为命令的补全</li>
-<li>接在一床命令的第二个字以后时,则为文件的补全</li>
-</ul>
-<h3 id="命令别名的功能"><a href="#命令别名的功能" class="headerlink" title="命令别名的功能"></a>命令别名的功能</h3><blockquote>
-<p>通过给常用命令设置别名的方式,减少命令的输出长度,提升工作效率。命令行键入alias命令,可以查看系统配置的alias命令,将命令别名记录在全局配置环境配置文件/etc/profile或~/.bashrc都是一种持久生效的方式.</p>
-</blockquote>
-<pre><code>[root@chenfanlinux ~]# alias
-alias cp=&apos;cp -i&apos;
-alias egrep=&apos;egrep --color=auto&apos;
-alias fgrep=&apos;fgrep --color=auto&apos;
-alias grep=&apos;grep --color=auto&apos;
-alias l.=&apos;ls -d .* --color=auto&apos;
-alias ll=&apos;ls -l --color=auto&apos;
-alias ls=&apos;ls --color=auto&apos;
-alias mv=&apos;mv -i&apos;
-alias rm=&apos;rm -i&apos;
-alias which=&apos;alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde&apos;
-</code></pre><p>   <strong>注意:由于shell脚本中的别名不生效，\cp的含义是脱去别名的设置。</strong></p>
-<h3 id="命令行展开功能"><a href="#命令行展开功能" class="headerlink" title="命令行展开功能"></a>命令行展开功能</h3><blockquote>
-<p>{}:可以承载一个以逗号分隔的列表,并将其展开为多个路径.</p>
-</blockquote>
-<pre><code>$ mkdir /tmp/{a,b} &lt;==&gt;  $ mkdir /tmp/a;mkdir /tmp/b
-$ mkdir /tmp/{tom,jerry}/hi &lt;==&gt;  $ mkidr /tmp/tom/hi;mkdir /tmp/jerry/hi
-</code></pre><h3 id="作业-jobs-、前台-fg-、后台-bg-控制"><a href="#作业-jobs-、前台-fg-、后台-bg-控制" class="headerlink" title="作业(jobs)、前台(fg)、后台(bg)控制"></a>作业(jobs)、前台(fg)、后台(bg)控制</h3><blockquote>
-<p>使用前台、后台控制,可以让工作进行得更加的顺利.我们可以随时将作业放置到后台执行,不用担心使用了[Ctrl]+c键来停掉该程序。在单用户登录环境中，达到了多任务的目标。</p>
-</blockquote>
-<ul>
-<li>前台作业: 通过终端启动,且启动后一直占据终端</li>
-<li><p>后台作业: 通过终端启动,但启动后即转入后台运行(释放终端)</p>
-</li>
-<li><p><strong>如何让作业运行于后台?</strong></p>
-<ul>
-<li><p>运行中的作业<br><code>Ctrl+Z</code></p>
-</li>
-<li><p>尚未启动的作业<br><code>COMMAND &amp;</code><br><strong><em>此类作业虽然被送往后台运行,但其依然与终端相关,<br>因为退出登录后作业将停止运行;如果希望送往后台,剥离与终端的关系。</em></strong></p>
-</li>
-<li><p>剥离作业与终端的关系<br><code>nohup COMMAND &amp;</code></p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p><strong>作业控制相关命令:</strong></p>
-<ul>
-<li>查看所有作业情况<br><code>jobs</code></li>
-<li>指定的后台作业调回前台<br><code>fg [[%]JOB_NUM]</code></li>
-<li>让送往后台的作业在后台继续运行<br><code>bg [[%]JOB_NUM]</code></li>
-<li>终止指定的作业<br><code>kill [%JOB_NUM]</code></li>
-</ul>
-</li>
-</ul>
-<h3 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h3><blockquote>
-<p>除了完整的字符串之外,bash还支持许多通配符来帮助用户查询和执行命令。下表列出常见的通配符,仅供参考。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">符号</th>
-<th style="text-align:center">内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">*</td>
-<td style="text-align:center">通配符,代表0个或多个字符(或数字)</td>
-</tr>
-<tr>
-<td style="text-align:center">?</td>
-<td style="text-align:center">通配符,代表一个有一个字符</td>
-</tr>
-<tr>
-<td style="text-align:center">#</td>
-<td style="text-align:center">注释,常在脚本中,被视为说明</td>
-</tr>
-<tr>
-<td style="text-align:center">\</td>
-<td style="text-align:center">转义字符,将特殊字符或通配符还原成一般字符</td>
-</tr>
-<tr>
-<td style="text-align:center">~</td>
-<td style="text-align:center">用户的家目录</td>
-</tr>
-<tr>
-<td style="text-align:center">$</td>
-<td style="text-align:center">变量之前需要加的变量替换值</td>
-</tr>
-<tr>
-<td style="text-align:center">&amp;</td>
-<td style="text-align:center">将命令转为后台执行</td>
-</tr>
-<tr>
-<td style="text-align:center">!</td>
-<td style="text-align:center">逻辑运算符(not)意思</td>
-</tr>
-<tr>
-<td style="text-align:center">/</td>
-<td style="text-align:center">路径分隔符</td>
-</tr>
-<tr>
-<td style="text-align:center">&gt; &gt;&gt;</td>
-<td style="text-align:center">重定向与追加重定向</td>
-</tr>
-<tr>
-<td style="text-align:center">‘</td>
-<td style="text-align:center">单引号,不具有变量置换功能</td>
-</tr>
-<tr>
-<td style="text-align:center">“</td>
-<td style="text-align:center">具有变量置换功能</td>
-</tr>
-<tr>
-<td style="text-align:center">``</td>
-<td style="text-align:center">中间为可以执行的命令</td>
-</tr>
-<tr>
-<td style="text-align:center">()</td>
-<td style="text-align:center">中间为子shell的起始于结束</td>
-</tr>
-<tr>
-<td style="text-align:center">[] [^]</td>
-<td style="text-align:center">中间为字符的组合</td>
-</tr>
-<tr>
-<td style="text-align:center">{}</td>
-<td style="text-align:center">中间为命令区块的组合</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">组合按键</th>
-<th style="text-align:center">执行结果</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Ctrl+c</td>
-<td style="text-align:center">终止当前的命令</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+a</td>
-<td style="text-align:center">跳转至命令开始处</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+e</td>
-<td style="text-align:center">跳转至命令结尾处</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+u</td>
-<td style="text-align:center">删除命令行首至光标所在处的所有内容</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+k</td>
-<td style="text-align:center">删除光标所在行至命令行尾部的内容</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+z</td>
-<td style="text-align:center">暂停当前命令的执行</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+l</td>
-<td style="text-align:center">清屏,相当于clear命令</td>
-</tr>
-</tbody>
-</table>
-<p><strong>匹配字符举例</strong></p>
-<ul>
-<li>* 任意长度的任意字符</li>
-<li>? 任意单个字符</li>
-<li><p>[] 只能匹配指定范围内的任意单个字符</p>
-<ul>
-<li>[0-9] 所有数字中挑一个</li>
-<li>[a-z] 不分区字符大小写</li>
-<li>[A-Z] 大写字母</li>
-<li>[[:lower:]] 小写字母</li>
-<li>[^0-9a-z] 特殊字符</li>
-</ul>
-</li>
-<li><p>[^] 匹配指定范围外的任意单个字符</p>
-</li>
-<li><p>专用字符集合:</p>
-<ul>
-<li>[:digit:]:任意数字,相当于0-9</li>
-<li>[:lower:]:任意小写字母</li>
-<li>[:upper:]:任意大写字母</li>
-<li>[:alpha:]:任意大小写字母</li>
-<li>[:alnum:]:任意数字或字母</li>
-<li>[:space:]:空格</li>
-<li>[:punct:]:标点符号</li>
-</ul>
-</li>
-</ul>
-<h3 id="命令执行的判断依据-amp-amp"><a href="#命令执行的判断依据-amp-amp" class="headerlink" title="命令执行的判断依据(; &amp;&amp; ||)"></a>命令执行的判断依据(; &amp;&amp; ||)</h3><blockquote>
-<p>通常来说命令的运行状态会返回两种结果,执行成功则返回0，执行错误则返回非0。而多个命令的执行通常,从前至后,而且命令的执行还具有一定的逻辑关系,上一个命令的执行成功与否,某种程序可用决定下一个命令的执行。</p>
-</blockquote>
-<p><strong>一次执行多个命令,命令之间没有关联。</strong></p>
-<pre><code>[root@chenfanlinux ~]# toch test.txt ; echo &quot;I  touch test.txt&quot;
--bash: toch: 未找到命令
-I touch test.txt
-</code></pre><p><strong>命令相互关联,上一个命令执行成功,才会执行下一个命令。</strong></p>
-<pre><code>[root@chenfanlinux ~]# toch test.txt &amp;&amp; echo &quot;I touch test.txt&quot;
--bash: toch: 未找到命令
-</code></pre><p><strong>命令相关关联,上一个命令执行失败,才会执行下一个命令。</strong></p>
-<pre><code>[root@chenfanlinux ~]# toch test.txt || echo &quot;I touch test.txt&quot;
--bash: toch: 未找到命令
-I touch test.txt
+<h3 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h3><p>任何仅含数字的序列在 Python 中都被认为是整数</p>
+<pre><code>&gt;&gt;&gt; 5
+5
+</code></pre><p>Python还支持运算次序，因此你可在同一个表达式中使用多种运算。你还可以使用括号来修 改运算次序，让Python按你指定的次序执行运算，如下所示:</p>
+<pre><code>&gt;&gt;&gt; 2 + 3 * 4
+14
+&gt;&gt;&gt; (2 + 3) * 4
+20
+</code></pre><p>在这些示例中，空格不影响Python计算表达式的方式，它们的存在旨在让你阅读代码时，能迅速确定先执行哪些运算。</p>
+<h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><p><strong>Python将带小数点的数字都称为浮点数。大多数编程语言都使用了这个术语，它指出了这样一个事实:小数点可出现在数字的任何位置。</strong></p>
+<pre><code>&gt;&gt;&gt; 0.1 + 0.1
+0.2
+&gt;&gt;&gt; 2 * 0.1
+0.2
+</code></pre><p>但需要注意的是，结果包含的小数位数可能是不确定的:</p>
+<pre><code>&gt;&gt;&gt; 3 * 0.1
+0.30000000000000004
+&gt;&gt;&gt; 0.2 + 0.1
+0.30000000000000004
+&gt;&gt;&gt; 4 * 0.1
+0.4
+</code></pre><h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>字符串是由多个字符组成的序列。在Python中，用引号括起的都是字符串，字符串定义简单自由，可以是单引号、双引号或者三引号。字符串是不可变序列（immutable, sequence）类型，默认存储 Unicode 文本。</p>
+<h3 id="字符串使用"><a href="#字符串使用" class="headerlink" title="字符串使用"></a>字符串使用</h3><pre><code>&gt;&gt;&gt; s = &quot;chenfanlinux博客&quot;
+&gt;&gt;&gt; len(s)
+14
 
-[root@chenfanlinux ~]# touch test.txt || echo &quot;I touch test.txt&quot;
-注意:这里不会执行echo &quot;I touch test.txt&quot;
-</code></pre><p><strong>如果第一个命令执行成功,则执行第二个命令,否则执行第三个命令。</strong></p>
-<pre><code>[root@chenfanlinux ~]# touch test.txt &amp;&amp;  echo &quot;我是第二个命令&quot; || echo &quot;我是第三个命令&quot;
-我是第二个命令
-[root@chenfanlinux ~]# tuch test.txt &amp;&amp;  echo &quot;我是第二个命令&quot; || echo &quot;我是第三个命令&quot;
--bash: tuch: 未找到命令
-我是第三个命令
-</code></pre>
+&gt;&gt;&gt; print(ascii(s))
+&apos;chenfanlinux\u535a\u5ba2&apos;
+</code></pre><p>内置函数 ascii 将目标转换为可打印 ASCII 字符组成的字符串。</p>
+<p><strong>构建字符串很容易，单引号、双引号，以及跨行的三个引号。</strong></p>
+<pre><code>&gt;&gt;&gt; &quot;ab&apos;c&quot;  #双引号
+&quot;ab&apos;c&quot;
+&gt;&gt;&gt; &apos;ab&quot;c&quot;&apos; #单引号
+&apos;ab&quot;c&quot;
+&gt;&gt;&gt; &quot;&quot;&quot; abc #多行
+efd
+hij
+&quot;&quot;&quot;
+&apos; abc\nefd\nhij\n&apos;
+&gt;&gt;&gt; &apos;ab\&apos;c&apos; #引号转义
+&quot;ab&apos;c&quot;
+</code></pre><p><strong>可在字面量前添加特殊指示符。</strong></p>
+<pre><code>&gt;&gt;&gt; print(r&quot;abc\nd&quot;)  # raw string，禁用转义。
+abc\nd
+&gt;&gt;&gt; type(b&quot;ab&quot;)
+&lt;class &apos;bytes&apos;&gt;
+&gt;&gt;&gt; type(u&quot;ab&quot;)
+&lt;class &apos;str&apos;&gt;
+</code></pre><h3 id="str-类型转换"><a href="#str-类型转换" class="headerlink" title="str() 类型转换"></a>str() 类型转换</h3><pre><code>&gt;&gt;&gt; &quot;abc&quot; + str(2.2)
+&apos;abc2.2&apos;
+</code></pre><h3 id="合并字符串"><a href="#合并字符串" class="headerlink" title="合并字符串"></a>合并字符串</h3><h4 id="format格式化输出-推荐使用"><a href="#format格式化输出-推荐使用" class="headerlink" title="format格式化输出(推荐使用)"></a>format格式化输出(推荐使用)</h4><pre><code>&gt;&gt;&gt; &quot;谁的博客很酷: {}&quot;.format(&quot;陈凡&quot;)
+&apos;谁的博客很酷: 陈凡&apos;
+
+&gt;&gt;&gt; s =&quot;&quot;&quot;你的名字是: {};
+你的工资是多少: {};
+你是做什么工作的: {}
+&quot;&quot;&quot;.format(&quot;陈凡&quot;,&quot;不告诉你&quot;,&quot;运维&quot;)
+&gt;&gt;&gt; print(s)
+你的名字是: 陈凡;
+你的工资是多少: 不告诉你;
+你是做什么工作的: 运维
+
+&gt;&gt;&gt; &quot;你喜欢什么音乐:{0} 你的偶像是谁:{1}&quot;.format(&quot;戒指&quot;,&quot;你猜&quot;)
+&apos;你喜欢什么音乐:戒指 你的偶像是谁:你猜&apos;
+</code></pre><h4 id="字符串格式化"><a href="#字符串格式化" class="headerlink" title="% 字符串格式化"></a>% 字符串格式化</h4><pre><code>&gt;&gt;&gt; msg = &quot;my name is %s and weight is %d kg!&quot; %(&quot;chenfan&quot;,120)
+&gt;&gt;&gt; print(msg)
+my name is chenfan and weight is 120 kg!
+</code></pre><h4 id=""><a href="#" class="headerlink" title="+"></a>+</h4><pre><code>&gt;&gt;&gt; &quot;欢迎来到:&quot; + &quot;www.chenfanlinux.org&quot;
+&apos;欢迎来到:www.chenfanlinux.org&apos;
+</code></pre><h3 id="split-分割"><a href="#split-分割" class="headerlink" title="split() 分割"></a>split() 分割</h3><pre><code>&gt;&gt;&gt; (man,said) = &quot;chenfan : welcome to my bolg:www.chenfanlinu.org&quot;.split(&apos;:&apos;,1)
+&gt;&gt;&gt; print(man)
+chenfan
+&gt;&gt;&gt; print(said)
+ welcome to my bolg:www.chenfanlinu.org
+</code></pre><h3 id="strip-移除头尾的字符串"><a href="#strip-移除头尾的字符串" class="headerlink" title="strip() 移除头尾的字符串"></a>strip() 移除头尾的字符串</h3><pre><code>&gt;&gt;&gt; &quot; www.chenfanlinux.org &quot;.strip()  # 注意只能移除头部和尾部字符串
+&apos;www.chenfanlinux.org&apos;
+
+&gt;&gt; &quot;www.chenfanlinux. org&quot;.strip() # 这种空格无法移除
+www.chenfanlinux. org&apos;
+
+&gt;&gt;&gt; &quot;www.chenfanlinux.org&quot;.strip(&quot;www.&quot;)
+&apos;chenfanlinux.org&apos;
+</code></pre><h3 id="join-合并列表"><a href="#join-合并列表" class="headerlink" title="join() 合并列表"></a>join() 合并列表</h3><pre><code>&gt;&gt;&gt; path = [&quot;/etc&quot;, &quot;nginx&quot;, &quot;nginx.conf&quot; ]
+&gt;&gt;&gt; &apos;/&apos;.join(path)
+&apos;/etc/nginx/nginx.conf&apos;
+</code></pre><h3 id="find-查找子串"><a href="#find-查找子串" class="headerlink" title="find 查找子串"></a>find 查找子串</h3><p><strong>查找到返回该子串在原字符串中的索引位置，如果无法找到，find方法会返回值-1</strong></p>
+<pre><code>&gt;&gt;&gt; s = &quot;www.chenfanlinux.org&quot;
+&gt;&gt;&gt; s.find(&quot;chenfan&quot;)  #访问索引位置
+4
+&gt;&gt;&gt; s.find(&quot;chenfanfan&quot;) # 未找到返回-1
+-1
+</code></pre><h3 id="字符串切片"><a href="#字符串切片" class="headerlink" title="字符串切片"></a>字符串切片</h3><p><strong>存在索引的数据类型，包括字符串,列表和元组都可以做切片操作</strong></p>
+<pre><code>&gt;&gt;&gt; s = &quot;www.chenfanlinux.org&quot;
+&gt;&gt;&gt; s[0]
+&apos;w&apos;
+&gt;&gt;&gt; s[0:5]
+&apos;www.c&apos;
+&gt;&gt;&gt; s[-1]
+&apos;g&apos;
+</code></pre><h3 id="字符串运算符总结"><a href="#字符串运算符总结" class="headerlink" title="字符串运算符总结"></a>字符串运算符总结</h3><p>下表实例变量 a 值为字符串 “Hello”，b 变量值为 “Python”<br><img src="https://s1.ax1x.com/2018/02/13/9YVUSJ.png" alt="字符串运算符"></p>
+
       
     </div>
     
@@ -786,7 +667,7 @@ I touch test.txt
         <div class="post-tags">
           
          
-            <a href="/tags/Bash/" rel="tag"><i class="fa fa-tag"></i>Bash</a>
+            <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i>Python</a>
           
         </div>
       
@@ -799,8 +680,8 @@ I touch test.txt
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/28/Docker入门之基础概念与架构-一/" rel="next" title="Docker入门之基础概念与架构(一)">
-                <i class="fa fa-chevron-left"></i> Docker入门之基础概念与架构(一)
+              <a href="/2018/02/05/SQL查询语句及视图-三/" rel="next" title="SQL查询语句及视图(三)">
+                <i class="fa fa-chevron-left"></i> SQL查询语句及视图(三)
               </a>
             
           </div>
@@ -808,10 +689,6 @@ I touch test.txt
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/10/Docker入门之镜像基础概念与管理-二/" rel="prev" title="Docker入门之镜像管理(二)">
-                Docker入门之镜像管理(二) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1013,7 +890,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是shell"><span class="nav-number">1.</span> <span class="nav-text">什么是shell?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bash-shell功能特性"><span class="nav-number">2.</span> <span class="nav-text">Bash shell功能特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#history命令记忆功能"><span class="nav-number">2.1.</span> <span class="nav-text">history命令记忆功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令与文件补全功能"><span class="nav-number">2.2.</span> <span class="nav-text">命令与文件补全功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令别名的功能"><span class="nav-number">2.3.</span> <span class="nav-text">命令别名的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行展开功能"><span class="nav-number">2.4.</span> <span class="nav-text">命令行展开功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作业-jobs-、前台-fg-、后台-bg-控制"><span class="nav-number">2.5.</span> <span class="nav-text">作业(jobs)、前台(fg)、后台(bg)控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通配符"><span class="nav-number">2.6.</span> <span class="nav-text">通配符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令执行的判断依据-amp-amp"><span class="nav-number">2.7.</span> <span class="nav-text">命令执行的判断依据(; && ||)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内置数据类型分类"><span class="nav-number">1.1.</span> <span class="nav-text">内置数据类型分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#布尔类型"><span class="nav-number">2.</span> <span class="nav-text">布尔类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数字类型"><span class="nav-number">3.</span> <span class="nav-text">数字类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#整数"><span class="nav-number">3.1.</span> <span class="nav-text">整数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点数"><span class="nav-number">3.2.</span> <span class="nav-text">浮点数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">4.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串使用"><span class="nav-number">4.1.</span> <span class="nav-text">字符串使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-类型转换"><span class="nav-number">4.2.</span> <span class="nav-text">str() 类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合并字符串"><span class="nav-number">4.3.</span> <span class="nav-text">合并字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#format格式化输出-推荐使用"><span class="nav-number">4.3.1.</span> <span class="nav-text">format格式化输出(推荐使用)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串格式化"><span class="nav-number">4.3.2.</span> <span class="nav-text">% 字符串格式化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#"><span class="nav-number">4.3.3.</span> <span class="nav-text">+</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#split-分割"><span class="nav-number">4.4.</span> <span class="nav-text">split() 分割</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#strip-移除头尾的字符串"><span class="nav-number">4.5.</span> <span class="nav-text">strip() 移除头尾的字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#join-合并列表"><span class="nav-number">4.6.</span> <span class="nav-text">join() 合并列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#find-查找子串"><span class="nav-number">4.7.</span> <span class="nav-text">find 查找子串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串切片"><span class="nav-number">4.8.</span> <span class="nav-text">字符串切片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串运算符总结"><span class="nav-number">4.9.</span> <span class="nav-text">字符串运算符总结</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1226,7 +1103,7 @@ var jiathis_config={
 		_hcwp.push({widget:"Bloggerstream", widget_id: 98812, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2018/01/05/Bash特性汇总/"});
+		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2018/02/13/Python基础之内置数据类型-一/"});
 		
 
 		(function() {

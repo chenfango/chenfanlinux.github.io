@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.chenfanlinux.org/"/>
-  <updated>2018-02-05T06:59:24.000Z</updated>
+  <updated>2018-02-13T14:20:17.000Z</updated>
   <id>http://www.chenfanlinux.org/</id>
   
   <author>
@@ -15,6 +15,55 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python基础之内置数据类型(一)</title>
+    <link href="http://www.chenfanlinux.org/2018/02/13/Python%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%86%85%E7%BD%AE%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-%E4%B8%80/"/>
+    <id>http://www.chenfanlinux.org/2018/02/13/Python基础之内置数据类型-一/</id>
+    <published>2018-02-13T14:14:07.000Z</published>
+    <updated>2018-02-13T14:20:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote><p>在 Python 中， 每个值都有一种数据类型，但您并不需要声明变量的数据类型。那该方式是如何运作的呢？Python 根据每个变量的初始赋值情况分析其类型，并在内部对其进行跟踪。</p></blockquote><h3 id="内置数据类型分类"><a href="#内置数据类型分类" class="headerlink" title="内置数据类型分类"></a>内置数据类型分类</h3><ul><li>Booleans［布尔型］ 或为 True［真］ 或为 False［假］</li><li>Numbers［数值型］ 可以是 Integers［整数］（1 和 2）、Floats［浮点数］（1.1 和 1.2）、Fractions［分数］（1/2 和 2/3）；甚至是 Complex Number［复数］</li><li>Strings［字符串型］ 是 Unicode 字符序列，例如： 一份 html 文档</li><li>Bytes［字节］ 和 Byte Arrays［字节数组］， 例如: 一份 jpeg 图像文件</li><li>Lists［列表］ 是值的有序序列</li><li>Tuples［元组］ 是有序而不可变的值序列</li><li>Sets［集合］ 是装满无序值的包裹</li><li>Dictionaries［字典］ 是键值对的无序包裹</li></ul><h2 id="布尔类型"><a href="#布尔类型" class="headerlink" title="布尔类型"></a>布尔类型</h2><p><strong>布尔类型或为真或为假。Python 有两个被巧妙地命名为 True 和 False 的常量，可用于对布尔类型的直接赋值。表达式也可以计算为布尔类型的值。数字 0、None、以及元素为空的容器类对象都可视作 bool False，反之为 True。</strong></p><pre><code>&gt;&gt;&gt; bool(0)False&gt;&gt;&gt; bool(None)False&gt;&gt;&gt; bool([])False&gt;&gt;&gt; bool({})False&gt;&gt;&gt; bool(1)True&gt;&gt;&gt; bool([1,2])True</code></pre><h2 id="数字类型"><a href="#数字类型" class="headerlink" title="数字类型"></a>数字类型</h2><p>python本身支持整数以及浮点数。你可以对这些数字进行下表中的计算。</p><p><img src="https://s1.ax1x.com/2018/02/13/9YZkc9.png" alt="数字类型"></p><a id="more"></a><h3 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h3><p>任何仅含数字的序列在 Python 中都被认为是整数</p><pre><code>&gt;&gt;&gt; 55</code></pre><p>Python还支持运算次序，因此你可在同一个表达式中使用多种运算。你还可以使用括号来修 改运算次序，让Python按你指定的次序执行运算，如下所示:</p><pre><code>&gt;&gt;&gt; 2 + 3 * 414&gt;&gt;&gt; (2 + 3) * 420</code></pre><p>在这些示例中，空格不影响Python计算表达式的方式，它们的存在旨在让你阅读代码时，能迅速确定先执行哪些运算。</p><h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><p><strong>Python将带小数点的数字都称为浮点数。大多数编程语言都使用了这个术语，它指出了这样一个事实:小数点可出现在数字的任何位置。</strong></p><pre><code>&gt;&gt;&gt; 0.1 + 0.10.2&gt;&gt;&gt; 2 * 0.10.2</code></pre><p>但需要注意的是，结果包含的小数位数可能是不确定的:</p><pre><code>&gt;&gt;&gt; 3 * 0.10.30000000000000004&gt;&gt;&gt; 0.2 + 0.10.30000000000000004&gt;&gt;&gt; 4 * 0.10.4</code></pre><h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>字符串是由多个字符组成的序列。在Python中，用引号括起的都是字符串，字符串定义简单自由，可以是单引号、双引号或者三引号。字符串是不可变序列（immutable, sequence）类型，默认存储 Unicode 文本。</p><h3 id="字符串使用"><a href="#字符串使用" class="headerlink" title="字符串使用"></a>字符串使用</h3><pre><code>&gt;&gt;&gt; s = &quot;chenfanlinux博客&quot;&gt;&gt;&gt; len(s)14&gt;&gt;&gt; print(ascii(s))&apos;chenfanlinux\u535a\u5ba2&apos;</code></pre><p>内置函数 ascii 将目标转换为可打印 ASCII 字符组成的字符串。</p><p><strong>构建字符串很容易，单引号、双引号，以及跨行的三个引号。</strong></p><pre><code>&gt;&gt;&gt; &quot;ab&apos;c&quot;  #双引号&quot;ab&apos;c&quot;&gt;&gt;&gt; &apos;ab&quot;c&quot;&apos; #单引号&apos;ab&quot;c&quot;&gt;&gt;&gt; &quot;&quot;&quot; abc #多行efdhij&quot;&quot;&quot;&apos; abc\nefd\nhij\n&apos;&gt;&gt;&gt; &apos;ab\&apos;c&apos; #引号转义&quot;ab&apos;c&quot;</code></pre><p><strong>可在字面量前添加特殊指示符。</strong></p><pre><code>&gt;&gt;&gt; print(r&quot;abc\nd&quot;)  # raw string，禁用转义。abc\nd&gt;&gt;&gt; type(b&quot;ab&quot;)&lt;class &apos;bytes&apos;&gt;&gt;&gt;&gt; type(u&quot;ab&quot;)&lt;class &apos;str&apos;&gt;</code></pre><h3 id="str-类型转换"><a href="#str-类型转换" class="headerlink" title="str() 类型转换"></a>str() 类型转换</h3><pre><code>&gt;&gt;&gt; &quot;abc&quot; + str(2.2)&apos;abc2.2&apos;</code></pre><h3 id="合并字符串"><a href="#合并字符串" class="headerlink" title="合并字符串"></a>合并字符串</h3><h4 id="format格式化输出-推荐使用"><a href="#format格式化输出-推荐使用" class="headerlink" title="format格式化输出(推荐使用)"></a>format格式化输出(推荐使用)</h4><pre><code>&gt;&gt;&gt; &quot;谁的博客很酷: {}&quot;.format(&quot;陈凡&quot;)&apos;谁的博客很酷: 陈凡&apos;&gt;&gt;&gt; s =&quot;&quot;&quot;你的名字是: {};你的工资是多少: {};你是做什么工作的: {}&quot;&quot;&quot;.format(&quot;陈凡&quot;,&quot;不告诉你&quot;,&quot;运维&quot;)&gt;&gt;&gt; print(s)你的名字是: 陈凡;你的工资是多少: 不告诉你;你是做什么工作的: 运维&gt;&gt;&gt; &quot;你喜欢什么音乐:{0} 你的偶像是谁:{1}&quot;.format(&quot;戒指&quot;,&quot;你猜&quot;)&apos;你喜欢什么音乐:戒指 你的偶像是谁:你猜&apos;</code></pre><h4 id="字符串格式化"><a href="#字符串格式化" class="headerlink" title="% 字符串格式化"></a>% 字符串格式化</h4><pre><code>&gt;&gt;&gt; msg = &quot;my name is %s and weight is %d kg!&quot; %(&quot;chenfan&quot;,120)&gt;&gt;&gt; print(msg)my name is chenfan and weight is 120 kg!</code></pre><h4 id=""><a href="#" class="headerlink" title="+"></a>+</h4><pre><code>&gt;&gt;&gt; &quot;欢迎来到:&quot; + &quot;www.chenfanlinux.org&quot;&apos;欢迎来到:www.chenfanlinux.org&apos;</code></pre><h3 id="split-分割"><a href="#split-分割" class="headerlink" title="split() 分割"></a>split() 分割</h3><pre><code>&gt;&gt;&gt; (man,said) = &quot;chenfan : welcome to my bolg:www.chenfanlinu.org&quot;.split(&apos;:&apos;,1)&gt;&gt;&gt; print(man)chenfan&gt;&gt;&gt; print(said) welcome to my bolg:www.chenfanlinu.org</code></pre><h3 id="strip-移除头尾的字符串"><a href="#strip-移除头尾的字符串" class="headerlink" title="strip() 移除头尾的字符串"></a>strip() 移除头尾的字符串</h3><pre><code>&gt;&gt;&gt; &quot; www.chenfanlinux.org &quot;.strip()  # 注意只能移除头部和尾部字符串&apos;www.chenfanlinux.org&apos;&gt;&gt; &quot;www.chenfanlinux. org&quot;.strip() # 这种空格无法移除www.chenfanlinux. org&apos;&gt;&gt;&gt; &quot;www.chenfanlinux.org&quot;.strip(&quot;www.&quot;)&apos;chenfanlinux.org&apos;</code></pre><h3 id="join-合并列表"><a href="#join-合并列表" class="headerlink" title="join() 合并列表"></a>join() 合并列表</h3><pre><code>&gt;&gt;&gt; path = [&quot;/etc&quot;, &quot;nginx&quot;, &quot;nginx.conf&quot; ]&gt;&gt;&gt; &apos;/&apos;.join(path)&apos;/etc/nginx/nginx.conf&apos;</code></pre><h3 id="find-查找子串"><a href="#find-查找子串" class="headerlink" title="find 查找子串"></a>find 查找子串</h3><p><strong>查找到返回该子串在原字符串中的索引位置，如果无法找到，find方法会返回值-1</strong></p><pre><code>&gt;&gt;&gt; s = &quot;www.chenfanlinux.org&quot;&gt;&gt;&gt; s.find(&quot;chenfan&quot;)  #访问索引位置4&gt;&gt;&gt; s.find(&quot;chenfanfan&quot;) # 未找到返回-1-1</code></pre><h3 id="字符串切片"><a href="#字符串切片" class="headerlink" title="字符串切片"></a>字符串切片</h3><p><strong>存在索引的数据类型，包括字符串,列表和元组都可以做切片操作</strong></p><pre><code>&gt;&gt;&gt; s = &quot;www.chenfanlinux.org&quot;&gt;&gt;&gt; s[0]&apos;w&apos;&gt;&gt;&gt; s[0:5]&apos;www.c&apos;&gt;&gt;&gt; s[-1]&apos;g&apos;</code></pre><h3 id="字符串运算符总结"><a href="#字符串运算符总结" class="headerlink" title="字符串运算符总结"></a>字符串运算符总结</h3><p>下表实例变量 a 值为字符串 “Hello”，b 变量值为 “Python”<br><img src="https://s1.ax1x.com/2018/02/13/9YVUSJ.png" alt="字符串运算符"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;在 Python 中， 每个值都有一种数据类型，但您并不需要声明变量的数据类型。那该方式是如何运作的呢？Python 根据每个变量的初始赋值情况分析其类型，并在内部对其进行跟踪。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;内置数据类型分类&quot;&gt;&lt;a href=&quot;#内置数据类型分类&quot; class=&quot;headerlink&quot; title=&quot;内置数据类型分类&quot;&gt;&lt;/a&gt;内置数据类型分类&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Booleans［布尔型］ 或为 True［真］ 或为 False［假］&lt;/li&gt;
+&lt;li&gt;Numbers［数值型］ 可以是 Integers［整数］（1 和 2）、Floats［浮点数］（1.1 和 1.2）、Fractions［分数］（1/2 和 2/3）；甚至是 Complex Number［复数］&lt;/li&gt;
+&lt;li&gt;Strings［字符串型］ 是 Unicode 字符序列，例如： 一份 html 文档&lt;/li&gt;
+&lt;li&gt;Bytes［字节］ 和 Byte Arrays［字节数组］， 例如: 一份 jpeg 图像文件&lt;/li&gt;
+&lt;li&gt;Lists［列表］ 是值的有序序列&lt;/li&gt;
+&lt;li&gt;Tuples［元组］ 是有序而不可变的值序列&lt;/li&gt;
+&lt;li&gt;Sets［集合］ 是装满无序值的包裹&lt;/li&gt;
+&lt;li&gt;Dictionaries［字典］ 是键值对的无序包裹&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;布尔类型&quot;&gt;&lt;a href=&quot;#布尔类型&quot; class=&quot;headerlink&quot; title=&quot;布尔类型&quot;&gt;&lt;/a&gt;布尔类型&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;布尔类型或为真或为假。Python 有两个被巧妙地命名为 True 和 False 的常量，可用于对布尔类型的直接赋值。表达式也可以计算为布尔类型的值。数字 0、None、以及元素为空的容器类对象都可视作 bool False，反之为 True。&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; bool(0)
+False
+&amp;gt;&amp;gt;&amp;gt; bool(None)
+False
+&amp;gt;&amp;gt;&amp;gt; bool([])
+False
+&amp;gt;&amp;gt;&amp;gt; bool({})
+False
+&amp;gt;&amp;gt;&amp;gt; bool(1)
+True
+&amp;gt;&amp;gt;&amp;gt; bool([1,2])
+True
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;数字类型&quot;&gt;&lt;a href=&quot;#数字类型&quot; class=&quot;headerlink&quot; title=&quot;数字类型&quot;&gt;&lt;/a&gt;数字类型&lt;/h2&gt;&lt;p&gt;python本身支持整数以及浮点数。你可以对这些数字进行下表中的计算。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s1.ax1x.com/2018/02/13/9YZkc9.png&quot; alt=&quot;数字类型&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Python基础知识" scheme="http://www.chenfanlinux.org/categories/Python%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+    
+      <category term="Python" scheme="http://www.chenfanlinux.org/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>SQL查询语句及视图(三)</title>
@@ -1210,60 +1259,6 @@ CMD [&amp;quot;/hello&amp;quot;]
     
     
       <category term="Vim" scheme="http://www.chenfanlinux.org/tags/Vim/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python基础之流程控制</title>
-    <link href="http://www.chenfanlinux.org/2017/12/19/python%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/"/>
-    <id>http://www.chenfanlinux.org/2017/12/19/python基础之流程控制/</id>
-    <published>2017-12-19T14:31:23.000Z</published>
-    <updated>2018-01-26T03:39:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h2><blockquote><p>if语句是用来检查一个条件：如果条件为真(true)，我们运行一个语句块（你为if块），否则(else)，我们执行另一个语句块（称为else块），else子语句是可选的。</p></blockquote><h3 id="单条件"><a href="#单条件" class="headerlink" title="单条件"></a>单条件</h3><p>示例：如果num变量大于1，那么就输出num大，否则就输出num小，num值为5</p><p><strong>代码：</strong></p><pre><code>#!/usr/bin/env python# -*- coding:utf-8 -*-num = 5if num &gt; 1:print(&quot;num大&quot;)else:print(&quot;num小&quot;)</code></pre><p><strong>结果：</strong></p><pre><code>python num.pynum大</code></pre><h3 id="多条件"><a href="#多条件" class="headerlink" title="多条件"></a>多条件</h3><p>示例：请输入一个整数，如果输入的为负数，负数转变为0,输出print(‘Negative changed to zero’);如果输入的为0，则输出Zero;如果输入的为1，则输出Single；输入其他则，输出More。</p><p><strong>代码：</strong></p><pre><code>#__author: Administrator#date: 2017/12/19x = int(input(&apos;Please enter an integer: &apos;))if x &lt; 0:    x = 0    print(&apos;Negative changed to zero&apos;)elif x == 0:    print(&apos;Zero&apos;)elif x == 1:    print(&apos;Single&apos;)else:    print(&apos;More&apos;)</code></pre><p><strong>结果：</strong></p><pre><code>Please enter an integer: -1Negative changed to zero</code></pre><a id="more"></a><h3 id="三元运算"><a href="#三元运算" class="headerlink" title="三元运算"></a>三元运算</h3><blockquote><p>如果条件成立，那么就把值1赋值给var，如果条件不成立，就把值2赋值给var</p></blockquote><p><strong>语法：</strong></p><p><code>var = 值1 if 条件 else 值2</code></p><p><strong>示例：</strong></p><pre><code>&gt;&gt;&gt; var = &quot;True&quot; if 1 == 1 else &quot;False&quot;&gt;&gt;&gt; var&apos;True&apos;</code></pre><h2 id="while语句"><a href="#while语句" class="headerlink" title="while语句"></a>while语句</h2><h3 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h3><blockquote><p>while 是Python中的循环语句. 事实它上是一个条件循环语句. 与 if 声明相比, 如果 if 后的条件为真, 就会执行一次相应的代码块. 而 while 中的代码块会一直循环执行, 直到循环条件不再为真.</p></blockquote><p><strong>语法：</strong></p><pre><code>while expression:       suite_to_repeat</code></pre><p>while 循环的suit_to_repeat子句会一直循环执行, 直到 expression 值为布尔假. 这种 类型的循环机制常常用在计数循环中。</p><p><strong>代码：</strong></p><pre><code>#__author: Administrator#date: 2017/12/19count = 0while (count &lt; 5):    print(&apos;The index is: &apos;,count)    count += 1</code></pre><p><strong>结果：</strong></p><pre><code>The index is:  0The index is:  1The index is:  2The index is:  3The index is:  4</code></pre><h3 id="无限循环"><a href="#无限循环" class="headerlink" title="无限循环"></a>无限循环</h3><p>你必须小心地使用 while 循环, 因为有可能它的条件永远不会为布尔假. 这样一来循环就永远不会结束. 这些”无限”的循环不一定是坏事, 许多通讯服务器的客户端/服务器系统就是通过它来工作的. 这取决于循环是否需要一直执行下去, 如果不是, 那么这个循环是否会结束; 也就是说, 条件表达式会不会计算后得到布尔假?</p><pre><code>while True:    handle, indata = wait_for_client_connect()    outdata = process_request(indata)    ack_result_to_client(handle, outdata)</code></pre><p>例如上边的代码就是故意被设置为无限循环的，因为 True 无论如何都不会变成 False. 这是因为服务器代码是用来等待客户端(可能通过网络)来连接的. 这些客户端向服务器发送请求, 服务器处理请求.<br>请求被处理后, 服务器将向客户端返回数据, 而此时客户端可能断开连接或是发送另一个请求. 对于服务器而言它已经完成了对这个客户端的任务, 它会返回最外层循环等待下一个连接.</p><h3 id="while使用-else-语句"><a href="#while使用-else-语句" class="headerlink" title="while使用 else 语句"></a>while使用 else 语句</h3><p>在 python 中，for … else 表示这样的意思，for 中的语句和普通的没有区别，else 中的语句会在循环正常执行完（即 for 不是通过 break 跳出而中断的）的情况下执行.while … else 也是一样,其在循环条件不满足的时候,会开始执行else语句,通过break中断的情况下,不会执行else.</p><p><strong>代码：</strong></p><pre><code>#__author: Administrator#date: 2017/12/19count = 0while (count &lt; 5):    print(count,&apos;is less than 5&apos;)    count += 1else:    print(count,&apos;is not less than 5&apos;)</code></pre><p><strong>结果：</strong></p><pre><code>0 is less than 51 is less than 52 is less than 53 is less than 54 is less than 55 is not less than 5</code></pre><h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><h3 id="基础用法-1"><a href="#基础用法-1" class="headerlink" title="基础用法"></a>基础用法</h3><blockquote><p>Python 提供给我们的另一个循环机制就是 for 语句, 它提供了 Python 中最强大的循环结构. 它可以遍历序列成员(链表或字符串). for循环会访问一个可迭代对象(例如序列或是迭代器)中的所有元素, 并在所有条目都处理过后结束循环.</p></blockquote><p><strong>语法：</strong></p><pre><code>for iter_var in iterable:        suite_to_repeat</code></pre><p>每次循环, iter_var 迭代变量被设置为可迭代对象(序列, 迭代器, 或者是其他支持迭代的对象)的当前元素, 提供给 suite_to_repeat 语句块使用.</p><p><strong>代码：</strong></p><pre><code>#__author: Administrator#date: 2017/12/19words = [&apos;cat&apos;, &apos;window&apos;, &apos;defenestrate&apos;]for w in words:    print(w,len(w))</code></pre><p><strong>结果：</strong></p><pre><code>cat 3window 6defenestrate 12</code></pre><h3 id="for使用-else-语句"><a href="#for使用-else-语句" class="headerlink" title="for使用 else 语句"></a>for使用 else 语句</h3><blockquote><p>for 循环也可以有 else 用于循环后处理(post-processing). 它和 while 循环中的 else 处理方式相同. 只要 for 循环是正常结束的(不是通过 break ), else 子句就会执行.</p></blockquote><p>代码：</p><pre><code>#__author: Administrator#date: 2017/12/19s = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;,&apos;e&apos;]found = Falsefor c in s:    if c.find(&apos;c&apos;) != -1:        found = True        print(&quot;发现c&quot;)        breakif not found:    print(&quot;未发现c&quot;)</code></pre><p>等价于下面的代码:</p><pre><code>#__author: Administrator#date: 2017/12/19s = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;,&apos;e&apos;]for c in s:    if c.find(&apos;c&apos;) != -1:        print(&quot;发现c&quot;)        breakelse:    print(&quot;未发现c&quot;)</code></pre><h2 id="break和continue语句"><a href="#break和continue语句" class="headerlink" title="break和continue语句"></a>break和continue语句</h2><h3 id="break语句"><a href="#break语句" class="headerlink" title="break语句"></a>break语句</h3><blockquote><p>Python 中的 break 语句可以结束当前循环然后跳转到下条语句, 类似 C 中的传统 break . 常用在当某个外部条件被触发(一般通过 if 语句检查), 需要立即从循环中退出时. break 语句可以用在 while 和 for 循环中.</p></blockquote><p><strong>代码：</strong></p><pre><code>&gt;&gt;&gt; for i in &quot;hello&quot;:...     if i ==&apos;l&apos;:...         break...     print(i)...</code></pre><p><strong>结果：</strong></p><pre><code>he</code></pre><h3 id="continue语句"><a href="#continue语句" class="headerlink" title="continue语句"></a>continue语句</h3><blockquote><p>不管是 Python、 C、Java 还是其它任何支持 continue 语句的结构化语言中, 一些初学者有这样的一个误解: continue 语句”立即启动循环的下一次迭代”. 实际上, 当遇到 continue 语句时, 程序会终止当前循环, 并忽略剩余的语句, 然后回到循环的顶端. 在开始下一次迭代前, 如果是条件循环, 我们将验证条件表达式. 如果是迭代循环, 我们将验证是否还有元素可以迭代. 只有在验证成功的情况下, 我们才会开始下一次迭代.</p></blockquote><p>Python 里的 continue 语句和其他高级语言中的传统 continue 并没有什么不同. 它可以被用在 while 和 for 循环里. while 循环是条件性的, 而 for 循环是迭代的, 所以 continue 在开始下一次循环前要满足一些先决条件, 否则循环会正常结束.</p><p><strong>代码：</strong></p><pre><code>&gt;&gt;&gt; for i in &quot;hello&quot;:...     if i ==&apos;l&apos;:...         continue...     print(i)...</code></pre><p><strong>结果：</strong></p><pre><code>heo</code></pre><h2 id="总结循环中的else语句"><a href="#总结循环中的else语句" class="headerlink" title="总结循环中的else语句"></a>总结循环中的else语句</h2><blockquote><p>循环一般可以分为两种，for循环或while循环，上文都有明确的介绍。循环可以有一个 else 子句；它在循环迭代完整个列表（对于 for ）或执行条件为 false （对于 while ）不被break中止的情况下执行，循环被 break 中止的情况下不会执行else语句。</p></blockquote><p><strong>示例：</strong> 在数字2-9中搜索素数</p><p><strong>代码：</strong></p><pre><code>#__author: Administrator#date: 2017/12/19&apos;&apos;&apos;在数字2-9之间搜索素数素数的定义:除了1和它自身外，不能被其他自然数整除的数叫做质数.n 被除数x 除数&apos;&apos;&apos;for n in range(2,10):    for x in range(2,n):        if n % x == 0:            print(n,&apos;equals&apos;,x,&apos;*&apos;,n//x)            break    else:        print(n,&apos;is a prime number&apos;)</code></pre><p><strong>结果：</strong></p><pre><code>2 is a prime number3 is a prime number4 equals 2 * 25 is a prime number6 equals 2 * 37 is a prime number8 equals 2 * 49 equals 3 * 3</code></pre><h2 id="range-函数"><a href="#range-函数" class="headerlink" title="range() 函数"></a>range() 函数</h2><blockquote><p>如果你需要一个数值序列，内置函数 range() 会很方便，它生成一个等差级数链表（不包含结束的end值）</p></blockquote><p><strong>语法：</strong></p><p><code>range(start, end, step=1)</code></p><pre><code>&gt;&gt;&gt; for i in range(5):...     print(i)...01234&gt;&gt;&gt; list(range(2,2))[]range(0, 10, 3)   0, 3, 6, 9range(-10, -100, -30)  -10, -40, -70</code></pre><p>range(10) 生成了一个包含 10 个值的链表，它用链表的索引值填充了这个长度为 10 的列表，所生成的链表中不包括范围中的结束值。也可以让 range() 操作从另一个数值开始，不指定时为0,或者可以指定一个不同的步进值（甚至是负数，有时这也被称为 “步长”）</p><p><strong>如果你只是打印一个序列的话会发生奇怪的事情</strong></p><pre><code>&gt;&gt;&gt; print(range(10))range(0, 10)</code></pre><p>在不同方面 range() 函数返回的对象表现为它是一个列表，但事实上它并不是。当你迭代它时，它是一个能够像期望的序列返回连续项的对象；但为了节省空间，它并不真正构造列表。</p><p>我们称此类对象是 可迭代的，即适合作为那些期望从某些东西中获得连续项直到结束的函数或结构的一个目标（参数）。我们已经见过的 for 语句就是这样一个迭代器。list() 函数是另外一个（ 迭代器 ），它从可迭代（对象）中创建列表:</p><pre><code>&gt;&gt;&gt; list(range(5))[0, 1, 2, 3, 4]</code></pre><p>稍后我们会看到更多返回可迭代（对象）和以可迭代（对象）作为参数的函数。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;if语句&quot;&gt;&lt;a href=&quot;#if语句&quot; class=&quot;headerlink&quot; title=&quot;if语句&quot;&gt;&lt;/a&gt;if语句&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;if语句是用来检查一个条件：如果条件为真(true)，我们运行一个语句块（你为if块），否则(else)，我们执行另一个语句块（称为else块），else子语句是可选的。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;单条件&quot;&gt;&lt;a href=&quot;#单条件&quot; class=&quot;headerlink&quot; title=&quot;单条件&quot;&gt;&lt;/a&gt;单条件&lt;/h3&gt;&lt;p&gt;示例：如果num变量大于1，那么就输出num大，否则就输出num小，num值为5&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;代码：&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python
-# -*- coding:utf-8 -*-
-num = 5
-if num &amp;gt; 1:
-print(&amp;quot;num大&amp;quot;)
-else:
-print(&amp;quot;num小&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;结果：&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;python num.py
-num大
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;多条件&quot;&gt;&lt;a href=&quot;#多条件&quot; class=&quot;headerlink&quot; title=&quot;多条件&quot;&gt;&lt;/a&gt;多条件&lt;/h3&gt;&lt;p&gt;示例：请输入一个整数，如果输入的为负数，负数转变为0,输出print(‘Negative changed to zero’);如果输入的为0，则输出Zero;如果输入的为1，则输出Single；输入其他则，输出More。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;代码：&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#__author: Administrator
-#date: 2017/12/19
-x = int(input(&amp;apos;Please enter an integer: &amp;apos;))
-if x &amp;lt; 0:
-    x = 0
-    print(&amp;apos;Negative changed to zero&amp;apos;)
-elif x == 0:
-    print(&amp;apos;Zero&amp;apos;)
-elif x == 1:
-    print(&amp;apos;Single&amp;apos;)
-else:
-    print(&amp;apos;More&amp;apos;)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;结果：&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Please enter an integer: -1
-Negative changed to zero
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-      <category term="python基础知识" scheme="http://www.chenfanlinux.org/categories/python%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-    
-    
-      <category term="Python" scheme="http://www.chenfanlinux.org/tags/Python/"/>
     
   </entry>
   
