@@ -339,6 +339,309 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2017/12/24/编辑器之神-vim/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/24/编辑器之神-vim/" itemprop="url">编辑器之神-Vim</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-24T10:24:27+08:00">
+                2017-12-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tools利器/" itemprop="url" rel="index">
+                    <span itemprop="name">tools利器</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/24/编辑器之神-vim/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/12/24/编辑器之神-vim/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,302
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="vim简介"><a href="#vim简介" class="headerlink" title="vim简介"></a>vim简介</h3><p>vi是“Visual interface”的简称，它不像Word或WPS那样可以对字体、格式、段落等其他属性进行编排，它只是一个文本编辑程序。 vi没有菜单，只有命令，且命令繁多。vim(VIM - Vi IMproved)是vi的加强版本，在vi的基础上增加了如下功能。</p>
+<blockquote>
+<ul>
+<li>增加了多级撤销</li>
+<li>多窗口操作</li>
+<li>提高了稳定性，减少了崩溃以及崩溃后也可以恢复</li>
+<li>关键字自动补全以及上下文相关的补全</li>
+</ul>
+</blockquote>
+<p><img src="https://cdn-std.dprcdn.net/files/acc_582513/bEfzpN" alt="vim键盘图"></p>
+<h3 id="vim的工作模式"><a href="#vim的工作模式" class="headerlink" title="vim的工作模式"></a>vim的工作模式</h3><p>Vi有三种基本工作模式：</p>
+<ul>
+<li>命令模式（普通模式）</li>
+<li>文本输入模式</li>
+<li>末行模式(底线命令模式)</li>
+</ul>
+<p><img src="https://cdn-std.dprcdn.net/files/acc_582513/SDuEA" alt="vim工作模式"></p>
+<h3 id="光标移动"><a href="#光标移动" class="headerlink" title="光标移动"></a>光标移动</h3><ul>
+<li><strong>单个字符移动</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">字符</th>
+<th style="text-align:center">移动方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">h</td>
+<td style="text-align:center">向左移动</td>
+</tr>
+<tr>
+<td style="text-align:center">l</td>
+<td style="text-align:center">向右移动</td>
+</tr>
+<tr>
+<td style="text-align:center">j</td>
+<td style="text-align:center">向下移动</td>
+</tr>
+<tr>
+<td style="text-align:center">k</td>
+<td style="text-align:center">向上移动</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>单词移动</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">单词</th>
+<th style="text-align:center">移动方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">w</td>
+<td style="text-align:center">将光标移动到下一个单词开头</td>
+</tr>
+<tr>
+<td style="text-align:center">b</td>
+<td style="text-align:center">将光标移动到前一个单词的开头</td>
+</tr>
+<tr>
+<td style="text-align:center">e</td>
+<td style="text-align:center">将光标移动到下一个单词的词末</td>
+</tr>
+<tr>
+<td style="text-align:center">E</td>
+<td style="text-align:center">移动到单词的结尾(忽略标点符号)</td>
+</tr>
+<tr>
+<td style="text-align:center">ge</td>
+<td style="text-align:center">将光标移动到前一个单词的词末</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>行移动</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">单词</th>
+<th style="text-align:center">移动方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$</td>
+<td style="text-align:center">将光标移动到当前行的行尾</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">将光标移动到当前行的行首</td>
+</tr>
+<tr>
+<td style="text-align:center">fx</td>
+<td style="text-align:center">将光标移动到当前行的第一个字符x上</td>
+</tr>
+<tr>
+<td style="text-align:center">3fx</td>
+<td style="text-align:center">将光标移动到航前行的第3个字符x上</td>
+</tr>
+<tr>
+<td style="text-align:center">%</td>
+<td style="text-align:center">用于符号间的移动，它会在一对()、[]、{}之间跳跃</td>
+</tr>
+</tbody>
+</table>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/24/编辑器之神-vim/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    
+    <div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2017/12/19/python基础之流程控制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1068,7 +1371,7 @@ $ hexo new page &quot;pageName&quot; //新建页面
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1079,7 +1382,7 @@ $ hexo new page &quot;pageName&quot; //新建页面
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1178,7 +1481,7 @@ $ hexo new page &quot;pageName&quot; //新建页面
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">51.1k</span>
+    <span title="Site words total count">53.7k</span>
   
 </div>
 
