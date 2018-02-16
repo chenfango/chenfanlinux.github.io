@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.chenfanlinux.org/"/>
-  <updated>2018-02-14T04:25:33.000Z</updated>
+  <updated>2018-02-16T22:48:22.000Z</updated>
   <id>http://www.chenfanlinux.org/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python基础之变量与运算符</title>
+    <link href="http://www.chenfanlinux.org/2018/02/17/Python%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%8F%98%E9%87%8F%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6/"/>
+    <id>http://www.chenfanlinux.org/2018/02/17/Python基础之变量与运算符/</id>
+    <published>2018-02-16T22:44:59.000Z</published>
+    <updated>2018-02-16T22:48:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><blockquote><p>在计算机程序中，变量不仅可以是数字，还可以是任意数据类型。所谓变量就是在程序中为了方便地引用内存中的值而为它取的名称。在 Python 中，我们用 = 来给一个变量赋值。</p></blockquote><h3 id="变量赋值"><a href="#变量赋值" class="headerlink" title="变量赋值"></a>变量赋值</h3><p>Python中，等号=是赋值语句，可以把任意数据类型赋值给变量，同一个变量可以反复赋值，而且可以是不同类型的变量。每个变量在使用前都必须赋值，变量赋值以后该变量才会被创建。</p><pre><code>&gt;&gt;&gt; a = 123  # a是整数&gt;&gt;&gt; id(a)1647579408&gt;&gt;&gt; a = &apos;ABC&apos; # a变为字符串&gt;&gt;&gt; id(a)10190496</code></pre><p><strong><em>Python 中的变量有一个非常重要的性质:它仅仅是一个名字。赋值操作并不会实际 复制值，它只是为数据对象取个相关的名字。名字是对对象的引用而不是对象本身。你可以把名字想象成贴在盒子上的标签</em></strong></p><a id="more"></a><h3 id="变量在内存中表示"><a href="#变量在内存中表示" class="headerlink" title="变量在内存中表示"></a>变量在内存中表示</h3><p>理解变量在计算机内存中的表示也非常重要。当我们写:</p><pre><code>a =  &apos;ABC&apos;</code></pre><p>Python解释器干了两件事情：</p><ul><li>在内存中创建了一个’ABC’的字符串；</li><li>在内存中创建了一个名为a的变量，并把它指向’ABC’。</li></ul><p>也可以把一个变量a赋值给另一个变量b，这个操作实际上是把变量b指向变量a所指向的数据，例如下面的代码：</p><pre><code>&gt;&gt;&gt; a =  &apos;ABC&apos;&gt;&gt;&gt; a = &apos;ABC&apos;&gt;&gt;&gt; b = a&gt;&gt;&gt; a = &apos;XYZ&apos;&gt;&gt;&gt; print(b)ABC</code></pre><p>上面的代码执行步骤如下:</p><ul><li>执行a = ‘ABC’，解释器创建了字符串’ABC’和变量a，并把a指向’ABC’</li><li>执行b = a，解释器创建了变量b，并把b指向a指向的字符串’ABC’</li><li>执行a = ‘XYZ’，解释器创建了字符串’XYZ’，并把a的指向改为’XYZ’，但b并没有更改,所以，最后打印变量b的结果自然是’ABC’了</li></ul><h3 id="变量的命名"><a href="#变量的命名" class="headerlink" title="变量的命名"></a>变量的命名</h3><p>在Python中使用变量时，需要遵守一些规则和指南。违反这些规则将引发错误，而指南旨在 让你编写的代码更容易阅读和理解， 请务必牢记下述有关变量的规则。</p><ul><li>变量名只能包含字母、数字和下划线。变量名可以字母或下划线打头，但不能以数字打 头，例如，可将变量命名为message_1，不能命名为1_message</li><li>变量名不能包含空格，但可使用下划线来分隔其中的单词。例如，变量名greeting_message 可行，但变量名greeting message会引发错误。</li><li>不要将Python关键字和函数名用作变量名，即不要使用Python保留用于特殊用途的单词。</li></ul><h4 id="Python-关键字"><a href="#Python-关键字" class="headerlink" title="Python 关键字"></a>Python 关键字</h4><p>下面的关键字都有特殊含义，如果你将它们用作变量名，将引发错误:<br><img src="https://s1.ax1x.com/2018/02/18/9tDAZn.md.png" alt="Python关键字"></p><h4 id="Python-内置函数"><a href="#Python-内置函数" class="headerlink" title="Python 内置函数"></a>Python 内置函数</h4><p>将内置函数名用作变量名时，不会导致错误，但将覆盖这些函数的行为:<br><img src="https://s1.ax1x.com/2018/02/18/9tDEaq.md.png" alt="Python内置函数"></p><h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><blockquote><p>你所编写的大多数语句(逻辑行)都包含了表达式(Expressions)。一个表达式的简单例子<br>便是 2+3 。表达式可以拆分成运算符（ Operators） 与操作数（ Operands),运算符（ Operators） 是进行某些操作，并且可以用诸如 + 等符号或特殊关键词加以表达的<br>功能。运算符需要一些数据来进行操作，这些数据就被称作操作数（ Operands)。</p></blockquote><p>Python语言支持以下类型的运算符:</p><ul><li>算术运算符</li><li>比较（关系）运算符</li><li>赋值运算符</li><li>逻辑运算符</li><li>位运算符</li><li>成员运算符</li><li>身份运算符</li><li>运算符优先级</li></ul><h3 id="Python算术运算符"><a href="#Python算术运算符" class="headerlink" title="Python算术运算符"></a>Python算术运算符</h3><p><img src="https://s1.ax1x.com/2018/02/18/9tDtJK.png" alt="Python算术运算符"></p><h3 id="Python比较运算符"><a href="#Python比较运算符" class="headerlink" title="Python比较运算符"></a>Python比较运算符</h3><p><img src="https://s1.ax1x.com/2018/02/18/9tDsot.png" alt="Python比较运算符"></p><h3 id="Python赋值运算符"><a href="#Python赋值运算符" class="headerlink" title="Python赋值运算符"></a>Python赋值运算符</h3><p><img src="https://s1.ax1x.com/2018/02/18/9tDRSS.png" alt="Python赋值运算符"></p><h3 id="Python位运算符"><a href="#Python位运算符" class="headerlink" title="Python位运算符"></a>Python位运算符</h3><blockquote><p>按位运算符是把数字看作二进制来进行计算的。</p></blockquote><p><img src="https://s1.ax1x.com/2018/02/18/9tDIwn.png" alt="Python位运算符"></p><h3 id="Python逻辑运算符"><a href="#Python逻辑运算符" class="headerlink" title="Python逻辑运算符"></a>Python逻辑运算符</h3><p><img src="https://s1.ax1x.com/2018/02/18/9tDHYV.png" alt="Python逻辑运算符"></p><h3 id="Python成员运算符"><a href="#Python成员运算符" class="headerlink" title="Python成员运算符"></a>Python成员运算符</h3><blockquote><p>除了以上的一些运算符之外，Python还支持成员运算符，测试实例中包含了一系列的成员，包括字符串，列表或元组。</p></blockquote><p><img src="https://s1.ax1x.com/2018/02/18/9tDLSU.png" alt="Python成员运算符"></p><h3 id="Python身份运算符"><a href="#Python身份运算符" class="headerlink" title="Python身份运算符"></a>Python身份运算符</h3><blockquote><p>身份运算符用于比较两个对象的存储单元。</p></blockquote><p><img src="https://s1.ax1x.com/2018/02/18/9tDXy4.md.png" alt="Python身份运算符"></p><p><strong>is 与 == 区别：</strong></p><p>is 用于判断两个变量引用对象是否为同一个， == 用于判断引用变量的值是否相等。</p><pre><code>&gt;&gt;&gt; a = [1, 2, 3]&gt;&gt;&gt; b = a&gt;&gt;&gt; b is aTrue&gt;&gt;&gt; b == aTrue&gt;&gt;&gt; b = a[:]&gt;&gt;&gt; b is aFalse&gt;&gt;&gt; b == aTrue</code></pre><h3 id="Python运算符优先级"><a href="#Python运算符优先级" class="headerlink" title="Python运算符优先级"></a>Python运算符优先级</h3><p>以下表格列出了从最高到最低优先级的所有运算符:</p><p><img src="https://s1.ax1x.com/2018/02/18/9trklD.png" alt="运算符优先级"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;变量&quot;&gt;&lt;a href=&quot;#变量&quot; class=&quot;headerlink&quot; title=&quot;变量&quot;&gt;&lt;/a&gt;变量&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;在计算机程序中，变量不仅可以是数字，还可以是任意数据类型。所谓变量就是在程序中为了方便地引用内存中的值而为它取的名称。在 Python 中，我们用 = 来给一个变量赋值。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;变量赋值&quot;&gt;&lt;a href=&quot;#变量赋值&quot; class=&quot;headerlink&quot; title=&quot;变量赋值&quot;&gt;&lt;/a&gt;变量赋值&lt;/h3&gt;&lt;p&gt;Python中，等号=是赋值语句，可以把任意数据类型赋值给变量，同一个变量可以反复赋值，而且可以是不同类型的变量。每个变量在使用前都必须赋值，变量赋值以后该变量才会被创建。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; a = 123  # a是整数
+&amp;gt;&amp;gt;&amp;gt; id(a)
+1647579408
+&amp;gt;&amp;gt;&amp;gt; a = &amp;apos;ABC&amp;apos; # a变为字符串
+&amp;gt;&amp;gt;&amp;gt; id(a)
+10190496
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;Python 中的变量有一个非常重要的性质:它仅仅是一个名字。赋值操作并不会实际 复制值，它只是为数据对象取个相关的名字。名字是对对象的引用而不是对象本身。你可以把名字想象成贴在盒子上的标签&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="python基础知识" scheme="http://www.chenfanlinux.org/categories/python%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+    
+      <category term="Python" scheme="http://www.chenfanlinux.org/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>Pytho基础之内置数据类型(二)</title>
@@ -1146,45 +1178,6 @@ CMD [&amp;quot;/hello&amp;quot;]
     
     
       <category term="Bash" scheme="http://www.chenfanlinux.org/tags/Bash/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker入门之基础概念与架构(一)</title>
-    <link href="http://www.chenfanlinux.org/2017/12/28/Docker%E5%85%A5%E9%97%A8%E4%B9%8B%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%9E%B6%E6%9E%84-%E4%B8%80/"/>
-    <id>http://www.chenfanlinux.org/2017/12/28/Docker入门之基础概念与架构-一/</id>
-    <published>2017-12-28T01:11:33.000Z</published>
-    <updated>2018-01-26T03:39:07.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="what-什么是docker"><a href="#what-什么是docker" class="headerlink" title="what 什么是docker?"></a>what 什么是docker?</h2><p><a href="https://www.docker.com" target="_blank" rel="noopener">Docker</a> 使用 Google 公司推出的 Go 语言 进行开发实现，基于 Linux 内核的 <a href="https://zh.wikipedia.org/wiki/Cgroups" target="_blank" rel="noopener">cgroup</a>，<a href="https://en.wikipedia.org/wiki/Linux_namespaces" target="_blank" rel="noopener">namespace</a>，以及 <a href="https://en.wikipedia.org/wiki/Aufs" target="_blank" rel="noopener">AUFS</a> 类的 <a href="https://en.wikipedia.org/wiki/Union_mount" target="_blank" rel="noopener">Union FS</a> 等技术，对进程进行封装隔离，属于 <a href="https://en.wikipedia.org/wiki/Operating-system-level_virtualization" target="_blank" rel="noopener">操作系统层面的虚拟化技术</a>。由于隔离的进程独立于宿主和其它的隔离的进程，在容器中运行的程序只能看到容器的内容和分配给该容器的设备,因此也称其为容器。最初实现是基于 <a href="https://linuxcontainers.org/lxc/introduction/" target="_blank" rel="noopener">LXC</a>，现在基于<a href="http://www.infoq.com/cn/articles/docker-standard-container-execution-engine-runc?utm_source=articles_about_RunC&amp;utm_medium=link&amp;utm_campaign=RunC" target="_blank" rel="noopener">runc</a>等机制。Docker 在容器的基础上，进行了进一步的封装，从文件系统、网络互联到进程隔离等等，极大的简化了容器的创建和维护。使得 Docker 技术比虚拟机技术更为轻便、快捷。</p><ul><li>Docker容器本质上是宿主机上的一个进程，Docker通过namespace实现了资源隔离。</li><li>Docker有六个命名空间：Mount(挂载)、UTS(主机名)、IPC(进程间通信)、PID(进程)、Network(网络)、User(用户)，为了隔离有问题的应用，运用Namespace将进程隔离，为进程或进程组创建已隔离的运行空间，为进程提供不同的命名空间视图；这样，每一个隔离出来的进程组，对外就表现为一个container。</li><li>Namespaces充当隔离的第一级，确保一个容器中运行一个进程而且不能看到或影响容器外的其它进程。</li><li>cgroups是LXC的重要组成部分，实现了资源的限制，通过写时复制机制copy-on-write实现了高效的文件操作。</li><li>UnionFS（文件系统）作为容器的构建块。为了支持Docker的轻量级以及速度快的特性，它创建了用户层</li></ul><h2 id="why-为什么使用docker？"><a href="#why-为什么使用docker？" class="headerlink" title="why 为什么使用docker？"></a>why 为什么使用docker？</h2><p>传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程直接运行于宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比传统虚拟机更为轻便,而且容器使软件具备了超强的可移植能力。</p><ul><li>容器技术与传统虚拟机虚拟化方式对比：</li></ul><p><img src="https://cdn-std.dprcdn.net/files/acc_582513/vyEvvG" alt="传统虚拟机"></p><p><img src="https://cdn-std.dprcdn.net/files/acc_582513/hEWM0Z" alt="Docker"></p><ul><li>容器技术与传统虚拟机性能对比：</li></ul><p><img src="https://cdn-std.dprcdn.net/files/acc_582513/6RGWHJ" alt="性能对比"></p><a id="more"></a><p><strong>Docker给DevOps带来的好处</strong></p><ul><li><p>更快速的交付和部署<br>开发人员可以使用镜像快速的构建标准开发环境；开发完成后，测试和运维人员可以使用开发人员提供的docker镜像快速部署应用，可以避免开发和测试运维人员之间的环境差异导致的部署问题。</p></li><li><p>更高效的资源利用<br>Docker容器的运行不需要额外的虚拟化管理程序支持，它是内核级的虚拟化，在占用更少资源的情况实现更高的性能。</p></li><li><p>更方便的迁移和扩展<br>Docker容器几乎可以在任意的平台上运行，包括物理机、虚拟机、公有云、私有云、服务器等。这种兼容使得用户可以在不同的平台之间很方便的完成应用迁移。</p></li><li><p>更简单的更新管理<br>使用Dockerfile，只需要小小的配置修改，就可以替代以往大量的更新工作，并且所有修改都以增量方式进行分发和更新。</p></li></ul><h2 id="How-容器是如何工作的"><a href="#How-容器是如何工作的" class="headerlink" title="How 容器是如何工作的?"></a>How 容器是如何工作的?</h2><p>Docker有五大核心组件,可以快速浏览下面的Docker架构图来了解核心组件,了解他们如何协作。</p><p><strong>Docker 的核心组件包括：</strong></p><ul><li>Docker 客户端 - Client</li><li>Docker 服务器 - Docker daemon</li><li>Docker 镜像 - Image</li><li>Docker 仓库 - Registry</li><li>Docker 容器 - Container</li></ul><p><img src="https://cdn-std.dprcdn.net/files/acc_582513/uLaYib" alt="Docker架构图"><br>Docker 采用的是 Client/Server 架构。客户端向服务器发送请求，服务器负责构建、运行和分发容器。客户端和服务器可以运行在同一个 Host 上，客户端也可以通过 socket 或 REST API 与远程的服务器通信。</p><h4 id="Docker-客户端"><a href="#Docker-客户端" class="headerlink" title="Docker 客户端"></a>Docker 客户端</h4><p>最常用的 Docker 客户端是 docker 命令。通过 docker 我们可以方便地在 Host 上构建和运行容器。docker 支持很多操作（子命令），后面会逐步用到。</p><pre><code>[root@my-k8s-master01 ~]# docker -vDocker version 1.12.6, build 85d7426/1.12.6</code></pre><p>除了 docker 命令行工具，用户也可以通过 REST API 与服务器通信</p><h4 id="Docker-服务器"><a href="#Docker-服务器" class="headerlink" title="Docker 服务器"></a>Docker 服务器</h4><p>Docker daemon 是服务器组件，以 Linux 后台服务的方式运行。</p><pre><code>[root@my-k8s-master01 ~]# systemctl status docker● docker.service - Docker Application Container Engine   Loaded: loaded (/usr/lib/systemd/system/docker.service; enabled; vendor preset: disabled)   Active: active (running) since 二 2017-12-05 15:57:51 CST; 1 months 3 days ago     Docs: http://docs.docker.com Main PID: 1527 (dockerd-current)</code></pre><p>Docker daemon 运行在 Docker host 上，负责创建、运行、监控容器，构建、存储镜像。<br>默认配置下，Docker daemon 只能响应来自本地 Host 的客户端请求。如果要允许远程客户端请求，需要在配置文件中打开 TCP 监听。</p><h4 id="Docker-镜像"><a href="#Docker-镜像" class="headerlink" title="Docker 镜像"></a>Docker 镜像</h4><p>可将 Docker 镜像看着只读模板，通过它可以创建 Docker 容器。<br>镜像有多种生成方法：</p><ul><li>可以从无到有开始创建镜像</li><li>也可以下载并使用别人创建好的现成的镜像</li><li>还可以在现有镜像上创建新的镜像</li></ul><p>我们可以将镜像的内容和创建步骤描述在一个文本文件中，这个文件被称作 Dockerfile，通过执行 docker build <docker-file> 命令可以构建出 Docker 镜像，后面我们会讨论。</docker-file></p><h4 id="Docker-容器"><a href="#Docker-容器" class="headerlink" title="Docker 容器"></a>Docker 容器</h4><p>Docker 容器就是 Docker 镜像的运行实例。</p><p>用户可以通过 CLI（docker）或是 API 启动、停止、移动或删除容器。可以这么认为，对于应用软件，镜像是软件生命周期的构建和打包阶段，而容器则是启动和运行阶段</p><h4 id="Docker-仓库"><a href="#Docker-仓库" class="headerlink" title="Docker 仓库"></a>Docker 仓库</h4><p>Registry 是存放 Docker 镜像的仓库，Registry 分私有和公有两种。</p><p>Docker Hub（<a href="https://hub.docker.com/）" target="_blank" rel="noopener">https://hub.docker.com/）</a> 是默认的 Registry，由 Docker 公司维护，上面有数以万计的镜像，用户可以自由下载和使用。</p><p>出于对速度或安全的考虑，用户也可以创建自己的私有 Registry。后面我们会学习如何搭建私有 Registry。</p><p>docker pull 命令可以从 Registry 下载镜像。<br>docker run 命令则是先下载镜像（如果本地没有），然后再启动容器。</p><h2 id="Centos7开始安装Docker"><a href="#Centos7开始安装Docker" class="headerlink" title="Centos7开始安装Docker"></a>Centos7开始安装Docker</h2><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>在Linux上安装Docker并配置加速器，Docker目前被分为两个版本：</p><ul><li>Community-Edition：社区版</li><li>Enterprise-Edition：企业版</li></ul><h4 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h4><p><strong>卸载旧版本的Docker服务</strong></p><pre><code>$ yum -y remove docker \docker-common \container-selinux \docker-selinux \docker-engine</code></pre><p><strong>安装yum-utils，它提供yum-config-manager实用程序</strong></p><pre><code>$ yum install -y yum-utils</code></pre><p><strong>添加Docker的CE存储库(官网)</strong></p><pre><code>$ yum-config-manager \    --add-repo \    https://download.docker.com/linux/centos/docker-ce.repo</code></pre><p><strong>添加Docker的CE存储库(国内)</strong></p><pre><code>$ yum-config-manager \    --add-repo \    http://mirrors.ustc.edu.cn/docker-ce/linux/centos/docker-ce.repo</code></pre><p><strong>更新软件包的索引列表</strong></p><pre><code>$ yum makecache fast</code></pre><p><strong>安装最新版的Docker服务</strong></p><pre><code>yum install -y docker-ce</code></pre><p><strong>启动Docker服务</strong></p><pre><code>systemctl start docker</code></pre><p><strong>Docker服务随机自启</strong></p><pre><code>systemctl enable docker</code></pre><p><strong>卸载Docker服务</strong></p><p>   # 卸载软件包</p><pre><code>$ yum remove -y docker-ce</code></pre><p>卸载Docker后,/var/lib/docker/目录下会保留原Docker的镜像,网络,存储卷等文件. 如果需要全新安装Docker,需要删除/var/lib/docker/目录.</p><pre><code>$ rm -rf /var/lib/docker</code></pre><p><strong>查看docker版本信息</strong></p><p>   # 获取版本信息的简介</p><pre><code>$ docker -v</code></pre><p>   # 获取详细的版本信息</p><pre><code>$ docker version</code></pre><h4 id="配置Docker加速器"><a href="#配置Docker加速器" class="headerlink" title="配置Docker加速器"></a>配置Docker加速器</h4><ol><li><p>由于众所周知的原因(墙)，从Docker Hub难以高效地下载镜像，除了使用VPN或代理之外，<br>最为有效的方式就是使用Docker国内镜像；</p></li><li><p>DaoCloud为首个提供国内免费Docker Hub镜像的团体，可以使用DaoCloud团队提供的<br>Docker Hub Mirror服务代替Docker官网的Docker Hub；</p></li><li><p>官网：传送门，注册用户并登录；</p></li><li><p>登录以后，在自己管理界面点击加速器标签，根据弹出页面配置加速器；</p></li></ol><blockquote><p>Copy<br>该脚本可以将 –registry-mirror 加入到你的 Docker 配置文件 /etc/docker/daemon.json 中。适用于 Ubuntu14.04、Debian、CentOS6 、CentOS7、Fedora、Arch Linux、openSUSE Leap 42.1，其他版本可能有细微不同</p></blockquote><pre><code>curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://9fa458c0.m.daocloud.io</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;what-什么是docker&quot;&gt;&lt;a href=&quot;#what-什么是docker&quot; class=&quot;headerlink&quot; title=&quot;what 什么是docker?&quot;&gt;&lt;/a&gt;what 什么是docker?&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://www.docker.com&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Docker&lt;/a&gt; 使用 Google 公司推出的 Go 语言 进行开发实现，基于 Linux 内核的 &lt;a href=&quot;https://zh.wikipedia.org/wiki/Cgroups&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;cgroup&lt;/a&gt;，&lt;a href=&quot;https://en.wikipedia.org/wiki/Linux_namespaces&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;namespace&lt;/a&gt;，以及 &lt;a href=&quot;https://en.wikipedia.org/wiki/Aufs&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;AUFS&lt;/a&gt; 类的 &lt;a href=&quot;https://en.wikipedia.org/wiki/Union_mount&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Union FS&lt;/a&gt; 等技术，对进程进行封装隔离，属于 &lt;a href=&quot;https://en.wikipedia.org/wiki/Operating-system-level_virtualization&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;操作系统层面的虚拟化技术&lt;/a&gt;。由于隔离的进程独立于宿主和其它的隔离的进程，在容器中运行的程序只能看到容器的内容和分配给该容器的设备,因此也称其为容器。最初实现是基于 &lt;a href=&quot;https://linuxcontainers.org/lxc/introduction/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;LXC&lt;/a&gt;，现在基于&lt;a href=&quot;http://www.infoq.com/cn/articles/docker-standard-container-execution-engine-runc?utm_source=articles_about_RunC&amp;amp;utm_medium=link&amp;amp;utm_campaign=RunC&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;runc&lt;/a&gt;等机制。Docker 在容器的基础上，进行了进一步的封装，从文件系统、网络互联到进程隔离等等，极大的简化了容器的创建和维护。使得 Docker 技术比虚拟机技术更为轻便、快捷。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Docker容器本质上是宿主机上的一个进程，Docker通过namespace实现了资源隔离。&lt;/li&gt;
-&lt;li&gt;Docker有六个命名空间：Mount(挂载)、UTS(主机名)、IPC(进程间通信)、PID(进程)、Network(网络)、User(用户)，为了隔离有问题的应用，运用Namespace将进程隔离，为进程或进程组创建已隔离的运行空间，为进程提供不同的命名空间视图；这样，每一个隔离出来的进程组，对外就表现为一个container。&lt;/li&gt;
-&lt;li&gt;Namespaces充当隔离的第一级，确保一个容器中运行一个进程而且不能看到或影响容器外的其它进程。&lt;/li&gt;
-&lt;li&gt;cgroups是LXC的重要组成部分，实现了资源的限制，通过写时复制机制copy-on-write实现了高效的文件操作。&lt;/li&gt;
-&lt;li&gt;UnionFS（文件系统）作为容器的构建块。为了支持Docker的轻量级以及速度快的特性，它创建了用户层&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;why-为什么使用docker？&quot;&gt;&lt;a href=&quot;#why-为什么使用docker？&quot; class=&quot;headerlink&quot; title=&quot;why 为什么使用docker？&quot;&gt;&lt;/a&gt;why 为什么使用docker？&lt;/h2&gt;&lt;p&gt;传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程直接运行于宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比传统虚拟机更为轻便,而且容器使软件具备了超强的可移植能力。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;容器技术与传统虚拟机虚拟化方式对比：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;https://cdn-std.dprcdn.net/files/acc_582513/vyEvvG&quot; alt=&quot;传统虚拟机&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://cdn-std.dprcdn.net/files/acc_582513/hEWM0Z&quot; alt=&quot;Docker&quot;&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;容器技术与传统虚拟机性能对比：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;https://cdn-std.dprcdn.net/files/acc_582513/6RGWHJ&quot; alt=&quot;性能对比&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Docker系列" scheme="http://www.chenfanlinux.org/categories/Docker%E7%B3%BB%E5%88%97/"/>
-    
-    
-      <category term="Docker" scheme="http://www.chenfanlinux.org/tags/Docker/"/>
     
   </entry>
   
