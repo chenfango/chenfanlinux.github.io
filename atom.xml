@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.chenfanlinux.org/"/>
-  <updated>2018-02-16T22:48:22.000Z</updated>
+  <updated>2018-02-22T08:42:33.000Z</updated>
   <id>http://www.chenfanlinux.org/</id>
   
   <author>
@@ -15,6 +15,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python基础之文件与异常</title>
+    <link href="http://www.chenfanlinux.org/2018/02/22/Python%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%96%87%E4%BB%B6%E4%B8%8E%E5%BC%82%E5%B8%B8/"/>
+    <id>http://www.chenfanlinux.org/2018/02/22/Python基础之文件与异常/</id>
+    <published>2018-02-22T08:41:24.000Z</published>
+    <updated>2018-02-22T08:42:33.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><blockquote><p>数据持久化最简单的类型是普通文件,它仅仅是在一个文件名下的字节流，把数据从一个文件读入内存，然后从内存写入文件。</p></blockquote><h3 id="文件操作模型"><a href="#文件操作模型" class="headerlink" title="文件操作模型"></a>文件操作模型</h3><pre><code>data = open(filename, mode)</code></pre><p>下面是对该 open() 调用的简单解释：</p><ul><li>data 是 open() 返回的文件对象</li><li>filename 是该文件的字符串名</li><li>mode 是指明文件类型和操作的字符串</li></ul><p>mode 的第一个字母表明对其的操作：</p><ul><li>r 以只读方式打开文件。文件的指针将会放在文件的开头，这是默认模式。</li><li>r+ 可读可写，不会创建不存在的文件。如果直接写文件，则从顶部开始写，覆盖之前此位置的内容，如果先读后写，则会在文件最后追加内容。</li><li>w 表示写模式。若果文件不存在则新创建，如果该文件已存在则将其覆盖。</li><li>w+ 打开一个文件用于读写。如果该文件已存在则将其覆盖。如果该文件不存在，创建新文件。</li><li>x 表示在文件不存在的情况下新创建并写文件，如果文件存在就会报错。</li><li>a 打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。也就是说，新的内容将会被写入到已有内容之后。如果该文件不存在，创建新文件进行写入。</li><li>a+ 打开一个文件用于读写。如果该文件已存在，文件指针将会放在文件的结尾。文件打开时会是追加模式。如果该文件不存在，创建新文件用于读写。</li></ul><p>mode 的第二个字母是文件类型：</p><ul><li>t（或者省略） 代表文本类型</li><li>b 代表二进制文件</li></ul><p><strong><em>注意: 打开文件之后就可以调用函数来读写数据，最后需要关闭文件。</em></strong></p><a id="more"></a><h3 id="使用-write-写文本文件"><a href="#使用-write-写文本文件" class="headerlink" title="使用 write() 写文本文件"></a>使用 write() 写文本文件</h3><pre><code>&gt;&gt;&gt; poem = &quot;日照香炉生紫烟，遥看瀑布挂前川。飞流直下三千尺，疑是银河落九天。&quot;&gt;&gt;&gt;&gt;&gt;&gt; len(poem)32</code></pre><p>将整首诗写到libai.txt中：</p><pre><code>&gt;&gt;&gt; fout = open(&apos;libai.txt&apos;,&apos;wt&apos;)&gt;&gt;&gt; fout.write(poem)32&gt;&gt;&gt; fout.close&lt;built-in method close of _io.TextIOWrapper object at 0x00000000034E1120&gt;</code></pre><p>函数 write() 返回写入文件的字节数。和 print() 一样， 他没有增加空格或者换行符。同样，你也可以在一个文本文件中使用 print()。</p><pre><code>&gt;&gt;&gt; fout = open(&apos;libai.txt&apos;,&apos;wt&apos;)&gt;&gt;&gt; print(poem, file=fout)&gt;&gt;&gt; fout.close()</code></pre><p>这就产生了一个问题：到底是用是 write() 还是 print()？ print() 默认会在每个参数后面添加空格，在每行结束处添加换行。在之前的例子中， libai.txt 中默认添加了一个换行。为了使 print() 与 write() 有同样的输出，传入下面两个参数：</p><ul><li>sep 分隔符：默认是一个空格‘’</li><li>end 结束字符：默认是一个换行符 ‘\n’</li></ul><p>除非自定义参数，否则 print() 会使用默认参数。在这里，我们通过空字符串替换 print() 添加的所有多余输出：</p><pre><code>&gt;&gt;&gt; print(poem, file=fout, sep=&apos;&apos;, end=&apos;&apos;)&gt;&gt;&gt; fout.close()</code></pre><p>如果字符串非常大，可以将数据分块，直到所有字符被写入：</p><pre><code>&gt;&gt;&gt; size = len(poem)&gt;&gt;&gt;&gt;&gt;&gt; fout = open(&apos;libai.txt&apos;, &apos;w&apos;)&gt;&gt;&gt; offset = 0&gt;&gt;&gt; chunk = 10&gt;&gt;&gt; while True:    if offset &gt; size:        break    fout.write(poem[offset:offset+chunk])    offset += chunk1010102&gt;&gt;&gt;&gt;&gt;&gt; fout.close()</code></pre><p>如果 libai.txt 文件已经存在，使用模式 x 可以避免重写文件：</p><pre><code>&gt;&gt;&gt; fount = open(&apos;libai.txt&apos;,&apos;xt&apos;)Traceback (most recent call last):  File &quot;&lt;pyshell#0&gt;&quot;, line 1, in &lt;module&gt;    fount = open(&apos;libai.txt&apos;,&apos;xt&apos;)FileExistsError: [Errno 17] File exists: &apos;libai.txt&apos;</code></pre><h3 id="使用-read-、readline-或者-readlines-读取文本文件"><a href="#使用-read-、readline-或者-readlines-读取文本文件" class="headerlink" title="使用 read()、readline() 或者 readlines() 读取文本文件"></a>使用 read()、readline() 或者 readlines() 读取文本文件</h3><p>使用不带参数的 read() 函数一次读入文件的所有内容。但在读入文件时要格外注意，1GB的文件会用到相同大小的内存，如果文件大小太大的话，需要防止内存爆掉。</p><pre><code>&gt;&gt;&gt; fin = open(&apos;libai.txt&apos;, &apos;rt&apos;)&gt;&gt;&gt; poem = fin.read()&gt;&gt;&gt; poem&apos;日照香炉生紫烟，遥看瀑布挂前川。飞流直下三千尺，疑是银河落九天。&apos;&gt;&gt;&gt; fin.close()&gt;&gt;&gt; len(poem)32</code></pre><p>同样也可以设置最大的读入字符数限制 read() 函数一次返回的大小。下面一次读入10个字符，然后把每一快拼接成原来的字符串 poem。</p><pre><code>&gt;&gt;&gt; poem = &apos;&apos;&gt;&gt;&gt; fin = open(&apos;libai.txt&apos;, &apos;rt&apos;)&gt;&gt;&gt; chunk = 10&gt;&gt;&gt; while True:    fragment = fin.read(chunk)    if not fragment:        break    poem += fragment&gt;&gt;&gt; fin.close()&gt;&gt;&gt; len(poem)32&gt;&gt;&gt; poem&apos;日照香炉生紫烟，遥看瀑布挂前川。飞流直下三千尺，疑是银河落九天。&apos;</code></pre><p>读到结尾之后，再次调用 read() 会返回空字符串(‘’)， if not fragment 条件被判断为 False。此时会跳出 while True 的循环。 当然， 你也能使用 readline() 每次读入文件的一行。 在下面的例子中，通过追加每一行拼接成原来的字符串 poem。</p><pre><code>&gt;&gt;&gt; poem = &apos;&apos;&gt;&gt;&gt; fin = open(&apos;libai.txt&apos;, &apos;rt&apos;)&gt;&gt;&gt; while True:    line = fin.readline()    if not line:        break    poem += line&gt;&gt;&gt; fin.close()&gt;&gt;&gt; len(poem)32&gt;&gt;&gt; poem&apos;日照香炉生紫烟，遥看瀑布挂前川。飞流直下三千尺，疑是银河落九天。&apos;</code></pre><p>读取文本文件最简单的方式是使用一个迭代器（iterator），它会每次返回一行。这和之前的例子类似，但代码会更短：</p><pre><code>&gt;&gt;&gt; poem = &apos;&apos;&gt;&gt;&gt; fin = open(&apos;libai.txt&apos;, &apos;rt&apos;)&gt;&gt;&gt; for line in fin:    poem += line&gt;&gt;&gt; fin.close()&gt;&gt;&gt; len(poem)32&gt;&gt;&gt; poem&apos;日照香炉生紫烟，遥看瀑布挂前川。飞流直下三千尺，疑是银河落九天。&apos;</code></pre><p>前面所有的示例最终都返回单个字符串 poem。 函数 readlines() 调用时每次读取一行，并返回单行字符串的列表：</p><pre><code>&gt;&gt;&gt; poem = &apos;&apos;&apos;日照香炉生紫烟，遥看瀑布挂前川。飞流直下三千尺,疑是银河落九天。&apos;&apos;&apos;&gt;&gt;&gt; fin = open(&apos;libai.txt&apos;,&apos;wt&apos;)&gt;&gt;&gt; fin.write(poem)36&gt;&gt;&gt; fin.close()&gt;&gt;&gt; fin = open(&apos;libai.txt&apos;, &apos;rt&apos;)&gt;&gt;&gt; lines = fin.readlines()&gt;&gt;&gt; fin.close()&gt;&gt;&gt; lines[&apos;日照香炉生紫烟，\n&apos;, &apos;遥看瀑布挂前川。\n&apos;, &apos;飞流直下三千尺,\n&apos;, &apos;疑是银河落九天。\n&apos;]&gt;&gt;&gt; for line in lines:print(line,end=&apos;&apos;)日照香炉生紫烟，遥看瀑布挂前川。飞流直下三千尺,疑是银河落九天。</code></pre><h3 id="使用-with-自动关闭文件"><a href="#使用-with-自动关闭文件" class="headerlink" title="使用 with 自动关闭文件"></a>使用 with 自动关闭文件</h3><p>Python的上下文管理器（context manager）会清理一些资源，例如打开的文件。<br>它的形式<br><code>with expression as variable：</code></p><pre><code>&gt;&gt;&gt; opem = &apos;&apos;&apos;welcome to chenfanlinux.org&apos;&apos;&apos;// 利用这种方式就可以不必用close()函数关闭文件&gt;&gt;&gt; with open(&apos;libai.txt&apos;, &apos;wt&apos;) as fout:    print(opem,file=fout,end=&apos;&apos;)&gt;&gt;&gt; with open(&apos;libai.txt&apos;, &apos;rt&apos;) as fin:    for line in fin:        print(line,end=&apos;&apos;)welcome to chenfanlinux.org</code></pre><p>完成上下文管理器的代码后，文件会自动关闭。</p><h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><blockquote><p>Python使用被称为异常的特殊对象来管理程序执行期间发生的错误。每当发生让Python不知 所措的错误时，它都会创建一个异常对象。如果你编写了处理该异常的代码，程序将继续运行; 如果你未对异常进行处理，程序将停止，并显示一个traceback，其中包含有关异常的报告。<br>异常是使用try-except代码块处理的。try-except代码块让Python执行指定的操作，同时告 诉Python发生异常时怎么办。使用了try-except代码块时，即便出现异常，程序也将继续运行: 显示你编写的友好的错误消息，而不是令用户迷惑的traceback。</p></blockquote><h3 id="使用-try-except-代码块"><a href="#使用-try-except-代码块" class="headerlink" title="使用 try-except 代码块"></a>使用 try-except 代码块</h3><blockquote><p>try 语句有两种主要形式: try-except 和 try-finally . 这两个语句是互斥的, 也就是说你 只能使用其中的一种. 一个 try 语句可以对应一个或多个 except 子句, 但只能对应一个 finally 子句, 或是一个 try-except-finally 复合语句。</p></blockquote><p>处理ZeroDivisionError异常的try-except代码 类似于下面这样：</p><pre><code>&gt;&gt;&gt; try:    print(5/0)except ZeroDivisionError:    print(&quot;You can&apos;t divide by zero!&quot;)You can&apos;t divide by zero!</code></pre><p>我们将导致错误的代码行print(5/0)放在了一个try代码中。如果try代码中的代码运行起来没有问题，Python将跳过except代码; 如果try代码中的代码导致了错误，Python将查找这样的except代码块，并运行其中的代码，即其中指定的错误与引发的错误相同。<br>在这个示例中，try代码中的代码引发了ZeroDivisionError异常，因此Python指出了该如何解决问题的except代码块，并运行其中的代码。这样，用户看到的是一条 好的错误消息，而不是traceback:</p><pre><code>You can&apos;t divide by zero!</code></pre><p>如果try-except代码后面还有其他代码，程序将接着运行，因为已经告诉了Python如何处理这种错误。</p><h3 id="使用异常避免崩溃"><a href="#使用异常避免崩溃" class="headerlink" title="使用异常避免崩溃"></a>使用异常避免崩溃</h3><p>发生错误时，如果程序还有工作没有完成，妥善地处理错误就尤其重要。这种情况经常会出现在要求用户提供输入的程序中;如果程序能够妥善地处理无效输入，就能再提示用户提供有效输入，而不至于崩溃。</p><pre><code>#__author: Administrator#date: 2018/2/11print(&quot;Give me two numbers, and I&apos;ll divide them.&quot;)print(&quot;Enter &apos;q&apos; to quit.&quot;)while True:    first_number = input(&quot;\n First number: &quot;)    if first_number == &apos;q&apos;:        break    second_number = input(&quot;\n Second number: &quot;)    if second_number == &apos;q&apos;:        break    answer = int(first_number) / int(second_number)    print(answer)</code></pre><p>这个程序没有采取任何处理错误的措施，因此让它执行除数为0的除法运算时，它将崩溃:</p><pre><code>Give me two numbers, and I&apos;ll divide them.Enter &apos;q&apos; to quit.First number: 5Second number: 0Traceback (most recent call last):  File &quot;&lt;ipython-input-208-1e61f850d337&gt;&quot;, line 11, in &lt;module&gt;    answer = int(first_number) / int(second_number)ZeroDivisionError: division by zero&gt;&gt;&gt;</code></pre><p>程序崩溃可不好，但让用户看到 traceback 也不是好主意。不懂技术的用户会被它们搞糊涂， 而且如果用户 怀有恶意，他会通过traceback获悉你不希望他知道的信息。例如，他将知道你的程序文件的名称，还将看到部分不能正确运行的代码。有时候，训练有素的攻击者可根据这些信息判断出可对你的代码发起什么样的攻击。</p><h3 id="else-代码块"><a href="#else-代码块" class="headerlink" title="else 代码块"></a>else 代码块</h3><p>通过将可能引发错误的代码放在try-except代码中，可提高这个程序抵御错误的能力。错误是执行除法运算的代码行导致的，因此我们需要将它放到try-except代码块中。这个示例还包含一个else代码块; 依赖于try代码块成功执行的代码都应放到else代码中:</p><pre><code>#__author: Administrator#date: 2018/2/11print(&quot;Give me two numbers, and I&apos;ll divide them.&quot;)print(&quot;Enter &apos;q&apos; to quit.&quot;)while True:    first_number = input(&quot;\n First number: &quot;)    if first_number == &apos;q&apos;:        break    second_number = input(&quot;\n Second number: &quot;)    if second_number == &apos;q&apos;:        break    try:        answer = int(first_number) / int(second_number)    except ZeroDivisionError:        print(&quot;You can&apos;t divide by 0!&quot;)    else:        print(answer)</code></pre><p>我们让Python尝试执行try代码块中的除法运算，这个代码块只包含可能导致错误的代码。依赖于try代码块成功执行的代码都放在else代码中; 在这个示例中，如果除法运算成功，我们就使用else代码块来打印结果。<br>except代码块告诉Python，出现ZeroDivisionError异常时该怎么办。如果try代码因除零错误而失败，我们就打印一条友好的消息，告诉用户如何避免这种错误。程序将继续运行，用户根本看不到traceback。</p><pre><code>Give me two numbers, and I&apos;ll divide them.Enter &apos;q&apos; to quit.First number: 5Second number: 0You can&apos;t divide by 0!First number: 5Second number: 22.5First number: q&gt;&gt;&gt;</code></pre><p>try-except-else代码块的工作原理大致如下: Python尝试执行try代码块中的代码; 只有可能引发异常的代码才需要放在try语句中。有时候，有一些仅在try代码块成功执行时才需要运行的的代码; 这些代码应放在else代码中。except代码块告诉Python，如果它尝试运行try代码块中的代码时引发了指定的异常，该怎么办。通过预测可能发生错误的代码，可编写健壮的程序，它们即便面临无效数据或缺少资源，也能继续运行，从而能够抵御无意的用户错误和恶意的攻击。</p><h3 id="finally子句"><a href="#finally子句" class="headerlink" title="finally子句"></a>finally子句</h3><p>finally 子句是无论异常是否发生,是否捕捉都会执行的一段代码. 你可以将 finally 仅仅配合 try 一起使用,也可以和 try-except(else 也是可选的)一起使用。你可以用 finally 子句 与 try-except 或 try-except-else 一起使用。</p><p>下面是 try-except-else-finally 语法的示例:</p><pre><code>try:    Aexcept MyException1:    B1except MyException2:    B2else:    Cfinally:    D</code></pre><p>当然,无论如何,你都可以有不止一个的 except 子句,但最少有一个 except 语句,而 else 和 finally 都是可选的. A,B,C 和 D 是程序(代码块). 程序会按预期的顺序执行.(注意:可能的顺序是 A-C-D[正常]或 A-B-D[异常])，无论异常发生都将执行 finally 块。</p><h3 id="常见的异常"><a href="#常见的异常" class="headerlink" title="常见的异常"></a>常见的异常</h3><p><img src="https://s1.ax1x.com/2018/02/22/9UQn74.png" alt="常见的异常"></p><h3 id="决定报告那些错误"><a href="#决定报告那些错误" class="headerlink" title="决定报告那些错误"></a>决定报告那些错误</h3><ul><li>编写得很好且经过详尽测试的代码不容易出现内部错误，如语法或逻辑错误。</li><li>但只要程序依赖于外部因素，如用户输入、存在指定的文件、有网络连接，就有可能出现异常。凭借经验可判断该在程序的什么地方包含异常处理 ，以及出现错误时该向用户提供多少相关的信息。</li><li>向用户显示他不想看到的信息可能会降低程序的可用性。Python的错误处理结构让你能够细致地控制与用户分享错误信息的程度，要分享多少信息由你决定。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;文件&quot;&gt;&lt;a href=&quot;#文件&quot; class=&quot;headerlink&quot; title=&quot;文件&quot;&gt;&lt;/a&gt;文件&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;数据持久化最简单的类型是普通文件,它仅仅是在一个文件名下的字节流，把数据从一个文件读入内存，然后从内存写入文件。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;文件操作模型&quot;&gt;&lt;a href=&quot;#文件操作模型&quot; class=&quot;headerlink&quot; title=&quot;文件操作模型&quot;&gt;&lt;/a&gt;文件操作模型&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;data = open(filename, mode)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;下面是对该 open() 调用的简单解释：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;data 是 open() 返回的文件对象&lt;/li&gt;
+&lt;li&gt;filename 是该文件的字符串名&lt;/li&gt;
+&lt;li&gt;mode 是指明文件类型和操作的字符串&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;mode 的第一个字母表明对其的操作：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;r 以只读方式打开文件。文件的指针将会放在文件的开头，这是默认模式。&lt;/li&gt;
+&lt;li&gt;r+ 可读可写，不会创建不存在的文件。如果直接写文件，则从顶部开始写，覆盖之前此位置的内容，如果先读后写，则会在文件最后追加内容。&lt;/li&gt;
+&lt;li&gt;w 表示写模式。若果文件不存在则新创建，如果该文件已存在则将其覆盖。&lt;/li&gt;
+&lt;li&gt;w+ 打开一个文件用于读写。如果该文件已存在则将其覆盖。如果该文件不存在，创建新文件。&lt;/li&gt;
+&lt;li&gt;x 表示在文件不存在的情况下新创建并写文件，如果文件存在就会报错。&lt;/li&gt;
+&lt;li&gt;a 打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。也就是说，新的内容将会被写入到已有内容之后。如果该文件不存在，创建新文件进行写入。&lt;/li&gt;
+&lt;li&gt;a+ 打开一个文件用于读写。如果该文件已存在，文件指针将会放在文件的结尾。文件打开时会是追加模式。如果该文件不存在，创建新文件用于读写。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;mode 的第二个字母是文件类型：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;t（或者省略） 代表文本类型&lt;/li&gt;
+&lt;li&gt;b 代表二进制文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;注意: 打开文件之后就可以调用函数来读写数据，最后需要关闭文件。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="python基础知识" scheme="http://www.chenfanlinux.org/categories/python%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+    
+      <category term="Python" scheme="http://www.chenfanlinux.org/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>Python基础之变量与运算符</title>
@@ -1129,55 +1176,6 @@ CMD [&amp;quot;/hello&amp;quot;]
     
     
       <category term="Docker" scheme="http://www.chenfanlinux.org/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Bash 编程入门之Bash特性汇总(一)</title>
-    <link href="http://www.chenfanlinux.org/2018/01/05/Bash%E7%89%B9%E6%80%A7%E6%B1%87%E6%80%BB/"/>
-    <id>http://www.chenfanlinux.org/2018/01/05/Bash特性汇总/</id>
-    <published>2018-01-05T04:35:53.000Z</published>
-    <updated>2018-01-26T03:39:10.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="什么是shell"><a href="#什么是shell" class="headerlink" title="什么是shell?"></a>什么是shell?</h2><blockquote><p>通常,替我们工作的是”硬件”,而控制硬件的是”内核”。用户利用”shell”控制着一些内核提供的”工具”,来控制硬件替我们工作。由于内核听不懂人类语言,所以shell从本质来说就是一个UI(用户界面)应用程序,让内核控制着硬件正确无误的工作，如图1-1 硬件-内核-shell 所示，可以清晰的看到他们的关系。</p></blockquote><p><img src="https://cdn-std.dprcdn.net/files/acc_582513/DDfPGJ" alt="硬件-内核"></p><h2 id="Bash-shell功能特性"><a href="#Bash-shell功能特性" class="headerlink" title="Bash shell功能特性"></a>Bash shell功能特性</h2><h3 id="history命令记忆功能"><a href="#history命令记忆功能" class="headerlink" title="history命令记忆功能"></a>history命令记忆功能</h3><blockquote><p>在Bash里面,我们只要在命令行按”上、下键”或者更强大的”Ctrl+r”,就可以找到之前输入的历史命令,这依赖于Bash的命令记录功能,记录的文件位于家目录下的.bash_history。登录shell后新执行的命令只会记录在缓存中,这些命令会在用户退出时追加到命令历史文件中,我们通过history命令可以查看历史命令.</p></blockquote><p><strong>命令历史相关的环境变量:</strong></p><ul><li>HISTSIZE: 命令历史记录的条数</li><li>HISTFILE: ~/.bash_history</li></ul><p><strong>命令历史调用相关的命令:</strong></p><ul><li><p>调用历史中的命令:</p><ul><li>!#: 重复执行第#条指令</li><li>!!: 重复上一条命令</li><li>!string: 匹配以string开头的命令</li></ul></li><li><p>调用上一条命令的最后一个参数:</p><ul><li>!$</li><li>ESC . （先按esc,释放然后按.）</li></ul></li></ul><a id="more"></a><h3 id="命令与文件补全功能"><a href="#命令与文件补全功能" class="headerlink" title="命令与文件补全功能"></a>命令与文件补全功能</h3><blockquote><p>常在bash中使用热键[Tab]是一个好习惯,因为它可以减少键盘的输入和保证命令的输出的正确性。</p></blockquote><ul><li>接在一串命令的第一个字后面,则为命令的补全</li><li>接在一床命令的第二个字以后时,则为文件的补全</li></ul><h3 id="命令别名的功能"><a href="#命令别名的功能" class="headerlink" title="命令别名的功能"></a>命令别名的功能</h3><blockquote><p>通过给常用命令设置别名的方式,减少命令的输出长度,提升工作效率。命令行键入alias命令,可以查看系统配置的alias命令,将命令别名记录在全局配置环境配置文件/etc/profile或~/.bashrc都是一种持久生效的方式.</p></blockquote><pre><code>[root@chenfanlinux ~]# aliasalias cp=&apos;cp -i&apos;alias egrep=&apos;egrep --color=auto&apos;alias fgrep=&apos;fgrep --color=auto&apos;alias grep=&apos;grep --color=auto&apos;alias l.=&apos;ls -d .* --color=auto&apos;alias ll=&apos;ls -l --color=auto&apos;alias ls=&apos;ls --color=auto&apos;alias mv=&apos;mv -i&apos;alias rm=&apos;rm -i&apos;alias which=&apos;alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde&apos;</code></pre><p>   <strong>注意:由于shell脚本中的别名不生效，\cp的含义是脱去别名的设置。</strong></p><h3 id="命令行展开功能"><a href="#命令行展开功能" class="headerlink" title="命令行展开功能"></a>命令行展开功能</h3><blockquote><p>{}:可以承载一个以逗号分隔的列表,并将其展开为多个路径.</p></blockquote><pre><code>$ mkdir /tmp/{a,b} &lt;==&gt;  $ mkdir /tmp/a;mkdir /tmp/b$ mkdir /tmp/{tom,jerry}/hi &lt;==&gt;  $ mkidr /tmp/tom/hi;mkdir /tmp/jerry/hi</code></pre><h3 id="作业-jobs-、前台-fg-、后台-bg-控制"><a href="#作业-jobs-、前台-fg-、后台-bg-控制" class="headerlink" title="作业(jobs)、前台(fg)、后台(bg)控制"></a>作业(jobs)、前台(fg)、后台(bg)控制</h3><blockquote><p>使用前台、后台控制,可以让工作进行得更加的顺利.我们可以随时将作业放置到后台执行,不用担心使用了[Ctrl]+c键来停掉该程序。在单用户登录环境中，达到了多任务的目标。</p></blockquote><ul><li>前台作业: 通过终端启动,且启动后一直占据终端</li><li><p>后台作业: 通过终端启动,但启动后即转入后台运行(释放终端)</p></li><li><p><strong>如何让作业运行于后台?</strong></p><ul><li><p>运行中的作业<br><code>Ctrl+Z</code></p></li><li><p>尚未启动的作业<br><code>COMMAND &amp;</code><br><strong><em>此类作业虽然被送往后台运行,但其依然与终端相关,<br>因为退出登录后作业将停止运行;如果希望送往后台,剥离与终端的关系。</em></strong></p></li><li><p>剥离作业与终端的关系<br><code>nohup COMMAND &amp;</code></p></li></ul></li></ul><ul><li><p><strong>作业控制相关命令:</strong></p><ul><li>查看所有作业情况<br><code>jobs</code></li><li>指定的后台作业调回前台<br><code>fg [[%]JOB_NUM]</code></li><li>让送往后台的作业在后台继续运行<br><code>bg [[%]JOB_NUM]</code></li><li>终止指定的作业<br><code>kill [%JOB_NUM]</code></li></ul></li></ul><h3 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h3><blockquote><p>除了完整的字符串之外,bash还支持许多通配符来帮助用户查询和执行命令。下表列出常见的通配符,仅供参考。</p></blockquote><table><thead><tr><th style="text-align:center">符号</th><th style="text-align:center">内容</th></tr></thead><tbody><tr><td style="text-align:center">*</td><td style="text-align:center">通配符,代表0个或多个字符(或数字)</td></tr><tr><td style="text-align:center">?</td><td style="text-align:center">通配符,代表一个有一个字符</td></tr><tr><td style="text-align:center">#</td><td style="text-align:center">注释,常在脚本中,被视为说明</td></tr><tr><td style="text-align:center">\</td><td style="text-align:center">转义字符,将特殊字符或通配符还原成一般字符</td></tr><tr><td style="text-align:center">~</td><td style="text-align:center">用户的家目录</td></tr><tr><td style="text-align:center">$</td><td style="text-align:center">变量之前需要加的变量替换值</td></tr><tr><td style="text-align:center">&amp;</td><td style="text-align:center">将命令转为后台执行</td></tr><tr><td style="text-align:center">!</td><td style="text-align:center">逻辑运算符(not)意思</td></tr><tr><td style="text-align:center">/</td><td style="text-align:center">路径分隔符</td></tr><tr><td style="text-align:center">&gt; &gt;&gt;</td><td style="text-align:center">重定向与追加重定向</td></tr><tr><td style="text-align:center">‘</td><td style="text-align:center">单引号,不具有变量置换功能</td></tr><tr><td style="text-align:center">“</td><td style="text-align:center">具有变量置换功能</td></tr><tr><td style="text-align:center">``</td><td style="text-align:center">中间为可以执行的命令</td></tr><tr><td style="text-align:center">()</td><td style="text-align:center">中间为子shell的起始于结束</td></tr><tr><td style="text-align:center">[] [^]</td><td style="text-align:center">中间为字符的组合</td></tr><tr><td style="text-align:center">{}</td><td style="text-align:center">中间为命令区块的组合</td></tr></tbody></table><table><thead><tr><th style="text-align:center">组合按键</th><th style="text-align:center">执行结果</th></tr></thead><tbody><tr><td style="text-align:center">Ctrl+c</td><td style="text-align:center">终止当前的命令</td></tr><tr><td style="text-align:center">Ctrl+a</td><td style="text-align:center">跳转至命令开始处</td></tr><tr><td style="text-align:center">Ctrl+e</td><td style="text-align:center">跳转至命令结尾处</td></tr><tr><td style="text-align:center">Ctrl+u</td><td style="text-align:center">删除命令行首至光标所在处的所有内容</td></tr><tr><td style="text-align:center">Ctrl+k</td><td style="text-align:center">删除光标所在行至命令行尾部的内容</td></tr><tr><td style="text-align:center">Ctrl+z</td><td style="text-align:center">暂停当前命令的执行</td></tr><tr><td style="text-align:center">Ctrl+l</td><td style="text-align:center">清屏,相当于clear命令</td></tr></tbody></table><p><strong>匹配字符举例</strong></p><ul><li>* 任意长度的任意字符</li><li>? 任意单个字符</li><li><p>[] 只能匹配指定范围内的任意单个字符</p><ul><li>[0-9] 所有数字中挑一个</li><li>[a-z] 不分区字符大小写</li><li>[A-Z] 大写字母</li><li>[[:lower:]] 小写字母</li><li>[^0-9a-z] 特殊字符</li></ul></li><li><p>[^] 匹配指定范围外的任意单个字符</p></li><li><p>专用字符集合:</p><ul><li>[:digit:]:任意数字,相当于0-9</li><li>[:lower:]:任意小写字母</li><li>[:upper:]:任意大写字母</li><li>[:alpha:]:任意大小写字母</li><li>[:alnum:]:任意数字或字母</li><li>[:space:]:空格</li><li>[:punct:]:标点符号</li></ul></li></ul><h3 id="命令执行的判断依据-amp-amp"><a href="#命令执行的判断依据-amp-amp" class="headerlink" title="命令执行的判断依据(; &amp;&amp; ||)"></a>命令执行的判断依据(; &amp;&amp; ||)</h3><blockquote><p>通常来说命令的运行状态会返回两种结果,执行成功则返回0，执行错误则返回非0。而多个命令的执行通常,从前至后,而且命令的执行还具有一定的逻辑关系,上一个命令的执行成功与否,某种程序可用决定下一个命令的执行。</p></blockquote><p><strong>一次执行多个命令,命令之间没有关联。</strong></p><pre><code>[root@chenfanlinux ~]# toch test.txt ; echo &quot;I  touch test.txt&quot;-bash: toch: 未找到命令I touch test.txt</code></pre><p><strong>命令相互关联,上一个命令执行成功,才会执行下一个命令。</strong></p><pre><code>[root@chenfanlinux ~]# toch test.txt &amp;&amp; echo &quot;I touch test.txt&quot;-bash: toch: 未找到命令</code></pre><p><strong>命令相关关联,上一个命令执行失败,才会执行下一个命令。</strong></p><pre><code>[root@chenfanlinux ~]# toch test.txt || echo &quot;I touch test.txt&quot;-bash: toch: 未找到命令I touch test.txt[root@chenfanlinux ~]# touch test.txt || echo &quot;I touch test.txt&quot;注意:这里不会执行echo &quot;I touch test.txt&quot;</code></pre><p><strong>如果第一个命令执行成功,则执行第二个命令,否则执行第三个命令。</strong></p><pre><code>[root@chenfanlinux ~]# touch test.txt &amp;&amp;  echo &quot;我是第二个命令&quot; || echo &quot;我是第三个命令&quot;我是第二个命令[root@chenfanlinux ~]# tuch test.txt &amp;&amp;  echo &quot;我是第二个命令&quot; || echo &quot;我是第三个命令&quot;-bash: tuch: 未找到命令我是第三个命令</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;什么是shell&quot;&gt;&lt;a href=&quot;#什么是shell&quot; class=&quot;headerlink&quot; title=&quot;什么是shell?&quot;&gt;&lt;/a&gt;什么是shell?&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;通常,替我们工作的是”硬件”,而控制硬件的是”内核”。用户利用”shell”控制着一些内核提供的”工具”,来控制硬件替我们工作。由于内核听不懂人类语言,所以shell从本质来说就是一个UI(用户界面)应用程序,让内核控制着硬件正确无误的工作，如图1-1 硬件-内核-shell 所示，可以清晰的看到他们的关系。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&quot;https://cdn-std.dprcdn.net/files/acc_582513/DDfPGJ&quot; alt=&quot;硬件-内核&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Bash-shell功能特性&quot;&gt;&lt;a href=&quot;#Bash-shell功能特性&quot; class=&quot;headerlink&quot; title=&quot;Bash shell功能特性&quot;&gt;&lt;/a&gt;Bash shell功能特性&lt;/h2&gt;&lt;h3 id=&quot;history命令记忆功能&quot;&gt;&lt;a href=&quot;#history命令记忆功能&quot; class=&quot;headerlink&quot; title=&quot;history命令记忆功能&quot;&gt;&lt;/a&gt;history命令记忆功能&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;在Bash里面,我们只要在命令行按”上、下键”或者更强大的”Ctrl+r”,就可以找到之前输入的历史命令,这依赖于Bash的命令记录功能,记录的文件位于家目录下的.bash_history。登录shell后新执行的命令只会记录在缓存中,这些命令会在用户退出时追加到命令历史文件中,我们通过history命令可以查看历史命令.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;命令历史相关的环境变量:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;HISTSIZE: 命令历史记录的条数&lt;/li&gt;
-&lt;li&gt;HISTFILE: ~/.bash_history&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;命令历史调用相关的命令:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;调用历史中的命令:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;!#: 重复执行第#条指令&lt;/li&gt;
-&lt;li&gt;!!: 重复上一条命令&lt;/li&gt;
-&lt;li&gt;!string: 匹配以string开头的命令&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;调用上一条命令的最后一个参数:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;!$&lt;/li&gt;
-&lt;li&gt;ESC . （先按esc,释放然后按.）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="Bash Shell编程" scheme="http://www.chenfanlinux.org/categories/Bash-Shell%E7%BC%96%E7%A8%8B/"/>
-    
-    
-      <category term="Bash" scheme="http://www.chenfanlinux.org/tags/Bash/"/>
     
   </entry>
   

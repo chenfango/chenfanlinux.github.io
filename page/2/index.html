@@ -339,6 +339,234 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/23/awk应用指南/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/23/awk应用指南/" itemprop="url">awk应用指南</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-23T09:08:59+08:00">
+                2018-01-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux基础/" itemprop="url" rel="index">
+                    <span itemprop="name">linux基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/23/awk应用指南/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/23/awk应用指南/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,498
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="awk简介"><a href="#awk简介" class="headerlink" title="awk简介"></a>awk简介</h2><blockquote>
+<p>awk是一种编程语言，用于在linux/unix下对文本和数据进行处理。数据可以来自标准输入、一个或多个文件，或其它命令的输出。它支持用户自定义函数和动态正则表达式等先进功能，是linux/unix下的一个强大编程工具。</p>
+</blockquote>
+<h3 id="特性介绍"><a href="#特性介绍" class="headerlink" title="特性介绍"></a>特性介绍</h3><ul>
+<li>awk的处理文本和数据的方式是这样的，它逐行扫描文件，从第一行到最后一行，寻找匹配的特定模式的行，并在这些行上进行你想要的操作。</li>
+<li>如果没有指定处理动作，则把匹配的行显示到标准输出(屏幕)；如果没有指定模式，则所有被操作所指定的行都被处理。</li>
+<li>下面介绍的awk是以GUN的gawk为例的，在linux系统中已把awk链接到gawk，所以下面全部以awk进行介绍。</li>
+</ul>
+<h2 id="awk命令格式和选项"><a href="#awk命令格式和选项" class="headerlink" title="awk命令格式和选项"></a>awk命令格式和选项</h2><h3 id="awk的语法"><a href="#awk的语法" class="headerlink" title="awk的语法"></a>awk的语法</h3><ul>
+<li>awk [options] ‘script’ var=value file(s)</li>
+<li>awk [options] -f scriptfile var=value file(s)</li>
+</ul>
+<p><code>script= PATTERN {ACTION STATEMENTS}</code></p>
+<ul>
+<li>PATTERN: 模式,用于地址定界</li>
+<li>ACTION STATEMENTS:动作语句,语句之间用分号分隔</li>
+</ul>
+<h3 id="2-2-命令选项"><a href="#2-2-命令选项" class="headerlink" title="2.2. 命令选项"></a>2.2. 命令选项</h3><pre><code>-F fs ：指定输入文件折分隔符，fs是一个字符串或者是一个正则表达式，如-F:
+-v var=val ： 自定义变量
+</code></pre><h2 id="awk的模式与动作"><a href="#awk的模式与动作" class="headerlink" title="awk的模式与动作"></a>awk的模式与动作</h2><blockquote>
+<p>awk脚本是由模式(PATTERN)和操作语句(ACTION STATEMENTS)两个部分组成,下面将详细介绍这两个部分。</p>
+</blockquote>
+<h3 id="模式-地址定界"><a href="#模式-地址定界" class="headerlink" title="模式(地址定界)"></a>模式(地址定界)</h3><ul>
+<li>empty: 匹配每一行。</li>
+<li>/regular expression/: 正则表达式,仅处理被模式匹配到的行。<br><code>awk -F: &#39;!/^UUID/{print $1}&#39; /etc/fstab</code></li>
+<li>relation expression: 关系表达式,结果有”真”有假: 结果为”真”的行才会被处理。<br><code>awk -F: &#39;$3&lt;1000{print $1,$3}&#39; /etc/passwd</code><br><code>awk -F: &#39;$NF~/bash$/{print $1,$NF}&#39; /etc/passwd</code></li>
+<li>line ranges:行范围<ul>
+<li>(NR&gt;2&amp;&amp;NR&lt;10)  行匹配</li>
+<li>/pattern1/,/pattern2/ 第一次匹配模式1起始和第一次匹配模式2终</li>
+</ul>
+</li>
+<li>BEGIN/END模式<ul>
+<li>BEGIN{}: 仅在开始处理文件中的文本之前执行一次，通常可在这里设置全局变量。</li>
+<li>END{}: 仅在文本处理完成后执行一次<br><code>awk -F: &#39;BEGIN{print &quot;     username   uid\n---------------&quot;} {print $1,$3} END {print &quot;==============\n  end&quot;}&#39; /etc/passwd</code></li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/23/awk应用指南/#далее" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    
+    <div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/21/流编辑器sed学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -516,7 +744,7 @@
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/21/流编辑器sed学习笔记/#more" rel="contents">
+            <a class="btn" href="/2018/01/21/流编辑器sed学习笔记/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -768,7 +996,7 @@
 <p>在正则表达式出现后的一段时间里，诸子百家争鸣，乱世显现。这一年诞生了第一个较为统一的标准 —— POSIX，POSIX将正则表达式分为了两种标准Basic Regular Expressions(BREs)和 Extended Regular Expressions(EREs)</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/21/Shell通配符与正则表达式/#more" rel="contents">
+            <a class="btn" href="/2018/01/21/Shell通配符与正则表达式/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -980,7 +1208,7 @@
 </code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/18/Bash编程入门之条件测试-三/#more" rel="contents">
+            <a class="btn" href="/2018/01/18/Bash编程入门之条件测试-三/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1199,7 +1427,7 @@
 </code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/17/Bash编程入门之变量基础-一/#more" rel="contents">
+            <a class="btn" href="/2018/01/17/Bash编程入门之变量基础-一/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1445,7 +1673,7 @@ bash: htdocs//index.htm: Read-only file system
 <p>bind mount 的使用直观高效，易于理解，但它也有不足的地方：bind mount 需要指定 host 文件系统的特定路径，这就限制了容器的可移植性，当需要将容器迁移到其他 host，而该 host 没有要 mount 的数据或者数据不在相同的路径时，操作会失败。移植性更好的方式是 docker managed volume，下面就会讨论。<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/16/Docker入门之数据管理/#more" rel="contents">
+            <a class="btn" href="/2018/01/16/Docker入门之数据管理/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1694,7 +1922,7 @@ docker
 </code></pre><p>在容器内可以看到所有宿主机的网卡，跟宿主机ifconfig看到的结果时一致的，并且hostname并不是短ID，而是宿主机的hostname。<br>直接使用 Docker host 的网络最大的好处就是性能，如果容器对网络传输效率有较高要求，则可以选择 host 网络。当然不便之处就是牺牲一些灵活性，比如要考虑端口冲突问题，宿主机上已经使用的端口就不能再用了。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/14/Docker入门之网络管理-五/#more" rel="contents">
+            <a class="btn" href="/2018/01/14/Docker入门之网络管理-五/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1922,7 +2150,7 @@ a141b831a16e        ubuntu
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/11/Docker入门之容器管理-四/#more" rel="contents">
+            <a class="btn" href="/2018/01/11/Docker入门之容器管理-四/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2150,7 +2378,7 @@ CMD [&quot;/bin/bash&quot;]
 </code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/10/Docker入门之Dockerfile最佳实践-三/#more" rel="contents">
+            <a class="btn" href="/2018/01/10/Docker入门之Dockerfile最佳实践-三/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2379,226 +2607,7 @@ CMD [&quot;/hello&quot;]
 <li><p>第三条CMD指令用来指示当运行 docker run 命令运行该镜像时要执行的命令，这里执行 /hello，就是执行第二步拷贝到根目录下的 hello 文件。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/10/Docker入门之镜像基础概念与管理-二/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    
-    <div>
-  
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/05/Bash特性汇总/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/05/Bash特性汇总/" itemprop="url">Bash 编程入门之Bash特性汇总(一)</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-05T12:35:53+08:00">
-                2018-01-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Bash-Shell编程/" itemprop="url" rel="index">
-                    <span itemprop="name">Bash Shell编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/01/05/Bash特性汇总/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/05/Bash特性汇总/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,724
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  6
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="什么是shell"><a href="#什么是shell" class="headerlink" title="什么是shell?"></a>什么是shell?</h2><blockquote>
-<p>通常,替我们工作的是”硬件”,而控制硬件的是”内核”。用户利用”shell”控制着一些内核提供的”工具”,来控制硬件替我们工作。由于内核听不懂人类语言,所以shell从本质来说就是一个UI(用户界面)应用程序,让内核控制着硬件正确无误的工作，如图1-1 硬件-内核-shell 所示，可以清晰的看到他们的关系。</p>
-</blockquote>
-<p><img src="https://cdn-std.dprcdn.net/files/acc_582513/DDfPGJ" alt="硬件-内核"></p>
-<h2 id="Bash-shell功能特性"><a href="#Bash-shell功能特性" class="headerlink" title="Bash shell功能特性"></a>Bash shell功能特性</h2><h3 id="history命令记忆功能"><a href="#history命令记忆功能" class="headerlink" title="history命令记忆功能"></a>history命令记忆功能</h3><blockquote>
-<p>在Bash里面,我们只要在命令行按”上、下键”或者更强大的”Ctrl+r”,就可以找到之前输入的历史命令,这依赖于Bash的命令记录功能,记录的文件位于家目录下的.bash_history。登录shell后新执行的命令只会记录在缓存中,这些命令会在用户退出时追加到命令历史文件中,我们通过history命令可以查看历史命令.</p>
-</blockquote>
-<p><strong>命令历史相关的环境变量:</strong></p>
-<ul>
-<li>HISTSIZE: 命令历史记录的条数</li>
-<li>HISTFILE: ~/.bash_history</li>
-</ul>
-<p><strong>命令历史调用相关的命令:</strong></p>
-<ul>
-<li><p>调用历史中的命令:</p>
-<ul>
-<li>!#: 重复执行第#条指令</li>
-<li>!!: 重复上一条命令</li>
-<li>!string: 匹配以string开头的命令</li>
-</ul>
-</li>
-<li><p>调用上一条命令的最后一个参数:</p>
-<ul>
-<li>!$</li>
-<li>ESC . （先按esc,释放然后按.）</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/05/Bash特性汇总/#more" rel="contents">
+            <a class="btn" href="/2018/01/10/Docker入门之镜像基础概念与管理-二/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2693,7 +2702,7 @@ CMD [&quot;/hello&quot;]
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2803,7 +2812,7 @@ CMD [&quot;/hello&quot;]
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">54.8k</span>
+    <span title="Site words total count">58.2k</span>
   
 </div>
 

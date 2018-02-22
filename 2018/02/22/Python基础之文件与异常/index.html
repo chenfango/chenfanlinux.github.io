@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="陈凡的个人站点" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="文件 数据持久化最简单的类型是普通文件,它仅仅是在一个文件名下的字节流，把数据从一个文件读入内存，然后从内存写入文件。  文件操作模型data = open(filename, mode) 下面是对该 open() 调用的简单解释：  data 是 open() 返回的文件对象 filename 是该文件的字符串名 m">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python基础之文件与异常">
+<meta property="og:url" content="http://www.chenfanlinux.org/2018/02/22/Python基础之文件与异常/index.html">
+<meta property="og:site_name" content="陈凡的个人站点">
+<meta property="og:description" content="文件 数据持久化最简单的类型是普通文件,它仅仅是在一个文件名下的字节流，把数据从一个文件读入内存，然后从内存写入文件。  文件操作模型data = open(filename, mode) 下面是对该 open() 调用的简单解释：  data 是 open() 返回的文件对象 filename 是该文件的字符串名 mode 是指明文件类型和操作的字符串  mode 的第一个字母表明对其的操作：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax1x.com/2018/02/22/9UQn74.png">
+<meta property="og:updated_time" content="2018-02-22T08:42:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python基础之文件与异常">
+<meta name="twitter:description" content="文件 数据持久化最简单的类型是普通文件,它仅仅是在一个文件名下的字节流，把数据从一个文件读入内存，然后从内存写入文件。  文件操作模型data = open(filename, mode) 下面是对该 open() 调用的简单解释：  data 是 open() 返回的文件对象 filename 是该文件的字符串名 mode 是指明文件类型和操作的字符串  mode 的第一个字母表明对其的操作：">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/02/22/9UQn74.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'X18Q8YOK7R',
+      apiKey: '4cf6f4ea962b4c633859ca376c0d6ae9',
+      indexName: 'chenfanlinux',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfanlinux.org/2018/02/22/Python基础之文件与异常/"/>
+
+
+
+
+
+  <title>Python基础之文件与异常 | 陈凡的个人站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?your-analytics-id";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+ 
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">陈凡的个人站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">chenfanlinux.org</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/02/22/Python基础之文件与异常/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Python基础之文件与异常</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-22T16:41:24+08:00">
+                2018-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python基础知识/" itemprop="url" rel="index">
+                    <span itemprop="name">python基础知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/22/Python基础之文件与异常/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/22/Python基础之文件与异常/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,369
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><blockquote>
+<p>数据持久化最简单的类型是普通文件,它仅仅是在一个文件名下的字节流，把数据从一个文件读入内存，然后从内存写入文件。</p>
+</blockquote>
+<h3 id="文件操作模型"><a href="#文件操作模型" class="headerlink" title="文件操作模型"></a>文件操作模型</h3><pre><code>data = open(filename, mode)
+</code></pre><p>下面是对该 open() 调用的简单解释：</p>
+<ul>
+<li>data 是 open() 返回的文件对象</li>
+<li>filename 是该文件的字符串名</li>
+<li>mode 是指明文件类型和操作的字符串</li>
+</ul>
+<p>mode 的第一个字母表明对其的操作：</p>
+<ul>
+<li>r 以只读方式打开文件。文件的指针将会放在文件的开头，这是默认模式。</li>
+<li>r+ 可读可写，不会创建不存在的文件。如果直接写文件，则从顶部开始写，覆盖之前此位置的内容，如果先读后写，则会在文件最后追加内容。</li>
+<li>w 表示写模式。若果文件不存在则新创建，如果该文件已存在则将其覆盖。</li>
+<li>w+ 打开一个文件用于读写。如果该文件已存在则将其覆盖。如果该文件不存在，创建新文件。</li>
+<li>x 表示在文件不存在的情况下新创建并写文件，如果文件存在就会报错。</li>
+<li>a 打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。也就是说，新的内容将会被写入到已有内容之后。如果该文件不存在，创建新文件进行写入。</li>
+<li>a+ 打开一个文件用于读写。如果该文件已存在，文件指针将会放在文件的结尾。文件打开时会是追加模式。如果该文件不存在，创建新文件用于读写。</li>
+</ul>
+<p>mode 的第二个字母是文件类型：</p>
+<ul>
+<li>t（或者省略） 代表文本类型</li>
+<li>b 代表二进制文件</li>
+</ul>
+<p><strong><em>注意: 打开文件之后就可以调用函数来读写数据，最后需要关闭文件。</em></strong></p>
+<a id="more"></a>
+<h3 id="使用-write-写文本文件"><a href="#使用-write-写文本文件" class="headerlink" title="使用 write() 写文本文件"></a>使用 write() 写文本文件</h3><pre><code>&gt;&gt;&gt; poem = &quot;日照香炉生紫烟，遥看瀑布挂前川。飞流直下三千尺，疑是银河落九天。&quot;
+&gt;&gt;&gt;
+&gt;&gt;&gt; len(poem)
+32
+</code></pre><p>将整首诗写到libai.txt中：</p>
+<pre><code>&gt;&gt;&gt; fout = open(&apos;libai.txt&apos;,&apos;wt&apos;)
+&gt;&gt;&gt; fout.write(poem)
+32
+&gt;&gt;&gt; fout.close
+&lt;built-in method close of _io.TextIOWrapper object at 0x00000000034E1120&gt;
+</code></pre><p>函数 write() 返回写入文件的字节数。和 print() 一样， 他没有增加空格或者换行符。同样，你也可以在一个文本文件中使用 print()。</p>
+<pre><code>&gt;&gt;&gt; fout = open(&apos;libai.txt&apos;,&apos;wt&apos;)
+&gt;&gt;&gt; print(poem, file=fout)
+&gt;&gt;&gt; fout.close()
+</code></pre><p>这就产生了一个问题：到底是用是 write() 还是 print()？ print() 默认会在每个参数后面添加空格，在每行结束处添加换行。在之前的例子中， libai.txt 中默认添加了一个换行。为了使 print() 与 write() 有同样的输出，传入下面两个参数：</p>
+<ul>
+<li>sep 分隔符：默认是一个空格‘’</li>
+<li>end 结束字符：默认是一个换行符 ‘\n’</li>
+</ul>
+<p>除非自定义参数，否则 print() 会使用默认参数。在这里，我们通过空字符串替换 print() 添加的所有多余输出：</p>
+<pre><code>&gt;&gt;&gt; print(poem, file=fout, sep=&apos;&apos;, end=&apos;&apos;)
+&gt;&gt;&gt; fout.close()
+</code></pre><p>如果字符串非常大，可以将数据分块，直到所有字符被写入：</p>
+<pre><code>&gt;&gt;&gt; size = len(poem)
+&gt;&gt;&gt;
+&gt;&gt;&gt; fout = open(&apos;libai.txt&apos;, &apos;w&apos;)
+&gt;&gt;&gt; offset = 0
+&gt;&gt;&gt; chunk = 10
+&gt;&gt;&gt; while True:
+    if offset &gt; size:
+        break
+    fout.write(poem[offset:offset+chunk])
+    offset += chunk
+
+
+10
+10
+10
+2
+&gt;&gt;&gt;
+&gt;&gt;&gt; fout.close()
+</code></pre><p>如果 libai.txt 文件已经存在，使用模式 x 可以避免重写文件：</p>
+<pre><code>&gt;&gt;&gt; fount = open(&apos;libai.txt&apos;,&apos;xt&apos;)
+Traceback (most recent call last):
+  File &quot;&lt;pyshell#0&gt;&quot;, line 1, in &lt;module&gt;
+    fount = open(&apos;libai.txt&apos;,&apos;xt&apos;)
+FileExistsError: [Errno 17] File exists: &apos;libai.txt&apos;
+</code></pre><h3 id="使用-read-、readline-或者-readlines-读取文本文件"><a href="#使用-read-、readline-或者-readlines-读取文本文件" class="headerlink" title="使用 read()、readline() 或者 readlines() 读取文本文件"></a>使用 read()、readline() 或者 readlines() 读取文本文件</h3><p>使用不带参数的 read() 函数一次读入文件的所有内容。但在读入文件时要格外注意，1GB的文件会用到相同大小的内存，如果文件大小太大的话，需要防止内存爆掉。</p>
+<pre><code>&gt;&gt;&gt; fin = open(&apos;libai.txt&apos;, &apos;rt&apos;)
+&gt;&gt;&gt; poem = fin.read()
+&gt;&gt;&gt; poem
+&apos;日照香炉生紫烟，遥看瀑布挂前川。飞流直下三千尺，疑是银河落九天。&apos;
+&gt;&gt;&gt; fin.close()
+&gt;&gt;&gt; len(poem)
+32
+</code></pre><p>同样也可以设置最大的读入字符数限制 read() 函数一次返回的大小。下面一次读入10个字符，然后把每一快拼接成原来的字符串 poem。</p>
+<pre><code>&gt;&gt;&gt; poem = &apos;&apos;
+&gt;&gt;&gt; fin = open(&apos;libai.txt&apos;, &apos;rt&apos;)
+&gt;&gt;&gt; chunk = 10
+&gt;&gt;&gt; while True:
+    fragment = fin.read(chunk)
+    if not fragment:
+        break
+    poem += fragment
+
+
+&gt;&gt;&gt; fin.close()
+&gt;&gt;&gt; len(poem)
+32
+&gt;&gt;&gt; poem
+&apos;日照香炉生紫烟，遥看瀑布挂前川。飞流直下三千尺，疑是银河落九天。&apos;
+</code></pre><p>读到结尾之后，再次调用 read() 会返回空字符串(‘’)， if not fragment 条件被判断为 False。此时会跳出 while True 的循环。 当然， 你也能使用 readline() 每次读入文件的一行。 在下面的例子中，通过追加每一行拼接成原来的字符串 poem。</p>
+<pre><code>&gt;&gt;&gt; poem = &apos;&apos;
+&gt;&gt;&gt; fin = open(&apos;libai.txt&apos;, &apos;rt&apos;)
+&gt;&gt;&gt; while True:
+    line = fin.readline()
+    if not line:
+        break
+    poem += line
+
+
+&gt;&gt;&gt; fin.close()
+&gt;&gt;&gt; len(poem)
+32
+&gt;&gt;&gt; poem
+&apos;日照香炉生紫烟，遥看瀑布挂前川。飞流直下三千尺，疑是银河落九天。&apos;
+</code></pre><p>读取文本文件最简单的方式是使用一个迭代器（iterator），它会每次返回一行。这和之前的例子类似，但代码会更短：</p>
+<pre><code>&gt;&gt;&gt; poem = &apos;&apos;
+&gt;&gt;&gt; fin = open(&apos;libai.txt&apos;, &apos;rt&apos;)
+&gt;&gt;&gt; for line in fin:
+    poem += line
+
+
+&gt;&gt;&gt; fin.close()
+&gt;&gt;&gt; len(poem)
+32
+&gt;&gt;&gt; poem
+&apos;日照香炉生紫烟，遥看瀑布挂前川。飞流直下三千尺，疑是银河落九天。&apos;
+</code></pre><p>前面所有的示例最终都返回单个字符串 poem。 函数 readlines() 调用时每次读取一行，并返回单行字符串的列表：</p>
+<pre><code>&gt;&gt;&gt; poem = &apos;&apos;&apos;日照香炉生紫烟，
+遥看瀑布挂前川。
+飞流直下三千尺,
+疑是银河落九天。
+&apos;&apos;&apos;
+&gt;&gt;&gt; fin = open(&apos;libai.txt&apos;,&apos;wt&apos;)
+&gt;&gt;&gt; fin.write(poem)
+36
+&gt;&gt;&gt; fin.close()
+&gt;&gt;&gt; fin = open(&apos;libai.txt&apos;, &apos;rt&apos;)
+&gt;&gt;&gt; lines = fin.readlines()
+&gt;&gt;&gt; fin.close()
+&gt;&gt;&gt; lines
+[&apos;日照香炉生紫烟，\n&apos;, &apos;遥看瀑布挂前川。\n&apos;, &apos;飞流直下三千尺,\n&apos;, &apos;疑是银河落九天。\n&apos;]
+
+&gt;&gt;&gt; for line in lines:
+print(line,end=&apos;&apos;)
+
+日照香炉生紫烟，
+遥看瀑布挂前川。
+飞流直下三千尺,
+疑是银河落九天。
+</code></pre><h3 id="使用-with-自动关闭文件"><a href="#使用-with-自动关闭文件" class="headerlink" title="使用 with 自动关闭文件"></a>使用 with 自动关闭文件</h3><p>Python的上下文管理器（context manager）会清理一些资源，例如打开的文件。<br>它的形式<br><code>with expression as variable：</code></p>
+<pre><code>&gt;&gt;&gt; opem = &apos;&apos;&apos;
+welcome to chenfanlinux.org
+&apos;&apos;&apos;
+
+// 利用这种方式就可以不必用close()函数关闭文件
+&gt;&gt;&gt; with open(&apos;libai.txt&apos;, &apos;wt&apos;) as fout:
+    print(opem,file=fout,end=&apos;&apos;)
+
+
+&gt;&gt;&gt; with open(&apos;libai.txt&apos;, &apos;rt&apos;) as fin:
+    for line in fin:
+        print(line,end=&apos;&apos;)
+
+welcome to chenfanlinux.org
+</code></pre><p>完成上下文管理器的代码后，文件会自动关闭。</p>
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><blockquote>
+<p>Python使用被称为异常的特殊对象来管理程序执行期间发生的错误。每当发生让Python不知 所措的错误时，它都会创建一个异常对象。如果你编写了处理该异常的代码，程序将继续运行; 如果你未对异常进行处理，程序将停止，并显示一个traceback，其中包含有关异常的报告。<br>异常是使用try-except代码块处理的。try-except代码块让Python执行指定的操作，同时告 诉Python发生异常时怎么办。使用了try-except代码块时，即便出现异常，程序也将继续运行: 显示你编写的友好的错误消息，而不是令用户迷惑的traceback。</p>
+</blockquote>
+<h3 id="使用-try-except-代码块"><a href="#使用-try-except-代码块" class="headerlink" title="使用 try-except 代码块"></a>使用 try-except 代码块</h3><blockquote>
+<p>try 语句有两种主要形式: try-except 和 try-finally . 这两个语句是互斥的, 也就是说你 只能使用其中的一种. 一个 try 语句可以对应一个或多个 except 子句, 但只能对应一个 finally 子句, 或是一个 try-except-finally 复合语句。</p>
+</blockquote>
+<p>处理ZeroDivisionError异常的try-except代码 类似于下面这样：</p>
+<pre><code>&gt;&gt;&gt; try:
+    print(5/0)
+except ZeroDivisionError:
+    print(&quot;You can&apos;t divide by zero!&quot;)
+You can&apos;t divide by zero!
+</code></pre><p>我们将导致错误的代码行print(5/0)放在了一个try代码中。如果try代码中的代码运行起来没有问题，Python将跳过except代码; 如果try代码中的代码导致了错误，Python将查找这样的except代码块，并运行其中的代码，即其中指定的错误与引发的错误相同。<br>在这个示例中，try代码中的代码引发了ZeroDivisionError异常，因此Python指出了该如何解决问题的except代码块，并运行其中的代码。这样，用户看到的是一条 好的错误消息，而不是traceback:</p>
+<pre><code>You can&apos;t divide by zero!
+</code></pre><p>如果try-except代码后面还有其他代码，程序将接着运行，因为已经告诉了Python如何处理这种错误。</p>
+<h3 id="使用异常避免崩溃"><a href="#使用异常避免崩溃" class="headerlink" title="使用异常避免崩溃"></a>使用异常避免崩溃</h3><p>发生错误时，如果程序还有工作没有完成，妥善地处理错误就尤其重要。这种情况经常会出现在要求用户提供输入的程序中;如果程序能够妥善地处理无效输入，就能再提示用户提供有效输入，而不至于崩溃。</p>
+<pre><code>#__author: Administrator
+#date: 2018/2/11
+print(&quot;Give me two numbers, and I&apos;ll divide them.&quot;)
+print(&quot;Enter &apos;q&apos; to quit.&quot;)
+while True:
+    first_number = input(&quot;\n First number: &quot;)
+    if first_number == &apos;q&apos;:
+        break
+    second_number = input(&quot;\n Second number: &quot;)
+    if second_number == &apos;q&apos;:
+        break
+
+    answer = int(first_number) / int(second_number)
+    print(answer)
+</code></pre><p>这个程序没有采取任何处理错误的措施，因此让它执行除数为0的除法运算时，它将崩溃:</p>
+<pre><code>Give me two numbers, and I&apos;ll divide them.
+Enter &apos;q&apos; to quit.
+
+First number: 5
+Second number: 0
+Traceback (most recent call last):
+  File &quot;&lt;ipython-input-208-1e61f850d337&gt;&quot;, line 11, in &lt;module&gt;
+    answer = int(first_number) / int(second_number)
+ZeroDivisionError: division by zero
+&gt;&gt;&gt;
+</code></pre><p>程序崩溃可不好，但让用户看到 traceback 也不是好主意。不懂技术的用户会被它们搞糊涂， 而且如果用户 怀有恶意，他会通过traceback获悉你不希望他知道的信息。例如，他将知道你的程序文件的名称，还将看到部分不能正确运行的代码。有时候，训练有素的攻击者可根据这些信息判断出可对你的代码发起什么样的攻击。</p>
+<h3 id="else-代码块"><a href="#else-代码块" class="headerlink" title="else 代码块"></a>else 代码块</h3><p>通过将可能引发错误的代码放在try-except代码中，可提高这个程序抵御错误的能力。错误是执行除法运算的代码行导致的，因此我们需要将它放到try-except代码块中。这个示例还包含一个else代码块; 依赖于try代码块成功执行的代码都应放到else代码中:</p>
+<pre><code>#__author: Administrator
+#date: 2018/2/11
+print(&quot;Give me two numbers, and I&apos;ll divide them.&quot;)
+print(&quot;Enter &apos;q&apos; to quit.&quot;)
+while True:
+    first_number = input(&quot;\n First number: &quot;)
+    if first_number == &apos;q&apos;:
+        break
+    second_number = input(&quot;\n Second number: &quot;)
+    if second_number == &apos;q&apos;:
+        break
+    try:
+        answer = int(first_number) / int(second_number)
+    except ZeroDivisionError:
+        print(&quot;You can&apos;t divide by 0!&quot;)
+    else:
+        print(answer)
+</code></pre><p>我们让Python尝试执行try代码块中的除法运算，这个代码块只包含可能导致错误的代码。依赖于try代码块成功执行的代码都放在else代码中; 在这个示例中，如果除法运算成功，我们就使用else代码块来打印结果。<br>except代码块告诉Python，出现ZeroDivisionError异常时该怎么办。如果try代码因除零错误而失败，我们就打印一条友好的消息，告诉用户如何避免这种错误。程序将继续运行，用户根本看不到traceback。</p>
+<pre><code>Give me two numbers, and I&apos;ll divide them.
+Enter &apos;q&apos; to quit.
+
+First number: 5
+Second number: 0
+You can&apos;t divide by 0!
+
+First number: 5
+Second number: 2
+2.5
+
+First number: q
+&gt;&gt;&gt;
+</code></pre><p>try-except-else代码块的工作原理大致如下: Python尝试执行try代码块中的代码; 只有可能引发异常的代码才需要放在try语句中。有时候，有一些仅在try代码块成功执行时才需要运行的的代码; 这些代码应放在else代码中。except代码块告诉Python，如果它尝试运行try代码块中的代码时引发了指定的异常，该怎么办。通过预测可能发生错误的代码，可编写健壮的程序，它们即便面临无效数据或缺少资源，也能继续运行，从而能够抵御无意的用户错误和恶意的攻击。</p>
+<h3 id="finally子句"><a href="#finally子句" class="headerlink" title="finally子句"></a>finally子句</h3><p>finally 子句是无论异常是否发生,是否捕捉都会执行的一段代码. 你可以将 finally 仅仅配合 try 一起使用,也可以和 try-except(else 也是可选的)一起使用。你可以用 finally 子句 与 try-except 或 try-except-else 一起使用。</p>
+<p>下面是 try-except-else-finally 语法的示例:</p>
+<pre><code>try:
+    A
+except MyException1:
+    B1
+except MyException2:
+    B2
+else:
+    C
+finally:
+    D
+</code></pre><p>当然,无论如何,你都可以有不止一个的 except 子句,但最少有一个 except 语句,而 else 和 finally 都是可选的. A,B,C 和 D 是程序(代码块). 程序会按预期的顺序执行.(注意:可能的顺序是 A-C-D[正常]或 A-B-D[异常])，无论异常发生都将执行 finally 块。</p>
+<h3 id="常见的异常"><a href="#常见的异常" class="headerlink" title="常见的异常"></a>常见的异常</h3><p><img src="https://s1.ax1x.com/2018/02/22/9UQn74.png" alt="常见的异常"></p>
+<h3 id="决定报告那些错误"><a href="#决定报告那些错误" class="headerlink" title="决定报告那些错误"></a>决定报告那些错误</h3><ul>
+<li>编写得很好且经过详尽测试的代码不容易出现内部错误，如语法或逻辑错误。</li>
+<li>但只要程序依赖于外部因素，如用户输入、存在指定的文件、有网络连接，就有可能出现异常。凭借经验可判断该在程序的什么地方包含异常处理 ，以及出现错误时该向用户提供多少相关的信息。</li>
+<li>向用户显示他不想看到的信息可能会降低程序的可用性。Python的错误处理结构让你能够细致地控制与用户分享错误信息的程度，要分享多少信息由你决定。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏2块钱,帮我买杯咖啡,继续创作,谢谢大家！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="陈凡 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliyipay.jpg" alt="陈凡 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+        -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+         
+            <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i>Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/17/Python基础之变量与运算符/" rel="next" title="Python基础之变量与运算符">
+                <i class="fa fa-chevron-left"></i> Python基础之变量与运算符
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/upload/avatar.gif"
+                alt="陈凡" />
+            
+              <p class="site-author-name" itemprop="name">陈凡</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/chenfanlinux" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:chenfan216@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/3942411590" target="_blank" title="微博">
+                    
+                      <i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/love-hero-80" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件"><span class="nav-number">1.</span> <span class="nav-text">文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件操作模型"><span class="nav-number">1.1.</span> <span class="nav-text">文件操作模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-write-写文本文件"><span class="nav-number">1.2.</span> <span class="nav-text">使用 write() 写文本文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-read-、readline-或者-readlines-读取文本文件"><span class="nav-number">1.3.</span> <span class="nav-text">使用 read()、readline() 或者 readlines() 读取文本文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-with-自动关闭文件"><span class="nav-number">1.4.</span> <span class="nav-text">使用 with 自动关闭文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常"><span class="nav-number">2.</span> <span class="nav-text">异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-try-except-代码块"><span class="nav-number">2.1.</span> <span class="nav-text">使用 try-except 代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用异常避免崩溃"><span class="nav-number">2.2.</span> <span class="nav-text">使用异常避免崩溃</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#else-代码块"><span class="nav-number">2.3.</span> <span class="nav-text">else 代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#finally子句"><span class="nav-number">2.4.</span> <span class="nav-text">finally子句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的异常"><span class="nav-number">2.5.</span> <span class="nav-text">常见的异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#决定报告那些错误"><span class="nav-number">2.6.</span> <span class="nav-text">决定报告那些错误</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+<script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=ipZXdvME3sKg6viC20OoTCYATcaOJ6SQH2wdaJEUHfc"></script>
+
+<div id="music163player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=525241230&auto=0&height=66"></iframe>
+</div>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈凡</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">58.2k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div> 
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+ <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 98812, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2018/02/22/Python基础之文件与异常/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/98812/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+<!--页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>  
+
+
+
+<!-- 
+<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-1 count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script> -->
+
+
+</body>
+</html>
