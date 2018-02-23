@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.chenfanlinux.org/"/>
-  <updated>2018-02-22T08:42:33.000Z</updated>
+  <updated>2018-02-23T04:20:32.000Z</updated>
   <id>http://www.chenfanlinux.org/</id>
   
   <author>
@@ -15,6 +15,47 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python基础之函数与模块</title>
+    <link href="http://www.chenfanlinux.org/2018/02/23/Python%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%87%BD%E6%95%B0%E4%B8%8E%E6%A8%A1%E5%9D%97/"/>
+    <id>http://www.chenfanlinux.org/2018/02/23/Python基础之函数与模块/</id>
+    <published>2018-02-23T04:15:11.000Z</published>
+    <updated>2018-02-23T04:20:32.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><blockquote><p>代码复用的第一步是使用函数，它是命名的用于区分的代码段。函数可以接受任何数字或者其他类型的输入作为参数，并且返回数字或者其他类型的结果。函数是Python为了代码最大程度的重用和最小化代码冗余而提供的最基本的程序结构。</p></blockquote><h3 id="函数的定义"><a href="#函数的定义" class="headerlink" title="函数的定义"></a>函数的定义</h3><p>在Python中，定义一个函数要使用def语句，依次写出函数名、括号、括号中的参数和冒号:；然后在缩进块中编写函数体，函数的返回值用return语句返回。</p><pre><code>def 函数名(参数):    ...    函数体    ...    返回值</code></pre><h3 id="函数的返回值"><a href="#函数的返回值" class="headerlink" title="函数的返回值"></a>函数的返回值</h3><p>函数的返回值需要使用到return这个关键字，返回值主要是用来接受函数的执行结果。</p><pre><code>&gt;&gt;&gt; def re():    if 1 == 1:        return True    else:        return False&gt;&gt;&gt; re()True</code></pre><p>函数体内部的语句在执行时，一旦执行到return时，函数就执行完毕；如果没有return语句，函数执行完毕后也会返回结果，只是结果为None。</p><a id="more"></a><h3 id="函数的参数"><a href="#函数的参数" class="headerlink" title="函数的参数"></a>函数的参数</h3><blockquote><p>定义函数的时候，我们把参数的名字和位置确定下来，函数的接口定义就完成了。对于函数的调用者来说，只需要知道如何传递正确的参数，以及函数将返回什么样的值就够了，函数内部的复杂逻辑被封装起来，调用者无需了解。</p></blockquote><h4 id="位置参数"><a href="#位置参数" class="headerlink" title="位置参数"></a>位置参数</h4><p>Python 处理参数的方式要比其他语言更加灵活。其中，最熟悉的参数类型是位置参数，传入参数的值必须按照顺序依次复制过去的。</p><pre><code>// n1, n2, n3是形参&gt;&gt;&gt; def name (n1, n2, n3):    print(&apos;1&apos;, n1)    print(&apos;2&apos;, n2)    print(&apos;3&apos;, n3)// 老大, 老二, 老三是实参&gt;&gt;&gt; name(&apos;老大&apos;, &apos;老二&apos;, &apos;老三&apos;)1 老大2 老二3 老三</code></pre><p>尽管这种方式很常见，但是位置参数的一个弊端是必须熟记没个位置的参数的含义。在调用函数name() 时误把最后一个参数当做第一个参数，会得到完全不同的结果：</p><pre><code>&gt;&gt;&gt; name(&apos;老三&apos;,&apos;老大&apos;,&apos;老二&apos;)1 老三2 老大3 老二</code></pre><h3 id="关键字参数"><a href="#关键字参数" class="headerlink" title="关键字参数"></a>关键字参数</h3><p>为了避免位置参数带来的混乱，调用参数时可以指定对应的名字，甚至可以采用与函数定义不同的顺序调用，<strong><em>关键字参数需要在位置参数之后。</em></strong></p><pre><code>&gt;&gt;&gt; name(n2=&apos;老二&apos;, n1=&apos;老大&apos;, n3=&apos;老三&apos;)1 老大2 老二3 老三</code></pre><p>你也可以把位置参数和关键字参数混合起来:</p><pre><code>&gt;&gt;&gt; name(&apos;老大&apos;, n2=&apos;老二&apos;, n3=&apos;老三&apos;)1 老大2 老二3 老三</code></pre><h3 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h3><p><strong>当调用方没有提供对应的参数值时，你可以指定默认参数值。</strong></p><pre><code>&gt;&gt;&gt; def name(n2, n3, n1=&apos;老大&apos;):    print(&apos;1&apos;, n1)    print(&apos;2&apos;, n2)    print(&apos;3&apos;, n3)&gt;&gt;&gt; name(&apos;老二&apos;, &apos;老三&apos;)1 老大2 老二3 老三</code></pre><p><strong><em>默认参数可以简化函数的调用,设置默认参数时,有几点要注意:</em></strong></p><ul><li>一是必选参数在前，默认参数在后，否则Python的解释器会报错。</li><li>当函数有多个参数时，把变化大的参数放前面，变化小的参数放后面。变化小的参数就可以作为默认参数。</li><li>定义默认参数要牢记一点：默认参数必须指向不变对象！</li></ul><p>默认参数值在函数被定义时已经计算出来，而不是在程序运行时。Python程序员经常犯的一个错误是把可变的数据类型（例如列表或者字典）当做默认参数值。Python函数在定义的时候，默认参数result的值就被计算出来了，即[]，因为默认参数result也是一个变量，它指向对象[]，每次调用该函数，如果改变了result的内容，则下次调用时，默认参数的内容就变了，不再是函数定义时的[]了。</p><pre><code>&gt;&gt;&gt; def box(arg, result=[]):    result.append(arg)    print(result)&gt;&gt;&gt; box(&apos;a&apos;)[&apos;a&apos;]&gt;&gt;&gt; box(&apos;b&apos;)[&apos;a&apos;, &apos;b&apos;]</code></pre><p>如果写成下面的样子就会解决刚才的问题：</p><pre><code>&gt;&gt;&gt; def box(arg):    result = []    result.append(arg)    return result&gt;&gt;&gt; box(&apos;a&apos;)[&apos;a&apos;]&gt;&gt;&gt; box(&apos;b&apos;)[&apos;b&apos;]</code></pre><p>这样的修改也是为了表明第一次调用跳过一些操作：</p><pre><code>&gt;&gt;&gt; def box(arg, result=None):    if result is None:        result = []    result.append(arg)    print(result)&gt;&gt;&gt; box(&apos;a&apos;)[&apos;a&apos;]&gt;&gt;&gt; box(&apos;b&apos;)[&apos;b&apos;]</code></pre><h3 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h3><p><strong>若你的函数在定义时不确定用户想传入多少个参数，就可以使用可变参数。</strong></p><pre><code>&gt;&gt;&gt; def stu_register(name, age, *args): # *args 会把多传入的参数变成一个元组形式    print(name, age , args)&gt;&gt;&gt; stu_register(&quot;chenfanlinux&quot;, 23)chenfanlinux 23 () # 后面这个()就是args,只是因为没传值,所以为空&gt;&gt;&gt; stu_register(&quot;chenfanlinux&quot;, 30, &quot;CN&quot;, &quot;Python&quot;)chenfanlinux 30 (&apos;CN&apos;, &apos;Python&apos;)  # 后面传入的参数会被当做一个元组</code></pre><p>还可以有一个 **kwargs</p><pre><code>&gt;&gt;&gt; def stu_register(name, age, *args, **kwargs):    print(name, age, args, kwargs)&gt;&gt;&gt; stu_register(&quot;chenfan&quot;, 22)chenfan 22 () {}    # 后面这个{}就是kwargs,只是因为没传值,所以为空&gt;&gt;&gt; stu_register(&quot;chenfan&quot;, 22, &quot;CN&quot;, &quot;Python&quot;, sex=&quot;Male&quot;, province=&quot;guangzhou&quot;)chenfan 22 (&apos;CN&apos;, &apos;Python&apos;) {&apos;province&apos;: &apos;guangzhou&apos;, &apos;sex&apos;: &apos;Male&apos;}</code></pre><h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a><a href="http://www.cnblogs.com/wupeiqi/articles/4963027.html" target="_blank" rel="noopener">模块</a></h2><p>在计算机程序的开发过程中，随着程序代码越写越多，在一个文件里代码就会越来越长，越来越不容易维护。<br>为了编写可维护的代码，我们把很多函数分组，分别放到不同的文件里，这样，每个文件包含的代码就相对较少，很多编程语言都采用这种组织代码的方式。<strong><em>在Python中，一个.py文件就称之为一个模块（Module）。</em></strong></p><h3 id="使用模块的好处"><a href="#使用模块的好处" class="headerlink" title="使用模块的好处"></a>使用模块的好处</h3><ul><li>最大的好处是大大提高了代码的可维护性。</li><li>编写代码不必从零开始。当一个模块编写完毕，就可以被其他地方引用。</li><li>相同名字的函数和变量完全可以分别存在不同的模块中，因此，我们自己在编写模块时，不必考虑名字会与其他模块冲突。</li><li>如果不同的人编写的模块名相同怎么办？为了避免模块名冲突，Python又引入了按目录来组织模块的方法，称为包（Package）。</li></ul><h3 id="模块与包"><a href="#模块与包" class="headerlink" title="模块与包"></a>模块与包</h3><p>举个例子，一个 <strong><em>abc.py</em></strong> 的文件就是一个名字叫 <strong><em>abc</em></strong> 的模块，一个 <strong><em>xyz.py</em></strong> 的文件就一个名字叫 <strong><em>xyz</em></strong> 的模块。</p><p>现在，假设我们的 <strong><em>abc</em></strong> 和 <strong><em>xyz</em></strong> 这两个模块名字与其他模块冲突了，于是我们可以通过包来组织模块，避免冲突。方法是选择一个顶层包名，比如<strong><em>mycompany</em></strong>，按照如下目录存放：</p><pre><code>mycompany # 包名├─ __init__.py├─ abc.py # 模块名└─ xyz.py</code></pre><p>引入了包以后，只要顶层的包名不与别人冲突，那所有模块都不会与别人冲突。现在，<strong><em>abc.py</em></strong> 模块的名字就变成了 <strong><em>mycompany.abc</em></strong>，<strong><em>xyz.py</em></strong> 的模块名变成了 <strong><em>mycompany.xyz</em></strong>。</p><p>请注意，每一个包目录下面都会有一个 __init__.py 的文件，这个文件是必须存在的，否则，Python就把这个目录当成普通目录，而不是一个包。__init__.py可以是空文件，也可以有Python代码，因为__init__.py本身就是一个模块，而它的模块名就是文件夹名mycompany。</p><p>类似的，可以有多级目录，组成多级层次的包结构。比如如下的目录结构：</p><pre><code>mycompany ├─ web │  ├─ __init__.py │  ├─ utils.py │  └─ www.py ├─ __init__.py ├─ abc.py └─ xyz.py</code></pre><p>文件www.py的模块名就是mycompany.web.www 。</p><blockquote><p>自己创建模块时要注意命名，不能和Python自带的模块名称冲突。例如，系统自带了sys模块，自己的模块就不可命名为sys.py，否则将无法导入系统自带的sys模块。</p></blockquote><h3 id="模块的导入"><a href="#模块的导入" class="headerlink" title="模块的导入"></a>模块的导入</h3><p>导入模块有一下几种方法：</p><ul><li>import module</li><li>from module.xx.xx import xx</li><li>from module.xx.xx import xx as rename</li><li>from module.xx.xx import *</li></ul><p>导入模块其实就是告诉Python解释器去解释那个py文件</p><ul><li>导入一个py文件，解释器解释该py文件</li><li>导入一个包，解释器解释该包下的 __init__.py 文件</li></ul><p>那么问题来了，导入模块时是根据那个路径作为基准来进行的呢？即：sys.path</p><pre><code>&gt;&gt;&gt; import sys&gt;&gt;&gt; print(sys.path)[&apos;&apos;, &apos;F:\\Python35\\Lib\\idlelib&apos;, &apos;F:\\Python35\\python35.zip&apos;, &apos;F:\\Python35\\DLLs&apos;, &apos;F:\\Python35\\lib&apos;, &apos;F:\\Python35&apos;, &apos;F:\\Python35\\lib\\site-packages&apos;]</code></pre><p>如果sys.path路径列表没有你想要的路径，可以通过 sys.path.append(‘路径’) 添加。</p><pre><code>import sysimport ospre_path = os.path.abspath(&apos;../&apos;)sys.path.append(pre_path)</code></pre><h3 id="模块总结"><a href="#模块总结" class="headerlink" title="模块总结"></a>模块总结</h3><p>模块是一组Python代码的集合，可以使用其他模块，也可以被其他模块使用。</p><p>创建自己的模块时，要注意：</p><ul><li>模块名要遵循Python变量命名规范，不要使用中文、特殊字符；</li><li>模块名不要和系统模块名冲突，最好先查看系统是否已存在该模块，检查方法是在Python交互环境执行import abc，若成功则说明系统存在此模块。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;函数&quot;&gt;&lt;a href=&quot;#函数&quot; class=&quot;headerlink&quot; title=&quot;函数&quot;&gt;&lt;/a&gt;函数&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;代码复用的第一步是使用函数，它是命名的用于区分的代码段。函数可以接受任何数字或者其他类型的输入作为参数，并且返回数字或者其他类型的结果。函数是Python为了代码最大程度的重用和最小化代码冗余而提供的最基本的程序结构。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;函数的定义&quot;&gt;&lt;a href=&quot;#函数的定义&quot; class=&quot;headerlink&quot; title=&quot;函数的定义&quot;&gt;&lt;/a&gt;函数的定义&lt;/h3&gt;&lt;p&gt;在Python中，定义一个函数要使用def语句，依次写出函数名、括号、括号中的参数和冒号:；然后在缩进块中编写函数体，函数的返回值用return语句返回。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def 函数名(参数):
+    ...
+    函数体
+    ...
+    返回值
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;函数的返回值&quot;&gt;&lt;a href=&quot;#函数的返回值&quot; class=&quot;headerlink&quot; title=&quot;函数的返回值&quot;&gt;&lt;/a&gt;函数的返回值&lt;/h3&gt;&lt;p&gt;函数的返回值需要使用到return这个关键字，返回值主要是用来接受函数的执行结果。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; def re():
+    if 1 == 1:
+        return True
+    else:
+        return False
+
+
+&amp;gt;&amp;gt;&amp;gt; re()
+True
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;函数体内部的语句在执行时，一旦执行到return时，函数就执行完毕；如果没有return语句，函数执行完毕后也会返回结果，只是结果为None。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="python基础知识" scheme="http://www.chenfanlinux.org/categories/python%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+    
+      <category term="Python" scheme="http://www.chenfanlinux.org/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>Python基础之文件与异常</title>
@@ -1110,65 +1151,6 @@ EXPOSE 22
 # 指定容器启动时，默认运行的命令
 CMD [&amp;quot;/bin/bash&amp;quot;]
 &lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-      <category term="Docker系列" scheme="http://www.chenfanlinux.org/categories/Docker%E7%B3%BB%E5%88%97/"/>
-    
-    
-      <category term="Docker" scheme="http://www.chenfanlinux.org/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker入门之镜像管理(二)</title>
-    <link href="http://www.chenfanlinux.org/2018/01/10/Docker%E5%85%A5%E9%97%A8%E4%B9%8B%E9%95%9C%E5%83%8F%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%AE%A1%E7%90%86-%E4%BA%8C/"/>
-    <id>http://www.chenfanlinux.org/2018/01/10/Docker入门之镜像基础概念与管理-二/</id>
-    <published>2018-01-10T07:35:23.000Z</published>
-    <updated>2018-01-26T03:39:12.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="认识最小的镜像（hello-world-）"><a href="#认识最小的镜像（hello-world-）" class="headerlink" title="认识最小的镜像（hello-world ）"></a>认识最小的镜像（hello-world ）</h2><blockquote><p>镜像是 Docker 容器的基石，容器是镜像的运行实例，有了镜像才能启动容器。理解清楚镜像的内部结构,我们才能够按照需求构建符合要求的镜像。hello-world 是 Docker 官方提供的一个镜像，通常用来验证 Docker 是否安装成功。</p></blockquote><p>我们先通过 docker pull 从 Docker Hub 下载它</p><pre><code>[root@docker ~]# docker pull hello-worldUsing default tag: latestlatest: Pulling from library/hello-worldca4f61b1923c: Pull completeDigest: sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7Status: Downloaded newer image for hello-world:latest</code></pre><p>可以使用 docker images 命令查看镜像的信息，可以看到镜像非常的小,只有1.85k</p><pre><code>[root@docker ~]# docker images |grep hello-worldhello-world  latest       f2a91732366c     6 weeks ago         1.85kB</code></pre><p>最后通过 docker run 运行镜像</p><pre><code>[root@docker ~]# docker run hello-worldHello from Docker!This message shows that your installation appears to be working correctly.To generate this message, Docker took the following steps: 1. The Docker client contacted the Docker daemon. 2. The Docker daemon pulled the &quot;hello-world&quot; image from the Docker Hub.    (amd64) 3. The Docker daemon created a new container from that image which runs the    executable that produces the output you are currently reading. 4. The Docker daemon streamed that output to the Docker client, which sent it    to your terminal.</code></pre><p>那么该镜像运行怎么就输出上面这一串信息的呢？如果对 Docker 了解一点的话自然会去找该镜像的 Dockerfile，Dockerfile 详细描述了该镜像是如何建立的以及运行时执行的命令。从 Docker Hub 上 <a href="https://hub.docker.com/r/library/hello-world/" target="_blank" rel="noopener">hello-world</a> 的库简介 找到其 <a href="https://github.com/docker-library/hello-world/blob/b7a78b7ccca62cc478919b101f3ab1334899df2b/Dockerfile" target="_blank" rel="noopener">Dockerfile</a> 在 github 上，简简单单的三条语句。</p><p><img src="https://cdn-std.dprcdn.net/files/acc_582513/4q6B6C" alt="hello-world Dockerfile"><br><strong>hello-world的Dockerfile如下:</strong></p><pre><code>FROM scratchADD hello /CMD [&quot;/hello&quot;]</code></pre><ul><li><p>第一条FROM指令是 Docker 用来指定该镜像是基于哪个基础镜像构建的，这里指定为 scratch，实际上 scratch 镜像是一个空镜像，用来构建基础镜像或者极小的镜像。</p></li><li><p>第二条ADD指令表示从 Dockerfile 所在目录拷贝文件到指定路径下，这里拷贝 hello 文件到根目录下，这里的hello文件是一个二进制可执行文件。</p></li><li><p>第三条CMD指令用来指示当运行 docker run 命令运行该镜像时要执行的命令，这里执行 /hello，就是执行第二步拷贝到根目录下的 hello 文件。</p><a id="more"></a></li></ul><h2 id="认识base镜像-centos"><a href="#认识base镜像-centos" class="headerlink" title="认识base镜像(centos)"></a>认识base镜像(centos)</h2><blockquote><p>hello-world 虽然是一个完整的镜像，但它并没有什么实际用途。通常来说，我们希望镜像能提供一个基本的操作系统环境，用户可以根据需要安装和配置软件。这样的镜像我们称作 base 镜像。base镜像具有两层含义,首先base镜像不依赖其他镜像，从 scratch 构建;另外其他镜像可以之为基础进行扩展。</p></blockquote><h3 id="拉取centos镜像"><a href="#拉取centos镜像" class="headerlink" title="拉取centos镜像"></a>拉取centos镜像</h3><p>能称作 base 镜像的通常都是各种 Linux 发行版的 Docker 镜像，比如 Ubuntu, Debian, CentOS 等。下面我们以centos为例,来分析一下Centos镜像是如何构建的。</p><pre><code>[root@docker ~]# docker pull centosUsing default tag: latestlatest: Pulling from library/centosDigest: sha256:3b1a65e9a05f0a77b5e8a698d3359459904c2a354dc3b25ae2e2f5c95f0b3667Status: Image is up to date for centos:latest[root@docker ~]# docker images centosREPOSITORY          TAG                 IMAGE ID            CREATED             SIZEcentos              latest              3fa822599e10        5 weeks ago         204MB</code></pre><p>我们上面拉取到的centos大小就204M左右,而我们平时装的系统有几个GB大小,这是为啥呢？下面解释一下。对于 base 镜像来说，底层直接用 Host 的 kernel，自己只需要提供 rootfs 就行了。<br>而对于一个精简的 OS，rootfs 可以很小，只需要包括最基本的命令、工具和程序库就可以了。相比其他 Linux 发行版，CentOS 的 rootfs 已经算臃肿的了,alpine 还不到 10MB。</p><h3 id="认识Docker文件系统"><a href="#认识Docker文件系统" class="headerlink" title="认识Docker文件系统"></a>认识Docker文件系统</h3><p>典型的Linux文件系统由bootfs和rootfs两部分组成，bootfs(boot file system)主要包含 bootloader和kernel，bootloader主要是引导加载kernel，当kernel被加载到内存中后 bootfs就被umount了。 用户空间的文件系统rootfs (root file system) 包含的就是典型 Linux 系统中的/dev，/proc，/bin，/etc等标准目录和文件。Docker在启动容器的时候，需要创建文件系统，为rootfs提供挂载点。<br><img src="https://cdn-std.dprcdn.net/files/acc_582513/7MiXuC" alt="典型的文件系统"></p><p>Docker容器是建立在Aufs基础上的，Aufs是一种Union FS， 简单来说就是支持将不同的目录挂载到同一个虚拟文件系统下，并实现一种layer的概念。Aufs将挂载到同一虚拟文件系统下的多个目录分别设置成read-only，read-write以及whiteout-able权限，对read-only目录只能读，而写操作只能实施在read-write目录中。重点在于，写操作是在read-only上的一种增量操作，不影响read-only目录。当挂载目录的时候要严格按照各目录之间的这种增量关系，将被增量操作的目录优先于在它基础上增量操作的目录挂载，待所有目录挂载结束了，继续挂载一个read-write目录，如此便形成了一种层次结构。</p><p>Docker镜像的典型结构如下图。传统的Linux加载bootfs时会先将rootfs设为read-only，然后在系统自检之后将rootfs从read-only改为read-write，然后我们就可以在rootfs上进行写和读的操作了。但Docker的镜像却不是这样，它在bootfs自检完毕之后并不会把rootfs的read-only改为read-write。而是利用union mount（UnionFS的一种挂载机制）将一个或多个read-only的rootfs加载到之前的read-only的rootfs层之上。在加载了这么多层的rootfs之后，仍然让它看起来只像是一个文件系统，在Docker的体系里把union mount的这些read-only的rootfs叫做Docker的镜像。但是，此时的每一层rootfs都是read-only的，我们此时还不能对其进行操作。当我们创建一个容器，也就是将Docker镜像进行实例化，系统会在一层或是多层read-only的rootfs之上分配一层空的read-write的rootfs。</p><p><img src="https://cdn-std.dprcdn.net/files/acc_582513/Lyk5KF" alt="Docker文件系统"></p><h2 id="认识centos镜像的Dockerfile"><a href="#认识centos镜像的Dockerfile" class="headerlink" title="认识centos镜像的Dockerfile"></a>认识centos镜像的Dockerfile</h2><blockquote><p>这些基础镜像的Dockerfile,我们可以在Docker hub上搜索到,cenots的<a href="https://github.com/CentOS/sig-cloud-instance-images/blob/37e0a7f3d98ae875dac7ae1026e99c1c04524c62/docker/Dockerfile" target="_blank" rel="noopener">dockerfile</a>如下,我们可以来分析dockerfile文件,知道整个镜像的构建过程。</p></blockquote><p><img src="https://cdn-std.dprcdn.net/files/acc_582513/WFgiMJ" alt="ceonts_dockerfile"></p><pre><code>FROM scratchADD centos-7-docker.tar.xz /LABEL name=&quot;CentOS Base Image&quot; \    vendor=&quot;CentOS&quot; \    license=&quot;GPLv2&quot; \    build-date=&quot;20171128&quot;CMD [&quot;/bin/bash&quot;]</code></pre><p>第一行是上面我们讲到scratch最小的镜像源,第二行 ADD 指令添加到镜像的 tar 包就是 CentOS 7 的 rootfs。在制作镜像时,这个 tar 包会自动解压到 / 目录下,生成 /dev、 /porc、/bin 等目录,最后就是运行一个伪终端。</p><p><strong>支持运行多种 Linux OS</strong></p><p>不同 Linux 发行版的区别主要就是 rootfs。<br><img src="https://cdn-std.dprcdn.net/files/acc_582513/EBn4fs" alt="rootfs"><br>比如 Ubuntu 14.04 使用 upstart 管理服务，apt 管理软件包；而 CentOS 7 使用 systemd 和 yum。这些都是用户空间上的区别，Linux kernel 差别不大。所以 Docker 可以同时支持多种 Linux 镜像，模拟出多种操作系统环境,但都共用宿主机的内核，只是用户空间进行了隔离。</p><h2 id="认识镜像的分层结构"><a href="#认识镜像的分层结构" class="headerlink" title="认识镜像的分层结构"></a>认识镜像的分层结构</h2><blockquote><p>实际工作中,我们的镜像大部分都是通过在base镜像中安装与配置需要的软件构建而成。</p></blockquote><p>比如我现在构建一个新的镜像，Dockerfile如下：</p><pre><code>FROM debainRUN apt-get   install emacsRUN apt-get  install apacheCMD [&quot;/bin/bash&quot;]</code></pre><p>分层架构如下：</p><p><img src="https://cdn-std.dprcdn.net/files/acc_582513/GwQiZh" alt=""><br>可以看到，新镜像是从 base 镜像一层一层叠加生成的。每安装一个软件，就在现有镜像的基础上增加一层。</p><p><strong>问什么 Docker 镜像要采用这种分层结构呢？</strong><br>有多个镜像都从相同的 base 镜像构建而来，那么 Docker Host 只需在磁盘上保存一份 base 镜像；同时内存中也只需加载一份 base 镜像，就可以为所有容器服务了。而且镜像的每一层都可以被共享。当多个镜像共享一份基础镜像，某个容器修改基础镜像中的内容，比如/dev下面的内容，其他容器不会被修改。这是因为在容器启动后，一个新的可写层被加载到镜像顶部，这一层通常被称为”容器层”，容器层是可写的，镜像层是可读的。在容器层中，用户看到的是一个叠加之后的文件系统。</p><p><strong>容器层的细节如何？</strong><br>镜像层数量可能会很多，所有镜像层会联合在一起组成一个统一的文件系统。比如/etc/abc,上层的/etc/abc会覆盖下层的/etc/abc，用户看到的就是最上层的/etc/abc内容。只有当需要修改时才复制一份数据，这种特性被称作 <a href="https://zh.wikipedia.org/wiki/%E5%AF%AB%E5%85%A5%E6%99%82%E8%A4%87%E8%A3%BD" target="_blank" rel="noopener">Copy-on-Write</a>。可见，容器层保存的是镜像变化的部分，不会对镜像本身进行任何修改。这样就解释了我们前面提出的问题：容器层记录对镜像的修改，所有镜像层都是只读的，不会被容器修改，所以镜像可以被多个容器共享。</p><ul><li><p>添加文件<br>在容器中创建文件时，新文件被添加到容器层中。</p></li><li><p>读取文件<br>在容器中读取某个文件时，Docker 会从上往下依次在各镜像层中查找此文件。一旦找到，打开并读入内存。</p></li><li><p>修改文件<br>在容器中修改已存在的文件时，Docker 会从上往下依次在各镜像层中查找此文件。一旦找到，立即将其复制到容器层，然后修改之。</p></li><li><p>删除文件<br>在容器中删除文件时，Docker 也是从上往下依次在镜像层中查找此文件。找到后，会在容器层中记录下此删除操作。</p></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;认识最小的镜像（hello-world-）&quot;&gt;&lt;a href=&quot;#认识最小的镜像（hello-world-）&quot; class=&quot;headerlink&quot; title=&quot;认识最小的镜像（hello-world ）&quot;&gt;&lt;/a&gt;认识最小的镜像（hello-world ）&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;镜像是 Docker 容器的基石，容器是镜像的运行实例，有了镜像才能启动容器。理解清楚镜像的内部结构,我们才能够按照需求构建符合要求的镜像。hello-world 是 Docker 官方提供的一个镜像，通常用来验证 Docker 是否安装成功。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;我们先通过 docker pull 从 Docker Hub 下载它&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[root@docker ~]# docker pull hello-world
-Using default tag: latest
-latest: Pulling from library/hello-world
-ca4f61b1923c: Pull complete
-Digest: sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7
-Status: Downloaded newer image for hello-world:latest
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;可以使用 docker images 命令查看镜像的信息，可以看到镜像非常的小,只有1.85k&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[root@docker ~]# docker images |grep hello-world
-hello-world  latest       f2a91732366c     6 weeks ago         1.85kB
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;最后通过 docker run 运行镜像&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[root@docker ~]# docker run hello-world
-
-Hello from Docker!
-This message shows that your installation appears to be working correctly.
-
-To generate this message, Docker took the following steps:
- 1. The Docker client contacted the Docker daemon.
- 2. The Docker daemon pulled the &amp;quot;hello-world&amp;quot; image from the Docker Hub.
-    (amd64)
- 3. The Docker daemon created a new container from that image which runs the
-    executable that produces the output you are currently reading.
- 4. The Docker daemon streamed that output to the Docker client, which sent it
-    to your terminal.
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;那么该镜像运行怎么就输出上面这一串信息的呢？如果对 Docker 了解一点的话自然会去找该镜像的 Dockerfile，Dockerfile 详细描述了该镜像是如何建立的以及运行时执行的命令。从 Docker Hub 上 &lt;a href=&quot;https://hub.docker.com/r/library/hello-world/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;hello-world&lt;/a&gt; 的库简介 找到其 &lt;a href=&quot;https://github.com/docker-library/hello-world/blob/b7a78b7ccca62cc478919b101f3ab1334899df2b/Dockerfile&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Dockerfile&lt;/a&gt; 在 github 上，简简单单的三条语句。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://cdn-std.dprcdn.net/files/acc_582513/4q6B6C&quot; alt=&quot;hello-world Dockerfile&quot;&gt;&lt;br&gt;&lt;strong&gt;hello-world的Dockerfile如下:&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;FROM scratch
-ADD hello /
-CMD [&amp;quot;/hello&amp;quot;]
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;第一条FROM指令是 Docker 用来指定该镜像是基于哪个基础镜像构建的，这里指定为 scratch，实际上 scratch 镜像是一个空镜像，用来构建基础镜像或者极小的镜像。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;第二条ADD指令表示从 Dockerfile 所在目录拷贝文件到指定路径下，这里拷贝 hello 文件到根目录下，这里的hello文件是一个二进制可执行文件。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;第三条CMD指令用来指示当运行 docker run 命令运行该镜像时要执行的命令，这里执行 /hello，就是执行第二步拷贝到根目录下的 hello 文件。&lt;/p&gt;
     
     </summary>
     
