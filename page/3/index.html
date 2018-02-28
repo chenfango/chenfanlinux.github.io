@@ -339,6 +339,234 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/11/Docker入门之容器管理-四/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/11/Docker入门之容器管理-四/" itemprop="url">Docker入门之容器管理(四)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-11T14:45:57+08:00">
+                2018-01-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker系列/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker系列</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/11/Docker入门之容器管理-四/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/11/Docker入门之容器管理-四/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,281
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="运行容器"><a href="#运行容器" class="headerlink" title="运行容器"></a>运行容器</h2><blockquote>
+<p>docker run 是启动容器的方法。通过前面的Dockerfile 时我们已经学习到，可用三种方式指定容器启动时执行的命令。</p>
+</blockquote>
+<h3 id="容器运行执行的命令"><a href="#容器运行执行的命令" class="headerlink" title="容器运行执行的命令"></a>容器运行执行的命令</h3><p>通过下面三种方式，我们来执行运行在容器中的命令。</p>
+<ul>
+<li>CMD 指令</li>
+<li>ENDPOINT 指令</li>
+<li>在 docker run 命令行中指定</li>
+</ul>
+<h3 id="运行一个容器示例"><a href="#运行一个容器示例" class="headerlink" title="运行一个容器示例"></a>运行一个容器示例</h3><pre><code>[root@docker ~]# docker run ubuntu pwd
+/
+[root@docker ~]# docker ps -a
+CONTAINER ID        IMAGE                                                                      COMMAND                  CREATED              STATUS                          PORTS               NAMES
+e12b964641c4        ubuntu                                                                     &quot;pwd&quot;                    32 seconds ago       Exited (0) 31 seconds ago                           modest_johnson
+</code></pre><p><strong>说明：</strong>  此处我们运行一个ubuntu镜像,并运行pwd命令后,容器便退出了,状态为Exited。这种“一闪而过”的容器通常不是我们想要的结果，我们希望容器能够保持 runing 状态，这样才能被我们使用。</p>
+<h3 id="让容器长久的运行"><a href="#让容器长久的运行" class="headerlink" title="让容器长久的运行"></a>让容器长久的运行</h3><p>因为容器的生命周期依赖于启动时执行的命令，只要该命令不结束，容器也就不会退出。理解了这个原理，我们就可以通过执行一个长期运行的命令来保持容器的运行状态。</p>
+<pre><code>[root@docker ~]# docker run ubuntu /bin/bash -c &quot;while true;do sleep 1;done&quot;
+[root@docker ~]# docker ps -a
+CONTAINER ID        IMAGE                                                                      COMMAND                  CREATED             STATUS                     PORTS               NAMES
+d36bbcefec6b        ubuntu                                                                     &quot;/bin/bash -c &apos;while…&quot;   50 seconds ago      Up 49 seconds                                  eager_lumiere
+</code></pre><p>上面利用执行循环命令，让命令一直执行，容器自然就不会退出(Exited)状态,而是一直运行(Up)状态。但这样终端会被一直占用。可以利用加上参数-d 以后台方式运行容器。</p>
+<pre><code>[root@docker ~]# docker stop d36bbcefec6b
+d36bbcefec6b
+[root@docker ~]# docker rm d36bbcefec6b
+d36bbcefec6b
+[root@docker ~]# docker run -d ubuntu /bin/bash -c &quot;while true;do sleep 1;done&quot;
+a141b831a16edbb94ab41553e2be2af79e2d5b68f25877db40750c49cc991649
+
+[root@docker ~]# docker ps -a
+CONTAINER ID        IMAGE                                                                      COMMAND                  CREATED             STATUS                      PORTS               NAMES
+a141b831a16e        ubuntu
+</code></pre><p><strong>说明事项：</strong></p>
+<ul>
+<li>CONTAINER ID 是容器的 “短ID”，前面启动容器时返回的是 “长ID”。短ID是长ID的前12个字符。</li>
+<li>NAMES 字段显示容器的名字，在启动容器时可以通过 –name 参数显示地为容器命名，如果不指定，docker 会自动为容器分配名字。</li>
+<li>我们可以利用docker stop CONTAINER ID 停止正在运行的容器，并使用docker rm CONTAINER ID 删除停止的容器;docker run -d COMMAND 以后台的方式运行容器。</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/11/Docker入门之容器管理-四/#thêm" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    
+    <div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/10/Docker入门之Dockerfile最佳实践-三/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -513,7 +741,7 @@ CMD [&quot;/bin/bash&quot;]
 </code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/10/Docker入门之Dockerfile最佳实践-三/#more" rel="contents">
+            <a class="btn" href="/2018/01/10/Docker入门之Dockerfile最佳实践-三/#thêm" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -742,7 +970,7 @@ CMD [&quot;/hello&quot;]
 <li><p>第三条CMD指令用来指示当运行 docker run 命令运行该镜像时要执行的命令，这里执行 /hello，就是执行第二步拷贝到根目录下的 hello 文件。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/10/Docker入门之镜像基础概念与管理-二/#more" rel="contents">
+            <a class="btn" href="/2018/01/10/Docker入门之镜像基础概念与管理-二/#thêm" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -961,7 +1189,7 @@ CMD [&quot;/hello&quot;]
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/05/Bash特性汇总/#more" rel="contents">
+            <a class="btn" href="/2018/01/05/Bash特性汇总/#thêm" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1170,7 +1398,7 @@ CMD [&quot;/hello&quot;]
 <p><img src="https://cdn-std.dprcdn.net/files/acc_582513/6RGWHJ" alt="性能对比"></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/28/Docker入门之基础概念与架构-一/#more" rel="contents">
+            <a class="btn" href="/2017/12/28/Docker入门之基础概念与架构-一/#thêm" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1473,7 +1701,7 @@ CMD [&quot;/hello&quot;]
 </table>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/24/编辑器之神-vim/#more" rel="contents">
+            <a class="btn" href="/2017/12/24/编辑器之神-vim/#thêm" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1697,7 +1925,7 @@ Negative changed to zero
 </code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/19/python基础之流程控制/#more" rel="contents">
+            <a class="btn" href="/2017/12/19/python基础之流程控制/#thêm" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1921,7 +2149,7 @@ CentOS Linux release 7.4.1708 (Core)
 </code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/11/zabbx基础安装/#more" rel="contents">
+            <a class="btn" href="/2017/12/11/zabbx基础安装/#thêm" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2161,7 +2389,7 @@ $ hexo new page &quot;pageName&quot; //新建页面
 </code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/04/my-first-article/#more" rel="contents">
+            <a class="btn" href="/2017/12/04/my-first-article/#thêm" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2256,7 +2484,7 @@ $ hexo new page &quot;pageName&quot; //新建页面
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2366,7 +2594,7 @@ $ hexo new page &quot;pageName&quot; //新建页面
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">61.8k</span>
+    <span title="Site words total count">62.4k</span>
   
 </div>
 
