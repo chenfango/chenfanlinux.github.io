@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="陈凡的个人站点" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="高阶函数在函数式编程中，我们可以将函数当作变量一样自由使用。一个函数接收另一个函数作为参数，这种函数称之为高阶函数（Higher-order Functions）。 看一个简单的例子： def func(g, arr):     return [g(x) for x in arr] 上面的代码中，func 是一个高阶函">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python进阶之函数式编程">
+<meta property="og:url" content="http://www.chenfanlinux.org/2018/03/12/Python进阶之函数式编程/index.html">
+<meta property="og:site_name" content="陈凡的个人站点">
+<meta property="og:description" content="高阶函数在函数式编程中，我们可以将函数当作变量一样自由使用。一个函数接收另一个函数作为参数，这种函数称之为高阶函数（Higher-order Functions）。 看一个简单的例子： def func(g, arr):     return [g(x) for x in arr] 上面的代码中，func 是一个高阶函数，它接收两个参数，第 1 个参数是函数，第 2 个参数是数组，func 的功能">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-12T15:02:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python进阶之函数式编程">
+<meta name="twitter:description" content="高阶函数在函数式编程中，我们可以将函数当作变量一样自由使用。一个函数接收另一个函数作为参数，这种函数称之为高阶函数（Higher-order Functions）。 看一个简单的例子： def func(g, arr):     return [g(x) for x in arr] 上面的代码中，func 是一个高阶函数，它接收两个参数，第 1 个参数是函数，第 2 个参数是数组，func 的功能">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'X18Q8YOK7R',
+      apiKey: '4cf6f4ea962b4c633859ca376c0d6ae9',
+      indexName: 'chenfanlinux',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfanlinux.org/2018/03/12/Python进阶之函数式编程/"/>
+
+
+
+
+
+  <title>Python进阶之函数式编程 | 陈凡的个人站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?your-analytics-id";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+ 
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">陈凡的个人站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">chenfanlinux.org</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/03/12/Python进阶之函数式编程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Python进阶之函数式编程</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-12T23:00:58+08:00">
+                2018-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python进阶知识/" itemprop="url" rel="index">
+                    <span itemprop="name">python进阶知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/12/Python进阶之函数式编程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/12/Python进阶之函数式编程/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,405
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h2><p>在函数式编程中，我们可以将函数当作变量一样自由使用。一个函数接收另一个函数作为参数，这种函数称之为<strong>高阶函数（Higher-order Functions）</strong>。</p>
+<p>看一个简单的例子：</p>
+<pre><code>def func(g, arr):
+    return [g(x) for x in arr]
+</code></pre><p>上面的代码中，func 是一个高阶函数，它接收两个参数，第 1 个参数是函数，第 2 个参数是数组，func 的功能是将函数 g 逐个作用于数组 arr 上，并返回一个新的数组，比如，我们可以这样用：</p>
+<pre><code>def double(x):
+    return 2 * x
+
+def square(x):
+    return x * x
+
+arr1 = func(double, [1, 2, 3, 4])
+arr2 = func(square, [1, 2, 3, 4])
+</code></pre><p>不难判断出，arr1 是 [2, 4, 6, 8]，arr2 是 [1, 4, 9, 16]。<br>可接收其他函数作为参数的函数称为高阶函数。</p>
+<a id="more"></a>
+<h2 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h2><p>在 Python 中，我们使用 def 语句来定义函数，比如：</p>
+<pre><code>&gt;&gt;&gt; def double(x):
+    return 2 * x
+</code></pre><p>除了用上面的方式定义函数，Python 还提供了一个关键字 lambda，让我们可以创建一个匿名函数，也就是没有名称的函数。它的形式如下：</p>
+<pre><code>lambda 参数: 表达式
+</code></pre><p>关键字 lambda 说明它是一个匿名函数，冒号 : 前面的变量是该匿名函数的参数，冒号后面是函数的返回值，注意这里不需使用 return 关键字。</p>
+<p>我们将上面的 double 函数改写成一个匿名函数，如下：</p>
+<pre><code>lambda x: 2 * x
+</code></pre><p>那怎么调用匿名函数呢？可以直接这样使用：</p>
+<pre><code>&gt;&gt;&gt; (lambda x: 2 * x)(8)
+16
+</code></pre><p>由于匿名函数本质上是一个函数对象，也可以将其赋值给另一个变量，再由该变量来调用函数，如下：</p>
+<pre><code>&gt;&gt;&gt; f = lambda x: 2 * x   # 将匿名函数赋给变量 f
+&gt;&gt;&gt; f
+&lt;function &lt;lambda&gt; at 0x7f835a696578&gt;
+&gt;&gt;&gt; f(8)
+16
+</code></pre><p>lambda 函数一般适用于创建一些临时性的，小巧的函数。比如上面的 double 函数，我们当然可以使用 def 来定义，但使用 lambda 来创建会显得很简洁，尤其是在高阶函数的使用中。</p>
+<ul>
+<li>匿名函数本质上是一个函数，没有函数名称，因此使用匿名函数不用担心函数名冲突；</li>
+<li>匿名函数一般适用于创建一些临时性的，小巧的函数。</li>
+</ul>
+<h2 id="map-reduce-filter"><a href="#map-reduce-filter" class="headerlink" title="map/reduce/filter"></a>map/reduce/filter</h2><p>map/reduce/filter 是 Python 中较为常用的内建高阶函数，它们为函数式编程提供了不少便利。</p>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>map 函数的使用形式如下：</p>
+<pre><code>map(function, sequence)
+</code></pre><p>解释：对 sequence 中的 item 依次执行 function(item)，并将结果组成一个 List 返回，也就是：</p>
+<pre><code>[function(item1), function(item2), function(item3), ...]
+</code></pre><p>看一些简单的例子：</p>
+<pre><code>&gt;&gt;&gt; def square(x):
+    return x * x
+
+&gt;&gt;&gt; list(map(square, [1, 2, 3, 4]))
+[1, 4, 9, 16]
+
+&gt;&gt;&gt; list(map(lambda x: x*x , [1, 2, 3, 4]))
+[1, 4, 9, 16]
+
+&gt;&gt;&gt; list(map(str, [1, 2, 3, 4]))
+[&apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;4&apos;]
+
+&gt;&gt;&gt; list(map(int, [&apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;4&apos;]))
+[1, 2, 3, 4]
+</code></pre><p>再看一个例子：</p>
+<pre><code>&gt;&gt;&gt; def double(x):
+    return 2 * x
+
+&gt;&gt;&gt; def triple(x):
+    return 3 *x
+
+&gt;&gt;&gt; def square(x):
+    return x * x
+
+&gt;&gt;&gt; funcs = [double, triple, square]  # 列表元素是函数对象
+&gt;&gt;&gt;
+&gt;&gt;&gt; # 相当于 [double(4), triple(4), square(4)]
+value = list(map(lambda f: f(4), funcs))
+&gt;&gt;&gt;
+&gt;&gt;&gt; print(value)
+[8, 12, 16]
+&gt;&gt;&gt;
+</code></pre><h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><p>reduce 函数的使用形式如下：</p>
+<pre><code>reduce(function, sequence[, initial])
+</code></pre><p><strong>解释</strong>：先将 sequence 的前两个 item 传给 function，即 function(item1, item2)，函数的返回值和 sequence 的下一个 item 再传给 function，即 function(function(item1, item2), item3)，如此迭代，直到 sequence 没有元素，如果有 initial，则作为初始值调用。</p>
+<p>也就是说：</p>
+<pre><code>reduece(f, [x1, x2, x3, x4]) = f(f(f(x1, x2), x3), x4)
+</code></pre><p>看一些例子，就能很快理解了。</p>
+<pre><code>&gt;&gt;&gt; from functools import reduce
+&gt;&gt;&gt; reduce(lambda x, y: x * y, [1, 2, 3, 4])  # 相当于 ((1 * 2) * 3) * 4
+24
+
+&gt;&gt;&gt; reduce(lambda x, y: x * y, [1, 2, 3, 4], 5) # ((((5 * 1) * 2) * 3)) * 4
+120
+
+&gt;&gt;&gt; f = lambda a, b: a if (a &gt; b) else b   # 两两比较，取最大值
+&gt;&gt;&gt; reduce(f, [5, 8, 1, 10])
+10
+</code></pre><h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><p>filter 函数用于过滤元素，它的使用形式如下：</p>
+<pre><code>filter(function, sequnce)
+</code></pre><p><strong>解释</strong>：将 function 依次作用于 sequnce 的每个 item，即 function(item)，将返回值为 True 的 item 组成一个 List/String/Tuple (取决于 sequnce 的类型，python3 统一返回迭代器) 返回</p>
+<pre><code>&gt;&gt;&gt; even_num = list(filter(lambda x: x % 2 == 0, [1, 2, 3, 4, 5, 6]))
+&gt;&gt;&gt; even_num
+[2, 4, 6]
+
+&gt;&gt;&gt; odd_num = list(filter(lambda x: x % 2, [1, 2, 3, 4, 5, 6]))
+&gt;&gt;&gt; odd_num
+[1, 3, 5]
+</code></pre><h2 id="携带状态的闭包"><a href="#携带状态的闭包" class="headerlink" title="携带状态的闭包"></a>携带状态的闭包</h2><h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>在 Python 中，函数也是一个对象。因此，我们在定义函数时，可以再嵌套定义一个函数，并将该嵌套函数返回，比如：</p>
+<pre><code>&gt;&gt;&gt; from math import pow
+&gt;&gt;&gt; def make_pow(n):
+        def inner_func(x): # 嵌套定义了 inner_func
+            return pow(x, n) # 注意这里引用了外部函数的n
+        return inner_func # 返回 inner_func
+</code></pre><p>上面的代码中，函数 make_pow 里面又定义了一个内部函数 inner_func，然后将该函数返回。因此，我们可以使用 make_pow 来生成另一个函数。</p>
+<pre><code>&gt;&gt;&gt; pow2 = make_pow(2) # pow2 是一个函数,参数2是自由变量
+&gt;&gt;&gt; pow2
+&lt;function make_pow.&lt;locals&gt;.inner_func at 0x0000000003556488&gt;
+&gt;&gt;&gt; pow2(6)
+36.0
+</code></pre><p>我们还注意到，内部函数 inner_func 引用了外部函数 make_pow 的自由变量 n，这也就意味着，当函数 make_pow 的生命周期结束之后，n 这个变量依然会保存在 inner_func 中，它被 inner_func 所引用。</p>
+<pre><code>&gt;&gt;&gt; del make_pow         # 删除 make_pow
+&gt;&gt;&gt; pow3 = make_pow(3)
+Traceback (most recent call last):
+  File &quot;&lt;pyshell#13&gt;&quot;, line 1, in &lt;module&gt;
+    pow3 = make_pow(3)
+NameError: name &apos;make_pow&apos; is not defined
+&gt;&gt;&gt; pow2(9)     # pow2 仍可正常调用，自由变量 2 仍保存在 pow2 中
+81.0
+</code></pre><p>像上面这种情况，一个函数返回了一个内部函数，该内部函数引用了外部函数的相关参数和变量，我们把该返回的内部函数称为闭包（Closure）。在上面的例子中，inner_func 就是一个闭包，它引用了自由变量 n。</p>
+<h3 id="闭包的作用"><a href="#闭包的作用" class="headerlink" title="闭包的作用"></a>闭包的作用</h3><ul>
+<li>闭包的最大特点就是引用了自由变量，即使生成闭包的环境已经释放，闭包仍然存在。</li>
+<li>闭包在运行时可以有多个实例，即使传入的参数相同。</li>
+</ul>
+<p>实例：</p>
+<pre><code>&gt;&gt;&gt; pow_a = make_pow(2)
+&gt;&gt;&gt; pow_b = make_pow(2)
+&gt;&gt;&gt; pow_a == pow_b
+False
+</code></pre><ul>
+<li>利用闭包，我们还可以模拟类的实例。</li>
+</ul>
+<p>这里构造一个类，用于求一个点到另一个点的距离：</p>
+<pre><code>from math import sqrt
+
+class Point(object):
+    def __init__(self, x, y):
+        self.x, self.y = x, y
+
+    def get_distance(self, u, v):
+        distance = sqrt((self.x - u) ** 2 + (self.y - v) ** 2)
+        return distance
+
+&gt;&gt;&gt; pt = Point(7, 2)        # 创建一个点
+&gt;&gt;&gt; pt.get_distance(10, 6)  # 求到另一个点的距离
+5.0
+</code></pre><p>用闭包来实现：</p>
+<pre><code>&gt;&gt;&gt; def point(x, y):
+    def get_distance(u, v):
+        return sqrt((x - u) ** 2 + (y - v) ** 2)
+
+    return get_distance
+
+&gt;&gt;&gt; pt = point(7, 2) # 自由变量 7,2
+&gt;&gt;&gt; pt(10, 6)
+5.0
+</code></pre><p>可以看到，结果是一样的，但使用闭包实现比使用类更加简洁。</p>
+<h3 id="常见误区"><a href="#常见误区" class="headerlink" title="常见误区"></a>常见误区</h3><p>闭包的概念很简单，但实现起来却容易出现一些误区，比如下面的例子：</p>
+<pre><code>def count():
+    funcs = []
+    for i in [1, 2, 3]:
+        def f():
+            return i
+        funcs.append(f)
+    return funcs
+</code></pre><p>在该例子中，我们在每次 for 循环中创建了一个函数，并将它存到 funcs 中。现在，调用上面的函数，你可能认为返回结果是 1, 2, 3，事实上却不是：</p>
+<pre><code>&gt;&gt;&gt; f1, f2, f3 = count()
+&gt;&gt;&gt; f1()
+3
+&gt;&gt;&gt; f2()
+3
+&gt;&gt;&gt; f3()
+3
+</code></pre><p>为什么呢？原因在于上面的函数 f 引用了变量 i，但函数 f 并非立刻执行，当 for 循环结束时，此时变量 i 的值是3，funcs 里面的函数引用的变量都是 3，最终结果也就全为 3。</p>
+<p>因此，我们应尽量避免在闭包中引用循环变量，或者后续会发生变化的变量。</p>
+<p>那上面这种情况应该怎么解决呢？我们可以再创建一个函数，并将循环变量的值传给该函数，如下：</p>
+<pre><code>def count():
+funcs = []
+for i in [1, 2, 3]:
+    def g(param):
+        f = lambda : param    # 这里创建了一个匿名函数
+        return f
+    funcs.append(g(i))        # 将循环变量的值传给 g
+return funcs
+
+&gt;&gt;&gt; f1, f2, f3 = count()
+&gt;&gt;&gt; f1()
+1
+&gt;&gt;&gt; f2()
+2
+&gt;&gt;&gt; f3()
+3
+</code></pre><ul>
+<li>闭包是携带自由变量的函数，即使创建闭包的外部函数的生命周期结束了，闭包所引用的自由变量仍会存在。</li>
+<li>闭包在运行可以有多个实例。</li>
+<li>尽量不要在闭包中引用循环变量，或者后续会发生变化的变量。</li>
+</ul>
+<h2 id="会打扮的装饰器"><a href="#会打扮的装饰器" class="headerlink" title="会打扮的装饰器"></a>会打扮的装饰器</h2><p>我们知道，在 Python 中，我们可以像使用变量一样使用函数：</p>
+<ul>
+<li>函数可以被赋值给其他变量</li>
+<li>函数可以被删除</li>
+<li>可以在函数里面再定义函数</li>
+<li>函数可以作为参数传递给另外一个函数</li>
+<li>函数可以作为另一个函数的返回</li>
+</ul>
+<p><strong>简而言之，函数就是一个对象。</strong></p>
+<h3 id="对一个简单的函数进行装饰"><a href="#对一个简单的函数进行装饰" class="headerlink" title="对一个简单的函数进行装饰"></a>对一个简单的函数进行装饰</h3><p>为了更好地理解装饰器，我们先从一个简单的例子开始，假设有下面的函数：</p>
+<pre><code>&gt;&gt;&gt; def hello():
+    return &apos;hello world&apos;
+</code></pre><p>现在我们想增强 hello() 函数的功能，希望给返回加上 HTML 标签，比如 <i>hello world</i>，但是有一个要求，不改变原来 hello() 函数的定义。这里当然有很多种方法，下面给出一种跟本文相关的方法：</p>
+<pre><code>def makeitalic(func):
+    def wrapped():
+        return &quot;&lt;i&gt;&quot; + func() + &quot;&lt;/i&gt;&quot;
+    return wrapped
+</code></pre><p>在上面的代码中，我们定义了一个函数 makeitalic，该函数有一个参数 func，它是一个函数；在 makeitalic 函数里面我们又定义了一个内部函数 wrapped，并将该函数作为返回。</p>
+<p>现在，我们就可以不改变 hello() 函数的定义，给返回加上 HTML 标签了：</p>
+<pre><code>&gt;&gt;&gt; hello = makeitalic(hello)  # 将 hello 函数传给 makeitalic
+&gt;&gt;&gt; hello()
+&apos;&lt;i&gt;&lt;i&gt;hello world&lt;/i&gt;&lt;/i&gt;&apos;
+</code></pre><p>在上面，我们将 hello 函数传给 makeitalic，再将返回新功能函数 wrapped 赋给 hello，此时调用 hello() 就得到了我们想要的结果。</p>
+<p>不过要注意的是，由于我们将 makeitalic 的返回赋给了 hello，此时 hello() 函数仍然存在，但是它的函数名不再是 hello 了，而是 wrapped，正是 makeitalic 返回函数的名称，可以验证一下：</p>
+<pre><code>&gt;&gt;&gt; hello.__name__
+&apos;wrapped&apos;
+</code></pre><p>现在，我们梳理一下上面的例子，为了增强原函数 hello 的功能，我们定义了一个函数，它接收原函数作为参数，并返回一个新的函数，完整的代码如下：</p>
+<pre><code>def makeitalic(func):
+    def wrapped():
+        return &quot;&lt;i&gt;&quot; + func() + &quot;&lt;/i&gt;&quot;
+    return wrapped
+
+def hello():
+    return &apos;hello world&apos;
+
+hello = makeitalic(hello)
+</code></pre><p>事实上，makeitalic 就是一个装饰器（decorator），它『装饰』了函数 hello，并返回一个函数，将其赋给 hello。</p>
+<p>一般情况下，我们使用装饰器提供的 @ 语法糖（Syntactic Sugar），来简化上面的写法：</p>
+<pre><code>&gt;&gt;&gt; def makeitalic(func):
+    def wrapped():
+        return &quot;&lt;i&gt;&quot; + func() + &quot;&lt;/i&gt;&quot;
+    return wrapped
+
+&gt;&gt;&gt; @makeitalic
+def hello():
+    return &apos;hello world&apos;
+</code></pre><p>像上面的情况，可以动态修改函数（或类）功能的函数就是装饰器。本质上，它是一个高阶函数，以被装饰的函数（比如上面的 hello）为参数，并返回一个包装后的函数（比如上面的 wrapped）给被装饰函数（hello）。</p>
+<h3 id="装饰器的使用形式"><a href="#装饰器的使用形式" class="headerlink" title="装饰器的使用形式"></a>装饰器的使用形式</h3><p>1.装饰器的一般使用形式如下：</p>
+<pre><code>@decorator
+def func():
+    pass
+</code></pre><p>等价于下面的形式：</p>
+<pre><code>def func():
+    pass
+func = decorator(func)
+</code></pre><p>2.装饰器可以定义多个，离函数定义最近的装饰器先被调用，比如：</p>
+<pre><code>@decorator_one
+@decorator_two
+def func():
+    pass
+</code></pre><p>等价于：</p>
+<pre><code>def func():
+    pass
+
+func = decorator_one(decorator_two(func))
+</code></pre><p>3.装饰器还可以带参数，比如：</p>
+<pre><code>@decorator(arg1, arg2)
+def func():
+    pass
+</code></pre><p>等价于：</p>
+<pre><code>def func():
+    pass
+
+func = decorator(arg1, arg2)(func)
+</code></pre><p>下面我们再看一些具体的例子，以加深对它的理解。</p>
+<h3 id="对带参数的函数进行装饰"><a href="#对带参数的函数进行装饰" class="headerlink" title="对带参数的函数进行装饰"></a>对带参数的函数进行装饰</h3><p>前面的例子中，被装饰的函数 hello() 是没有带参数的，我们看看被装饰函数带参数的情况。对前面例子中的 hello() 函数进行改写，使其带参数，如下：</p>
+<pre><code>&gt;&gt;&gt; def makeitalic(func):
+    def wrapped(*args, **kwargs):
+        ret = func(*args,**kwargs)
+        return &apos;&lt;i&gt;&apos; + ret + &apos;&lt;/i&gt;&apos;
+    return wrapped
+
+&gt;&gt;&gt; @makeitalic
+def hello(name):
+    return &apos;hello %s&apos; % name
+
+&gt;&gt;&gt; @makeitalic
+def hello2(name1, name2):
+    return &apos;hello %s, %s&apos; %(name1, name2)
+</code></pre><p>由于函数 hello 带参数，因此内嵌包装函数 wrapped 也做了一点改变：</p>
+<ul>
+<li>内嵌包装函数的参数传给了 func，即被装饰函数，也就是说内嵌包装函数的参数跟被装饰函数的参数对应，这里使用了 (<em>args, *</em>kwargs)，是为了适应可变参数。</li>
+</ul>
+<p>看看使用：</p>
+<pre><code>&gt;&gt;&gt; hello(&apos;python&apos;)
+&apos;&lt;i&gt;hello python&lt;/i&gt;&apos;
+&gt;&gt;&gt; hello2(&apos;python&apos;, &apos;java&apos;)
+&apos;&lt;i&gt;hello python, java&lt;/i&gt;&apos;
+</code></pre><h3 id="带参数的装饰器"><a href="#带参数的装饰器" class="headerlink" title="带参数的装饰器"></a>带参数的装饰器</h3><p>上面的例子，我们增强了函数 hello 的功能，给它的返回加上了标签 <i></i>，现在，我们想改用标签 <b\></b\> 或 <p\></p\>。是不是要像前面一样，再定义一个类似 makeitalic 的装饰器呢？其实，我们可以定义一个函数，将标签作为参数，返回一个装饰器，比如：</p>
+<pre><code>&gt;&gt;&gt; def wrap_in_tag(tag):
+    def decorator(func):
+        def wrapped(*args, **kwargs):
+            ret = func(*args, **kwargs)
+            return &apos;&lt;/&apos; + tag + &apos;&gt;&apos; + ret + &apos;&lt;/&apos; + tag + &apos;&gt;&apos;
+        return wrapped
+    return decorator
+</code></pre><p>现在，我们可以根据需要生成想要的装饰器了：</p>
+<pre><code>&gt;&gt;&gt; makebold = wrap_in_tag(&apos;b&apos;)  # 根据 &apos;b&apos; 返回 makebold 生成器
+&gt;&gt;&gt; def hello(name):
+    return &apos;hello %s&apos; % name
+
+&gt;&gt;&gt; hello(&apos;world&apos;)
+&apos;hello world&apos;
+</code></pre><p>上面的形式也可以写得更加简洁：</p>
+<pre><code>&gt;&gt;&gt; @wrap_in_tag(&apos;b&apos;)
+def hello(name):
+    return &apos;hello %s&apos; % name
+
+&gt;&gt;&gt; hello(&apos;world&apos;)
+&apos;&lt;/b&gt;hello world&lt;/b&gt;&apos;
+</code></pre><p>这就是带参数的装饰器，其实就是在装饰器外面多了一层包装，根据不同的参数返回不同的装饰器。</p>
+<h3 id="多个装饰器"><a href="#多个装饰器" class="headerlink" title="多个装饰器"></a>多个装饰器</h3><p>现在，让我们来看看多个装饰器的例子，为了简单起见，下面的例子就不使用带参数的装饰器。</p>
+<pre><code>&gt;&gt;&gt; def makebold(func):
+    def wrapped():
+        return &apos;&lt;b&gt;&apos; + func() + &apos;&lt;/b&gt;&apos;
+
+    return wrapped
+
+&gt;&gt;&gt;
+&gt;&gt;&gt; def makeitalic(func):
+    def wrapped():
+        return &apos;&lt;i&gt;&apos; + func() + &apos;&lt;/i&gt;&apos;
+
+    return wrapped
+
+&gt;&gt;&gt; @makebold
+@makeitalic
+def hello():
+    return &apos;hello world&apos;
+
+&gt;&gt;&gt; hello()
+&apos;&lt;b&gt;&lt;i&gt;hello world&lt;/i&gt;&lt;/b&gt;&apos;
+</code></pre><p>上面定义了两个装饰器，对 hello 进行装饰，上面的最后几行代码相当于：</p>
+<pre><code>def hello():
+    return &apos;hello world&apos;
+
+hello = makebold(makeitalic(hello))
+</code></pre><p>调用函数 hello：</p>
+<pre><code>&gt;&gt;&gt; hello()
+&apos;&lt;b&gt;&lt;i&gt;hello world&lt;/i&gt;&lt;/b&gt;&apos;
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏2块钱,帮我买杯咖啡,继续创作,谢谢大家！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="陈凡 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliyipay.jpg" alt="陈凡 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+        -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+         
+            <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i>Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/12/Python进阶之面向对象/" rel="next" title="Python进阶之面向对象">
+                <i class="fa fa-chevron-left"></i> Python进阶之面向对象
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/upload/avatar.gif"
+                alt="陈凡" />
+            
+              <p class="site-author-name" itemprop="name">陈凡</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/chenfanlinux" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:chenfan216@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/3942411590" target="_blank" title="微博">
+                    
+                      <i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/love-hero-80" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#高阶函数"><span class="nav-number">1.</span> <span class="nav-text">高阶函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匿名函数"><span class="nav-number">2.</span> <span class="nav-text">匿名函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#map-reduce-filter"><span class="nav-number">3.</span> <span class="nav-text">map/reduce/filter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#map"><span class="nav-number">3.1.</span> <span class="nav-text">map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reduce"><span class="nav-number">3.2.</span> <span class="nav-text">reduce</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filter"><span class="nav-number">3.3.</span> <span class="nav-text">filter</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#携带状态的闭包"><span class="nav-number">4.</span> <span class="nav-text">携带状态的闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包"><span class="nav-number">4.1.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包的作用"><span class="nav-number">4.2.</span> <span class="nav-text">闭包的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见误区"><span class="nav-number">4.3.</span> <span class="nav-text">常见误区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#会打扮的装饰器"><span class="nav-number">5.</span> <span class="nav-text">会打扮的装饰器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对一个简单的函数进行装饰"><span class="nav-number">5.1.</span> <span class="nav-text">对一个简单的函数进行装饰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#装饰器的使用形式"><span class="nav-number">5.2.</span> <span class="nav-text">装饰器的使用形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对带参数的函数进行装饰"><span class="nav-number">5.3.</span> <span class="nav-text">对带参数的函数进行装饰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#带参数的装饰器"><span class="nav-number">5.4.</span> <span class="nav-text">带参数的装饰器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多个装饰器"><span class="nav-number">5.5.</span> <span class="nav-text">多个装饰器</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+<script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=ipZXdvME3sKg6viC20OoTCYATcaOJ6SQH2wdaJEUHfc"></script>
+
+<div id="music163player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=525241230&auto=0&height=66"></iframe>
+</div>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈凡</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">71.4k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div> 
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+ <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 98812, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2018/03/12/Python进阶之函数式编程/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/98812/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+<!--页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>  
+
+
+
+<!-- 
+<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-1 count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script> -->
+
+
+</body>
+</html>
