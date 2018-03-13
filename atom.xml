@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.chenfanlinux.org/"/>
-  <updated>2018-03-12T15:02:58.000Z</updated>
+  <updated>2018-03-13T07:41:34.000Z</updated>
   <id>http://www.chenfanlinux.org/</id>
   
   <author>
@@ -15,6 +15,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python项目实战之密码管理器</title>
+    <link href="http://www.chenfanlinux.org/2018/03/13/Python%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%E4%B9%8B%E5%AF%86%E7%A0%81%E7%AE%A1%E7%90%86%E5%99%A8/"/>
+    <id>http://www.chenfanlinux.org/2018/03/13/Python项目实战之密码管理器/</id>
+    <published>2018-03-13T07:34:52.000Z</published>
+    <updated>2018-03-13T07:41:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="使用介绍"><a href="#使用介绍" class="headerlink" title="使用介绍"></a>使用介绍</h2><h3 id="写入密码"><a href="#写入密码" class="headerlink" title="写入密码"></a>写入密码</h3><pre><code>$  python .\zpass4.py -m w1 web, 2 server, 0 退出 1title:chenfanlinuxuser:chenfanpasswd:123456url:chenfanlinux.org{&apos;web&apos;: {&apos;chenfanlinux&apos;: {&apos;passwd&apos;: &apos;123456&apos;,                          &apos;url&apos;: &apos;chenfanlinux.org&apos;,                          &apos;user&apos;: &apos;chenfan&apos;}}}保存成功!$  python .\zpass4.py -m w1 web, 2 server, 0 退出 2title:tomcat01user:rootpasswd:123hostname:tomcat01-serverip:127.0.0.1{&apos;server&apos;: {&apos;tomcat01&apos;: {&apos;hostname&apos;: &apos;tomcat01-server&apos;,                         &apos;ip&apos;: &apos;127.0.0.1&apos;,                         &apos;passwd&apos;: &apos;123&apos;,                         &apos;user&apos;: &apos;root&apos;}}, &apos;web&apos;: {&apos;chenfanlinux&apos;: {&apos;passwd&apos;: &apos;123456&apos;,                          &apos;url&apos;: &apos;chenfanlinux.org&apos;,                          &apos;user&apos;: &apos;chenfan&apos;}}}保存成功!</code></pre><h3 id="查找密码"><a href="#查找密码" class="headerlink" title="查找密码"></a>查找密码</h3><pre><code>$ python .\zpass4.py -m r -c web -i chenfanlinux{&apos;passwd&apos;: &apos;123456&apos;, &apos;url&apos;: &apos;chenfanlinux.org&apos;, &apos;user&apos;: &apos;chenfan&apos;}</code></pre><h3 id="生成密码"><a href="#生成密码" class="headerlink" title="生成密码"></a>生成密码</h3><pre><code>$ python .\zpass4.py -m g -l 10CCrkoMjbhA</code></pre><a id="more"></a><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code># _*_ coding:utf8 _*_&apos;&apos;&apos;密码管理器:* 保存密码* 取密码密码数据保存格式:{ category: { title : value1} }{  &apos;web&apos; : {&quot;chenfanlinux&quot;: {&quot;user&quot;:&quot;chenfan&quot;,&quot;passwd&quot;:&quot;123456&quot;,&quot;url&quot;: &quot;www.chenfanlinux.org&quot;},           &quot;zhihu&quot;: {&quot;user&quot;: &quot;chenfan&quot;,&quot;passwd&quot;: &quot;123456&quot;,&quot;url&quot; : &quot;www.zhihu.com&quot;}          }, &apos;server&apos; :          { &quot;nginx&quot;:{ &quot;user&quot;: &quot;root&quot;,&quot;passwd&quot;: &quot;123456&quot;,&quot;hostname&quot;: &quot;localhost&quot;,&quot;ip&quot;: &quot;127.0.0.1&quot;},            &quot;tomcat&quot;:{&quot;user&quot;: &quot;chenfan&quot;,&quot;passwd&quot;: &quot;123&quot; ,&quot;hostname&quot;: &quot;tomcat01&quot;,&quot;ip&quot; : &quot;192.168.0.1&quot;}          }}* 密码存取方式:    * 写密码      python zpass.py w               user_choise ---&gt; 1(web),2(server),0(退出)      python zpass.py r category title&apos;&apos;&apos;import pickleimport sysimport pprintimport argparseimport stringimport randomparser = argparse.ArgumentParser()parser.add_argument(&apos;-m&apos;, action=&apos;store&apos;, dest=&apos;method&apos;,                    help=&apos;操作方式 w:写密码, r查找密码, g: 生成密码&apos;)parser.add_argument(&apos;-c&apos;, action=&apos;store&apos;, dest=&apos;category&apos;,                    help=&apos;类别&apos;)parser.add_argument(&apos;-i&apos;, action=&apos;store&apos;, dest=&apos;title&apos;,                    help=&apos;查找的名称&apos;)parser.add_argument(&apos;-l&apos;, type = int, action=&apos;store&apos;, dest=&apos;length&apos;,                    help=&apos;密码长度&apos;)args = parser.parse_args()def select_db():    try:        with open (&apos;passwd.zpass&apos;,&apos;rb&apos;) as f:            return pickle.load(f)    except IOError:        return False    except Exception as e:        raise edef insert_db(user_data):    try:        with open(&apos;passwd.zpass&apos;, &apos;wb&apos;) as f:            pickle.dump(user_data, f)    except IOError:        return False    except Exception as e:        raise e    return Trueclass Password(dict):    def __init__(self, category, title, user, passwd):        super().__init__()        self.title = title        self.category = category        self[title] = {&apos;user&apos;: user, &apos;passwd&apos;: passwd}    @staticmethod    def get_passwd():        passwd_data = select_db() if select_db()  else {}        return passwd_data.get(args.category).get(args.title)    def save_passwd(self):        passwd_data = select_db() if select_db()  else {}        if not passwd_data or self.category not in passwd_data:            passwd_data[self.category] = {}        passwd_data[self.category][self.title] = self[self.title]        pprint.pprint(passwd_data)        insert_status = insert_db(passwd_data)        if not insert_status:            print(&quot;保存失败&quot;)        return True    @classmethod    def get_item(cls):        cls.item = [&apos;title&apos;, &apos;user&apos;, &apos;passwd&apos;]        return cls.itemclass WebPassword(Password):    def __init__(self, category, title, user, passwd,url):        super().__init__(category, title, user, passwd)        self[title][&apos;url&apos;] = url    @classmethod    def get_item(cls):        super().get_item()        cls.item.append(&apos;url&apos;)        return cls.itemclass ServerPassWord(Password):    def __init__(self, category, title, user, passwd, hostname, ip):        super().__init__(category, title, user, passwd)        self[title][&apos;hostname&apos;] = hostname        self[title][&apos;ip&apos;] = ip    @classmethod    def get_item(cls):        super().get_item()        cls.item.append(&apos;hostname&apos;)        cls.item.append(&apos;ip&apos;)        return cls.itemdef handle_passwd():    passwd_args = {}    user_choice = input(&quot;1 web, 2 server, 0 退出 &quot;)    pwd_class =  {    &apos;1&apos; : (&apos;web&apos;, WebPassword),    &apos;2&apos; : (&apos;server&apos;, ServerPassWord)    }    category = pwd_class[user_choice][0]    handle_class = pwd_class[user_choice][1]    for i in handle_class.get_item():        passwd_args[i] = input(i + &quot;:&quot;)    pwd = handle_class(category=category, **passwd_args)    stat = pwd.save_passwd()    if stat is False:        print(&apos;保存失败!&apos;)    print(&apos;保存成功!&apos;)def gen_passwd(length):    chars = string.ascii_letters + string.digits + &quot;!@#$%^&amp;*():&quot;    return &apos;&apos;.join([random.choice(chars) for  i in range(length)])def main():    if args.method == &apos;r&apos;:        print(Password.get_passwd())    elif args.method == &apos;w&apos;:        handle_passwd()    elif args.method == &apos;g&apos;:        print(gen_passwd(args.length))    else:        print(&apos;退出&apos;)if __name__ == &apos;__main__&apos;:    main()</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;使用介绍&quot;&gt;&lt;a href=&quot;#使用介绍&quot; class=&quot;headerlink&quot; title=&quot;使用介绍&quot;&gt;&lt;/a&gt;使用介绍&lt;/h2&gt;&lt;h3 id=&quot;写入密码&quot;&gt;&lt;a href=&quot;#写入密码&quot; class=&quot;headerlink&quot; title=&quot;写入密码&quot;&gt;&lt;/a&gt;写入密码&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;$  python .\zpass4.py -m w
+1 web, 2 server, 0 退出 1
+title:chenfanlinux
+user:chenfan
+passwd:123456
+url:chenfanlinux.org
+{&amp;apos;web&amp;apos;: {&amp;apos;chenfanlinux&amp;apos;: {&amp;apos;passwd&amp;apos;: &amp;apos;123456&amp;apos;,
+                          &amp;apos;url&amp;apos;: &amp;apos;chenfanlinux.org&amp;apos;,
+                          &amp;apos;user&amp;apos;: &amp;apos;chenfan&amp;apos;}}}
+保存成功!
+
+
+$  python .\zpass4.py -m w
+1 web, 2 server, 0 退出 2
+title:tomcat01
+user:root
+passwd:123
+hostname:tomcat01-server
+ip:127.0.0.1
+{&amp;apos;server&amp;apos;: {&amp;apos;tomcat01&amp;apos;: {&amp;apos;hostname&amp;apos;: &amp;apos;tomcat01-server&amp;apos;,
+                         &amp;apos;ip&amp;apos;: &amp;apos;127.0.0.1&amp;apos;,
+                         &amp;apos;passwd&amp;apos;: &amp;apos;123&amp;apos;,
+                         &amp;apos;user&amp;apos;: &amp;apos;root&amp;apos;}},
+ &amp;apos;web&amp;apos;: {&amp;apos;chenfanlinux&amp;apos;: {&amp;apos;passwd&amp;apos;: &amp;apos;123456&amp;apos;,
+                          &amp;apos;url&amp;apos;: &amp;apos;chenfanlinux.org&amp;apos;,
+                          &amp;apos;user&amp;apos;: &amp;apos;chenfan&amp;apos;}}}
+保存成功!
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;查找密码&quot;&gt;&lt;a href=&quot;#查找密码&quot; class=&quot;headerlink&quot; title=&quot;查找密码&quot;&gt;&lt;/a&gt;查找密码&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;$ python .\zpass4.py -m r -c web -i chenfanlinux
+{&amp;apos;passwd&amp;apos;: &amp;apos;123456&amp;apos;, &amp;apos;url&amp;apos;: &amp;apos;chenfanlinux.org&amp;apos;, &amp;apos;user&amp;apos;: &amp;apos;chenfan&amp;apos;}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;生成密码&quot;&gt;&lt;a href=&quot;#生成密码&quot; class=&quot;headerlink&quot; title=&quot;生成密码&quot;&gt;&lt;/a&gt;生成密码&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;$ python .\zpass4.py -m g -l 10
+CCrkoMjbhA
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="python项目实战" scheme="http://www.chenfanlinux.org/categories/python%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/"/>
+    
+    
+      <category term="Python" scheme="http://www.chenfanlinux.org/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>Python进阶之函数式编程</title>
@@ -1021,55 +1074,6 @@ fi
 1
 [root@chenfanlinux ~]#  [[ -f /etc/passd ]] &amp;amp;&amp;amp; echo 1||echo 0
 0
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-      <category term="Bash Shell编程" scheme="http://www.chenfanlinux.org/categories/Bash-Shell%E7%BC%96%E7%A8%8B/"/>
-    
-    
-      <category term="Bash" scheme="http://www.chenfanlinux.org/tags/Bash/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Bash编程入门之变量基础(二)</title>
-    <link href="http://www.chenfanlinux.org/2018/01/17/Bash%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%E4%B9%8B%E5%8F%98%E9%87%8F%E5%9F%BA%E7%A1%80-%E4%B8%80/"/>
-    <id>http://www.chenfanlinux.org/2018/01/17/Bash编程入门之变量基础-一/</id>
-    <published>2018-01-17T07:39:19.000Z</published>
-    <updated>2018-01-26T03:39:19.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="变量基础"><a href="#变量基础" class="headerlink" title="变量基础"></a>变量基础</h2><h3 id="什么是变量？"><a href="#什么是变量？" class="headerlink" title="什么是变量？"></a>什么是变量？</h3><blockquote><p>变量的实质是命名的内存空间，变量是一个用固定的字符串（也可能是字符数字等的组合），替代更多更复杂的内容，这个内容里可能还会包含变量和路径，字符串等其他的内容。对于代码一块某个值得改变，只需要改变变量值得内容，不需要全局修改。</p></blockquote><p><strong>变量的类型</strong><br>根据变量的生效范围等标准:</p><ul><li>本地变量：生效范围为当前的shell进程,对当前shell之外的其他进程,包括当前进程的父子shell都无效</li><li>环境变量: 生效范围为当前进程及其子进程</li><li>局部变量: 生效范围为当前进程的某代码片段(通常指函数上下文)</li><li>特殊变量: 包括位置变量和进程状态变量</li></ul><h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><blockquote><p>环境变量用于定义shell的运行环境，保证Shell命令的正确执行，通过环境变量来确定登陆用户名、命令路径、终端类型、登陆目录等，所有的环境变量都是系统全局变量，可用于所有子进程中，这包括编辑器、Shell脚本和各类应用。</p></blockquote><p>环境变量可以在命令行中设置，当用户退出时这些变量值也会丢失，因此最好在用户家目录下的.bash_profile文件中或全局配置/etc/bashrc,/etc/profile文件或者/etc/profile.d/中定义。将环境变量放入上述的文件中，每次用户登陆时这些变量值都将被初始化。</p><p>可以通过一下的命令查看环境变量</p><ul><li>env（只显示全局变量）</li><li>set（所有的变量）</li><li>declare（所有变量，包括函数、整数和已导出的）</li></ul><p><strong>定义环境变量</strong></p><pre><code>[root@dokcer ~]# export NAME=chenfanlinux[root@dokcer ~]# declare -x NAME=chenfan</code></pre><p><strong>显示与取消环境变量</strong></p><pre><code>[root@dokcer ~]# echo $NAME chenfan[root@dokcer ~]# $ unset NAME</code></pre><a id="more"></a><h3 id="本地变量"><a href="#本地变量" class="headerlink" title="本地变量"></a>本地变量</h3><p>本地变量在用户当前的Shell生存期内脚本或命令行使用。这个值只在用户当前Shell生存期中有意义，如果在shell中启动另一个进程或退出，本地变量的值无效。</p><p><strong>变量的命名规范</strong></p><ul><li>变量名只能为字母，数字，下划线，字母开头。</li><li>规范的变量名定义方法：见名只意</li><li>避免无意义字符或数字：例如下面的COUNT，并不知道其确切含义；</li></ul><p><strong>变量赋值</strong></p><ol><li>可以是直接字符串: name=”username” 或 name=’username’</li><li>变量引用: name=”$username” 或 ${username}</li><li>命令引用: name= `COMMAND` 或 name=$(COMMAND)</li></ol><p><strong>变量引用</strong><br>${name}或$name</p><ul><li>“$name” : 弱引用,其中变量引用会被替换为变量值，</li><li>‘$name’ : 强引用,其中变量引用不会被替换为变量值,而保持原字符串</li></ul><p>最好以${NAME}加大括号或”$NAME”外面加双引号方式引用变量</p><p><strong>区分单引号和双引号</strong></p><pre><code>[root@yiwutest ~]# echo &apos;Today is `date`&apos;Today is `date`[root@yiwutest ~]# echo &quot;Today is `date`&quot;Today is Wed Jan 17 14:49:51 CST 2018</code></pre><ul><li>单引号    单引号内的所有内容都原样输出，或者描述为单引号里面看到的是什么就会输出什么。</li><li>双引号    把双引号内的所有内容都输出出来，如果内容中有命令（要反引下）、变量、特殊转移符等，会先把变量、命令、转义符解析出来，然后在输出最终内容来。</li><li>无引号    把内容输出出来，会将含有空格的字符串视为一个整体输出出来。</li></ul><p><strong>区分 $name 和 ${name}</strong><br>{变量}可以界定变量名的范围，用于变量之间的组合使用或变量与字符串的组合。</p><pre><code>[root@docker ~]# name=&apos;chenfan&apos;[root@docker ~]# echo &quot;$name_123&quot;[root@docker ~]# echo &quot;${name}_123&quot;chenfan_123[root@docker ~]# test1=&apos;chenfan&apos;[root@docker ~]# test2=&apos;fan&apos;[root@yiwutest ~]# echo &quot;${test1}_$test2&quot;chenfan_fan[root@yiwutest ~]# echo &quot;$test1_${test2}&quot;fan</code></pre><h3 id="特殊变量"><a href="#特殊变量" class="headerlink" title="特殊变量"></a>特殊变量</h3><p><strong>位置变量</strong></p><ul><li><p>$0    获取当前执行的shell脚本文件名，包括脚本路径</p></li><li><p>$n    获取当前执行的shell脚本的第n个参数值，n=1..9，当n为0时表示脚本的文件名，如果n大于9就要用大括号括起来${10}</p></li><li><p>$*    获取当前的shell的所有参数，将所有的命令行参数视为单个字符串，相当于“$1$2$3$4$5”..注意与$#的区别</p></li><li><p>$#    获取当前shell命令行中参数的总个数</p></li><li><p>$@    这额程序的所有参数$1 $2 $3 …，这是将参数传递给其他程序的最佳方式，因为他会保留内嵌在每个参数里的任意空白</p></li></ul><p><strong>进程状态变量</strong></p><ul><li>$$  获取当前shell脚本的进程号（PID）</li><li>$!  执行上一个指令的PID</li><li>$?  获取执行上一个指令的返回值（0为成功，非0为失败）</li><li>$_  在此之前执行的命令或脚本的最后一个参数</li></ul><h3 id="数值计算的命令"><a href="#数值计算的命令" class="headerlink" title="数值计算的命令"></a>数值计算的命令</h3><p>变量的数值计算常见的有如下几个命令：</p><ul><li>(())</li><li>let(推荐使用)</li><li>expr</li><li>bc(小数)$[]</li></ul><p>shell的算术运算符号常置于 $((“…….”)) 的语法中，如果要执行简单的整数运算，只需将特定的算术表达式用” $((表达式))”括起来即可;使用let命令,它用于执行一个或多个表达式,变量计算中不需要使用$来引用变量。</p><h3 id="字符串变量截取"><a href="#字符串变量截取" class="headerlink" title="字符串变量截取"></a>字符串变量截取</h3><p>变量web=”<a href="http://www.chenfanlinux.org/index.html&quot;，接下来介绍几种不同的变量截取方法。">http://www.chenfanlinux.org/index.html&quot;，接下来介绍几种不同的变量截取方法。</a></p><p>（1）#*fs 删除第一个匹配到的分隔符及其左侧的内容,这里的以fs是”/“为例 </p><pre><code>[root@chenfanlinux ~]# echo $webhttp://www.chenfanlinux.org/index.html[root@chenfanlinux ~]# echo ${web#*/}/www.chenfanlinux.org/index.html</code></pre><p> (2)##*fs 删除最后一个匹配到的分隔符及其左侧的内容</p><pre><code>[root@chenfanlinux ~]# echo ${web##*/}index.html</code></pre><p> (3)%fs* 删除最后匹配到的分隔符及其右侧的内容  </p><pre><code>[root@chenfanlinux ~]# echo ${web%/*}http://www.chenfanlinux.org</code></pre><p> (4) %%fs* 删除第一个匹配到的分隔符及其右侧的内容  </p><pre><code>[root@chenfanlinux ~]# echo ${web%%/*}http:</code></pre><p> (5) 删除从左边第几个字符开始，及字符的个数</p><pre><code>[root@inmalltest ~]# echo ${web:0,3}p://www.chenfanlinux.org/index.html0 表示左边第一个字符开始，3表示删除字符的总个数</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;变量基础&quot;&gt;&lt;a href=&quot;#变量基础&quot; class=&quot;headerlink&quot; title=&quot;变量基础&quot;&gt;&lt;/a&gt;变量基础&lt;/h2&gt;&lt;h3 id=&quot;什么是变量？&quot;&gt;&lt;a href=&quot;#什么是变量？&quot; class=&quot;headerlink&quot; title=&quot;什么是变量？&quot;&gt;&lt;/a&gt;什么是变量？&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;变量的实质是命名的内存空间，变量是一个用固定的字符串（也可能是字符数字等的组合），替代更多更复杂的内容，这个内容里可能还会包含变量和路径，字符串等其他的内容。对于代码一块某个值得改变，只需要改变变量值得内容，不需要全局修改。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;变量的类型&lt;/strong&gt;&lt;br&gt;根据变量的生效范围等标准:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;本地变量：生效范围为当前的shell进程,对当前shell之外的其他进程,包括当前进程的父子shell都无效&lt;/li&gt;
-&lt;li&gt;环境变量: 生效范围为当前进程及其子进程&lt;/li&gt;
-&lt;li&gt;局部变量: 生效范围为当前进程的某代码片段(通常指函数上下文)&lt;/li&gt;
-&lt;li&gt;特殊变量: 包括位置变量和进程状态变量&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;环境变量&quot;&gt;&lt;a href=&quot;#环境变量&quot; class=&quot;headerlink&quot; title=&quot;环境变量&quot;&gt;&lt;/a&gt;环境变量&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;环境变量用于定义shell的运行环境，保证Shell命令的正确执行，通过环境变量来确定登陆用户名、命令路径、终端类型、登陆目录等，所有的环境变量都是系统全局变量，可用于所有子进程中，这包括编辑器、Shell脚本和各类应用。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;环境变量可以在命令行中设置，当用户退出时这些变量值也会丢失，因此最好在用户家目录下的.bash_profile文件中或全局配置/etc/bashrc,/etc/profile文件或者/etc/profile.d/中定义。将环境变量放入上述的文件中，每次用户登陆时这些变量值都将被初始化。&lt;/p&gt;
-&lt;p&gt;可以通过一下的命令查看环境变量&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;env（只显示全局变量）&lt;/li&gt;
-&lt;li&gt;set（所有的变量）&lt;/li&gt;
-&lt;li&gt;declare（所有变量，包括函数、整数和已导出的）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;定义环境变量&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[root@dokcer ~]# export NAME=chenfanlinux
-[root@dokcer ~]# declare -x NAME=chenfan
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;显示与取消环境变量&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[root@dokcer ~]# echo $NAME
- chenfan
-[root@dokcer ~]# $ unset NAME
 &lt;/code&gt;&lt;/pre&gt;
     
     </summary>
