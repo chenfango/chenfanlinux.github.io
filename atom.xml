@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.chenfanlinux.org/"/>
-  <updated>2018-03-13T07:41:34.000Z</updated>
+  <updated>2018-03-14T03:01:16.000Z</updated>
   <id>http://www.chenfanlinux.org/</id>
   
   <author>
@@ -15,6 +15,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python实战之简单爬虫</title>
+    <link href="http://www.chenfanlinux.org/2018/03/14/Python%E5%AE%9E%E6%88%98%E4%B9%8B%E7%AE%80%E5%8D%95%E7%88%AC%E8%99%AB/"/>
+    <id>http://www.chenfanlinux.org/2018/03/14/Python实战之简单爬虫/</id>
+    <published>2018-03-14T02:59:43.000Z</published>
+    <updated>2018-03-14T03:01:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="代码：爬豆瓣电影Top100"><a href="#代码：爬豆瓣电影Top100" class="headerlink" title="代码：爬豆瓣电影Top100"></a>代码：爬豆瓣电影Top100</h2><h3 id="方式一：-re-urllib"><a href="#方式一：-re-urllib" class="headerlink" title="方式一： re   +  urllib"></a>方式一： <a href="https://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html" target="_blank" rel="noopener">re</a>   +  urllib</h3><pre><code># _*_ coding:utf-8 _*_&apos;&apos;&apos;&lt;span class=&quot;title&quot;&gt;肖申克的救赎&lt;/span&gt;&lt;em class=&quot;&quot;&gt;1&lt;/em&gt;&apos;&apos;&apos;import ioimport sysimport refrom urllib.request import urlopensys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding=&apos;gb18030&apos;)top_num = 1url_base = &apos;https://movie.douban.com/top250?start=&apos;urls = [url_base + str(i*25) for i in range(0,4)]for url in urls:    html = urlopen(url).read().decode(&apos;utf-8&apos;)    top_tag = re.compile(r&apos;&lt;span class=&quot;title&quot;&gt;(.*)&lt;/span&gt;&apos;)    title = re.findall(top_tag, html)    for i in title:        if i.find(&apos;/&apos;) == -1:            print(&apos;Top&apos; + str(top_num) + &apos; &apos; + i)            top_num += 1</code></pre><a id="more"></a><h3 id="方式二：-requests-BeautifulSoup"><a href="#方式二：-requests-BeautifulSoup" class="headerlink" title="方式二： requests + BeautifulSoup"></a>方式二： <a href="https://requests-docs-cn.readthedocs.io/zh_CN/latest/index.html" target="_blank" rel="noopener">requests</a> + <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/#id5" target="_blank" rel="noopener">BeautifulSoup</a></h3><pre><code># _*_ coding:utf-8 _*_&apos;&apos;&apos;&lt;span class=&quot;title&quot;&gt;肖申克的救赎&lt;/span&gt;pip install requestspip install BeautifulSoup&apos;&apos;&apos;import requestsfrom  bs4 import  BeautifulSouptop_num = 1url = &apos;https://movie.douban.com/top250?start=&apos;urls = [url + str(i*25) for i in range(0,4)]for url in urls:    r = requests.get(url)    html = r.text    # 实例化    soup = BeautifulSoup(html,&apos;html.parser&apos;)    movies = soup.find_all(&apos;span&apos;, class_=&apos;title&apos;)    for i in movies:        if i.text.find(&apos;/&apos;) == -1:            print(&apos;Top&apos; + str(top_num) + &apos; &apos; + i.text )            top_num += 1</code></pre><h3 id="运行结果展示"><a href="#运行结果展示" class="headerlink" title="运行结果展示"></a>运行结果展示</h3><pre><code>$ python .\豆瓣Top100.pyTop1 肖申克的救赎Top2 霸王别姬Top3 这个杀手不太冷Top4 阿甘正传Top5 美丽人生Top6 千与千寻Top7 泰坦尼克号Top8 辛德勒的名单Top9 盗梦空间Top10 机器人总动员Top11 海上钢琴师Top12 三傻大闹宝莱坞Top13 忠犬八公的故事Top14 放牛班的春天Top15 大话西游之大圣娶亲Top16 楚门的世界Top17 教父Top18 龙猫Top19 熔炉Top20 乱世佳人Top21 星际穿越Top22 触不可及Top23 无间道Top24 当幸福来敲门Top25 天堂电影院Top26 怦然心动Top27 十二怒汉Top28 搏击俱乐部Top29 少年派的奇幻漂流Top30 鬼子来了Top31 指环王3：王者无敌Top32 蝙蝠侠：黑暗骑士Top33 活着Top34 天空之城Top35 罗马假日Top36 大话西游之月光宝盒Top37 飞屋环游记Top38 疯狂动物城Top39 窃听风暴Top40 两杆大烟枪Top41 飞越疯人院Top42 控方证人Top43 闻香识女人Top44 海豚湾Top45 哈尔的移动城堡Top46 V字仇杀队Top47 辩护人Top48 死亡诗社Top49 教父2Top50 美丽心灵Top51 指环王2：双塔奇兵Top52 指环王1：魔戒再现Top53 情书Top54 饮食男女Top55 美国往事Top56 狮子王Top57 钢琴家Top58 天使爱美丽Top59 七宗罪Top60 摔跤吧！爸爸Top61 被嫌弃的松子的一生Top62 素媛Top63 小鞋子Top64 致命魔术Top65 勇敢的心Top66 音乐之声Top67 剪刀手爱德华Top68 本杰明·巴顿奇事Top69 低俗小说Top70 看不见的客人Top71 西西里的美丽传说Top72 黑客帝国Top73 拯救大兵瑞恩Top74 沉默的羔羊Top75 入殓师Top76 蝴蝶效应Top77 玛丽和马克思Top78 让子弹飞Top79 春光乍泄Top80 大闹天宫Top81 心灵捕手Top82 阳光灿烂的日子Top83 幽灵公主Top84 第六感Top85 末代皇帝Top86 重庆森林Top87 禁闭岛Top88 大鱼Top89 狩猎Top90 布达佩斯大饭店Top91 射雕英雄传之东成西就Top92 哈利·波特与魔法石Top93 甜蜜蜜Top94 致命IDTop95 一一Top96 阳光姐妹淘Top97 断背山Top98 告白Top99 猫鼠游戏Top100 上帝之城</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;代码：爬豆瓣电影Top100&quot;&gt;&lt;a href=&quot;#代码：爬豆瓣电影Top100&quot; class=&quot;headerlink&quot; title=&quot;代码：爬豆瓣电影Top100&quot;&gt;&lt;/a&gt;代码：爬豆瓣电影Top100&lt;/h2&gt;&lt;h3 id=&quot;方式一：-re-urllib&quot;&gt;&lt;a href=&quot;#方式一：-re-urllib&quot; class=&quot;headerlink&quot; title=&quot;方式一： re   +  urllib&quot;&gt;&lt;/a&gt;方式一： &lt;a href=&quot;https://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;re&lt;/a&gt;   +  urllib&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;# _*_ coding:utf-8 _*_
+
+
+&amp;apos;&amp;apos;&amp;apos;
+&amp;lt;span class=&amp;quot;title&amp;quot;&amp;gt;肖申克的救赎&amp;lt;/span&amp;gt;
+&amp;lt;em class=&amp;quot;&amp;quot;&amp;gt;1&amp;lt;/em&amp;gt;
+&amp;apos;&amp;apos;&amp;apos;
+import io
+import sys
+import re
+from urllib.request import urlopen
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding=&amp;apos;gb18030&amp;apos;)
+top_num = 1
+url_base = &amp;apos;https://movie.douban.com/top250?start=&amp;apos;
+urls = [url_base + str(i*25) for i in range(0,4)]
+for url in urls:
+    html = urlopen(url).read().decode(&amp;apos;utf-8&amp;apos;)
+    top_tag = re.compile(r&amp;apos;&amp;lt;span class=&amp;quot;title&amp;quot;&amp;gt;(.*)&amp;lt;/span&amp;gt;&amp;apos;)
+    title = re.findall(top_tag, html)
+    for i in title:
+        if i.find(&amp;apos;/&amp;apos;) == -1:
+            print(&amp;apos;Top&amp;apos; + str(top_num) + &amp;apos; &amp;apos; + i)
+            top_num += 1
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="python项目实战" scheme="http://www.chenfanlinux.org/categories/python%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/"/>
+    
+    
+      <category term="Python" scheme="http://www.chenfanlinux.org/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>Python项目实战之密码管理器</title>
@@ -1040,48 +1085,6 @@ fi
     
     
       <category term="正则表达式" scheme="http://www.chenfanlinux.org/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Bash编程入门之条件测试(三)</title>
-    <link href="http://www.chenfanlinux.org/2018/01/18/Bash%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%E4%B9%8B%E6%9D%A1%E4%BB%B6%E6%B5%8B%E8%AF%95-%E4%B8%89/"/>
-    <id>http://www.chenfanlinux.org/2018/01/18/Bash编程入门之条件测试-三/</id>
-    <published>2018-01-18T02:23:09.000Z</published>
-    <updated>2018-01-25T03:09:19.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="条件测试语法"><a href="#条件测试语法" class="headerlink" title="条件测试语法"></a>条件测试语法</h2><blockquote><p>在bash的各种流程控制结构中通常要进行各种测试，然后根据测试结果执行不同的操作，有时也会通过与if等条件语句相结合，让我们可以方便的完成判断。</p></blockquote><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>支持三种格式的条件测试语法</p><ul><li>test&lt;测试表达式&gt;</li><li>[ &lt;测试表达式&gt; ]</li><li>[[ &lt;测试表达式&gt; ]]</li></ul><p><strong>格式1和格式2是等价的，格式3为扩展的test命令</strong></p><p>在[[]]中可以使用通配符进行匹配。&amp;&amp;、||、&gt;、&lt;等操作符可以应用与[[]]中，但不能应用与[]中。</p><h3 id="范例"><a href="#范例" class="headerlink" title="范例"></a>范例</h3><p><strong>文件存在则输出1，文件不存在则输出0</strong></p><pre><code>[root@chenfanlinux ~]#  [ -f /etc/passwd ] &amp;&amp; echo 1||echo 01[root@chenfanlinux ~]# test -f /etc/passwd &amp;&amp; echo 1||echo 01[root@chenfanlinux ~]#  [[ -f /etc/passwd ]] &amp;&amp; echo 1||echo 01[root@chenfanlinux ~]#  [[ -f /etc/passd ]] &amp;&amp; echo 1||echo 00</code></pre><a id="more"></a><p><strong>非!的写法</strong><br>test.txt文件如果不存在，则创建。</p><pre><code>[root@chenfanlinux ~]# test ! -f test1.txt &amp;&amp; touch test.txt || ehco &quot;test1.txt已经存在&quot;[root@chenfanlinux ~]# test ! -f test1.txt &amp;&amp; touch test1.txt || echo &quot;test1.txt已经存在&quot;test1.txt已经存在[root@chenfanlinux ~]# [ ! -f test.txt ] &amp;&amp; touch test.txt || echo &apos;test.txt已经存在&apos;[root@chenfanlinux~]# [ ! -f test.txt ] &amp;&amp; touch test.txt || echo &apos;test.txt已经存在&apos;test.txt已经存在</code></pre><h2 id="test-或-测试语法"><a href="#test-或-测试语法" class="headerlink" title="test 或 [] 测试语法"></a>test 或 [] 测试语法</h2><p>从功能上来看 <code>test 测试表达式</code> 命令等同于 <code>[测试表达式]</code> ，因此这里将它们归纳在一起进行总结。</p><h3 id="数值测试"><a href="#数值测试" class="headerlink" title="数值测试"></a>数值测试</h3><p><strong>参数说明</strong></p><table><thead><tr><th style="text-align:center">参数</th><th style="text-align:center">说明</th></tr></thead><tbody><tr><td style="text-align:center">-eq</td><td style="text-align:center">等于则为真</td></tr><tr><td style="text-align:center">-ne</td><td style="text-align:center">不等于则为真</td></tr><tr><td style="text-align:center">-gt</td><td style="text-align:center">大于则为真</td></tr><tr><td style="text-align:center">-ge</td><td style="text-align:center">大于等于则为真</td></tr><tr><td style="text-align:center">-lt</td><td style="text-align:center">小于则为真</td></tr><tr><td style="text-align:center">-le</td><td style="text-align:center">小于则为真</td></tr></tbody></table><p><strong>范例</strong></p><p><strong><em>判断两个数是否相等</em></strong></p><pre><code>[root@chenfanlinux ~]# num1=1[root@chenfanlinux ~]#chenfanlinux num2=2[root@chenfanlinux ~]# [ $num1 -eq $num2 ] &amp;&amp; echo &quot;两个数相等&quot; || echo &quot;两个数不相等&quot;两个数不相等</code></pre><p><strong><em>数值运算</em></strong></p><pre><code>[root@chenfanlinux ~]# a=5[root@chenfanlinux ~]# b=6[root@chenfanlinux ~]# c=$[a+b][root@chenfanlinux ~]# echo $c11[root@chenfanlinux ~]# ((c=a+b))[root@chenfanlinux ~]# echo $c11[root@chenfanlinux ~]# c=`expr $a + $b`[root@chenfanlinux ~]# echo $c11[root@chenfanlinux ~]# let c=a+b[root@chenfanlinux ~]# echo $c11</code></pre><ul><li>(())</li><li>let</li><li>expr</li><li>bc(小数)</li><li>$[]</li></ul><h3 id="字符串测试"><a href="#字符串测试" class="headerlink" title="字符串测试"></a>字符串测试</h3><p><strong>参数说明</strong></p><table><thead><tr><th style="text-align:center">参数</th><th style="text-align:center">说明</th></tr></thead><tbody><tr><td style="text-align:center">“串1” = “串2”</td><td style="text-align:center">若串1等于串2则真，可以使用”==”代替”=”</td></tr><tr><td style="text-align:center">“串1” ！= “串2”</td><td style="text-align:center">若串1不等于串2则真，但不能用”!==” 代替”!=”</td></tr><tr><td style="text-align:center">-z “字符串”</td><td style="text-align:center">若串长度为0则真，-z可以理解为zero</td></tr><tr><td style="text-align:center">-n “字符串”</td><td style="text-align:center">若串长度不为0则真，-n可以理解为no zero</td></tr></tbody></table><p><strong>范例</strong></p><p><strong><em>比较两个字符串是否相同</em></strong></p><pre><code>num1=&quot;chenfan&quot;num2=&quot;chenfanlinux&quot;if [ &quot;$num1&quot; = &quot;$num2&quot; ]then    echo &apos;两个字符串相等!&apos;else    echo &apos;两个字符串不相等!&apos;fi</code></pre><h3 id="文件测试"><a href="#文件测试" class="headerlink" title="文件测试"></a>文件测试</h3><p><strong>参数说明</strong></p><table><thead><tr><th style="text-align:center">参数</th><th style="text-align:center">说明</th></tr></thead><tbody><tr><td style="text-align:center">-e 文件名</td><td style="text-align:center">如果文件存在则为真</td></tr><tr><td style="text-align:center">-r 文件名</td><td style="text-align:center">如果文件存在且可读则为真</td></tr><tr><td style="text-align:center">-w 文件名</td><td style="text-align:center">如果文件存在且可写则为真</td></tr><tr><td style="text-align:center">-x 文件名</td><td style="text-align:center">如果文件存在且可执行则为真</td></tr><tr><td style="text-align:center">-s 文件名</td><td style="text-align:center">如果文件存在且至少有一个字符则为真</td></tr><tr><td style="text-align:center">-d 文件名</td><td style="text-align:center">如果文件存在且为目录则为真</td></tr><tr><td style="text-align:center">-f 文件名</td><td style="text-align:center">如果文件存在且为普通文件则为真</td></tr><tr><td style="text-align:center">-c 文件名</td><td style="text-align:center">如果文件存在且为字符型特殊文件则为真</td></tr><tr><td style="text-align:center">-b 文件名</td><td style="text-align:center">如果文件存在且为块特殊文件则为真</td></tr></tbody></table><blockquote><p>以上表格中的字符串测试操作符号务必要用 “字符串” 引起来。</p></blockquote><p><strong>范例</strong></p><p><strong><em>文件存在则打印存在</em></strong></p><pre><code>cd /binif test -e ./bashthen    echo &apos;文件已存在!&apos;else    echo &apos;文件不存在!&apos;fi</code></pre><h3 id="逻辑操作符"><a href="#逻辑操作符" class="headerlink" title="逻辑操作符"></a>逻辑操作符</h3><p><strong>参数说明</strong></p><p><img src="https://s1.ax1x.com/2018/01/18/ps8WEF.png" alt="逻辑操作符"> </p><p><strong>范例</strong></p><p><strong><em>判断文件是否同时存在</em></strong></p><pre><code>[root@chenfanlinux ~]# f1=&apos;/etc/rc.local&apos;[root@chenfanlinux ~]# f2=&apos;/etc/pass&apos;[root@chenfanlinux ~]# [ -f &quot;$f1&quot; -o -f &quot;$f2&quot; ] &amp;&amp; echo 1|| echo 01[root@chenfanlinux ~]# [ -f &quot;$f1&quot; -a -f &quot;$f2&quot; ] &amp;&amp; echo 1|| echo 00</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;条件测试语法&quot;&gt;&lt;a href=&quot;#条件测试语法&quot; class=&quot;headerlink&quot; title=&quot;条件测试语法&quot;&gt;&lt;/a&gt;条件测试语法&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;在bash的各种流程控制结构中通常要进行各种测试，然后根据测试结果执行不同的操作，有时也会通过与if等条件语句相结合，让我们可以方便的完成判断。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;语法&quot;&gt;&lt;a href=&quot;#语法&quot; class=&quot;headerlink&quot; title=&quot;语法&quot;&gt;&lt;/a&gt;语法&lt;/h3&gt;&lt;p&gt;支持三种格式的条件测试语法&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;test&amp;lt;测试表达式&amp;gt;&lt;/li&gt;
-&lt;li&gt;[ &amp;lt;测试表达式&amp;gt; ]&lt;/li&gt;
-&lt;li&gt;[[ &amp;lt;测试表达式&amp;gt; ]]&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;格式1和格式2是等价的，格式3为扩展的test命令&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;在[[]]中可以使用通配符进行匹配。&amp;amp;&amp;amp;、||、&amp;gt;、&amp;lt;等操作符可以应用与[[]]中，但不能应用与[]中。&lt;/p&gt;
-&lt;h3 id=&quot;范例&quot;&gt;&lt;a href=&quot;#范例&quot; class=&quot;headerlink&quot; title=&quot;范例&quot;&gt;&lt;/a&gt;范例&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;文件存在则输出1，文件不存在则输出0&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[root@chenfanlinux ~]#  [ -f /etc/passwd ] &amp;amp;&amp;amp; echo 1||echo 0
-1
-[root@chenfanlinux ~]# test -f /etc/passwd &amp;amp;&amp;amp; echo 1||echo 0
-1
-[root@chenfanlinux ~]#  [[ -f /etc/passwd ]] &amp;amp;&amp;amp; echo 1||echo 0
-1
-[root@chenfanlinux ~]#  [[ -f /etc/passd ]] &amp;amp;&amp;amp; echo 1||echo 0
-0
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-      <category term="Bash Shell编程" scheme="http://www.chenfanlinux.org/categories/Bash-Shell%E7%BC%96%E7%A8%8B/"/>
-    
-    
-      <category term="Bash" scheme="http://www.chenfanlinux.org/tags/Bash/"/>
     
   </entry>
   
