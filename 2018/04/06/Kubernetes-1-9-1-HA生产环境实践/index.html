@@ -117,7 +117,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s1.ax1x.com/2018/04/02/9z62xH.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/04/03/CpAs9s.png">
-<meta property="og:updated_time" content="2018-04-06T05:57:47.000Z">
+<meta property="og:updated_time" content="2018-04-08T08:15:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kubernetes-1.9.1-HA生产环境实践">
 <meta name="twitter:description" content="集群环境说明服务器信息这里配置2Master 2个node, k8s-master01只做 Master, k8s-node01即是Master也是Node, k8s-node02单纯做Node。  集群详情 Kubernetes 1.9.1 Docker-17.03.1-ce Etcd-v3.2.14 Flanneld-v0.10.0 vxlan TLS 认证通信 RBAC 授权 Kublet">
@@ -443,7 +443,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  7,103
+                  7,158
                 </span>
               
 
@@ -580,7 +580,7 @@ $ mkdir -p /etc/systemd/system/docker.service.d   # 后续还需要增加的配�
 $ vi /etc/systemd/system/docker.service.d/docker-dns.conf  # 增加docker的dns配置,后续配置好dns再增加
 $ vi /etc/systemd/system/docker.service.d/docker-options.conf  # 后续再这个配置文件中加入私有仓库信息配置
 [Service]
-Environment=&quot;DOCKER_OPTS= \ --graph=/opt/docker --log-opt max-size=50m --log-opt max-file=5&quot;
+Environment=&quot;DOCKER_OPTS=  --graph=/opt/docker --log-opt max-size=50m --log-opt max-file=5&quot;
 </code></pre><h3 id="重新读取配置，启动-docker"><a href="#重新读取配置，启动-docker" class="headerlink" title="重新读取配置，启动 docker"></a>重新读取配置，启动 docker</h3><pre><code>$ systemctl daemon-reload
 $ systemctl start docker
 $ systemctl enable docker
@@ -638,7 +638,8 @@ $  vi csr.json
       &quot;expiry&quot;: &quot;262880h&quot;
   }
 }
-</code></pre><h3 id="生成-CA-证书和私钥"><a href="#生成-CA-证书和私钥" class="headerlink" title="生成 CA 证书和私钥"></a>生成 CA 证书和私钥</h3><pre><code>$ cd /opt/ssl/
+</code></pre><p><strong><em>这里的CA证书期限很多教程都是一个炕，应该如上配置才是正确的，不然都是5年期限！</em></strong></p>
+<h3 id="生成-CA-证书和私钥"><a href="#生成-CA-证书和私钥" class="headerlink" title="生成 CA 证书和私钥"></a>生成 CA 证书和私钥</h3><pre><code>$ cd /opt/ssl/
 $ cfssl  gencert -initca csr.json | cfssljson -bare ca
 $ ls -l
 ca.csr          # 证书请求文件
@@ -689,6 +690,27 @@ $ vi etcd-csr.json  # 创建etcd的证书请求配置
       &quot;OU&quot;: &quot;System&quot;
     }
   ]
+}
+
+
+$ vim config.json
+    {
+  &quot;signing&quot;: {
+       &quot;default&quot;: {
+        &quot;expiry&quot;: &quot;87600h&quot;
+    },
+    &quot;profiles&quot;: {
+      &quot;kubernetes&quot;: {
+        &quot;usages&quot;: [
+            &quot;signing&quot;,
+            &quot;key encipherment&quot;,
+            &quot;server auth&quot;,
+            &quot;client auth&quot;
+        ],
+        &quot;expiry&quot;: &quot;87600h&quot;
+       }
+     }
+   }
 }
 </code></pre><p><strong><em>注意：上面的证书请求配置，不能使用hostname,要使用ip,建议多预留几个IP。</em></strong></p>
 <pre><code>$ cfssl gencert -ca=/opt/ssl/ca.pem \
@@ -2133,7 +2155,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">79.9k</span>
+    <span title="Site words total count">80.0k</span>
   
 </div>
 
