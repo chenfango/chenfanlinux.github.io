@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="Bash," />
+  <meta name="keywords" content="python模块," />
 
 
 
@@ -107,20 +107,18 @@
 
 
 
-<meta name="description" content="什么是shell? 通常,替我们工作的是”硬件”,而控制硬件的是”内核”。用户利用”shell”控制着一些内核提供的”工具”,来控制硬件替我们工作。由于内核听不懂人类语言,所以shell从本质来说就是一个UI(用户界面)应用程序,让内核控制着硬件正确无误的工作，如图1-1 硬件-内核-shell 所示，可以清晰的看到他">
-<meta name="keywords" content="Bash">
+<meta name="description" content="本文注意讲解datetime模块，注意到datetime是模块，datetime模块还包含一个datetime类，通过from datetime import datetime导入的才是datetime这个类。如果仅导入import datetime，则必须引用全名datetime.datetime。datetime.">
+<meta name="keywords" content="python模块">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Bash 编程入门之Bash特性汇总(一)">
-<meta property="og:url" content="http://www.chenfanlinux.org/2018/01/05/Bash特性汇总/index.html">
+<meta property="og:title" content="python时间处理模块">
+<meta property="og:url" content="http://www.chenfanlinux.org/2018/04/13/python时间处理模块/index.html">
 <meta property="og:site_name" content="陈凡的个人站点">
-<meta property="og:description" content="什么是shell? 通常,替我们工作的是”硬件”,而控制硬件的是”内核”。用户利用”shell”控制着一些内核提供的”工具”,来控制硬件替我们工作。由于内核听不懂人类语言,所以shell从本质来说就是一个UI(用户界面)应用程序,让内核控制着硬件正确无误的工作，如图1-1 硬件-内核-shell 所示，可以清晰的看到他们的关系。   Bash shell功能特性history命令记忆功能 在Bas">
+<meta property="og:description" content="本文注意讲解datetime模块，注意到datetime是模块，datetime模块还包含一个datetime类，通过from datetime import datetime导入的才是datetime这个类。如果仅导入import datetime，则必须引用全名datetime.datetime。datetime.now()返回当前日期和时间，其类型是datetime。  参考文档：date">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://cdn-std.dprcdn.net/files/acc_582513/DDfPGJ">
-<meta property="og:updated_time" content="2018-01-26T03:39:10.000Z">
+<meta property="og:updated_time" content="2018-04-13T02:41:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bash 编程入门之Bash特性汇总(一)">
-<meta name="twitter:description" content="什么是shell? 通常,替我们工作的是”硬件”,而控制硬件的是”内核”。用户利用”shell”控制着一些内核提供的”工具”,来控制硬件替我们工作。由于内核听不懂人类语言,所以shell从本质来说就是一个UI(用户界面)应用程序,让内核控制着硬件正确无误的工作，如图1-1 硬件-内核-shell 所示，可以清晰的看到他们的关系。   Bash shell功能特性history命令记忆功能 在Bas">
-<meta name="twitter:image" content="https://cdn-std.dprcdn.net/files/acc_582513/DDfPGJ">
+<meta name="twitter:title" content="python时间处理模块">
+<meta name="twitter:description" content="本文注意讲解datetime模块，注意到datetime是模块，datetime模块还包含一个datetime类，通过from datetime import datetime导入的才是datetime这个类。如果仅导入import datetime，则必须引用全名datetime.datetime。datetime.now()返回当前日期和时间，其类型是datetime。  参考文档：date">
 
 
 
@@ -150,13 +148,13 @@
 
 
 
-  <link rel="canonical" href="http://www.chenfanlinux.org/2018/01/05/Bash特性汇总/"/>
+  <link rel="canonical" href="http://www.chenfanlinux.org/2018/04/13/python时间处理模块/"/>
 
 
 
 
 
-  <title>Bash 编程入门之Bash特性汇总(一) | 陈凡的个人站点</title>
+  <title>python时间处理模块 | 陈凡的个人站点</title>
   
 
 
@@ -342,7 +340,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/05/Bash特性汇总/">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/04/13/python时间处理模块/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陈凡">
@@ -359,7 +357,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Bash 编程入门之Bash特性汇总(一)</h2>
+          <h2 class="post-title" itemprop="name headline">python时间处理模块</h2>
         
 
         <div class="post-meta">
@@ -371,8 +369,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-05T12:35:53+08:00">
-                2018-01-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-13T10:37:38+08:00">
+                2018-04-13
               </time>
             
 
@@ -394,8 +392,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Bash-Shell编程/" itemprop="url" rel="index">
-                    <span itemprop="name">Bash Shell编程</span>
+                  <a href="/categories/python基础知识/" itemprop="url" rel="index">
+                    <span itemprop="name">python基础知识</span>
                   </a>
                 </span>
 
@@ -413,8 +411,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/01/05/Bash特性汇总/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/05/Bash特性汇总/" itemprop="commentsCount"></span>
+                <a href="/2018/04/13/python时间处理模块/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/04/13/python时间处理模块/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -442,7 +440,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,724
+                  997
                 </span>
               
 
@@ -458,7 +456,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  6
+                  4
                 </span>
               
             </div>
@@ -479,255 +477,81 @@
       
 
       
-        <h2 id="什么是shell"><a href="#什么是shell" class="headerlink" title="什么是shell?"></a>什么是shell?</h2><blockquote>
-<p>通常,替我们工作的是”硬件”,而控制硬件的是”内核”。用户利用”shell”控制着一些内核提供的”工具”,来控制硬件替我们工作。由于内核听不懂人类语言,所以shell从本质来说就是一个UI(用户界面)应用程序,让内核控制着硬件正确无误的工作，如图1-1 硬件-内核-shell 所示，可以清晰的看到他们的关系。</p>
+        <blockquote>
+<p>本文注意讲解datetime模块，注意到datetime是模块，datetime模块还包含一个datetime类，通过from datetime import datetime导入的才是datetime这个类。<br>如果仅导入import datetime，则必须引用全名datetime.datetime。<br>datetime.now()返回当前日期和时间，其类型是datetime。</p>
 </blockquote>
-<p><img src="https://cdn-std.dprcdn.net/files/acc_582513/DDfPGJ" alt="硬件-内核"></p>
-<h2 id="Bash-shell功能特性"><a href="#Bash-shell功能特性" class="headerlink" title="Bash shell功能特性"></a>Bash shell功能特性</h2><h3 id="history命令记忆功能"><a href="#history命令记忆功能" class="headerlink" title="history命令记忆功能"></a>history命令记忆功能</h3><blockquote>
-<p>在Bash里面,我们只要在命令行按”上、下键”或者更强大的”Ctrl+r”,就可以找到之前输入的历史命令,这依赖于Bash的命令记录功能,记录的文件位于家目录下的.bash_history。登录shell后新执行的命令只会记录在缓存中,这些命令会在用户退出时追加到命令历史文件中,我们通过history命令可以查看历史命令.</p>
-</blockquote>
-<p><strong>命令历史相关的环境变量:</strong></p>
-<ul>
-<li>HISTSIZE: 命令历史记录的条数</li>
-<li>HISTFILE: ~/.bash_history</li>
-</ul>
-<p><strong>命令历史调用相关的命令:</strong></p>
-<ul>
-<li><p>调用历史中的命令:</p>
-<ul>
-<li>!#: 重复执行第#条指令</li>
-<li>!!: 重复上一条命令</li>
-<li>!string: 匹配以string开头的命令</li>
-</ul>
-</li>
-<li><p>调用上一条命令的最后一个参数:</p>
-<ul>
-<li>!$</li>
-<li>ESC . （先按esc,释放然后按.）</li>
-</ul>
-</li>
-</ul>
-<a id="more"></a>
-<h3 id="命令与文件补全功能"><a href="#命令与文件补全功能" class="headerlink" title="命令与文件补全功能"></a>命令与文件补全功能</h3><blockquote>
-<p>常在bash中使用热键[Tab]是一个好习惯,因为它可以减少键盘的输入和保证命令的输出的正确性。</p>
-</blockquote>
-<ul>
-<li>接在一串命令的第一个字后面,则为命令的补全</li>
-<li>接在一床命令的第二个字以后时,则为文件的补全</li>
-</ul>
-<h3 id="命令别名的功能"><a href="#命令别名的功能" class="headerlink" title="命令别名的功能"></a>命令别名的功能</h3><blockquote>
-<p>通过给常用命令设置别名的方式,减少命令的输出长度,提升工作效率。命令行键入alias命令,可以查看系统配置的alias命令,将命令别名记录在全局配置环境配置文件/etc/profile或~/.bashrc都是一种持久生效的方式.</p>
-</blockquote>
-<pre><code>[root@chenfanlinux ~]# alias
-alias cp=&apos;cp -i&apos;
-alias egrep=&apos;egrep --color=auto&apos;
-alias fgrep=&apos;fgrep --color=auto&apos;
-alias grep=&apos;grep --color=auto&apos;
-alias l.=&apos;ls -d .* --color=auto&apos;
-alias ll=&apos;ls -l --color=auto&apos;
-alias ls=&apos;ls --color=auto&apos;
-alias mv=&apos;mv -i&apos;
-alias rm=&apos;rm -i&apos;
-alias which=&apos;alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde&apos;
-</code></pre><p>   <strong>注意:由于shell脚本中的别名不生效，\cp的含义是脱去别名的设置。</strong></p>
-<h3 id="命令行展开功能"><a href="#命令行展开功能" class="headerlink" title="命令行展开功能"></a>命令行展开功能</h3><blockquote>
-<p>{}:可以承载一个以逗号分隔的列表,并将其展开为多个路径.</p>
-</blockquote>
-<pre><code>$ mkdir /tmp/{a,b} &lt;==&gt;  $ mkdir /tmp/a;mkdir /tmp/b
-$ mkdir /tmp/{tom,jerry}/hi &lt;==&gt;  $ mkidr /tmp/tom/hi;mkdir /tmp/jerry/hi
-</code></pre><h3 id="作业-jobs-、前台-fg-、后台-bg-控制"><a href="#作业-jobs-、前台-fg-、后台-bg-控制" class="headerlink" title="作业(jobs)、前台(fg)、后台(bg)控制"></a>作业(jobs)、前台(fg)、后台(bg)控制</h3><blockquote>
-<p>使用前台、后台控制,可以让工作进行得更加的顺利.我们可以随时将作业放置到后台执行,不用担心使用了[Ctrl]+c键来停掉该程序。在单用户登录环境中，达到了多任务的目标。</p>
-</blockquote>
-<ul>
-<li>前台作业: 通过终端启动,且启动后一直占据终端</li>
-<li><p>后台作业: 通过终端启动,但启动后即转入后台运行(释放终端)</p>
-</li>
-<li><p><strong>如何让作业运行于后台?</strong></p>
-<ul>
-<li><p>运行中的作业<br><code>Ctrl+Z</code></p>
-</li>
-<li><p>尚未启动的作业<br><code>COMMAND &amp;</code><br><strong><em>此类作业虽然被送往后台运行,但其依然与终端相关,<br>因为退出登录后作业将停止运行;如果希望送往后台,剥离与终端的关系。</em></strong></p>
-</li>
-<li><p>剥离作业与终端的关系<br><code>nohup COMMAND &amp;</code></p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p><strong>作业控制相关命令:</strong></p>
-<ul>
-<li>查看所有作业情况<br><code>jobs</code></li>
-<li>指定的后台作业调回前台<br><code>fg [[%]JOB_NUM]</code></li>
-<li>让送往后台的作业在后台继续运行<br><code>bg [[%]JOB_NUM]</code></li>
-<li>终止指定的作业<br><code>kill [%JOB_NUM]</code></li>
-</ul>
-</li>
-</ul>
-<h3 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h3><blockquote>
-<p>除了完整的字符串之外,bash还支持许多通配符来帮助用户查询和执行命令。下表列出常见的通配符,仅供参考。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">符号</th>
-<th style="text-align:center">内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">*</td>
-<td style="text-align:center">通配符,代表0个或多个字符(或数字)</td>
-</tr>
-<tr>
-<td style="text-align:center">?</td>
-<td style="text-align:center">通配符,代表一个有一个字符</td>
-</tr>
-<tr>
-<td style="text-align:center">#</td>
-<td style="text-align:center">注释,常在脚本中,被视为说明</td>
-</tr>
-<tr>
-<td style="text-align:center">\</td>
-<td style="text-align:center">转义字符,将特殊字符或通配符还原成一般字符</td>
-</tr>
-<tr>
-<td style="text-align:center">~</td>
-<td style="text-align:center">用户的家目录</td>
-</tr>
-<tr>
-<td style="text-align:center">$</td>
-<td style="text-align:center">变量之前需要加的变量替换值</td>
-</tr>
-<tr>
-<td style="text-align:center">&amp;</td>
-<td style="text-align:center">将命令转为后台执行</td>
-</tr>
-<tr>
-<td style="text-align:center">!</td>
-<td style="text-align:center">逻辑运算符(not)意思</td>
-</tr>
-<tr>
-<td style="text-align:center">/</td>
-<td style="text-align:center">路径分隔符</td>
-</tr>
-<tr>
-<td style="text-align:center">&gt; &gt;&gt;</td>
-<td style="text-align:center">重定向与追加重定向</td>
-</tr>
-<tr>
-<td style="text-align:center">‘</td>
-<td style="text-align:center">单引号,不具有变量置换功能</td>
-</tr>
-<tr>
-<td style="text-align:center">“</td>
-<td style="text-align:center">具有变量置换功能</td>
-</tr>
-<tr>
-<td style="text-align:center">``</td>
-<td style="text-align:center">中间为可以执行的命令</td>
-</tr>
-<tr>
-<td style="text-align:center">()</td>
-<td style="text-align:center">中间为子shell的起始于结束</td>
-</tr>
-<tr>
-<td style="text-align:center">[] [^]</td>
-<td style="text-align:center">中间为字符的组合</td>
-</tr>
-<tr>
-<td style="text-align:center">{}</td>
-<td style="text-align:center">中间为命令区块的组合</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">组合按键</th>
-<th style="text-align:center">执行结果</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Ctrl+c</td>
-<td style="text-align:center">终止当前的命令</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+a</td>
-<td style="text-align:center">跳转至命令开始处</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+e</td>
-<td style="text-align:center">跳转至命令结尾处</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+u</td>
-<td style="text-align:center">删除命令行首至光标所在处的所有内容</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+k</td>
-<td style="text-align:center">删除光标所在行至命令行尾部的内容</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+z</td>
-<td style="text-align:center">暂停当前命令的执行</td>
-</tr>
-<tr>
-<td style="text-align:center">Ctrl+l</td>
-<td style="text-align:center">清屏,相当于clear命令</td>
-</tr>
-</tbody>
-</table>
-<p><strong>匹配字符举例</strong></p>
-<ul>
-<li>* 任意长度的任意字符</li>
-<li>? 任意单个字符</li>
-<li><p>[] 只能匹配指定范围内的任意单个字符</p>
-<ul>
-<li>[0-9] 所有数字中挑一个</li>
-<li>[a-z] 不分区字符大小写</li>
-<li>[A-Z] 大写字母</li>
-<li>[[:lower:]] 小写字母</li>
-<li>[^0-9a-z] 特殊字符</li>
-</ul>
-</li>
-<li><p>[^] 匹配指定范围外的任意单个字符</p>
-</li>
-<li><p>专用字符集合:</p>
-<ul>
-<li>[:digit:]:任意数字,相当于0-9</li>
-<li>[:lower:]:任意小写字母</li>
-<li>[:upper:]:任意大写字母</li>
-<li>[:alpha:]:任意大小写字母</li>
-<li>[:alnum:]:任意数字或字母</li>
-<li>[:space:]:空格</li>
-<li>[:punct:]:标点符号</li>
-</ul>
-</li>
-</ul>
-<h3 id="命令执行的判断依据-amp-amp"><a href="#命令执行的判断依据-amp-amp" class="headerlink" title="命令执行的判断依据(; &amp;&amp; ||)"></a>命令执行的判断依据(; &amp;&amp; ||)</h3><blockquote>
-<p>通常来说命令的运行状态会返回两种结果,执行成功则返回0，执行错误则返回非0。而多个命令的执行通常,从前至后,而且命令的执行还具有一定的逻辑关系,上一个命令的执行成功与否,某种程序可用决定下一个命令的执行。</p>
-</blockquote>
-<p><strong>一次执行多个命令,命令之间没有关联。</strong></p>
-<pre><code>[root@chenfanlinux ~]# toch test.txt ; echo &quot;I  touch test.txt&quot;
--bash: toch: 未找到命令
-I touch test.txt
-</code></pre><p><strong>命令相互关联,上一个命令执行成功,才会执行下一个命令。</strong></p>
-<pre><code>[root@chenfanlinux ~]# toch test.txt &amp;&amp; echo &quot;I touch test.txt&quot;
--bash: toch: 未找到命令
-</code></pre><p><strong>命令相关关联,上一个命令执行失败,才会执行下一个命令。</strong></p>
-<pre><code>[root@chenfanlinux ~]# toch test.txt || echo &quot;I touch test.txt&quot;
--bash: toch: 未找到命令
-I touch test.txt
-
-[root@chenfanlinux ~]# touch test.txt || echo &quot;I touch test.txt&quot;
-注意:这里不会执行echo &quot;I touch test.txt&quot;
-</code></pre><p><strong>如果第一个命令执行成功,则执行第二个命令,否则执行第三个命令。</strong></p>
-<pre><code>[root@chenfanlinux ~]# touch test.txt &amp;&amp;  echo &quot;我是第二个命令&quot; || echo &quot;我是第三个命令&quot;
-我是第二个命令
-[root@chenfanlinux ~]# tuch test.txt &amp;&amp;  echo &quot;我是第二个命令&quot; || echo &quot;我是第三个命令&quot;
--bash: tuch: 未找到命令
-我是第三个命令
+<p>参考文档：<a href="https://docs.python.org/3/library/datetime.html#strftime-strptime-behavior" target="_blank" rel="noopener">datetime</a></p>
+<h3 id="获取当前日期和时间"><a href="#获取当前日期和时间" class="headerlink" title="获取当前日期和时间"></a>获取当前日期和时间</h3><pre><code>&gt;&gt;&gt; from datetime import datetime
+&gt;&gt;&gt; now = datetime.now() # 获取当前datetime
+&gt;&gt;&gt; print(now)
+2018-04-12 18:30:31.311945
+&gt;&gt;&gt; print(type(now))
+&lt;class &apos;datetime.datetime&apos;&gt;
+</code></pre><h3 id="获取指定日期和时间"><a href="#获取指定日期和时间" class="headerlink" title="获取指定日期和时间"></a>获取指定日期和时间</h3><p>要指定某个日期和时间，我们直接用参数构造一个datetime</p>
+<pre><code>&gt;&gt;&gt; from datetime import datetime
+&gt;&gt;&gt; dt = datetime(2018,4,12,18,32)  # 用指定日期时间创建datetime
+&gt;&gt;&gt; print(dt)
+2018-04-12 18:32:00
+</code></pre><h3 id="datetime转换为timestamp"><a href="#datetime转换为timestamp" class="headerlink" title="datetime转换为timestamp"></a>datetime转换为timestamp</h3><p>timestamp的值与时区毫无关系，因为timestamp一旦确定，其UTC时间就确定了，转换到任意时区的时间也是完全确定的，这就是为什么计算机存储的当前时间是以timestamp表示的，因为全球各地的计算机在任意时刻的timestamp都是完全相同的（假定时间已校准）。</p>
+<pre><code>&gt;&gt;&gt; dt = datetime(2018,4,12,18,40)
+&gt;&gt;&gt; dt.timestamp()
+1523529600.0
+</code></pre><a id="more"></a>
+<h3 id="timestamp转换为datetime"><a href="#timestamp转换为datetime" class="headerlink" title="timestamp转换为datetime"></a>timestamp转换为datetime</h3><p>要把timestamp转换为datetime，使用datetime提供的fromtimestamp()方法</p>
+<pre><code>&gt;&gt;&gt; from datetime import datetime
+&gt;&gt;&gt; t = 1523529600.0
+&gt;&gt;&gt; print(datetime.fromtimestamp(t))
+2018-04-12 18:40:00
+</code></pre><p>注意到timestamp是一个浮点数，它没有时区的概念，而datetime是有时区的。上述转换是在timestamp和本地时间做转换。</p>
+<p>本地时间是指当前操作系统设定的时区。例如北京时区是东8区，则本地时间：</p>
+<pre><code>2018-04-12 18:40:00
+</code></pre><p>实际上就是UTC+8:00时区的时间：</p>
+<pre><code>2015-04-19 12:20:00 UTC+8:00
+</code></pre><p>而此刻的格林威治标准时间与北京时间差了8小时，也就是UTC+0:00时区的时间应该是：</p>
+<pre><code>2015-04-19 4:20:00 UTC+0:00
+</code></pre><p>timestamp也可以直接被转换到UTC标准时区的时间：</p>
+<pre><code>&gt;&gt;&gt; t = 1523529600.0
+&gt;&gt;&gt; print(datetime.fromtimestamp(t))
+2018-04-12 18:40:00
+&gt;&gt;&gt; from datetime import datetime
+&gt;&gt;&gt; t = 1523529600.0   # 本地时间
+&gt;&gt;&gt; print(datetime.fromtimestamp(t))
+2018-04-12 18:40:00  # UTC时间
+&gt;&gt;&gt; print(datetime.utcfromtimestamp(t))
+2018-04-12 10:40:00
+</code></pre><h3 id="str转换为datetime"><a href="#str转换为datetime" class="headerlink" title="str转换为datetime"></a>str转换为datetime</h3><p>很多时候要处理日期和时间字符串，首先必须把str转换为datetime。转换方法是通过datetime.strptime()实现，需要一个日期和时间的格式化字符串：</p>
+<pre><code>&gt;&gt;&gt; cday = datetime.strptime(&apos;2018-4-13 10:10:10&apos;,&apos;%Y-%m-%d %H:%M:%S&apos;)
+&gt;&gt;&gt; print(type(cday))
+&lt;class &apos;datetime.datetime&apos;&gt;
+&gt;&gt;&gt; print(cday)
+2018-04-13 10:10:10
+</code></pre><p>字符串’%Y-%m-%d %H:%M:%S’规定了日期和时间部分的格式。详细的说明请参考<a href="https://docs.python.org/3/library/datetime.html#strftime-strptime-behavior" target="_blank" rel="noopener">官方文档</a></p>
+<h3 id="datetime转换为str"><a href="#datetime转换为str" class="headerlink" title="datetime转换为str"></a>datetime转换为str</h3><p>如果已经有了datetime对象，要把它格式化为字符串显示给用户，就需要转换为str，转换方法是通过strftime()实现的，同样需要一个日期和时间的格式化字符串。</p>
+<pre><code>&gt;&gt;&gt; now = datetime.now()
+&gt;&gt;&gt; print(now.strftime(&apos;%a %b %d %H:%M&apos;))
+Fri Apr 13 10:16
+</code></pre><h3 id="datetime加减"><a href="#datetime加减" class="headerlink" title="datetime加减"></a>datetime加减</h3><p>对日期和时间进行加减实际上就是把datetime往后或往前计算，得到新的datetime。加减可以直接用+和-运算符，不过需要导入timedelta这个类。</p>
+<pre><code>&gt;&gt;&gt; from datetime import datetime, timedelta
+&gt;&gt;&gt; now = datetime.now()
+&gt;&gt;&gt; now
+datetime.datetime(2018, 4, 13, 10, 20, 33, 99527)
+&gt;&gt;&gt; now + timedelta(hours=10)
+datetime.datetime(2018, 4, 13, 20, 20, 33, 99527)
+&gt;&gt;&gt; now + timedelta(days=1)
+datetime.datetime(2018, 4, 14, 10, 20, 33, 99527)
+&gt;&gt;&gt; now + timedelta(days=1,hours=12)
+datetime.datetime(2018, 4, 14, 22, 20, 33, 99527)
+</code></pre><h3 id="本地时间转换为UTC时间"><a href="#本地时间转换为UTC时间" class="headerlink" title="本地时间转换为UTC时间"></a>本地时间转换为UTC时间</h3><p>本地时间是指系统设定时区的时间，例如北京时间是UTC+8:00时区的时间，而UTC时间指UTC+0:00时区的时间。一个datetime类型有一个时区属性tzinfo，但是默认为None，所以无法区分这个datetime到底是哪个时区，除非强行给datetime设置一个时区。</p>
+<pre><code>&gt;&gt;&gt; from datetime import datetime, timedelta, timezone
+&gt;&gt;&gt; tz_utc_8 = timezone(timedelta(hours=8))
+&gt;&gt;&gt; now = datetime.now()
+&gt;&gt;&gt; now
+datetime.datetime(2018, 4, 13, 10, 24, 41, 639742)
+&gt;&gt;&gt; dt = now.replace(tzinfo=tz_utc_8)
+&gt;&gt;&gt; dt
+datetime.datetime(2018, 4, 13, 10, 24, 41, 639742, tzinfo=datetime.timezone(datetime.timedelta(0, 28800)))
+&gt;&gt;&gt; dt
+datetime.datetime(2018, 4, 13, 10, 24, 41, 639742, tzinfo=datetime.timezone(datetime.timedelta(0, 28800)))
 </code></pre>
       
     </div>
@@ -786,7 +610,7 @@ I touch test.txt
         <div class="post-tags">
           
          
-            <a href="/tags/Bash/" rel="tag"><i class="fa fa-tag"></i>Bash</a>
+            <a href="/tags/python模块/" rel="tag"><i class="fa fa-tag"></i>python模块</a>
           
         </div>
       
@@ -799,8 +623,8 @@ I touch test.txt
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/28/Docker入门之基础概念与架构-一/" rel="next" title="Docker入门之基础概念与架构(一)">
-                <i class="fa fa-chevron-left"></i> Docker入门之基础概念与架构(一)
+              <a href="/2018/04/11/python版本管理工具-pyenv/" rel="next" title="python版本管理工具-pyenv">
+                <i class="fa fa-chevron-left"></i> python版本管理工具-pyenv
               </a>
             
           </div>
@@ -808,10 +632,6 @@ I touch test.txt
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/10/Docker入门之镜像基础概念与管理-二/" rel="prev" title="Docker入门之镜像管理(二)">
-                Docker入门之镜像管理(二) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1013,7 +833,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是shell"><span class="nav-number">1.</span> <span class="nav-text">什么是shell?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bash-shell功能特性"><span class="nav-number">2.</span> <span class="nav-text">Bash shell功能特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#history命令记忆功能"><span class="nav-number">2.1.</span> <span class="nav-text">history命令记忆功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令与文件补全功能"><span class="nav-number">2.2.</span> <span class="nav-text">命令与文件补全功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令别名的功能"><span class="nav-number">2.3.</span> <span class="nav-text">命令别名的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行展开功能"><span class="nav-number">2.4.</span> <span class="nav-text">命令行展开功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作业-jobs-、前台-fg-、后台-bg-控制"><span class="nav-number">2.5.</span> <span class="nav-text">作业(jobs)、前台(fg)、后台(bg)控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通配符"><span class="nav-number">2.6.</span> <span class="nav-text">通配符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令执行的判断依据-amp-amp"><span class="nav-number">2.7.</span> <span class="nav-text">命令执行的判断依据(; && ||)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取当前日期和时间"><span class="nav-number">1.</span> <span class="nav-text">获取当前日期和时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取指定日期和时间"><span class="nav-number">2.</span> <span class="nav-text">获取指定日期和时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#datetime转换为timestamp"><span class="nav-number">3.</span> <span class="nav-text">datetime转换为timestamp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#timestamp转换为datetime"><span class="nav-number">4.</span> <span class="nav-text">timestamp转换为datetime</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str转换为datetime"><span class="nav-number">5.</span> <span class="nav-text">str转换为datetime</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#datetime转换为str"><span class="nav-number">6.</span> <span class="nav-text">datetime转换为str</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#datetime加减"><span class="nav-number">7.</span> <span class="nav-text">datetime加减</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地时间转换为UTC时间"><span class="nav-number">8.</span> <span class="nav-text">本地时间转换为UTC时间</span></a></li></ol></div>
             
 
           </div>
@@ -1226,7 +1046,7 @@ var jiathis_config={
 		_hcwp.push({widget:"Bloggerstream", widget_id: 98812, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2018/01/05/Bash特性汇总/"});
+		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2018/04/13/python时间处理模块/"});
 		
 
 		(function() {
