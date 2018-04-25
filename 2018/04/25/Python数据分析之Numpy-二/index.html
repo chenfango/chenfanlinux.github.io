@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Numpy," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="陈凡的个人站点" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="NumPy 是 Python 语言的一个扩充程序库。支持大量高维度数组与矩阵运算，此外也针对数组运算提供大量的数学函数库。机器学习涉及到大量对数组的变换和运算，NumPy 就成了必不可少的工具之一。  矩阵的基本概念 矩阵：矩形的数组，即二维数组，其中向量和标量都是矩阵的特例 向量: 是指1 x n或n x 1的矩阵 ">
+<meta name="keywords" content="Numpy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python数据分析之Numpy(二)">
+<meta property="og:url" content="http://www.chenfanlinux.org/2018/04/25/Python数据分析之Numpy-二/index.html">
+<meta property="og:site_name" content="陈凡的个人站点">
+<meta property="og:description" content="NumPy 是 Python 语言的一个扩充程序库。支持大量高维度数组与矩阵运算，此外也针对数组运算提供大量的数学函数库。机器学习涉及到大量对数组的变换和运算，NumPy 就成了必不可少的工具之一。  矩阵的基本概念 矩阵：矩形的数组，即二维数组，其中向量和标量都是矩阵的特例 向量: 是指1 x n或n x 1的矩阵 标量：是指1 x 1的矩阵 数组：N维的数组，是矩阵的延伸 特殊的矩阵: 全0">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-25T09:20:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python数据分析之Numpy(二)">
+<meta name="twitter:description" content="NumPy 是 Python 语言的一个扩充程序库。支持大量高维度数组与矩阵运算，此外也针对数组运算提供大量的数学函数库。机器学习涉及到大量对数组的变换和运算，NumPy 就成了必不可少的工具之一。  矩阵的基本概念 矩阵：矩形的数组，即二维数组，其中向量和标量都是矩阵的特例 向量: 是指1 x n或n x 1的矩阵 标量：是指1 x 1的矩阵 数组：N维的数组，是矩阵的延伸 特殊的矩阵: 全0">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'X18Q8YOK7R',
+      apiKey: '4cf6f4ea962b4c633859ca376c0d6ae9',
+      indexName: 'chenfanlinux',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfanlinux.org/2018/04/25/Python数据分析之Numpy-二/"/>
+
+
+
+
+
+  <title>Python数据分析之Numpy(二) | 陈凡的个人站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?your-analytics-id";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+ 
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">陈凡的个人站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">chenfanlinux.org</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/04/25/Python数据分析之Numpy-二/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Python数据分析之Numpy(二)</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-25T17:16:24+08:00">
+                2018-04-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python数据分析/" itemprop="url" rel="index">
+                    <span itemprop="name">python数据分析</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/25/Python数据分析之Numpy-二/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/04/25/Python数据分析之Numpy-二/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,381
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>NumPy 是 Python 语言的一个扩充程序库。支持大量高维度数组与矩阵运算，此外也针对数组运算提供大量的数学函数库。机器学习涉及到大量对数组的变换和运算，NumPy 就成了必不可少的工具之一。</p>
+</blockquote>
+<h2 id="矩阵的基本概念"><a href="#矩阵的基本概念" class="headerlink" title="矩阵的基本概念"></a>矩阵的基本概念</h2><ul>
+<li>矩阵：矩形的数组，即二维数组，其中向量和标量都是矩阵的特例</li>
+<li>向量: 是指1 x n或n x 1的矩阵</li>
+<li>标量：是指1 x 1的矩阵</li>
+<li>数组：N维的数组，是矩阵的延伸</li>
+<li>特殊的矩阵: 全0全1的矩阵,单位矩阵</li>
+<li>矩阵的运算:<ul>
+<li>相加或相减的两个矩阵必须有相同的行和列</li>
+<li>矩阵元素间乘法运算 A * B</li>
+<li>矩阵乘法运算 np.dot(A, B)</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="数组的创建"><a href="#数组的创建" class="headerlink" title="数组的创建"></a>数组的创建</h2><h3 id="通过列表创建一维数组"><a href="#通过列表创建一维数组" class="headerlink" title="通过列表创建一维数组"></a>通过列表创建一维数组</h3><pre><code>&gt;&gt;&gt; np.array([1,2,3])
+array([1, 2, 3])
+</code></pre><h3 id="通过列表创建二维数组"><a href="#通过列表创建二维数组" class="headerlink" title="通过列表创建二维数组"></a>通过列表创建二维数组</h3><pre><code>&gt;&gt;&gt; np.array([(1,2,3),(4,5,6)])
+array([[1, 2, 3],
+       [4, 5, 6]])
+
+&gt;&gt;&gt; np.array([[1,2,3],[4,5,6]])
+array([[1, 2, 3],
+       [4, 5, 6]])
+</code></pre><h3 id="创建全为-0-的二维数组"><a href="#创建全为-0-的二维数组" class="headerlink" title="创建全为 0 的二维数组"></a>创建全为 0 的二维数组</h3><pre><code>&gt;&gt;&gt; np.zeros((3,3))
+array([[0., 0., 0.],
+       [0., 0., 0.],
+       [0., 0., 0.]])
+</code></pre><h3 id="创建全为-1-的三维数组"><a href="#创建全为-1-的三维数组" class="headerlink" title="创建全为 1 的三维数组"></a>创建全为 1 的三维数组</h3><pre><code>&gt;&gt;&gt; np.ones((2,3,4))
+array([[[1., 1., 1., 1.],
+        [1., 1., 1., 1.],
+        [1., 1., 1., 1.]],
+
+       [[1., 1., 1., 1.],
+        [1., 1., 1., 1.],
+        [1., 1., 1., 1.]]])
+</code></pre><h3 id="创建单位矩阵（二维数组）"><a href="#创建单位矩阵（二维数组）" class="headerlink" title="创建单位矩阵（二维数组）"></a>创建单位矩阵（二维数组）</h3><pre><code>&gt;&gt;&gt; np.eye(3)
+array([[1., 0., 0.],
+       [0., 1., 0.],
+       [0., 0., 1.]])
+</code></pre><h3 id="创建一维等差数组"><a href="#创建一维等差数组" class="headerlink" title="创建一维等差数组"></a>创建一维等差数组</h3><pre><code>&gt;&gt;&gt; np.arange(5)
+array([0, 1, 2, 3, 4])
+</code></pre><h3 id="创建等间隔一维数组"><a href="#创建等间隔一维数组" class="headerlink" title="创建等间隔一维数组"></a>创建等间隔一维数组</h3><pre><code>&gt;&gt;&gt; np.linspace(1, 10, num=6)
+array([ 1. ,  2.8,  4.6,  6.4,  8.2, 10. ])
+</code></pre><h3 id="创建二维等差数组"><a href="#创建二维等差数组" class="headerlink" title="创建二维等差数组"></a>创建二维等差数组</h3><pre><code>&gt;&gt;&gt; np.arange(6).reshape(2,3)
+array([[0, 1, 2],
+       [3, 4, 5]])
+</code></pre><h3 id="创建二维随机数组"><a href="#创建二维随机数组" class="headerlink" title="创建二维随机数组"></a>创建二维随机数组</h3><pre><code>&gt;&gt;&gt; np.random.rand(2,3)
+array([[0.14663311, 0.43875376, 0.16008493],
+       [0.43601096, 0.2819745 , 0.9210588 ]])
+</code></pre><h3 id="创建二维随机整数数组（数值小于-5）"><a href="#创建二维随机整数数组（数值小于-5）" class="headerlink" title="创建二维随机整数数组（数值小于 5）"></a>创建二维随机整数数组（数值小于 5）</h3><pre><code>&gt;&gt;&gt; np.random.randint(5, size=(2,3))
+array([[4, 4, 4],
+       [4, 1, 0]])
+</code></pre><h3 id="依据自定义函数创建数组"><a href="#依据自定义函数创建数组" class="headerlink" title="依据自定义函数创建数组"></a>依据自定义函数创建数组</h3><pre><code>&gt;&gt;&gt; np.fromfunction(lambda i, j: i + j, (3, 3))
+array([[0., 1., 2.],
+       [1., 2., 3.],
+       [2., 3., 4.]])
+</code></pre><h3 id="查看数组的属性"><a href="#查看数组的属性" class="headerlink" title="查看数组的属性"></a>查看数组的属性</h3><pre><code>&gt;&gt;&gt; arr1 = np.arange(6).reshape(2,3)
+&gt;&gt;&gt; arr1.shape  # 查看数组的形状
+(2, 3)
+&gt;&gt;&gt; arr1.size # 查看元素的个数
+6
+&gt;&gt;&gt; arr1.dtype # 查看数组的类型
+dtype(&apos;int32&apos;)
+&gt;&gt;&gt; len(arr1)
+2  # 行数
+</code></pre><h2 id="数组的运算"><a href="#数组的运算" class="headerlink" title="数组的运算"></a>数组的运算</h2><h3 id="一维数组减法运算"><a href="#一维数组减法运算" class="headerlink" title="一维数组减法运算"></a>一维数组减法运算</h3><pre><code>&gt;&gt;&gt; a
+array([10, 20, 30, 40, 50])
+&gt;&gt;&gt; b
+array([1, 2, 3, 4, 5])
+&gt;&gt;&gt; a + b
+array([11, 22, 33, 44, 55])
+
+&gt;&gt;&gt; a - b
+array([ 9, 18, 27, 36, 45])
+</code></pre><h3 id="一维数组乘法运算"><a href="#一维数组乘法运算" class="headerlink" title="一维数组乘法运算"></a>一维数组乘法运算</h3><pre><code>&gt;&gt;&gt; a * b
+array([ 10,  40,  90, 160, 250])
+</code></pre><h3 id="一维数组除法运算"><a href="#一维数组除法运算" class="headerlink" title="一维数组除法运算"></a>一维数组除法运算</h3><pre><code>&gt;&gt;&gt; a / b
+array([10., 10., 10., 10., 10.])
+</code></pre><h3 id="矩阵加法运算"><a href="#矩阵加法运算" class="headerlink" title="矩阵加法运算"></a>矩阵加法运算</h3><pre><code>&gt;&gt;&gt; A = np.array([[1,2],[3,4]])
+&gt;&gt;&gt;
+&gt;&gt;&gt; B = np.array([[5,6],[7,8]])
+&gt;&gt;&gt; A
+array([[1, 2],
+       [3, 4]])
+&gt;&gt;&gt; B
+array([[5, 6],
+       [7, 8]])
+
+&gt;&gt;&gt; A + B
+array([[ 6,  8],
+       [10, 12]])
+</code></pre><h3 id="矩阵减法运算"><a href="#矩阵减法运算" class="headerlink" title="矩阵减法运算"></a>矩阵减法运算</h3><pre><code>&gt;&gt;&gt; A - B
+array([[-4, -4],
+       [-4, -4]])
+</code></pre><h3 id="矩阵元素间乘法运算"><a href="#矩阵元素间乘法运算" class="headerlink" title="矩阵元素间乘法运算"></a>矩阵元素间乘法运算</h3><pre><code>&gt;&gt;&gt; A * B
+array([[ 5, 12],
+       [21, 32]])
+</code></pre><h3 id="矩阵乘法运算（注意与上题的区别）"><a href="#矩阵乘法运算（注意与上题的区别）" class="headerlink" title="矩阵乘法运算（注意与上题的区别）"></a>矩阵乘法运算（注意与上题的区别）</h3><pre><code>&gt;&gt;&gt; np.dot(A, B)
+array([[19, 22],
+       [43, 50]])
+</code></pre><p>如果使用 np.mat 将二维数组准确定义为矩阵，就可以直接使用 * 完成矩阵乘法计算</p>
+<pre><code>&gt;&gt;&gt; np.mat(A) * np.mat(B)
+</code></pre><h3 id="数乘矩阵"><a href="#数乘矩阵" class="headerlink" title="数乘矩阵"></a>数乘矩阵</h3><pre><code>&gt;&gt;&gt; 2 * A
+array([[2, 4],
+       [6, 8]])
+</code></pre><h3 id="矩阵的转置"><a href="#矩阵的转置" class="headerlink" title="矩阵的转置"></a>矩阵的转置</h3><pre><code>&gt;&gt;&gt; A.T
+array([[1, 3],
+       [2, 4]])
+</code></pre><h2 id="数组切片和索引-访问"><a href="#数组切片和索引-访问" class="headerlink" title="数组切片和索引(访问)"></a>数组切片和索引(访问)</h2><h3 id="一维数组索引"><a href="#一维数组索引" class="headerlink" title="一维数组索引"></a>一维数组索引</h3><pre><code>&gt;&gt;&gt; a = np.array([1, 2, 3, 4, 5])
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt; a[0],a[-1]
+(1, 5)
+</code></pre><h3 id="一维数组切片"><a href="#一维数组切片" class="headerlink" title="一维数组切片"></a>一维数组切片</h3><pre><code>&gt;&gt;&gt; a[0:2], a[:-1]
+(array([1, 2]), array([1, 2, 3, 4]))
+</code></pre><h3 id="二维数组索引"><a href="#二维数组索引" class="headerlink" title="二维数组索引"></a>二维数组索引</h3><pre><code>&gt;&gt;&gt; a[0], a[-1]
+(array([1, 2, 3]), array([7, 8, 9]))
+</code></pre><h3 id="二维数组切片（取第-2-列）"><a href="#二维数组切片（取第-2-列）" class="headerlink" title="二维数组切片（取第 2 列）"></a>二维数组切片（取第 2 列）</h3><pre><code>&gt;&gt;&gt; print(a)
+[[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+&gt;&gt;&gt; a[:,1]
+array([2, 5, 8])
+</code></pre><h3 id="二维数组切片（取第-2，3-行）"><a href="#二维数组切片（取第-2，3-行）" class="headerlink" title="二维数组切片（取第 2，3 行）"></a>二维数组切片（取第 2，3 行）</h3><pre><code>&gt;&gt;&gt; a[1:3, :]
+array([[4, 5, 6],
+       [7, 8, 9]])
+</code></pre><h2 id="数组形状操作"><a href="#数组形状操作" class="headerlink" title="数组形状操作"></a>数组形状操作</h2><h3 id="生成二维示例数组"><a href="#生成二维示例数组" class="headerlink" title="生成二维示例数组"></a>生成二维示例数组</h3><pre><code>&gt;&gt;&gt; a = np.random.random((3, 2))
+&gt;&gt;&gt; a
+array([[0.19934535, 0.16189321],
+       [0.55116486, 0.47949279],
+       [0.04765736, 0.44019839]])
+</code></pre><h3 id="查看数组形状"><a href="#查看数组形状" class="headerlink" title="查看数组形状"></a>查看数组形状</h3><pre><code>&gt;&gt;&gt; a.shape
+(3, 2)
+</code></pre><h3 id="更改数组形状（不改变原始数组）"><a href="#更改数组形状（不改变原始数组）" class="headerlink" title="更改数组形状（不改变原始数组）"></a>更改数组形状（不改变原始数组）</h3><pre><code>&gt;&gt;&gt; a.reshape(2,3)
+array([[0.19934535, 0.16189321, 0.55116486],
+       [0.47949279, 0.04765736, 0.44019839]])
+&gt;&gt;&gt; a
+array([[0.19934535, 0.16189321],
+       [0.55116486, 0.47949279],
+       [0.04765736, 0.44019839]])
+</code></pre><h3 id="更改数组形状（改变原始数组）"><a href="#更改数组形状（改变原始数组）" class="headerlink" title="更改数组形状（改变原始数组）"></a>更改数组形状（改变原始数组）</h3><pre><code>&gt;&gt;&gt; a.resize(2,3)
+&gt;&gt;&gt; a
+array([[0.19934535, 0.16189321, 0.55116486],
+       [0.47949279, 0.04765736, 0.44019839]])
+</code></pre><h3 id="展平数组"><a href="#展平数组" class="headerlink" title="展平数组"></a>展平数组</h3><pre><code>&gt;&gt;&gt; a.ravel()
+array([0.19934535, 0.16189321, 0.55116486, 0.47949279, 0.04765736,0.44019839]
+</code></pre><h3 id="垂直拼合数组"><a href="#垂直拼合数组" class="headerlink" title="垂直拼合数组"></a>垂直拼合数组</h3><pre><code>&gt;&gt;&gt; a = np.random.randint(10, size=(3, 3))
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt; b = np.random.randint(10, size=(3, 3))
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt; a
+array([[1, 4, 9],
+       [6, 6, 9],
+       [0, 0, 3]])
+&gt;&gt;&gt; b
+array([[1, 6, 2],
+       [7, 7, 7],
+       [7, 1, 4]])
+
+&gt;&gt;&gt; np.vstack((a, b))
+   array([[1, 4, 9],
+   [6, 6, 9],
+   [0, 0, 3],
+   [1, 6, 2],
+   [7, 7, 7],
+   [7, 1, 4]])
+</code></pre><h3 id="水平拼合数组"><a href="#水平拼合数组" class="headerlink" title="水平拼合数组"></a>水平拼合数组</h3><pre><code>&gt;&gt;&gt; np.hstack((a, b))
+array([[1, 4, 9, 1, 6, 2],
+       [6, 6, 9, 7, 7, 7],
+       [0, 0, 3, 7, 1, 4]])
+</code></pre><h3 id="沿横轴分割数组"><a href="#沿横轴分割数组" class="headerlink" title="沿横轴分割数组"></a>沿横轴分割数组</h3><pre><code>&gt;&gt;&gt; np.hsplit(a,3)
+[array([[1],
+       [6],
+       [0]]), array([[4],
+       [6],
+       [0]]), array([[9],
+       [9],
+       [3]])]
+</code></pre><h3 id="沿纵轴分割数组"><a href="#沿纵轴分割数组" class="headerlink" title="沿纵轴分割数组"></a>沿纵轴分割数组</h3><pre><code>&gt;&gt;&gt; np.vsplit(a,3)
+[array([[1, 4, 9]]), array([[6, 6, 9]]), array([[0, 0, 3]])]
+</code></pre><h2 id="数组排序"><a href="#数组排序" class="headerlink" title="数组排序"></a>数组排序</h2><h3 id="返回每列最大值"><a href="#返回每列最大值" class="headerlink" title="返回每列最大值"></a>返回每列最大值</h3><pre><code>&gt;&gt;&gt; a = np.array(([1,4,3],[6,2,9],[4,7,2]))
+&gt;&gt;&gt;&gt; np.max(a, axis=0)
+array([6, 7, 9])
+</code></pre><h3 id="返回每行最小值"><a href="#返回每行最小值" class="headerlink" title="返回每行最小值"></a>返回每行最小值</h3><pre><code>&gt;&gt;&gt; np.min(a, axis=1)
+array([1, 2, 2])
+</code></pre><h3 id="返回每列最大值索引"><a href="#返回每列最大值索引" class="headerlink" title="返回每列最大值索引"></a>返回每列最大值索引</h3><pre><code>&gt;&gt;&gt; np.argmax(a, axis=0)
+array([1, 2, 1], dtype=int64)
+</code></pre><h3 id="返回每行最小值索引"><a href="#返回每行最小值索引" class="headerlink" title="返回每行最小值索引"></a>返回每行最小值索引</h3><pre><code>&gt;&gt;&gt; np.argmin(a, axis=1)
+array([0, 1, 2], dtype=int64)
+</code></pre><h2 id="数组统计"><a href="#数组统计" class="headerlink" title="数组统计"></a>数组统计</h2><h3 id="统计数组各列的中位数"><a href="#统计数组各列的中位数" class="headerlink" title="统计数组各列的中位数"></a>统计数组各列的中位数</h3><pre><code>&gt;&gt;&gt; np.median(a, axis=0)
+array([4., 4., 3.])
+</code></pre><h3 id="统计数组各行的算术平均值"><a href="#统计数组各行的算术平均值" class="headerlink" title="统计数组各行的算术平均值"></a>统计数组各行的算术平均值</h3><pre><code>&gt;&gt;&gt; np.mean(a, axis=1)
+array([2.66666667, 5.66666667, 4.33333333])
+</code></pre><h3 id="统计数组各列的加权平均值"><a href="#统计数组各列的加权平均值" class="headerlink" title="统计数组各列的加权平均值"></a>统计数组各列的加权平均值</h3><pre><code>&gt;&gt;&gt; np.average(a, axis=0)
+array([3.66666667, 4.33333333, 4.66666667])
+</code></pre><h3 id="统计数组各列的标准偏差"><a href="#统计数组各列的标准偏差" class="headerlink" title="统计数组各列的标准偏差"></a>统计数组各列的标准偏差</h3><pre><code>&gt;&gt;&gt; np.std(a, axis=0)
+array([2.05480467, 2.05480467, 3.09120617])
+</code></pre><h3 id="统计数组各行的方差"><a href="#统计数组各行的方差" class="headerlink" title="统计数组各行的方差"></a>统计数组各行的方差</h3><pre><code>&gt;&gt;&gt; np.var(a, axis=1)
+array([1.55555556, 8.22222222, 4.22222222])
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏2块钱,帮我买杯咖啡,继续创作,谢谢大家！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="陈凡 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliyipay.jpg" alt="陈凡 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+        -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+         
+            <a href="/tags/Numpy/" rel="tag"><i class="fa fa-tag"></i>Numpy</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/18/Python数据分析之开发工具Anaconda-一/" rel="next" title="Python数据分析之开发工具Anaconda(一)">
+                <i class="fa fa-chevron-left"></i> Python数据分析之开发工具Anaconda(一)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/upload/avatar.gif"
+                alt="陈凡" />
+            
+              <p class="site-author-name" itemprop="name">陈凡</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/chenfanlinux" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:chenfan216@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/3942411590" target="_blank" title="微博">
+                    
+                      <i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/love-hero-80" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵的基本概念"><span class="nav-number">1.</span> <span class="nav-text">矩阵的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组的创建"><span class="nav-number">2.</span> <span class="nav-text">数组的创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过列表创建一维数组"><span class="nav-number">2.1.</span> <span class="nav-text">通过列表创建一维数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过列表创建二维数组"><span class="nav-number">2.2.</span> <span class="nav-text">通过列表创建二维数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建全为-0-的二维数组"><span class="nav-number">2.3.</span> <span class="nav-text">创建全为 0 的二维数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建全为-1-的三维数组"><span class="nav-number">2.4.</span> <span class="nav-text">创建全为 1 的三维数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建单位矩阵（二维数组）"><span class="nav-number">2.5.</span> <span class="nav-text">创建单位矩阵（二维数组）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一维等差数组"><span class="nav-number">2.6.</span> <span class="nav-text">创建一维等差数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建等间隔一维数组"><span class="nav-number">2.7.</span> <span class="nav-text">创建等间隔一维数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建二维等差数组"><span class="nav-number">2.8.</span> <span class="nav-text">创建二维等差数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建二维随机数组"><span class="nav-number">2.9.</span> <span class="nav-text">创建二维随机数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建二维随机整数数组（数值小于-5）"><span class="nav-number">2.10.</span> <span class="nav-text">创建二维随机整数数组（数值小于 5）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#依据自定义函数创建数组"><span class="nav-number">2.11.</span> <span class="nav-text">依据自定义函数创建数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看数组的属性"><span class="nav-number">2.12.</span> <span class="nav-text">查看数组的属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组的运算"><span class="nav-number">3.</span> <span class="nav-text">数组的运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一维数组减法运算"><span class="nav-number">3.1.</span> <span class="nav-text">一维数组减法运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一维数组乘法运算"><span class="nav-number">3.2.</span> <span class="nav-text">一维数组乘法运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一维数组除法运算"><span class="nav-number">3.3.</span> <span class="nav-text">一维数组除法运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#矩阵加法运算"><span class="nav-number">3.4.</span> <span class="nav-text">矩阵加法运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#矩阵减法运算"><span class="nav-number">3.5.</span> <span class="nav-text">矩阵减法运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#矩阵元素间乘法运算"><span class="nav-number">3.6.</span> <span class="nav-text">矩阵元素间乘法运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#矩阵乘法运算（注意与上题的区别）"><span class="nav-number">3.7.</span> <span class="nav-text">矩阵乘法运算（注意与上题的区别）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数乘矩阵"><span class="nav-number">3.8.</span> <span class="nav-text">数乘矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#矩阵的转置"><span class="nav-number">3.9.</span> <span class="nav-text">矩阵的转置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组切片和索引-访问"><span class="nav-number">4.</span> <span class="nav-text">数组切片和索引(访问)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一维数组索引"><span class="nav-number">4.1.</span> <span class="nav-text">一维数组索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一维数组切片"><span class="nav-number">4.2.</span> <span class="nav-text">一维数组切片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二维数组索引"><span class="nav-number">4.3.</span> <span class="nav-text">二维数组索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二维数组切片（取第-2-列）"><span class="nav-number">4.4.</span> <span class="nav-text">二维数组切片（取第 2 列）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二维数组切片（取第-2，3-行）"><span class="nav-number">4.5.</span> <span class="nav-text">二维数组切片（取第 2，3 行）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组形状操作"><span class="nav-number">5.</span> <span class="nav-text">数组形状操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成二维示例数组"><span class="nav-number">5.1.</span> <span class="nav-text">生成二维示例数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看数组形状"><span class="nav-number">5.2.</span> <span class="nav-text">查看数组形状</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改数组形状（不改变原始数组）"><span class="nav-number">5.3.</span> <span class="nav-text">更改数组形状（不改变原始数组）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改数组形状（改变原始数组）"><span class="nav-number">5.4.</span> <span class="nav-text">更改数组形状（改变原始数组）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#展平数组"><span class="nav-number">5.5.</span> <span class="nav-text">展平数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垂直拼合数组"><span class="nav-number">5.6.</span> <span class="nav-text">垂直拼合数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#水平拼合数组"><span class="nav-number">5.7.</span> <span class="nav-text">水平拼合数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#沿横轴分割数组"><span class="nav-number">5.8.</span> <span class="nav-text">沿横轴分割数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#沿纵轴分割数组"><span class="nav-number">5.9.</span> <span class="nav-text">沿纵轴分割数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组排序"><span class="nav-number">6.</span> <span class="nav-text">数组排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#返回每列最大值"><span class="nav-number">6.1.</span> <span class="nav-text">返回每列最大值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回每行最小值"><span class="nav-number">6.2.</span> <span class="nav-text">返回每行最小值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回每列最大值索引"><span class="nav-number">6.3.</span> <span class="nav-text">返回每列最大值索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回每行最小值索引"><span class="nav-number">6.4.</span> <span class="nav-text">返回每行最小值索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组统计"><span class="nav-number">7.</span> <span class="nav-text">数组统计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#统计数组各列的中位数"><span class="nav-number">7.1.</span> <span class="nav-text">统计数组各列的中位数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#统计数组各行的算术平均值"><span class="nav-number">7.2.</span> <span class="nav-text">统计数组各行的算术平均值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#统计数组各列的加权平均值"><span class="nav-number">7.3.</span> <span class="nav-text">统计数组各列的加权平均值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#统计数组各列的标准偏差"><span class="nav-number">7.4.</span> <span class="nav-text">统计数组各列的标准偏差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#统计数组各行的方差"><span class="nav-number">7.5.</span> <span class="nav-text">统计数组各行的方差</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+<script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=ipZXdvME3sKg6viC20OoTCYATcaOJ6SQH2wdaJEUHfc"></script>
+
+<div id="music163player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=525241230&auto=0&height=66"></iframe>
+</div>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈凡</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">83.0k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div> 
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+ <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 98812, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2018/04/25/Python数据分析之Numpy-二/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/98812/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+<!--页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>  
+
+
+
+<!-- 
+<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-1 count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script> -->
+
+
+</body>
+</html>
