@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Pandas," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="陈凡的个人站点" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Pandas 是基于 NumPy 的一种数据处理工具，该工具为了解决数据分析任务而创建。Pandas 纳入了大量库和一些标准的数据模型，提供了高效地操作大型数据集所需的函数和方法。  Pandas的常用数据结构Pandas 的数据结构：Pandas 主要有 Series（一维数组），DataFrame（二维数组），Pa">
+<meta name="keywords" content="Pandas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python数据分析之Pandas入门(三)">
+<meta property="og:url" content="http://www.chenfanlinux.org/2018/04/26/Python数据分析之Pandas入门-三/index.html">
+<meta property="og:site_name" content="陈凡的个人站点">
+<meta property="og:description" content="Pandas 是基于 NumPy 的一种数据处理工具，该工具为了解决数据分析任务而创建。Pandas 纳入了大量库和一些标准的数据模型，提供了高效地操作大型数据集所需的函数和方法。  Pandas的常用数据结构Pandas 的数据结构：Pandas 主要有 Series（一维数组），DataFrame（二维数组），Panel（三维数组），Panel4D（四维数组），PanelND（更多维数组）等">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-26T07:38:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python数据分析之Pandas入门(三)">
+<meta name="twitter:description" content="Pandas 是基于 NumPy 的一种数据处理工具，该工具为了解决数据分析任务而创建。Pandas 纳入了大量库和一些标准的数据模型，提供了高效地操作大型数据集所需的函数和方法。  Pandas的常用数据结构Pandas 的数据结构：Pandas 主要有 Series（一维数组），DataFrame（二维数组），Panel（三维数组），Panel4D（四维数组），PanelND（更多维数组）等">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'X18Q8YOK7R',
+      apiKey: '4cf6f4ea962b4c633859ca376c0d6ae9',
+      indexName: 'chenfanlinux',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfanlinux.org/2018/04/26/Python数据分析之Pandas入门-三/"/>
+
+
+
+
+
+  <title>Python数据分析之Pandas入门(三) | 陈凡的个人站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?your-analytics-id";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+ 
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">陈凡的个人站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">chenfanlinux.org</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/04/26/Python数据分析之Pandas入门-三/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Python数据分析之Pandas入门(三)</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-26T15:35:44+08:00">
+                2018-04-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python数据分析/" itemprop="url" rel="index">
+                    <span itemprop="name">python数据分析</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/26/Python数据分析之Pandas入门-三/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/04/26/Python数据分析之Pandas入门-三/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,848
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  21
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Pandas 是基于 NumPy 的一种数据处理工具，该工具为了解决数据分析任务而创建。Pandas 纳入了大量库和一些标准的数据模型，提供了高效地操作大型数据集所需的函数和方法。</p>
+</blockquote>
+<h2 id="Pandas的常用数据结构"><a href="#Pandas的常用数据结构" class="headerlink" title="Pandas的常用数据结构"></a>Pandas的常用数据结构</h2><p>Pandas 的数据结构：Pandas 主要有 Series（一维数组），DataFrame（二维数组），Panel（三维数组），Panel4D（四维数组），PanelND（更多维数组）等数据结构。其中 Series 和 DataFrame 应用的最为广泛。</p>
+<ul>
+<li>Series 是一维带标签的数组，它可以包含任何数据类型。包括整数，字符串，浮点数，Python 对象等。Series 可以通过标签来定位。</li>
+<li>DataFrame 是二维的带标签的数据结构。我们可以通过标签来定位数据。这是 NumPy 所没有的。</li>
+</ul>
+<h2 id="Series"><a href="#Series" class="headerlink" title="Series"></a>Series</h2><blockquote>
+<p>Pandas 中，Series 可以被看作由 1 列数据组成的数据集。</p>
+</blockquote>
+<h3 id="创建-Series数据类型"><a href="#创建-Series数据类型" class="headerlink" title="创建 Series数据类型"></a>创建 Series数据类型</h3><p>创建 Series 语法： <code>s = pd.Series(data, index=index)</code>，可以通过多种方式进行创建, 这里的data的数据类型只要是序列都可以。</p>
+<a id="more"></a>
+<h4 id="从列表创建-Series"><a href="#从列表创建-Series" class="headerlink" title="从列表创建 Series"></a>从列表创建 Series</h4><pre><code>&gt;&gt;&gt; import pandas as pd
+&gt;&gt;&gt; arr = [0, 1, 2, 3, 4]
+&gt;&gt;&gt; s1 = pd.Series(arr) # 如果不指定索引，则默认从 0 开始
+&gt;&gt;&gt; s1
+0    0
+1    1
+2    2
+3    3
+4    4
+dtype: int64
+</code></pre><p>注意：前面的 0,1,2,3,4 为当前 Series 的索引，后面的 0,1,2,3,4 为 Series 的值。</p>
+<h4 id="从-Ndarray-创建-Series"><a href="#从-Ndarray-创建-Series" class="headerlink" title="从 Ndarray 创建 Series"></a>从 Ndarray 创建 Series</h4><pre><code>&gt;&gt;&gt; import numpy as np
+&gt;&gt;&gt; n = np.random.randn(5)
+&gt;&gt;&gt; n
+array([ 0.39925835,  1.65144475, -0.72621788,  0.180224  , -0.99682087])
+&gt;&gt;&gt; index = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]
+&gt;&gt;&gt; s2 = pd.Series(n,index=index)
+&gt;&gt;&gt; s2
+a    0.399258
+b    1.651445
+c   -0.726218
+d    0.180224
+e   -0.996821
+</code></pre><h4 id="从字典创建-Series"><a href="#从字典创建-Series" class="headerlink" title="从字典创建 Series"></a>从字典创建 Series</h4><pre><code>&gt;&gt;&gt; d = {&apos;a&apos;:1,&apos;b&apos;:2,&apos;c&apos;:3,&apos;d&apos;:4,&apos;e&apos;:5}
+&gt;&gt;&gt; s3 = pd.Series(d)
+&gt;&gt;&gt; s3
+a    1
+b    2
+c    3
+d    4
+e    5
+</code></pre><h3 id="Series-基本操作"><a href="#Series-基本操作" class="headerlink" title="Series 基本操作"></a>Series 基本操作</h3><h4 id="修改-Series-索引"><a href="#修改-Series-索引" class="headerlink" title="修改 Series 索引"></a>修改 Series 索引</h4><pre><code>&gt;&gt;&gt; print(s1) # 以s1为例
+0    0
+1    1
+2    2
+3    3
+4    4
+
+&gt;&gt;&gt; s1.index = [&apos;A&apos;,&apos;B&apos;, &apos;C&apos;, &apos;D&apos;, &apos;E&apos;] # 修改后的索引
+&gt;&gt;&gt; s1
+A    0
+B    1
+C    2
+D    3
+E    4
+</code></pre><h4 id="Series-修改指定索引元素"><a href="#Series-修改指定索引元素" class="headerlink" title="Series 修改指定索引元素"></a>Series 修改指定索引元素</h4><pre><code>&gt;&gt;&gt; s1
+A    0
+B    1
+C    2
+D    3
+E    4
+dtype: int64
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt; s1[&apos;A&apos;] = 5
+&gt;&gt;&gt; s1
+A    5
+B    1
+C    2
+D    3
+E    4
+</code></pre><h4 id="Series-按指定索引删除元素"><a href="#Series-按指定索引删除元素" class="headerlink" title="Series 按指定索引删除元素"></a>Series 按指定索引删除元素</h4><pre><code>&gt;&gt;&gt; s1 = s1.drop(&apos;A&apos;)
+B    1
+C    2
+D    3
+E    4
+
+&gt;&gt;&gt; s1
+B    1
+C    2
+D    3
+E    4
+</code></pre><h4 id="Series-纵向拼接"><a href="#Series-纵向拼接" class="headerlink" title="Series 纵向拼接"></a>Series 纵向拼接</h4><pre><code>&gt;&gt;&gt; s4 = s3.append(s1)
+&gt;&gt;&gt; s4
+a    1
+b    2
+c    3
+d    4
+e    5
+B    1
+C    2
+D    3
+E    4
+</code></pre><h4 id="Series-按指定索引查找元素"><a href="#Series-按指定索引查找元素" class="headerlink" title="Series 按指定索引查找元素"></a>Series 按指定索引查找元素</h4><pre><code>&gt;&gt;&gt; s4.index  # s4的索引
+Index([&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;, &apos;B&apos;, &apos;C&apos;, &apos;D&apos;, &apos;E&apos;], dtype=&apos;object&apos;)
+&gt;&gt;&gt; s4.values # s4的值
+array([1, 2, 3, 4, 5, 1, 2, 3, 4], dtype=int64)
+
+&gt;&gt;&gt; s4[&apos;B&apos;] # 指定单个索引
+1
+
+&gt;&gt;&gt; s4[[&apos;a&apos;,&apos;B&apos;]] # 指定多个索引
+a    1
+B    1
+
+
+&gt;&gt;&gt; s4&gt;3
+a    False
+b    False
+c    False
+d     True
+e     True
+B    False
+C    False
+D    False
+E     True
+
+&gt;&gt;&gt; s4[s4&gt;3]  # 利用布尔型数组进行过滤Series
+d    4
+e    5
+E    4
+</code></pre><h4 id="Series-切片操作"><a href="#Series-切片操作" class="headerlink" title="Series 切片操作"></a>Series 切片操作</h4><pre><code>&gt;&gt;&gt; s4[:3] # 对s4的前 3 个数据访问
+a    1
+b    2
+c    3
+</code></pre><h4 id="判断值是否为空"><a href="#判断值是否为空" class="headerlink" title="判断值是否为空"></a>判断值是否为空</h4><pre><code>&gt;&gt;&gt; pd.isnull(s3)  # 看Series的值为空
+a    False
+b    False
+c    False
+d    False
+e    False
+
+&gt;&gt;&gt; pd.notnull(s3)  # 看Series的值不为空
+a    True
+b    True
+c    True
+d    True
+e    True
+
+
+&gt;&gt;&gt; all(pd.notnull(s1 + s4)) # 所有为True才为真
+False
+&gt;&gt;&gt; any(pd.notnull(s1 + s4)) # 有一个为True就为真
+True
+</code></pre><h4 id="给Series及其index取名"><a href="#给Series及其index取名" class="headerlink" title="给Series及其index取名"></a>给Series及其index取名</h4><pre><code>&gt;&gt;&gt; s4.name = &apos;demo&apos; # 给Series取名
+&gt;&gt;&gt; s4
+a    1
+b    2
+c    3
+d    4
+e    5
+B    1
+C    2
+D    3
+E    4
+Name: demo, dtype: int64
+
+&gt;&gt;&gt; s4.index.name = &apos;demo&apos; # 给Series的索引取名
+&gt;&gt;&gt; s4
+demo
+a    1
+b    2
+c    3
+d    4
+e    5
+B    1
+C    2
+D    3
+E    4
+Name: demo, dtype: int64
+</code></pre><h3 id="Series-运算"><a href="#Series-运算" class="headerlink" title="Series 运算"></a>Series 运算</h3><h4 id="Series-加法运算"><a href="#Series-加法运算" class="headerlink" title="Series 加法运算"></a>Series 加法运算</h4><p>Series 的加法运算是按照索引计算，如果索引不同则填充为 NaN（空值）。</p>
+<pre><code>&gt;&gt;&gt; s4
+a    1
+b    2
+c    3
+d    4
+e    5
+B    1
+C    2
+D    3
+E    4
+dtype: int64
+&gt;&gt;&gt; s3
+a    1
+b    2
+c    3
+d    4
+e    5
+dtype: int64
+&gt;&gt;&gt; s4.add(s3)
+B     NaN
+C     NaN
+D     NaN
+E     NaN
+a     2.0
+b     4.0
+c     6.0
+d     8.0
+e    10.0
+</code></pre><h4 id="Series-减法运算"><a href="#Series-减法运算" class="headerlink" title="Series 减法运算"></a>Series 减法运算</h4><p>Series的减法运算是按照索引对应计算，如果不同则填充为 <code>NaN</code>（空值）。</p>
+<pre><code>&gt;&gt;&gt; s4.sub(s3)
+B    NaN
+C    NaN
+D    NaN
+E    NaN
+a    0.0
+b    0.0
+c    0.0
+d    0.0
+e    0.0
+</code></pre><h4 id="Series-乘法运算"><a href="#Series-乘法运算" class="headerlink" title="Series 乘法运算"></a>Series 乘法运算</h4><p>Series 的乘法运算是按照索引对应计算，如果索引不同则填充为 NaN（空值）。</p>
+<pre><code>&gt;&gt;&gt; s4.mul(s3)
+B     NaN
+C     NaN
+D     NaN
+E     NaN
+a     1.0
+b     4.0
+c     9.0
+d    16.0
+e    25.0
+dtype: float64
+&gt;&gt;&gt; s3.mul(s3)
+a     1
+b     4
+c     9
+d    16
+e    25
+</code></pre><h4 id="Series-除法运算"><a href="#Series-除法运算" class="headerlink" title="Series 除法运算"></a>Series 除法运算</h4><p>Series 的除法运算是按照索引对应计算，如果索引不同则填充为 NaN（空值）。</p>
+<pre><code>&gt;&gt;&gt; s4.div(s3)
+B    NaN
+C    NaN
+D    NaN
+E    NaN
+a    1.0
+b    1.0
+c    1.0
+d    1.0
+e    1.0
+</code></pre><h4 id="Series-求均值"><a href="#Series-求均值" class="headerlink" title="Series 求均值"></a>Series 求均值</h4><pre><code>&gt;&gt;&gt; s4.median()
+3.0
+</code></pre><h4 id="Series-求和"><a href="#Series-求和" class="headerlink" title="Series 求和"></a>Series 求和</h4><pre><code>&gt;&gt;&gt; s4.sum()
+25
+</code></pre><h4 id="Series-求最大值"><a href="#Series-求最大值" class="headerlink" title="Series 求最大值"></a>Series 求最大值</h4><pre><code>&gt;&gt;&gt; s4.max()
+5
+</code></pre><h4 id="Series-求最小值"><a href="#Series-求最小值" class="headerlink" title="Series 求最小值"></a>Series 求最小值</h4><pre><code>&gt;&gt;&gt; s4.min()
+1
+</code></pre><h2 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h2><blockquote>
+<p>与 Sereis 不同，DataFrame 可以存在多列数据。一般情况下，DataFrame 也更加常用。</p>
+</blockquote>
+<h3 id="创建-DataFrame-数据类型"><a href="#创建-DataFrame-数据类型" class="headerlink" title="创建 DataFrame 数据类型"></a>创建 DataFrame 数据类型</h3><h4 id="通过-NumPy-数组创建-DataFrame"><a href="#通过-NumPy-数组创建-DataFrame" class="headerlink" title="通过 NumPy 数组创建 DataFrame"></a>通过 NumPy 数组创建 DataFrame</h4><pre><code>&gt;&gt;&gt; dates = pd.date_range(&apos;today&apos;,periods=6) # 定义时间序列作为 in
+dex
+&gt;&gt;&gt; dates
+DatetimeIndex([&apos;2018-04-26 11:37:07.705264&apos;, &apos;2018-04-27 11:37:07.
+705264&apos;,
+               &apos;2018-04-28 11:37:07.705264&apos;, &apos;2018-04-29 11:37:07.
+705264&apos;,
+               &apos;2018-04-30 11:37:07.705264&apos;, &apos;2018-05-01 11:37:07.
+705264&apos;],
+              dtype=&apos;datetime64[ns]&apos;, freq=&apos;D&apos;)
+
+&gt;&gt;&gt; num_arr = np.random.randn(6,4) # 传入 numpy 随机数组
+&gt;&gt;&gt;
+&gt;&gt;&gt; columns = [&apos;A&apos;,&apos;B&apos;,&apos;C&apos;,&apos;D&apos;] # 将列表作为列名
+&gt;&gt;&gt;
+&gt;&gt;&gt; df1 = pd.DataFrame(num_arr,index=dates,columns=columns)
+&gt;&gt;&gt;
+&gt;&gt;&gt; df1
+                                   A         B         C         D
+
+2018-04-26 11:37:07.705264 -0.400285  0.951334  0.385495  0.955869
+
+2018-04-27 11:37:07.705264 -0.462783  1.237563  0.083758  0.110943
+
+2018-04-28 11:37:07.705264 -0.763846  1.085889  0.541877  0.961261
+
+2018-04-29 11:37:07.705264  0.308832  2.252399  0.882554  0.026590
+
+2018-04-30 11:37:07.705264 -0.007068  0.028647  0.155501 -0.242996
+
+2018-05-01 11:37:07.705264  0.047310  0.797592  1.203195 -0.236018
+</code></pre><h4 id="通过字典数组创建-DataFrame"><a href="#通过字典数组创建-DataFrame" class="headerlink" title="通过字典数组创建 DataFrame"></a>通过字典数组创建 DataFrame</h4><pre><code>&gt;&gt;&gt; data = {&apos;animal&apos;: [&apos;cat&apos;, &apos;cat&apos;, &apos;snake&apos;, &apos;dog&apos;, &apos;dog&apos;, &apos;cat&apos;, &apos;snake&apos;, &apos;cat&apos;, &apos;dog&apos;, &apos;dog&apos;],         &apos;age&apos;: [2.5, 3, 0.5, np.nan, 5, 2, 4.5, np.nan, 7, 3],
+ &apos;visits&apos;: [1, 3, 2, 3, 2, 3, 1, 1, 2, 1],         &apos;priority&apos;: [&apos;yes&apos;, &apos;yes&apos;, &apos;no&apos;, &apos;yes&apos;, &apos;no&apos;, &apos;no&apos;, &apos;no&apos;, &apos;yes&apos;, &apos;no&apos;, &apos;no&apos;]}
+
+&gt;&gt;&gt; labels = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;, &apos;f&apos;, &apos;g&apos;, &apos;h&apos;, &apos;i&apos;, &apos;j&apos;]
+&gt;&gt;&gt; df2 = pd.DataFrame(data, index=labels)
+&gt;&gt;&gt; df2
+   age animal priority  visits
+a  2.5    cat      yes       1
+b  3.0    cat      yes       3
+c  0.5  snake       no       2
+d  NaN    dog      yes       3
+e  5.0    dog       no       2
+f  2.0    cat       no       3
+g  4.5  snake       no       1
+h  NaN    cat      yes       1
+i  7.0    dog       no       2
+j  3.0    dog       no       1
+</code></pre><h3 id="DataFrame-基本操作"><a href="#DataFrame-基本操作" class="headerlink" title="DataFrame 基本操作"></a>DataFrame 基本操作</h3><h4 id="查看-DataFrame-属性"><a href="#查看-DataFrame-属性" class="headerlink" title="查看 DataFrame 属性"></a>查看 DataFrame 属性</h4><pre><code>&gt;&gt;&gt; df2.dtypes # 数据类型
+age         float64
+animal       object
+priority     object
+visits        int64
+&gt;&gt;&gt; df2.index # 行索引(行标签)
+Index([&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;, &apos;f&apos;, &apos;g&apos;, &apos;h&apos;, &apos;i&apos;, &apos;j&apos;], dtype=&apos;object&apos;)
+&gt;&gt;&gt; df2.columns  # 列标签
+Index([&apos;age&apos;, &apos;animal&apos;, &apos;priority&apos;, &apos;visits&apos;], dtype=&apos;object&apos;)
+&gt;&gt;&gt; df2.values # DataFrame 数据
+array([[2.5, &apos;cat&apos;, &apos;yes&apos;, 1],
+       [3.0, &apos;cat&apos;, &apos;yes&apos;, 3],
+       [0.5, &apos;snake&apos;, &apos;no&apos;, 2],
+       [nan, &apos;dog&apos;, &apos;yes&apos;, 3],
+       [5.0, &apos;dog&apos;, &apos;no&apos;, 2],
+       [2.0, &apos;cat&apos;, &apos;no&apos;, 3],
+       [4.5, &apos;snake&apos;, &apos;no&apos;, 1],
+       [nan, &apos;cat&apos;, &apos;yes&apos;, 1],
+       [7.0, &apos;dog&apos;, &apos;no&apos;, 2],
+       [3.0, &apos;dog&apos;, &apos;no&apos;, 1]], dtype=object)
+&gt;&gt;&gt; df2.shape # DataFrame 形状
+(10, 4)
+&gt;&gt;&gt; df2.size # DataFrame 元素个数
+40
+&gt;&gt;&gt; len(df2) # DataFrame 行数
+10
+</code></pre><h4 id="查看-DataFrame-的统计数据"><a href="#查看-DataFrame-的统计数据" class="headerlink" title="查看 DataFrame 的统计数据"></a>查看 DataFrame 的统计数据</h4><pre><code>&gt;&gt;&gt; df2
+   age animal priority  visits
+a  2.5    cat      yes       1
+b  3.0    cat      yes       3
+c  0.5  snake       no       2
+d  NaN    dog      yes       3
+e  5.0    dog       no       2
+f  2.0    cat       no       3
+g  4.5  snake       no       1
+h  NaN    cat      yes       1
+i  7.0    dog       no       2
+j  3.0    dog       no       1
+</code></pre><h4 id="DataFrame-转置操作"><a href="#DataFrame-转置操作" class="headerlink" title="DataFrame 转置操作"></a>DataFrame 转置操作</h4><pre><code>&gt;&gt;&gt; df2.T
+            a    b      c    d    e    f      g    h    i    j
+age       2.5    3    0.5  NaN    5    2    4.5  NaN    7    3
+animal    cat  cat  snake  dog  dog  cat  snake  cat  dog  dog
+priority  yes  yes     no  yes   no   no     no  yes   no   no
+visits      1    3      2    3    2    3      1    1    2    1
+</code></pre><h4 id="DataFrame-求平均值操作"><a href="#DataFrame-求平均值操作" class="headerlink" title="DataFrame 求平均值操作"></a>DataFrame 求平均值操作</h4><pre><code>&gt;&gt;&gt; df3.mean()
+age       3.25
+visits    1.90
+No.       4.50
+dtype: float64
+</code></pre><h4 id="对-DataFrame-中任意列做求和操作"><a href="#对-DataFrame-中任意列做求和操作" class="headerlink" title="对 DataFrame 中任意列做求和操作"></a>对 DataFrame 中任意列做求和操作</h4><pre><code>&gt;&gt;&gt; df3[&apos;visits&apos;].sum()
+19
+</code></pre><h4 id="对-DataFrame-进行排序"><a href="#对-DataFrame-进行排序" class="headerlink" title="对 DataFrame 进行排序"></a>对 DataFrame 进行排序</h4><pre><code>&gt;&gt;&gt; df2.sort_values(&apos;age&apos;，ascending=True)  # 按 age 升序排列,默认ascending为True
+   age animal priority  visits
+c  0.5  snake       no       2
+f  2.0    cat       no       3
+a  2.5    cat      yes       1
+b  3.0    cat      yes       3
+j  3.0    dog       no       1
+g  4.5  snake       no       1
+e  5.0    dog       no       2
+i  7.0    dog       no       2
+d  NaN    dog      yes       3
+h  NaN    cat      yes       1
+
+
+&gt;&gt;&gt; df2.sort_index() # 按索引进行排序
+   age animal priority  visits
+a  2.5    cat      yes       1
+b  3.0    cat      yes       3
+c  0.5  snake       no       2
+d  NaN    dog      yes       3
+e  5.0    dog       no       2
+f  2.0    cat       no       3
+g  4.5  snake       no       1
+h  NaN    cat      yes       1
+i  7.0    dog       no       2
+j  3.0    dog       no       1
+</code></pre><h4 id="DataFrame-副本拷贝"><a href="#DataFrame-副本拷贝" class="headerlink" title="DataFrame 副本拷贝"></a>DataFrame 副本拷贝</h4><pre><code>&gt;&gt;&gt; df3 = df2.copy()
+&gt;&gt;&gt; df3
+   age animal priority  visits
+a  2.5    cat      yes       1
+b  3.0    cat      yes       3
+c  0.5  snake       no       2
+d  NaN    dog      yes       3
+e  5.0    dog       no       2
+f  2.0    cat       no       3
+g  4.5  snake       no       1
+h  NaN    cat      yes       1
+i  7.0    dog       no       2
+j  3.0    dog       no       1
+</code></pre><h4 id="判断-DataFrame-元素是否为空"><a href="#判断-DataFrame-元素是否为空" class="headerlink" title="判断 DataFrame 元素是否为空"></a>判断 DataFrame 元素是否为空</h4><pre><code>&gt;&gt;&gt; df3.isnull()  # 如果为空则返回为 True
+     age  animal  priority  visits
+a  False   False     False   False
+b  False   False     False   False
+c  False   False     False   False
+d   True   False     False   False
+e  False   False     False   False
+f  False   False     False   False
+g  False   False     False   False
+h   True   False     False   False
+i  False   False     False   False
+j  False   False     False   False
+</code></pre><h3 id="查询与索引切片"><a href="#查询与索引切片" class="headerlink" title="查询与索引切片"></a>查询与索引切片</h3><h4 id="预览-DataFrame-的前-5-行数据"><a href="#预览-DataFrame-的前-5-行数据" class="headerlink" title="预览 DataFrame 的前 5 行数据"></a>预览 DataFrame 的前 5 行数据</h4><pre><code>&gt;&gt;&gt; df2.head() # 默认为显示 5 行，可根据需要在括号中填入希望预览的行数
+   age animal priority  visits
+a  2.5    cat      yes       1
+b  3.0    cat      yes       3
+c  0.5  snake       no       2
+d  NaN    dog      yes       3
+e  5.0    dog       no       2
+</code></pre><h4 id="查看-DataFrame-的后-3-行数据"><a href="#查看-DataFrame-的后-3-行数据" class="headerlink" title="查看 DataFrame 的后 3 行数据"></a>查看 DataFrame 的后 3 行数据</h4><pre><code>&gt;&gt;&gt; df2.tail(3)
+   age animal priority  visits
+h  NaN    cat      yes       1
+i  7.0    dog       no       2
+j  3.0    dog       no
+</code></pre><h4 id="对-DataFrame-数据切片-相当于多行-依据索引切片"><a href="#对-DataFrame-数据切片-相当于多行-依据索引切片" class="headerlink" title="对 DataFrame 数据切片(相当于多行,依据索引切片)"></a>对 DataFrame 数据切片(相当于多行,依据索引切片)</h4><pre><code>&gt;&gt;&gt; df2[1:3]
+   age animal priority  visits
+b  3.0    cat      yes       3
+c  0.5  snake       no       2
+</code></pre><h4 id="对-DataFrame-通过标签查询（单列）"><a href="#对-DataFrame-通过标签查询（单列）" class="headerlink" title="对 DataFrame 通过标签查询（单列）"></a>对 DataFrame 通过标签查询（单列）</h4><pre><code>&gt;&gt;&gt; df2[&apos;age&apos;]
+a    2.5
+b    3.0
+c    0.5
+d    NaN
+e    5.0
+f    2.0
+g    4.5
+h    NaN
+i    7.0
+j    3.0
+
+&gt;&gt;&gt; df2.age # 等价于 df2[&apos;age&apos;]
+a    2.5
+b    3.0
+c    0.5
+d    NaN
+e    5.0
+f    2.0
+g    4.5
+h    NaN
+i    7.0
+j    3.0
+</code></pre><h4 id="对-DataFrame-通过标签查询-多列"><a href="#对-DataFrame-通过标签查询-多列" class="headerlink" title="对 DataFrame 通过标签查询(多列)"></a>对 DataFrame 通过标签查询(多列)</h4><pre><code>&gt;&gt;&gt; df2[[&apos;age&apos;,&apos;animal&apos;]] # 传入一个列名组成的列表
+   age animal
+a  2.5    cat
+b  3.0    cat
+c  0.5  snake
+d  NaN    dog
+e  5.0    dog
+f  2.0    cat
+g  4.5  snake
+h  NaN    cat
+i  7.0    dog
+j  3.0    dog
+</code></pre><h4 id="对-DataFrame-通过索引位置查询"><a href="#对-DataFrame-通过索引位置查询" class="headerlink" title="对 DataFrame 通过索引位置查询"></a>对 DataFrame 通过索引位置查询</h4><pre><code>&gt;&gt;&gt; df2.iloc[1:3,0:2]  # [行索引,列索引]
+ age animal priority  visits
+ b  3.0    cat      yes       3
+ c  0.5  snake       no       2
+</code></pre><h4 id="对-DataFrame-通过标签-label-name"><a href="#对-DataFrame-通过标签-label-name" class="headerlink" title="对 DataFrame 通过标签 label_name"></a>对 DataFrame 通过标签 label_name</h4><pre><code>&gt;&gt;&gt; df2.loc[&apos;a&apos;:&apos;f&apos;,&apos;age&apos;:&apos;visits&apos;]
+   age animal priority  visits
+a  2.5    cat      yes       1
+b  3.0    cat      yes       3
+c  0.5  snake       no       2
+d  NaN    dog      yes       3
+e  5.0    dog       no       2
+f  2.0    cat       no       3
+</code></pre><h3 id="数据填充修改与删除"><a href="#数据填充修改与删除" class="headerlink" title="数据填充修改与删除"></a>数据填充修改与删除</h3><h4 id="添加列数据"><a href="#添加列数据" class="headerlink" title="添加列数据"></a>添加列数据</h4><pre><code>&gt;&gt;&gt; num=pd.Series([0,1,2,3,4,5,6,7,8,9],index=df3.index)
+&gt;&gt;&gt; num
+a    0
+b    1
+c    2
+d    3
+e    4
+f    5
+g    6
+h    7
+i    8
+j    9
+dtype: int64
+
+&gt;&gt;&gt; df3[&apos;No.&apos;] = num   # 添加以 &apos;No.&apos; 为列名的新数据列
+&gt;&gt;&gt; df3
+   age animal priority  visits  No.
+a  2.5    cat      yes       1    0
+b  3.0    cat      yes       3    1
+c  0.5  snake       no       2    2
+d  NaN    dog      yes       3    3
+e  5.0    dog       no       2    4
+f  2.0    cat       no       3    5
+g  4.5  snake       no       1    6
+h  NaN    cat      yes       1    7
+i  7.0    dog       no       2    8
+j  3.0    dog       no       1    9
+</code></pre><h4 id="只给某列的某些数据赋值-指定索引"><a href="#只给某列的某些数据赋值-指定索引" class="headerlink" title="只给某列的某些数据赋值,指定索引"></a>只给某列的某些数据赋值,指定索引</h4><pre><code>&gt;&gt;&gt; df3[&apos;new&apos;] = pd.Series([500,600],index=[&apos;a&apos;,&apos;b&apos;])
+&gt;&gt;&gt; df3
+   age animal priority  visits  No.    new
+a  2.5    cat      yes       1    0  500.0
+b  2.0    cat      yes       3    1  600.0
+c  0.5  snake       no       2    2    NaN
+d  NaN    dog      yes       3    3    NaN
+e  5.0    dog       no       2    4    NaN
+f  1.5    cat       no       3    5    NaN
+g  4.5  snake       no       1    6    NaN
+h  NaN    cat      yes       1    7    NaN
+i  7.0    dog       no       2    8    NaN
+j  3.0    dog       no       1    9    NaN
+</code></pre><h4 id="删除指定的列’new’"><a href="#删除指定的列’new’" class="headerlink" title="删除指定的列’new’"></a>删除指定的列’new’</h4><pre><code>&gt;&gt;&gt; df3.drop(&apos;new&apos;,axis=1)
+   age animal priority  visits  No.
+a  2.5    cat      yes       1    0
+b  2.0    cat      yes       3    1
+c  0.5  snake       no       2    2
+d  NaN    dog      yes       3    3
+e  5.0    dog       no       2    4
+f  1.5    cat       no       3    5
+g  4.5  snake       no       1    6
+h  NaN    cat      yes       1    7
+i  7.0    dog       no       2    8
+j  3.0    dog       no       1    9
+</code></pre><h4 id="删除指定的行’j’"><a href="#删除指定的行’j’" class="headerlink" title="删除指定的行’j’"></a>删除指定的行’j’</h4><pre><code>&gt;&gt;&gt; df3.drop(&apos;j&apos;,axis=0)
+   age animal priority  visits  No.
+a  2.5    cat      yes       1    0
+b  2.0    cat      yes       3    1
+c  0.5  snake       no       2    2
+d  NaN    dog      yes       3    3
+e  5.0    dog       no       2    4
+f  1.5    cat       no       3    5
+g  4.5  snake       no       1    6
+h  NaN    cat      yes       1    7
+i  7.0    dog       no       2    8
+</code></pre><h4 id="根据-DataFrame-的下标值进行更改。"><a href="#根据-DataFrame-的下标值进行更改。" class="headerlink" title="根据 DataFrame 的下标值进行更改。"></a>根据 DataFrame 的下标值进行更改。</h4><pre><code>&gt;&gt;&gt; # 修改第 2 行与第 1 列对应的值 3.0 → 2.0
+&gt;&gt;&gt; df3.iat[1,0] = 2  # 索引序号从 0 开始，这里为 1, 0
+&gt;&gt;&gt; df3
+   age animal priority  visits  No.
+a  2.5    cat      yes       1    0
+b  2.0    cat      yes       3    1
+c  0.5  snake       no       2    2
+d  NaN    dog      yes       3    3
+e  5.0    dog       no       2    4
+f  2.0    cat       no       3    5
+g  4.5  snake       no       1    6
+h  NaN    cat      yes       1    7
+i  7.0    dog       no       2    8
+j  3.0    dog       no       1    9
+</code></pre><h4 id="根据-DataFrame-的标签对数据进行修改"><a href="#根据-DataFrame-的标签对数据进行修改" class="headerlink" title="根据 DataFrame 的标签对数据进行修改"></a>根据 DataFrame 的标签对数据进行修改</h4><pre><code>&gt;&gt;&gt; df3.loc[&apos;f&apos;,&apos;age&apos;]=1.5
+&gt;&gt;&gt; df3
+   age animal priority  visits  No.
+a  2.5    cat      yes       1    0
+b  2.0    cat      yes       3    1
+c  0.5  snake       no       2    2
+d  NaN    dog      yes       3    3
+e  5.0    dog       no       2    4
+f  1.5    cat       no       3    5
+g  4.5  snake       no       1    6
+h  NaN    cat      yes       1    7
+i  7.0    dog       no       2    8
+j  3.0    dog       no       1    9
+</code></pre><h3 id="DataFrame-缺失值操作"><a href="#DataFrame-缺失值操作" class="headerlink" title="DataFrame 缺失值操作"></a>DataFrame 缺失值操作</h3><h4 id="对缺失值进行填充"><a href="#对缺失值进行填充" class="headerlink" title="对缺失值进行填充"></a>对缺失值进行填充</h4><pre><code>&gt;&gt;&gt; df4=df3.copy()
+&gt;&gt;&gt; print(df4)
+   age animal priority  visits  No.
+a  2.5    cat      yes       1    0
+b  2.0    cat      yes       3    1
+c  0.5  snake       no       2    2
+d  NaN    dog      yes       3    3
+e  5.0    dog       no       2    4
+f  1.5    cat       no       3    5
+g  4.5  snake       no       1    6
+h  NaN    cat      yes       1    7
+i  7.0    dog       no       2    8
+j  3.0    dog       no       1    9
+
+&gt;&gt;&gt; df4.fillna(value=3)
+   age animal priority  visits  No.
+a  2.5    cat      yes       1    0
+b  2.0    cat      yes       3    1
+c  0.5  snake       no       2    2
+d  3.0    dog      yes       3    3
+e  5.0    dog       no       2    4
+f  1.5    cat       no       3    5
+g  4.5  snake       no       1    6
+h  3.0    cat      yes       1    7
+i  7.0    dog       no       2    8
+j  3.0    dog       no       1    9
+</code></pre><h4 id="删除存在缺失值的行"><a href="#删除存在缺失值的行" class="headerlink" title="删除存在缺失值的行"></a>删除存在缺失值的行</h4><pre><code>&gt;&gt;&gt; df5.dropna(how=&apos;any&apos;) # 任何存在 NaN 的行都将被删除
+   age animal priority  visits  No.
+a  2.5    cat      yes       1    0
+b  2.0    cat      yes       3    1
+c  0.5  snake       no       2    2
+e  5.0    dog       no       2    4
+f  1.5    cat       no       3    5
+g  4.5  snake       no       1    6
+i  7.0    dog       no       2    8
+j  3.0    dog       no       1    9
+</code></pre><h3 id="多级index-Series-amp-amp-DataFrame"><a href="#多级index-Series-amp-amp-DataFrame" class="headerlink" title="多级index Series &amp;&amp; DataFrame"></a>多级index Series &amp;&amp; DataFrame</h3><h4 id="多级index-Series"><a href="#多级index-Series" class="headerlink" title="多级index Series"></a>多级index Series</h4><pre><code>&gt;&gt;&gt; s1 = Series(np.random.randn(6), index=[[&apos;1&apos;,&apos;1&apos;,&apos;1&apos;,&apos;2&apos;,&apos;2&apos;,&apos;2&apos;],[&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;a&apos;,&apos;b&apos;,&apos;c&apos;]])  # 创建一个多级index的Series
+
+&gt;&gt;&gt; print(s1)
+1  a   -1.690157
+   b    0.835443
+   c    1.187004
+2  a    1.130990
+   b   -0.167736
+   c   -0.062882
+
+&gt;&gt;&gt; s1[&apos;1&apos;] # 访问第一级
+a   -1.690157
+b    0.835443
+c    1.187004
+
+&gt;&gt;&gt; s1[:,&apos;a&apos;] # 访问每一级的&apos;a&apos;
+1   -1.690157
+2    1.130990
+
+&gt;&gt;&gt; df1 = s1.unstack() # 多级index的 series转换为 DataFrame
+&gt;&gt;&gt; df1
+          a         b         c
+1 -1.690157  0.835443  1.187004
+2  1.130990 -0.167736 -0.062882
+
+&gt;&gt;&gt; df2 = DataFrame([s1[&apos;1&apos;],s1[&apos;2&apos;]]) # 多级index的 series转换为 DataFrame
+&gt;&gt;&gt; df2
+          a         b         c
+0 -1.690157  0.835443  1.187004
+1  1.130990 -0.167736 -0.062882
+
+&gt;&gt;&gt; s2 = df1.unstack() # DataFrame转换成多级索引的Series
+&gt;&gt;&gt; s2
+a  1   -1.690157
+   2    1.130990
+b  1    0.835443
+   2   -0.167736
+c  1    1.187004
+   2   -0.062882
+</code></pre><h4 id="多级索引的DataFrame"><a href="#多级索引的DataFrame" class="headerlink" title="多级索引的DataFrame"></a>多级索引的DataFrame</h4><pre><code>&gt;&gt;&gt; df = DataFrame(np.arange(16).reshape(4,4),index = [[&apos;a&apos;,&apos;a&apos;,&apos;b&apos;,&apos;b&apos;],[&apos;1&apos;,&apos;2&apos;,&apos;1&apos;,&apos;2&apos;]])
+&gt;&gt;&gt; df
+      0   1   2   3
+a 1   0   1   2   3
+  2   4   5   6   7
+b 1   8   9  10  11
+  2  12  13  14  15
+
+
+&gt;&gt;&gt; df = DataFrame(np.arange(20).reshape(5,4),index = [[&apos;a&apos;,&apos;a&apos;,&apos;b&apos;,&apos;b&apos;,&apos;c&apos;],[&apos;1&apos;,&apos;2&apos;,&apos;1&apos;,&apos;2&apos;,&apos;3&apos;]], columns = [[&apos;BJ&apos;,&apos;BJ&apos;,&apos;SH&apos;,&apos;GZ&apos;],[8,9,8,8]])
+&gt;&gt;&gt; df
+     BJ      SH  GZ
+      8   9   8   8
+a 1   0   1   2   3
+  2   4   5   6   7
+b 1   8   9  10  11
+  2  12  13  14  15
+c 3  16  17  18  19
+
+&gt;&gt;&gt; df[&apos;BJ&apos;][8]
+a  1     0
+   2     4
+b  1     8
+   2    12
+c  3    16
+
+&gt;&gt;&gt; df[&apos;BJ&apos;][9][&apos;a&apos;][&apos;1&apos;]
+1
+</code></pre><h3 id="DataFrame-文件操作"><a href="#DataFrame-文件操作" class="headerlink" title="DataFrame 文件操作"></a>DataFrame 文件操作</h3><h4 id="CSV-文件写入"><a href="#CSV-文件写入" class="headerlink" title="CSV 文件写入"></a>CSV 文件写入</h4><pre><code>&gt;&gt;&gt; df3.to_csv(&apos;animal.csv&apos;)
+</code></pre><h4 id="CSV-文件读取"><a href="#CSV-文件读取" class="headerlink" title="CSV 文件读取"></a>CSV 文件读取</h4><pre><code>&gt;&gt;&gt; df_animal=pd.read_csv(&apos;animal.csv&apos;)
+</code></pre><h4 id="Excel-写入操作"><a href="#Excel-写入操作" class="headerlink" title="Excel 写入操作"></a>Excel 写入操作</h4><pre><code>&gt;&gt;&gt; df3.to_excel(&apos;animal.xlsx&apos;, sheet_name=&apos;Sheet1&apos;)
+</code></pre><h4 id="Excel-读取操作"><a href="#Excel-读取操作" class="headerlink" title="Excel 读取操作"></a>Excel 读取操作</h4><pre><code>&gt;&gt;&gt; pd.read_excel(&apos;animal.xlsx&apos;, &apos;Sheet1&apos;, index_col=None, na_values=[&apos;NA&apos;])
+   age animal priority  visits  No.
+a  2.5    cat      yes       1    0
+b  2.0    cat      yes       3    1
+c  0.5  snake       no       2    2
+d  NaN    dog      yes       3    3
+e  5.0    dog       no       2    4
+f  1.5    cat       no       3    5
+g  4.5  snake       no       1    6
+h  NaN    cat      yes       1    7
+i  7.0    dog       no       2    8
+j  3.0    dog       no       1    9
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏2块钱,帮我买杯咖啡,继续创作,谢谢大家！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="陈凡 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliyipay.jpg" alt="陈凡 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+        -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+         
+            <a href="/tags/Pandas/" rel="tag"><i class="fa fa-tag"></i>Pandas</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/25/Python数据分析之Numpy-二/" rel="next" title="Python数据分析之Numpy(二)">
+                <i class="fa fa-chevron-left"></i> Python数据分析之Numpy(二)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/upload/avatar.gif"
+                alt="陈凡" />
+            
+              <p class="site-author-name" itemprop="name">陈凡</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/chenfanlinux" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:chenfan216@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/3942411590" target="_blank" title="微博">
+                    
+                      <i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/love-hero-80" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pandas的常用数据结构"><span class="nav-number">1.</span> <span class="nav-text">Pandas的常用数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Series"><span class="nav-number">2.</span> <span class="nav-text">Series</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建-Series数据类型"><span class="nav-number">2.1.</span> <span class="nav-text">创建 Series数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#从列表创建-Series"><span class="nav-number">2.1.1.</span> <span class="nav-text">从列表创建 Series</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从-Ndarray-创建-Series"><span class="nav-number">2.1.2.</span> <span class="nav-text">从 Ndarray 创建 Series</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从字典创建-Series"><span class="nav-number">2.1.3.</span> <span class="nav-text">从字典创建 Series</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Series-基本操作"><span class="nav-number">2.2.</span> <span class="nav-text">Series 基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改-Series-索引"><span class="nav-number">2.2.1.</span> <span class="nav-text">修改 Series 索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Series-修改指定索引元素"><span class="nav-number">2.2.2.</span> <span class="nav-text">Series 修改指定索引元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Series-按指定索引删除元素"><span class="nav-number">2.2.3.</span> <span class="nav-text">Series 按指定索引删除元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Series-纵向拼接"><span class="nav-number">2.2.4.</span> <span class="nav-text">Series 纵向拼接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Series-按指定索引查找元素"><span class="nav-number">2.2.5.</span> <span class="nav-text">Series 按指定索引查找元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Series-切片操作"><span class="nav-number">2.2.6.</span> <span class="nav-text">Series 切片操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断值是否为空"><span class="nav-number">2.2.7.</span> <span class="nav-text">判断值是否为空</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#给Series及其index取名"><span class="nav-number">2.2.8.</span> <span class="nav-text">给Series及其index取名</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Series-运算"><span class="nav-number">2.3.</span> <span class="nav-text">Series 运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Series-加法运算"><span class="nav-number">2.3.1.</span> <span class="nav-text">Series 加法运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Series-减法运算"><span class="nav-number">2.3.2.</span> <span class="nav-text">Series 减法运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Series-乘法运算"><span class="nav-number">2.3.3.</span> <span class="nav-text">Series 乘法运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Series-除法运算"><span class="nav-number">2.3.4.</span> <span class="nav-text">Series 除法运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Series-求均值"><span class="nav-number">2.3.5.</span> <span class="nav-text">Series 求均值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Series-求和"><span class="nav-number">2.3.6.</span> <span class="nav-text">Series 求和</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Series-求最大值"><span class="nav-number">2.3.7.</span> <span class="nav-text">Series 求最大值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Series-求最小值"><span class="nav-number">2.3.8.</span> <span class="nav-text">Series 求最小值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DataFrame"><span class="nav-number">3.</span> <span class="nav-text">DataFrame</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建-DataFrame-数据类型"><span class="nav-number">3.1.</span> <span class="nav-text">创建 DataFrame 数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通过-NumPy-数组创建-DataFrame"><span class="nav-number">3.1.1.</span> <span class="nav-text">通过 NumPy 数组创建 DataFrame</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过字典数组创建-DataFrame"><span class="nav-number">3.1.2.</span> <span class="nav-text">通过字典数组创建 DataFrame</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DataFrame-基本操作"><span class="nav-number">3.2.</span> <span class="nav-text">DataFrame 基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看-DataFrame-属性"><span class="nav-number">3.2.1.</span> <span class="nav-text">查看 DataFrame 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看-DataFrame-的统计数据"><span class="nav-number">3.2.2.</span> <span class="nav-text">查看 DataFrame 的统计数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DataFrame-转置操作"><span class="nav-number">3.2.3.</span> <span class="nav-text">DataFrame 转置操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DataFrame-求平均值操作"><span class="nav-number">3.2.4.</span> <span class="nav-text">DataFrame 求平均值操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对-DataFrame-中任意列做求和操作"><span class="nav-number">3.2.5.</span> <span class="nav-text">对 DataFrame 中任意列做求和操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对-DataFrame-进行排序"><span class="nav-number">3.2.6.</span> <span class="nav-text">对 DataFrame 进行排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DataFrame-副本拷贝"><span class="nav-number">3.2.7.</span> <span class="nav-text">DataFrame 副本拷贝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断-DataFrame-元素是否为空"><span class="nav-number">3.2.8.</span> <span class="nav-text">判断 DataFrame 元素是否为空</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询与索引切片"><span class="nav-number">3.3.</span> <span class="nav-text">查询与索引切片</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#预览-DataFrame-的前-5-行数据"><span class="nav-number">3.3.1.</span> <span class="nav-text">预览 DataFrame 的前 5 行数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看-DataFrame-的后-3-行数据"><span class="nav-number">3.3.2.</span> <span class="nav-text">查看 DataFrame 的后 3 行数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对-DataFrame-数据切片-相当于多行-依据索引切片"><span class="nav-number">3.3.3.</span> <span class="nav-text">对 DataFrame 数据切片(相当于多行,依据索引切片)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对-DataFrame-通过标签查询（单列）"><span class="nav-number">3.3.4.</span> <span class="nav-text">对 DataFrame 通过标签查询（单列）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对-DataFrame-通过标签查询-多列"><span class="nav-number">3.3.5.</span> <span class="nav-text">对 DataFrame 通过标签查询(多列)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对-DataFrame-通过索引位置查询"><span class="nav-number">3.3.6.</span> <span class="nav-text">对 DataFrame 通过索引位置查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对-DataFrame-通过标签-label-name"><span class="nav-number">3.3.7.</span> <span class="nav-text">对 DataFrame 通过标签 label_name</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据填充修改与删除"><span class="nav-number">3.4.</span> <span class="nav-text">数据填充修改与删除</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#添加列数据"><span class="nav-number">3.4.1.</span> <span class="nav-text">添加列数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#只给某列的某些数据赋值-指定索引"><span class="nav-number">3.4.2.</span> <span class="nav-text">只给某列的某些数据赋值,指定索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除指定的列’new’"><span class="nav-number">3.4.3.</span> <span class="nav-text">删除指定的列’new’</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除指定的行’j’"><span class="nav-number">3.4.4.</span> <span class="nav-text">删除指定的行’j’</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#根据-DataFrame-的下标值进行更改。"><span class="nav-number">3.4.5.</span> <span class="nav-text">根据 DataFrame 的下标值进行更改。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#根据-DataFrame-的标签对数据进行修改"><span class="nav-number">3.4.6.</span> <span class="nav-text">根据 DataFrame 的标签对数据进行修改</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DataFrame-缺失值操作"><span class="nav-number">3.5.</span> <span class="nav-text">DataFrame 缺失值操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对缺失值进行填充"><span class="nav-number">3.5.1.</span> <span class="nav-text">对缺失值进行填充</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除存在缺失值的行"><span class="nav-number">3.5.2.</span> <span class="nav-text">删除存在缺失值的行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多级index-Series-amp-amp-DataFrame"><span class="nav-number">3.6.</span> <span class="nav-text">多级index Series && DataFrame</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#多级index-Series"><span class="nav-number">3.6.1.</span> <span class="nav-text">多级index Series</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多级索引的DataFrame"><span class="nav-number">3.6.2.</span> <span class="nav-text">多级索引的DataFrame</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DataFrame-文件操作"><span class="nav-number">3.7.</span> <span class="nav-text">DataFrame 文件操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CSV-文件写入"><span class="nav-number">3.7.1.</span> <span class="nav-text">CSV 文件写入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSV-文件读取"><span class="nav-number">3.7.2.</span> <span class="nav-text">CSV 文件读取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Excel-写入操作"><span class="nav-number">3.7.3.</span> <span class="nav-text">Excel 写入操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Excel-读取操作"><span class="nav-number">3.7.4.</span> <span class="nav-text">Excel 读取操作</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+<script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=ipZXdvME3sKg6viC20OoTCYATcaOJ6SQH2wdaJEUHfc"></script>
+
+<div id="music163player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=525241230&auto=0&height=66"></iframe>
+</div>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈凡</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">86.9k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div> 
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+ <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 98812, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2018/04/26/Python数据分析之Pandas入门-三/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/98812/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+<!--页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>  
+
+
+
+<!-- 
+<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-1 count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script> -->
+
+
+</body>
+</html>
