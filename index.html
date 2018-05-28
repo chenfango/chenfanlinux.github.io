@@ -339,6 +339,412 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/05/28/Python操作MongoDB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/28/Python操作MongoDB/" itemprop="url">Python操作MongoDB</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-28T11:37:40+08:00">
+                2018-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MongDB/" itemprop="url" rel="index">
+                    <span itemprop="name">MongDB</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/28/Python操作MongoDB/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/05/28/Python操作MongoDB/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,506
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>MongoDB是由C++语言编写的非关系型数据库，是一个基于分布式文件存储的开源数据库系统，其内容存储形式类似JSON对象，它的字段值可以包含其他文档、数组及文档数组，非常灵活。 在开始之前，请确保已经安装好了MongoDB并启动了其服务，并且安装好了Python的PyMongo库。</p>
+<ul>
+<li>Python 3.6</li>
+<li><a href="[win32/mongodb-win32-x86_64-2008plus-ssl-v3.4-latest.zip](http://downloads.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-v3.4-latest.zip">mongodb3.4</a> )</li>
+<li>pymongo 3.4.0</li>
+</ul>
+<h3 id="连接MongDB"><a href="#连接MongDB" class="headerlink" title="连接MongDB"></a>连接MongDB</h3><p>连接MongoDB时，我们需要使用PyMongo库里面的<code>MongoClient</code>。一般来说，传入MongoDB的IP及端口即可，其中第一个参数为地址<code>host</code>，第二个参数为端口<code>port</code>（如果不给它传递参数，默认是27017） 。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> pymongo</span><br><span class="line"><span class="comment"># 创建MongoDB的连接对象</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client = pymongo.MongoClient(host=<span class="string">'localhost'</span>, port=<span class="number">27017</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="指定数据库和集合"><a href="#指定数据库和集合" class="headerlink" title="指定数据库和集合"></a>指定数据库和集合</h3><p>MongoDB中可以建立多个数据库，接下来我们需要指定操作哪个数据库；MongoDB的每个数据库又包含许多集合（collection），它们类似于关系型数据库中的表。下一步需要指定要操作的集合，这里指定一个集合名称为students。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建或者指定数据库db</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>db = client[<span class="string">'test'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>db = client.test <span class="comment"># 这种方式也可以指定数据库db</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建或者指定集合</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>collection = db[<span class="string">'students'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>collection = db.students <span class="comment"># 这种方式也可以指定集合</span></span><br><span class="line"><span class="comment"># 这样我们便声明了一个Collection对象。</span></span><br></pre></td></tr></table></figure>
+<h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><h4 id="插入单条数据"><a href="#插入单条数据" class="headerlink" title="插入单条数据"></a>插入单条数据</h4><p>直接调用<code>collection</code>的<code>insert()</code>方法即可插入数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新建一条学生数据，这条数据以字典形式表示</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>student = &#123;</span><br><span class="line">    <span class="string">'id'</span>: <span class="string">'20170101'</span>,</span><br><span class="line">    <span class="string">'name'</span>: <span class="string">'Jordan'</span>,</span><br><span class="line">    <span class="string">'age'</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">'gender'</span>: <span class="string">'male'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 往集合中插入数据</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>result = collection.insert(student)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(result) <span class="comment"># 返回insert后的 _id</span></span><br><span class="line"><span class="number">5</span>b02a3868c08d32b90ff9954</span><br></pre></td></tr></table></figure>
+<p>在MongoDB中，每条数据其实都有一个<code>_id</code>属性来唯一标识。如果没有显式指明该属性，MongoDB会自动产生一个<code>ObjectId</code>类型的<code>_id</code>属性。<code>insert()</code>方法会在执行后返回<code>_id</code>值。</p>
+<h4 id="插入多条数据"><a href="#插入多条数据" class="headerlink" title="插入多条数据"></a>插入多条数据</h4><p>当然，我们也可以同时插入多条数据，只需要以列表形式传递即可 。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>student1 = &#123;</span><br><span class="line">    <span class="string">'id'</span>: <span class="string">'20170101'</span>,</span><br><span class="line">    <span class="string">'name'</span>: <span class="string">'Jordan'</span>,</span><br><span class="line">    <span class="string">'age'</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">'gender'</span>: <span class="string">'male'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>student2 = &#123;</span><br><span class="line">    <span class="string">'id'</span>: <span class="string">'20170202'</span>,</span><br><span class="line">    <span class="string">'name'</span>: <span class="string">'Mike'</span>,</span><br><span class="line">    <span class="string">'age'</span>: <span class="number">21</span>,</span><br><span class="line">    <span class="string">'gender'</span>: <span class="string">'male'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>result = collection.insert([student1, student2])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(result)</span><br><span class="line">[ObjectId(<span class="string">'5b037d818c08d31574a6bd21'</span>), ObjectId(<span class="string">'5b037d818c08d31574a6bd22'</span>)]</span><br></pre></td></tr></table></figure>
+<p>实际上，在PyMongo 3.x版本中，官方已经不推荐使用<code>insert()</code>方法了。当然，继续使用也没有什么问题。官方推荐使用<code>insert_one()</code>和<code>insert_many()</code>方法来分别插入单条记录和多条记录 。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/28/Python操作MongoDB/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    
+    <div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/05/27/如何提升你的记忆力/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/27/如何提升你的记忆力/" itemprop="url">如何提升你的记忆力</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-27T13:36:57+08:00">
+                2018-05-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/生活技巧/" itemprop="url" rel="index">
+                    <span itemprop="name">生活技巧</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/27/如何提升你的记忆力/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/05/27/如何提升你的记忆力/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,113
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>刚放在手里的东西，转身就找不到了。明明话就在嘴边，但怎么都想不起来，别人一次就能记住的事情，你却要默背好多遍。别埋怨自己记性不好，其实记忆力也可以通过锻炼提高的。下面介绍这20个方法，挽救一下你的记忆力！</p>
+</blockquote>
+<h3 id="1-经常大笑"><a href="#1-经常大笑" class="headerlink" title="1. 经常大笑"></a>1. 经常大笑</h3><p>笑能保持大脑活力，让思维更明捷。定期与亲友聚会，给老友打个电话，晚餐后与家人聊天，都能让大脑感觉快乐。</p>
+<h3 id="2-听不同类型的歌曲"><a href="#2-听不同类型的歌曲" class="headerlink" title="2. 听不同类型的歌曲"></a>2. 听不同类型的歌曲</h3><p>积极的接受不熟悉的音乐，听歌时除了关注旋律，还要认真琢磨歌词，这样不仅可以锻炼右脑，还会用到掌管语言的左脑。</p>
+<h3 id="3-学习新技能"><a href="#3-学习新技能" class="headerlink" title="3. 学习新技能"></a>3. 学习新技能</h3><p>学习任何一项新技能都能促进大脑健康，例如学习新乐器、做手工、下棋等。</p>
+<h3 id="4-多和他人交流"><a href="#4-多和他人交流" class="headerlink" title="4.多和他人交流"></a>4.多和他人交流</h3><p>与朋友交往，彼此分享经历、沟通情感、增加信任，思路变得更广，新想法也会更多，这些都是大脑的润滑剂。</p>
+<h3 id="5-保证充足的睡眠"><a href="#5-保证充足的睡眠" class="headerlink" title="5.保证充足的睡眠"></a>5.保证充足的睡眠</h3><p>睡觉时，脑脊液在脑细胞间的循环比清醒时快很多，帮助大脑排出 “垃圾”,因为尽量避免熬夜，让大脑充分休息。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/27/如何提升你的记忆力/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    
+    <div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/05/01/Python数据分析之Pandas入门修订版-四/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1968,439 +2374,11 @@ for url in urls:
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/03/13/Python项目实战之密码管理器/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/13/Python项目实战之密码管理器/" itemprop="url">Python项目实战之密码管理器</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T15:34:52+08:00">
-                2018-03-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python项目实战/" itemprop="url" rel="index">
-                    <span itemprop="name">python项目实战</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/13/Python项目实战之密码管理器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/13/Python项目实战之密码管理器/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  642
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="使用介绍"><a href="#使用介绍" class="headerlink" title="使用介绍"></a>使用介绍</h2><h3 id="写入密码"><a href="#写入密码" class="headerlink" title="写入密码"></a>写入密码</h3><pre><code>$  python .\zpass4.py -m w
-1 web, 2 server, 0 退出 1
-title:chenfanlinux
-user:chenfan
-passwd:123456
-url:chenfanlinux.org
-{&apos;web&apos;: {&apos;chenfanlinux&apos;: {&apos;passwd&apos;: &apos;123456&apos;,
-                          &apos;url&apos;: &apos;chenfanlinux.org&apos;,
-                          &apos;user&apos;: &apos;chenfan&apos;}}}
-保存成功!
-
-
-$  python .\zpass4.py -m w
-1 web, 2 server, 0 退出 2
-title:tomcat01
-user:root
-passwd:123
-hostname:tomcat01-server
-ip:127.0.0.1
-{&apos;server&apos;: {&apos;tomcat01&apos;: {&apos;hostname&apos;: &apos;tomcat01-server&apos;,
-                         &apos;ip&apos;: &apos;127.0.0.1&apos;,
-                         &apos;passwd&apos;: &apos;123&apos;,
-                         &apos;user&apos;: &apos;root&apos;}},
- &apos;web&apos;: {&apos;chenfanlinux&apos;: {&apos;passwd&apos;: &apos;123456&apos;,
-                          &apos;url&apos;: &apos;chenfanlinux.org&apos;,
-                          &apos;user&apos;: &apos;chenfan&apos;}}}
-保存成功!
-</code></pre><h3 id="查找密码"><a href="#查找密码" class="headerlink" title="查找密码"></a>查找密码</h3><pre><code>$ python .\zpass4.py -m r -c web -i chenfanlinux
-{&apos;passwd&apos;: &apos;123456&apos;, &apos;url&apos;: &apos;chenfanlinux.org&apos;, &apos;user&apos;: &apos;chenfan&apos;}
-</code></pre><h3 id="生成密码"><a href="#生成密码" class="headerlink" title="生成密码"></a>生成密码</h3><pre><code>$ python .\zpass4.py -m g -l 10
-CCrkoMjbhA
-</code></pre>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/13/Python项目实战之密码管理器/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    
-    <div>
-  
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/03/12/Python进阶之函数式编程/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/12/Python进阶之函数式编程/" itemprop="url">Python进阶之函数式编程</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-12T23:00:58+08:00">
-                2018-03-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python进阶知识/" itemprop="url" rel="index">
-                    <span itemprop="name">python进阶知识</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/12/Python进阶之函数式编程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/12/Python进阶之函数式编程/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3,405
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  14
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h2><p>在函数式编程中，我们可以将函数当作变量一样自由使用。一个函数接收另一个函数作为参数，这种函数称之为<strong>高阶函数（Higher-order Functions）</strong>。</p>
-<p>看一个简单的例子：</p>
-<pre><code>def func(g, arr):
-    return [g(x) for x in arr]
-</code></pre><p>上面的代码中，func 是一个高阶函数，它接收两个参数，第 1 个参数是函数，第 2 个参数是数组，func 的功能是将函数 g 逐个作用于数组 arr 上，并返回一个新的数组，比如，我们可以这样用：</p>
-<pre><code>def double(x):
-    return 2 * x
-
-def square(x):
-    return x * x
-
-arr1 = func(double, [1, 2, 3, 4])
-arr2 = func(square, [1, 2, 3, 4])
-</code></pre><p>不难判断出，arr1 是 [2, 4, 6, 8]，arr2 是 [1, 4, 9, 16]。<br>可接收其他函数作为参数的函数称为高阶函数。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/12/Python进阶之函数式编程/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    
-    <div>
-  
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2450,7 +2428,7 @@ arr2 = func(square, [1, 2, 3, 4])
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2461,7 +2439,7 @@ arr2 = func(square, [1, 2, 3, 4])
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2472,7 +2450,7 @@ arr2 = func(square, [1, 2, 3, 4])
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2560,7 +2538,7 @@ arr2 = func(square, [1, 2, 3, 4])
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">90.7k</span>
+    <span title="Site words total count">94.3k</span>
   
 </div>
 

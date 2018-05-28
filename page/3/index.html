@@ -339,6 +339,467 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/02/05/SQL查询语句及视图-三/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/05/SQL查询语句及视图-三/" itemprop="url">SQL查询语句及视图(三)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-05T14:57:20+08:00">
+                2018-02-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL基础入门/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL基础入门</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/05/SQL查询语句及视图-三/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/05/SQL查询语句及视图-三/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  5,400
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  23
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="SELECT"><a href="#SELECT" class="headerlink" title="SELECT"></a><a href="http://dev.mysql.com/doc/refman/5.7/en/subqueries.html" target="_blank" rel="noopener">SELECT</a></h2><h3 id="SELECT语法格式"><a href="#SELECT语法格式" class="headerlink" title="SELECT语法格式"></a>SELECT语法格式</h3><pre><code>SELECT values_to_display
+    FROM table_name
+    WHERE expression
+    GROUP BY how_to_group
+    HAVING expression
+    ORDER BY how_to_sort
+    LIMIT row_count;
+</code></pre><ul>
+<li>SELECT子句：指定要显示的属性列</li>
+<li>FROM子句：指定查询的对象(基本表或视图)</li>
+<li>WHERE子句：指定查询的条件</li>
+<li>GROUP BY子句：对查询的结果按指定列的值分组,该属性列值相等的记录为一组。通常会在每组中作用聚集函数</li>
+<li>HAVING短语：只有满足指定条件的组才予以输出，对聚集计算的结果做过滤</li>
+<li>ORDER BY子句：对查询结果按指定的列升序（ASC）或者降序（DESC）排序</li>
+<li>LIMIT num ： 限制操作的行</li>
+<li>执行过程： FROM –&gt; WHERE –&gt; GROUP BY –&gt; HAVING –&gt; ORDER BY –&gt; SELECT –&gt; LIMIT</li>
+</ul>
+<p><strong>WHERE expression: 比较表达式，内置函数；</strong></p>
+<p><img src="https://s1.ax1x.com/2018/02/02/9EvdV1.png" alt=""></p>
+<ul>
+<li><p>特殊的比较操作符：</p>
+<ul>
+<li>BETWEEN… AND …:</li>
+<li>IN：指定范围内值的存在性测试</li>
+<li>IN(list): 指定的字段取的取值在此list中，则表示符合条件；</li>
+<li>IS NULL</li>
+<li>IS NOT NULL</li>
+<li>LIKE：可使用通配符，%, _</li>
+<li>RLIKE或REGEXP：可使用正则表达式的模式</li>
+</ul>
+</li>
+<li><p>逻辑操作符：</p>
+<ul>
+<li>AND</li>
+<li>OR</li>
+<li>NOT</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/05/SQL查询语句及视图-三/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    
+    <div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/02/02/MySQL数据类型及SQL语句-二/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/02/MySQL数据类型及SQL语句-二/" itemprop="url">MySQL数据类型及SQL语句(二)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-02T11:22:50+08:00">
+                2018-02-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL基础入门/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL基础入门</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/02/MySQL数据类型及SQL语句-二/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/02/MySQL数据类型及SQL语句-二/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,881
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="MySQL数据类型"><a href="#MySQL数据类型" class="headerlink" title="MySQL数据类型"></a>MySQL数据类型</h2><blockquote>
+<p>MySQL中定义数据字段的类型对你数据库的优化是非常重要的。MySQL支持多种类型，大致可以分为三类：数值、日期/时间和字符串(字符)类型。</p>
+</blockquote>
+<h3 id="数值类型"><a href="#数值类型" class="headerlink" title="数值类型"></a>数值类型</h3><ul>
+<li>精确数值型<ul>
+<li>整形: TINYINT, SMALLINT, MEDIUMINT, INT, BIGINT</li>
+<li>十进制: DECIMAL</li>
+</ul>
+</li>
+<li>近似数值型(浮点型):<ul>
+<li>FLOAT</li>
+<li>DOUBLE</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2018/01/31/9PaLMF.png" alt="数值类型"></p>
+<h3 id="字符型"><a href="#字符型" class="headerlink" title="字符型"></a>字符型</h3><blockquote>
+<p>char使用固定长度的空间进行存储，char(4)存储4个字符，根据编码方式的不同占用不同的字节，gbk编码方式，不论是中文还是英文，每个字符占用2个字节的空间，utf8编码方式，每个字符占用3个字节的空间。如果需要存储的字符串的长度跟所有值的平均长度相差不大，适合用char，如MD5。</p>
+</blockquote>
+<ul>
+<li>CHAR,BINARY: 定长数据类型(CHAR不区分字符大小写,BINARY区分字符大小写)</li>
+<li>VARCHAR,VARBINARY: 变长数据类型,需要结束符</li>
+<li>TEXT: TINYTEXT, TEXT, MEDIUMTEXT, LOGTEXT</li>
+<li>BLOB: TINYBLOB, BLOB, MEDIUMBLOB, LONGBLOB</li>
+<li>ENUM,SET</li>
+</ul>
+<p><strong><em>注意：binary保存二进制字符串，就是说它们包含字节字符串而不是字符字符串，没有字符集限制</em></strong></p>
+<p><img src="https://s1.ax1x.com/2018/01/31/9PdYon.png" alt="字符类型"><br><strong><em>注意：CHAR,VARCHAR,TEXT 不区分字符大小写；BINARY,VARBINARY,BLOB 区分字符大小写</em></strong></p>
+<h3 id="日期和时间类型"><a href="#日期和时间类型" class="headerlink" title="日期和时间类型"></a>日期和时间类型</h3><ul>
+<li>DATE</li>
+<li>TIME</li>
+<li>DATETIME</li>
+<li>TIMESTAMP</li>
+<li>YEAR(2), YEAR(4)</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2018/01/31/9PwwtI.png" alt="日期时间型"></p>
+<h3 id="特殊类型"><a href="#特殊类型" class="headerlink" title="特殊类型"></a>特殊类型</h3><ul>
+<li>ENUM:从给定的字符串中选择一个字串</li>
+<li>SET:集合,从指定字符集合中选择多个组合成一种变化形式</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/02/MySQL数据类型及SQL语句-二/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    
+    <div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/30/MySQL基础概念及安装-一/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2160,476 +2621,11 @@ fi
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/17/Bash编程入门之变量基础-一/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/17/Bash编程入门之变量基础-一/" itemprop="url">Bash编程入门之变量基础(二)</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T15:39:19+08:00">
-                2018-01-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Bash-Shell编程/" itemprop="url" rel="index">
-                    <span itemprop="name">Bash Shell编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/01/17/Bash编程入门之变量基础-一/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/17/Bash编程入门之变量基础-一/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,551
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  6
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="变量基础"><a href="#变量基础" class="headerlink" title="变量基础"></a>变量基础</h2><h3 id="什么是变量？"><a href="#什么是变量？" class="headerlink" title="什么是变量？"></a>什么是变量？</h3><blockquote>
-<p>变量的实质是命名的内存空间，变量是一个用固定的字符串（也可能是字符数字等的组合），替代更多更复杂的内容，这个内容里可能还会包含变量和路径，字符串等其他的内容。对于代码一块某个值得改变，只需要改变变量值得内容，不需要全局修改。</p>
-</blockquote>
-<p><strong>变量的类型</strong><br>根据变量的生效范围等标准:</p>
-<ul>
-<li>本地变量：生效范围为当前的shell进程,对当前shell之外的其他进程,包括当前进程的父子shell都无效</li>
-<li>环境变量: 生效范围为当前进程及其子进程</li>
-<li>局部变量: 生效范围为当前进程的某代码片段(通常指函数上下文)</li>
-<li>特殊变量: 包括位置变量和进程状态变量</li>
-</ul>
-<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><blockquote>
-<p>环境变量用于定义shell的运行环境，保证Shell命令的正确执行，通过环境变量来确定登陆用户名、命令路径、终端类型、登陆目录等，所有的环境变量都是系统全局变量，可用于所有子进程中，这包括编辑器、Shell脚本和各类应用。</p>
-</blockquote>
-<p>环境变量可以在命令行中设置，当用户退出时这些变量值也会丢失，因此最好在用户家目录下的.bash_profile文件中或全局配置/etc/bashrc,/etc/profile文件或者/etc/profile.d/中定义。将环境变量放入上述的文件中，每次用户登陆时这些变量值都将被初始化。</p>
-<p>可以通过一下的命令查看环境变量</p>
-<ul>
-<li>env（只显示全局变量）</li>
-<li>set（所有的变量）</li>
-<li>declare（所有变量，包括函数、整数和已导出的）</li>
-</ul>
-<p><strong>定义环境变量</strong></p>
-<pre><code>[root@dokcer ~]# export NAME=chenfanlinux
-[root@dokcer ~]# declare -x NAME=chenfan
-</code></pre><p><strong>显示与取消环境变量</strong></p>
-<pre><code>[root@dokcer ~]# echo $NAME
- chenfan
-[root@dokcer ~]# $ unset NAME
-</code></pre>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/17/Bash编程入门之变量基础-一/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    
-    <div>
-  
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/16/Docker入门之数据管理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/16/Docker入门之数据管理/" itemprop="url">Docker入门之数据管理(六)</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-16T16:33:51+08:00">
-                2018-01-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Docker系列/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker系列</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/01/16/Docker入门之数据管理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/16/Docker入门之数据管理/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2,827
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  13
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="如何存储Docker数据"><a href="#如何存储Docker数据" class="headerlink" title="如何存储Docker数据"></a>如何存储Docker数据</h2><p>Docker 为容器提供了两种存放数据的资源：</p>
-<ul>
-<li>Storage Driver 管理的镜像层和容器层。</li>
-<li>Data Volume</li>
-</ul>
-<p><strong>Storage Driver</strong></p>
-<p>容器由最上面一个可写的容器层，以及若干只读的镜像层组成，容器的数据就存放在这些层中。这样的分层结构最大的特性是 <strong><em>Copy-on-Write</em></strong>：</p>
-<ul>
-<li>新数据会直接存放在最上面的容器层。</li>
-<li>修改现有数据会先从镜像层将数据复制到容器层，修改后的数据直接保存在容器层中，镜像层保持不变。</li>
-<li>如果多个层中有命名相同的文件，用户只能看到最上面那层中的文件。</li>
-</ul>
-<p><img src="https://s1.ax1x.com/2018/01/15/pUMMh4.jpg" alt=""><br>Storage Driver 实现了多层数据的堆叠并为用户提供一个单一的合并之后的统一视图。适合无状态的应用，不需要持久化存储数据。</p>
-<p><strong>Data Volume</strong></p>
-<p>Data Volume 本质上是 Docker Host 文件系统中的目录或文件，能够直接被 mount 到容器的文件系统中。适合于持久化数据的需求的数据存储，容器启动时需要加载已有的数据，容器销毁时希望保留产生的新数据，也就是说，这类容器是有状态的。Data Volume有如下特点:</p>
-<ul>
-<li>Data Volume 是目录或文件，而非没有格式化的磁盘（块设备）。</li>
-<li>容器可以读写 volume 中的数据。</li>
-<li>volume 数据可以被永久的保存，即使使用它的容器已经销毁。</li>
-</ul>
-<h2 id="Data-volume的类型"><a href="#Data-volume的类型" class="headerlink" title="Data volume的类型"></a>Data volume的类型</h2><p>在具体的使用上，docker 提供了两种类型的 volume：bind mount 和 docker managed volume。</p>
-<h3 id="bind-mount"><a href="#bind-mount" class="headerlink" title="bind mount"></a>bind mount</h3><p>bind mount 是将 host 上已存在的目录或文件 mount 到容器。</p>
-<pre><code>[root@chenfanlinux ~]# mkdir /root/htdocs
-[root@chenfanlinux ~]# echo &quot;Welcome to chenfanlinux.org&quot; &gt;/root/htdocs/index.html
-[root@chenfanlinux ~]# docker run -d -p 80:80 -v /root/htdocs:/usr/local/apache2/htdocs httpd
-c7a396731c62e35b0704e16ffa6ea0a4b4d7e3488cd220dca0d41958eff46c30
-[root@chenfanlinux ~]# docker ps
-CONTAINER ID        IMAGE               COMMAND              CREATED             STATUS              PORTS                NAMES
-c7a396731c62        httpd               &quot;httpd-foreground&quot;   15 seconds ago      Up 14 seconds       0.0.0.0:80-&gt;80/tcp   serene_mccarthy
-[root@chenfanlinux ~]# curl &apos;http://127.0.0.1:80&apos;
-Welcome to chenfanlinux.org
-</code></pre><p>通过 <strong><em>-v &lt;host path&gt;:&lt;container path&gt;</em></strong> 这种格式将host上的/root/htdocs挂载到容器/usr/local/apache2/htdocs目录下。由于/root/htdocs目录下有文件，会隐藏容器/usr/local/apache2/htdocs下的文件内容。</p>
-<p>当我们更新一下/root/htdocs目录下的文件内容时，看看容器里的文件是否发生变化。</p>
-<pre><code>[root@chenfanlinux htdocs]# echo &apos;this is www.chenfanlinux.org&apos;&gt; index.html
-[root@chenfanlinux htdocs]# ls
-index.html
-[root@chenfanlinux htdocs]# curl &apos;http://127.0.0.1&apos;
-this is www.chenfanlinux.org
-</code></pre><p>这里的host 目录的/root/htdocs和容器/usr/local/apache2/htdocs属于共享目录，它们会共享数据。<br>下面我们将容器销毁，看看对 bind mount 有什么影响：</p>
-<pre><code>[root@chenfanlinux htdocs]# docker stop 177051349c19
-177051349c19
-[root@chenfanlinux htdocs]# docker rm 177051349c19
-177051349c19
-[root@chenfanlinux htdocs]# cat /root/htdocs/index.html
-this is www.chenfanlinux.org
-</code></pre><p>可以看到/root/htdocs数据依然存在，bind mount是文件系统中的数据，容器在销毁时，这些数据不会删除。</p>
-<p>bind mount 时还可以指定数据的读写权限，默认是可读可写，可指定为只读，ro 设置了只读权限，在容器中是无法对 bind mount 数据进行修改的。只有 host 有权修改数据，提高了安全性。</p>
-<pre><code>[root@chenfanlinux htdocs]# docker run -d -p 80:80 -v /root/htdocs:/usr/local/apache2/htdocs:ro  httpd
-d0d2fa8b29b120a8c20d88a20a77b18018bb348d6605218af09ec35f2ec59785
-[root@chenfanlinux htdocs]# docker exec -it d0d2fa8b29b1 /bin/bash
-root@d0d2fa8b29b1:/usr/local/apache2#
-root@d0d2fa8b29b1:/usr/local/apache2# echo &apos;host path:container path:perm&apos; &gt;htdoc
-bash: htdocs//index.htm: Read-only file system
-</code></pre><p>mount point 有很多应用场景，比如我们可以将源代码目录 mount 到容器中，在 host 中修改代码就能看到应用的实时效果。再比如将 mysql 容器的数据放在 bind mount 里，这样 host 可以方便地备份和迁移数据。</p>
-<p>bind mount 的使用直观高效，易于理解，但它也有不足的地方：bind mount 需要指定 host 文件系统的特定路径，这就限制了容器的可移植性，当需要将容器迁移到其他 host，而该 host 没有要 mount 的数据或者数据不在相同的路径时，操作会失败。移植性更好的方式是 docker managed volume，下面就会讨论。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/16/Docker入门之数据管理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    
-    <div>
-  
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2679,7 +2675,7 @@ bash: htdocs//index.htm: Read-only file system
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2690,7 +2686,7 @@ bash: htdocs//index.htm: Read-only file system
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2701,7 +2697,7 @@ bash: htdocs//index.htm: Read-only file system
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2789,7 +2785,7 @@ bash: htdocs//index.htm: Read-only file system
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">90.7k</span>
+    <span title="Site words total count">94.3k</span>
   
 </div>
 

@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.chenfanlinux.org/2018/05/28/Python%E6%93%8D%E4%BD%9CMongoDB/</loc>
+    
+    <lastmod>2018-05-28T03:47:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.chenfanlinux.org/2018/05/27/%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E8%AE%B0%E5%BF%86%E5%8A%9B/</loc>
+    
+    <lastmod>2018-05-27T05:45:11.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.chenfanlinux.org/2018/05/01/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B9%8BPandas%E5%85%A5%E9%97%A8%E4%BF%AE%E8%AE%A2%E7%89%88-%E5%9B%9B/</loc>
     
     <lastmod>2018-05-01T12:34:12.000Z</lastmod>
