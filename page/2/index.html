@@ -339,6 +339,221 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/03/14/Python实战之简单爬虫/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/14/Python实战之简单爬虫/" itemprop="url">Python实战之简单爬虫</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-14T10:59:43+08:00">
+                2018-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python项目实战/" itemprop="url" rel="index">
+                    <span itemprop="name">python项目实战</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/14/Python实战之简单爬虫/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/14/Python实战之简单爬虫/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  788
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="代码：爬豆瓣电影Top100"><a href="#代码：爬豆瓣电影Top100" class="headerlink" title="代码：爬豆瓣电影Top100"></a>代码：爬豆瓣电影Top100</h2><h3 id="方式一：-re-urllib"><a href="#方式一：-re-urllib" class="headerlink" title="方式一： re   +  urllib"></a>方式一： <a href="https://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html" target="_blank" rel="noopener">re</a>   +  urllib</h3><pre><code># _*_ coding:utf-8 _*_
+
+
+&apos;&apos;&apos;
+&lt;span class=&quot;title&quot;&gt;肖申克的救赎&lt;/span&gt;
+&lt;em class=&quot;&quot;&gt;1&lt;/em&gt;
+&apos;&apos;&apos;
+import io
+import sys
+import re
+from urllib.request import urlopen
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding=&apos;gb18030&apos;)
+top_num = 1
+url_base = &apos;https://movie.douban.com/top250?start=&apos;
+urls = [url_base + str(i*25) for i in range(0,4)]
+for url in urls:
+    html = urlopen(url).read().decode(&apos;utf-8&apos;)
+    top_tag = re.compile(r&apos;&lt;span class=&quot;title&quot;&gt;(.*)&lt;/span&gt;&apos;)
+    title = re.findall(top_tag, html)
+    for i in title:
+        if i.find(&apos;/&apos;) == -1:
+            print(&apos;Top&apos; + str(top_num) + &apos; &apos; + i)
+            top_num += 1
+</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/14/Python实战之简单爬虫/#далее" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    
+    <div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/03/13/Python项目实战之密码管理器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -508,7 +723,7 @@ CCrkoMjbhA
 </code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/13/Python项目实战之密码管理器/#more" rel="contents">
+            <a class="btn" href="/2018/03/13/Python项目实战之密码管理器/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -713,7 +928,7 @@ arr2 = func(square, [1, 2, 3, 4])
 </code></pre><p>不难判断出，arr1 是 [2, 4, 6, 8]，arr2 是 [1, 4, 9, 16]。<br>可接收其他函数作为参数的函数称为高阶函数。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/12/Python进阶之函数式编程/#more" rel="contents">
+            <a class="btn" href="/2018/03/12/Python进阶之函数式编程/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -924,7 +1139,7 @@ arr2 = func(square, [1, 2, 3, 4])
 </code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/12/Python进阶之面向对象/#more" rel="contents">
+            <a class="btn" href="/2018/03/12/Python进阶之面向对象/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1166,7 +1381,7 @@ arr2 = func(square, [1, 2, 3, 4])
 </code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/28/Python基础之推导式/#more" rel="contents">
+            <a class="btn" href="/2018/02/28/Python基础之推导式/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1379,7 +1594,7 @@ False
 </code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/23/Python基础之迭代器和生成器/#more" rel="contents">
+            <a class="btn" href="/2018/02/23/Python基础之迭代器和生成器/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1590,7 +1805,7 @@ True
 </code></pre><p>函数体内部的语句在执行时，一旦执行到return时，函数就执行完毕；如果没有return语句，函数执行完毕后也会返回结果，只是结果为None。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/23/Python基础之函数与模块/#more" rel="contents">
+            <a class="btn" href="/2018/02/23/Python基础之函数与模块/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1807,7 +2022,7 @@ True
 <p><strong><em>注意: 打开文件之后就可以调用函数来读写数据，最后需要关闭文件。</em></strong></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/22/Python基础之文件与异常/#more" rel="contents">
+            <a class="btn" href="/2018/02/22/Python基础之文件与异常/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2009,7 +2224,7 @@ True
 </code></pre><p><strong><em>Python 中的变量有一个非常重要的性质:它仅仅是一个名字。赋值操作并不会实际 复制值，它只是为数据对象取个相关的名字。名字是对对象的引用而不是对象本身。你可以把名字想象成贴在盒子上的标签</em></strong></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/17/Python基础之变量与运算符/#more" rel="contents">
+            <a class="btn" href="/2018/02/17/Python基础之变量与运算符/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2238,226 +2453,7 @@ True
 </code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/14/Pytho基础之内置数据类型-二/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    
-    <div>
-  
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/02/13/Python基础之内置数据类型-一/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/13/Python基础之内置数据类型-一/" itemprop="url">Python基础之内置数据类型(一)</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-13T22:14:07+08:00">
-                2018-02-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python基础知识/" itemprop="url" rel="index">
-                    <span itemprop="name">python基础知识</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/13/Python基础之内置数据类型-一/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/13/Python基础之内置数据类型-一/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,207
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>在 Python 中， 每个值都有一种数据类型，但您并不需要声明变量的数据类型。那该方式是如何运作的呢？Python 根据每个变量的初始赋值情况分析其类型，并在内部对其进行跟踪。</p>
-</blockquote>
-<h3 id="内置数据类型分类"><a href="#内置数据类型分类" class="headerlink" title="内置数据类型分类"></a>内置数据类型分类</h3><ul>
-<li>Booleans［布尔型］ 或为 True［真］ 或为 False［假］</li>
-<li>Numbers［数值型］ 可以是 Integers［整数］（1 和 2）、Floats［浮点数］（1.1 和 1.2）、Fractions［分数］（1/2 和 2/3）；甚至是 Complex Number［复数］</li>
-<li>Strings［字符串型］ 是 Unicode 字符序列，例如： 一份 html 文档</li>
-<li>Bytes［字节］ 和 Byte Arrays［字节数组］， 例如: 一份 jpeg 图像文件</li>
-<li>Lists［列表］ 是值的有序序列</li>
-<li>Tuples［元组］ 是有序而不可变的值序列</li>
-<li>Sets［集合］ 是装满无序值的包裹</li>
-<li>Dictionaries［字典］ 是键值对的无序包裹</li>
-</ul>
-<h2 id="布尔类型"><a href="#布尔类型" class="headerlink" title="布尔类型"></a>布尔类型</h2><p><strong>布尔类型或为真或为假。Python 有两个被巧妙地命名为 True 和 False 的常量，可用于对布尔类型的直接赋值。表达式也可以计算为布尔类型的值。数字 0、None、以及元素为空的容器类对象都可视作 bool False，反之为 True。</strong></p>
-<pre><code>&gt;&gt;&gt; bool(0)
-False
-&gt;&gt;&gt; bool(None)
-False
-&gt;&gt;&gt; bool([])
-False
-&gt;&gt;&gt; bool({})
-False
-&gt;&gt;&gt; bool(1)
-True
-&gt;&gt;&gt; bool([1,2])
-True
-</code></pre><h2 id="数字类型"><a href="#数字类型" class="headerlink" title="数字类型"></a>数字类型</h2><p>python本身支持整数以及浮点数。你可以对这些数字进行下表中的计算。</p>
-<p><img src="https://s1.ax1x.com/2018/02/13/9YZkc9.png" alt="数字类型"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/13/Python基础之内置数据类型-一/#more" rel="contents">
+            <a class="btn" href="/2018/02/14/Pytho基础之内置数据类型-二/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2552,7 +2548,7 @@ True
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2563,7 +2559,7 @@ True
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2574,7 +2570,7 @@ True
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2662,7 +2658,7 @@ True
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">94.3k</span>
+    <span title="Site words total count">96.1k</span>
   
 </div>
 

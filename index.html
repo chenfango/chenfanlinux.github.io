@@ -339,6 +339,203 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/05/31/自动化运维工具Fabric/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/31/自动化运维工具Fabric/" itemprop="url">自动化运维工具Fabric</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-31T17:59:47+08:00">
+                2018-05-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/运维自动化工具/" itemprop="url" rel="index">
+                    <span itemprop="name">运维自动化工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/31/自动化运维工具Fabric/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/05/31/自动化运维工具Fabric/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,742
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>项目发布和运维的工作相当机械，频率还蛮高，导致时间浪费在敲大量重复的命令上。其中郁闷的是，每次操作都是相同的，命令一样，要命的是在多个机器上，很难在本机一个脚本搞定，主要时间都浪费在ssh，敲命令上了，写成脚本，完全可以一键执行，花两分钟看下执行结果。 如果你会Python的话，使用Fabric是一个很好的选择！</p>
+</blockquote>
+<h2 id="安装Fabric"><a href="#安装Fabric" class="headerlink" title="安装Fabric"></a>安装Fabric</h2><p>从 <a href="[Fabric项目地址](https://github.com/fabric/fabric/tree/2.1">Fabric</a>)项目地址的可以发现，其版本号直接从1.14到了2.0版本，研究源码可以发现，其使用发现发生了很大的变化，今天记录此文章，对比一下这两种版本的升级之旅。</p>
+<p><img src="https://s1.ax1x.com/2018/05/31/CIZHne.png" alt="Fabirc的git地址"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ yum install python-pip</span><br><span class="line">$ pip install --upgrade pip</span><br><span class="line">$ pip install fabric==<span class="number">1.14</span><span class="number">.0</span>   <span class="comment"># 指定版本安装，这里如果不指定的话，安装最新版本</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/31/自动化运维工具Fabric/#далее" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    
+    <div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/05/28/Python操作MongoDB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -492,7 +689,7 @@
 <p>实际上，在PyMongo 3.x版本中，官方已经不推荐使用<code>insert()</code>方法了。当然，继续使用也没有什么问题。官方推荐使用<code>insert_one()</code>和<code>insert_many()</code>方法来分别插入单条记录和多条记录 。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/28/Python操作MongoDB/#more" rel="contents">
+            <a class="btn" href="/2018/05/28/Python操作MongoDB/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -691,7 +888,7 @@
 <h3 id="5-保证充足的睡眠"><a href="#5-保证充足的睡眠" class="headerlink" title="5.保证充足的睡眠"></a>5.保证充足的睡眠</h3><p>睡觉时，脑脊液在脑细胞间的循环比清醒时快很多，帮助大脑排出 “垃圾”,因为尽量避免熬夜，让大脑充分休息。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/27/如何提升你的记忆力/#more" rel="contents">
+            <a class="btn" href="/2018/05/27/如何提升你的记忆力/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -894,7 +1091,7 @@
 </code></pre><p>由于我们没有为数据指定索引，于是会自动创建一个0到N-1（N为数据的长度）的整数型索引。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/01/Python数据分析之Pandas入门修订版-四/#more" rel="contents">
+            <a class="btn" href="/2018/05/01/Python数据分析之Pandas入门修订版-四/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1097,7 +1294,7 @@
 <h3 id="创建-Series数据类型"><a href="#创建-Series数据类型" class="headerlink" title="创建 Series数据类型"></a>创建 Series数据类型</h3><p>创建 Series 语法： <code>s = pd.Series(data, index=index)</code>，可以通过多种方式进行创建, 这里的data的数据类型只要是序列都可以。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/26/Python数据分析之Pandas入门-三/#more" rel="contents">
+            <a class="btn" href="/2018/04/26/Python数据分析之Pandas入门-三/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1304,7 +1501,7 @@
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/25/Python数据分析之Numpy-二/#more" rel="contents">
+            <a class="btn" href="/2018/04/25/Python数据分析之Numpy-二/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1502,7 +1699,7 @@ $ conda config --set show_channel_urls yes
 </code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/18/Python数据分析之开发工具Anaconda-一/#more" rel="contents">
+            <a class="btn" href="/2018/04/18/Python数据分析之开发工具Anaconda-一/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1713,7 +1910,7 @@ $ conda config --set show_channel_urls yes
 </code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/13/python时间处理模块/#more" rel="contents">
+            <a class="btn" href="/2018/04/13/python时间处理模块/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1914,7 +2111,7 @@ $ conda config --set show_channel_urls yes
 </code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/11/python版本管理工具-pyenv/#more" rel="contents">
+            <a class="btn" href="/2018/04/11/python版本管理工具-pyenv/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2118,222 +2315,7 @@ $ conda config --set show_channel_urls yes
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/06/Kubernetes-1-9-1-HA生产环境实践/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    
-    <div>
-  
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/03/14/Python实战之简单爬虫/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/14/Python实战之简单爬虫/" itemprop="url">Python实战之简单爬虫</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-14T10:59:43+08:00">
-                2018-03-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python项目实战/" itemprop="url" rel="index">
-                    <span itemprop="name">python项目实战</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/14/Python实战之简单爬虫/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/03/14/Python实战之简单爬虫/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  788
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="代码：爬豆瓣电影Top100"><a href="#代码：爬豆瓣电影Top100" class="headerlink" title="代码：爬豆瓣电影Top100"></a>代码：爬豆瓣电影Top100</h2><h3 id="方式一：-re-urllib"><a href="#方式一：-re-urllib" class="headerlink" title="方式一： re   +  urllib"></a>方式一： <a href="https://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html" target="_blank" rel="noopener">re</a>   +  urllib</h3><pre><code># _*_ coding:utf-8 _*_
-
-
-&apos;&apos;&apos;
-&lt;span class=&quot;title&quot;&gt;肖申克的救赎&lt;/span&gt;
-&lt;em class=&quot;&quot;&gt;1&lt;/em&gt;
-&apos;&apos;&apos;
-import io
-import sys
-import re
-from urllib.request import urlopen
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding=&apos;gb18030&apos;)
-top_num = 1
-url_base = &apos;https://movie.douban.com/top250?start=&apos;
-urls = [url_base + str(i*25) for i in range(0,4)]
-for url in urls:
-    html = urlopen(url).read().decode(&apos;utf-8&apos;)
-    top_tag = re.compile(r&apos;&lt;span class=&quot;title&quot;&gt;(.*)&lt;/span&gt;&apos;)
-    title = re.findall(top_tag, html)
-    for i in title:
-        if i.find(&apos;/&apos;) == -1:
-            print(&apos;Top&apos; + str(top_num) + &apos; &apos; + i)
-            top_num += 1
-</code></pre>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/14/Python实战之简单爬虫/#more" rel="contents">
+            <a class="btn" href="/2018/04/06/Kubernetes-1-9-1-HA生产环境实践/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2428,7 +2410,7 @@ for url in urls:
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2439,7 +2421,7 @@ for url in urls:
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2450,7 +2432,7 @@ for url in urls:
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2538,7 +2520,7 @@ for url in urls:
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">94.3k</span>
+    <span title="Site words total count">96.1k</span>
   
 </div>
 

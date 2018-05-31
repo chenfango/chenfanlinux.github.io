@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Fabric," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="陈凡的个人站点" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="项目发布和运维的工作相当机械，频率还蛮高，导致时间浪费在敲大量重复的命令上。其中郁闷的是，每次操作都是相同的，命令一样，要命的是在多个机器上，很难在本机一个脚本搞定，主要时间都浪费在ssh，敲命令上了，写成脚本，完全可以一键执行，花两分钟看下执行结果。 如果你会Python的话，使用Fabric是一个很好的选择！  安">
+<meta name="keywords" content="Fabric">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自动化运维工具Fabric">
+<meta property="og:url" content="http://www.chenfanlinux.org/2018/05/31/自动化运维工具Fabric/index.html">
+<meta property="og:site_name" content="陈凡的个人站点">
+<meta property="og:description" content="项目发布和运维的工作相当机械，频率还蛮高，导致时间浪费在敲大量重复的命令上。其中郁闷的是，每次操作都是相同的，命令一样，要命的是在多个机器上，很难在本机一个脚本搞定，主要时间都浪费在ssh，敲命令上了，写成脚本，完全可以一键执行，花两分钟看下执行结果。 如果你会Python的话，使用Fabric是一个很好的选择！  安装Fabric从 Fabric)项目地址的可以发现，其版本号直接从1.14到了">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax1x.com/2018/05/31/CIZHne.png">
+<meta property="og:updated_time" content="2018-05-31T10:01:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自动化运维工具Fabric">
+<meta name="twitter:description" content="项目发布和运维的工作相当机械，频率还蛮高，导致时间浪费在敲大量重复的命令上。其中郁闷的是，每次操作都是相同的，命令一样，要命的是在多个机器上，很难在本机一个脚本搞定，主要时间都浪费在ssh，敲命令上了，写成脚本，完全可以一键执行，花两分钟看下执行结果。 如果你会Python的话，使用Fabric是一个很好的选择！  安装Fabric从 Fabric)项目地址的可以发现，其版本号直接从1.14到了">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/05/31/CIZHne.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'X18Q8YOK7R',
+      apiKey: '4cf6f4ea962b4c633859ca376c0d6ae9',
+      indexName: 'chenfanlinux',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfanlinux.org/2018/05/31/自动化运维工具Fabric/"/>
+
+
+
+
+
+  <title>自动化运维工具Fabric | 陈凡的个人站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?your-analytics-id";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+ 
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">陈凡的个人站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">chenfanlinux.org</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/05/31/自动化运维工具Fabric/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">自动化运维工具Fabric</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-31T17:59:47+08:00">
+                2018-05-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/运维自动化工具/" itemprop="url" rel="index">
+                    <span itemprop="name">运维自动化工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/31/自动化运维工具Fabric/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/05/31/自动化运维工具Fabric/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,742
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>项目发布和运维的工作相当机械，频率还蛮高，导致时间浪费在敲大量重复的命令上。其中郁闷的是，每次操作都是相同的，命令一样，要命的是在多个机器上，很难在本机一个脚本搞定，主要时间都浪费在ssh，敲命令上了，写成脚本，完全可以一键执行，花两分钟看下执行结果。 如果你会Python的话，使用Fabric是一个很好的选择！</p>
+</blockquote>
+<h2 id="安装Fabric"><a href="#安装Fabric" class="headerlink" title="安装Fabric"></a>安装Fabric</h2><p>从 <a href="[Fabric项目地址](https://github.com/fabric/fabric/tree/2.1">Fabric</a>)项目地址的可以发现，其版本号直接从1.14到了2.0版本，研究源码可以发现，其使用发现发生了很大的变化，今天记录此文章，对比一下这两种版本的升级之旅。</p>
+<p><img src="https://s1.ax1x.com/2018/05/31/CIZHne.png" alt="Fabirc的git地址"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ yum install python-pip</span><br><span class="line">$ pip install --upgrade pip</span><br><span class="line">$ pip install fabric==<span class="number">1.14</span><span class="number">.0</span>   <span class="comment"># 指定版本安装，这里如果不指定的话，安装最新版本</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="Fabric-1-x版本-入门示例"><a href="#Fabric-1-x版本-入门示例" class="headerlink" title="Fabric 1.x版本 入门示例"></a>Fabric 1.x版本 入门示例</h2><p><strong>使用方法：</strong></p>
+<p>部署脚本fabfile.py（名字不能变）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#fabfile.py 脚本名</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># _*_ coding:utf-8 _*_</span></span><br><span class="line"><span class="keyword">from</span> fabric.api <span class="keyword">import</span> run</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">host_type</span><span class="params">()</span>:</span></span><br><span class="line">    run(<span class="string">'uname -s'</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>启动：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@test-node01 ~]<span class="comment"># fab -H 127.0.0.1 host_type</span></span><br><span class="line">[<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>] Executing task <span class="string">'host_type'</span></span><br><span class="line">[<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>] run: uname -s</span><br><span class="line">[<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>] out: Linux</span><br><span class="line">[<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>] out:</span><br><span class="line">Done.</span><br><span class="line">Disconnecting <span class="keyword">from</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>... done.</span><br></pre></td></tr></table></figure>
+<h3 id="fabric常用参数"><a href="#fabric常用参数" class="headerlink" title="fabric常用参数"></a>fabric常用参数</h3><ul>
+<li>-l : 显示定义好的任务函数名</li>
+<li>-f : 指定fab入口文件，默认入口文件名为fabfile.py</li>
+<li>-H : 指定目标主机，多台主机用”,”号分割</li>
+</ul>
+<h3 id="fabric常用API"><a href="#fabric常用API" class="headerlink" title="fabric常用API"></a>fabric常用API</h3><ul>
+<li>local : 执行本地命令，如：local(‘uname -s’)</li>
+<li>lcd : 切换本地目录，如：lcd(‘/home’)</li>
+<li>cd : 切换远程目录，如：cd(‘/etc’)</li>
+<li>run : 执行远程命令，如：run(‘free -m’)</li>
+<li>sudo : sudo方式执行远程命令，如：sudo(‘touch /abc’)</li>
+<li>put : 上传本地文件到远程主机，如：put(‘/hello’, ‘/home/itcast/hello’)</li>
+<li>get : 从远程主机下载文件到本地，如：get(‘/home/python/world’, ‘/home/itcast/world’)</li>
+<li>reboot : 重启远程主机，如：reboot()</li>
+<li>@task : 函数装饰器，标识的函数为fab可调用的，非标记的对fab不可见，纯业务逻辑</li>
+<li>@runs_once : 函数装饰器，标识的函数只会执行一次，不受多台主机影响</li>
+</ul>
+<h3 id="fabric全局属性设定"><a href="#fabric全局属性设定" class="headerlink" title="fabric全局属性设定"></a>fabric全局属性设定</h3><ul>
+<li>env.host : 定义目标主机，如：env.host=[‘192.168.17.192’, ‘192.168.17.193’]</li>
+<li>env.user : 定义用户名，如：env.user=”root”</li>
+<li>env.port : 定义目标主机端口，默认为22，如：env.port=”22”</li>
+<li>env.password : 定义密码，如：env.password=”chuanzhi”</li>
+<li>env.passwords : 不同的主机不同的密码，如：env.passwords={‘itcast@192.168.17.192:22’:’chuanzhi’, ‘itcast@192.168.17.193:22’:’python’}</li>
+</ul>
+<h2 id="Fabric-1-x使用范例"><a href="#Fabric-1-x使用范例" class="headerlink" title="Fabric 1.x使用范例"></a>Fabric 1.x使用范例</h2><h3 id="示例1：动态获取远程目录列表"><a href="#示例1：动态获取远程目录列表" class="headerlink" title="示例1：动态获取远程目录列表"></a>示例1：动态获取远程目录列表</h3><p><strong>脚本：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># _*_ coding:utf8 _*_</span></span><br><span class="line"><span class="keyword">from</span> fabric.api <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># 登录的主机名和主机,我这里用的免密码登录</span></span><br><span class="line">env.user = <span class="string">'root'</span></span><br><span class="line">env.hosts=[<span class="string">'test-master01'</span>, <span class="string">'test-node01'</span>, <span class="string">'test-node02'</span>]</span><br><span class="line"><span class="meta">@runs_once  # 函数装饰器，标识的函数只会执行一次，不受多台主机影响</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">input_raw</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> prompt(<span class="string">"please input directory name:"</span>, default=<span class="string">"/home"</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">workask</span><span class="params">(dirname)</span>:</span></span><br><span class="line">    run(<span class="string">'ls -l '</span> + dirname)</span><br><span class="line"><span class="meta">@task # 函数装饰器，标识的函数为fab可调用的，非标记的对fab不可见，纯业务逻辑</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">go</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'start ...'</span>)</span><br><span class="line">    getdirname = input_raw()</span><br><span class="line">    workask(getdirname)</span><br><span class="line">    print(<span class="string">'end ...'</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>运行：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">(chenfanlinux) [root@test-node01 test]<span class="comment"># fab go          # 运行即可</span></span><br><span class="line">[test-master01] Executing task <span class="string">'go'</span></span><br><span class="line">start ...</span><br><span class="line">please input directory name: [/home] /root</span><br><span class="line">[test-master01] run: ls -l /root</span><br><span class="line">[test-master01] out: total <span class="number">0</span></span><br><span class="line">[test-master01] out:</span><br><span class="line"></span><br><span class="line">end ...</span><br><span class="line">[test-node01] Executing task <span class="string">'go'</span></span><br><span class="line">start ...</span><br><span class="line">[test-node01] run: ls -l /root</span><br><span class="line">[test-node01] out: total <span class="number">8</span></span><br><span class="line">[test-node01] out: -rw-r--r-- <span class="number">1</span> root root <span class="number">111</span> May <span class="number">31</span> <span class="number">16</span>:<span class="number">39</span> fabfile.py</span><br><span class="line">[test-node01] out: -rw-r--r-- <span class="number">1</span> root root <span class="number">299</span> May <span class="number">31</span> <span class="number">16</span>:<span class="number">39</span> fabfile.pyc</span><br><span class="line">[test-node01] out:</span><br><span class="line"></span><br><span class="line">end ...</span><br><span class="line">[test-node02] Executing task <span class="string">'go'</span></span><br><span class="line">start ...</span><br><span class="line">[test-node02] run: ls -l /root</span><br><span class="line">[test-node02] out: total <span class="number">0</span></span><br><span class="line">[test-node02] out:</span><br><span class="line"></span><br><span class="line">end ...</span><br><span class="line"></span><br><span class="line">Done.</span><br><span class="line">Disconnecting <span class="keyword">from</span> test-node02... done.</span><br><span class="line">Disconnecting <span class="keyword">from</span> test-master01... done.</span><br><span class="line">Disconnecting <span class="keyword">from</span> test-node01... done.</span><br></pre></td></tr></table></figure>
+<h3 id="示例2：上传文件并执行"><a href="#示例2：上传文件并执行" class="headerlink" title="示例2：上传文件并执行"></a>示例2：上传文件并执行</h3><p><strong>脚本：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># _*_ coding:utf8 _*_</span></span><br><span class="line"><span class="keyword">from</span> fabric.api <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># 登录的主机名和主机,我这里用的免密码登录</span></span><br><span class="line">env.user = <span class="string">'root'</span></span><br><span class="line">env.hosts=[<span class="string">'test-master01'</span>, <span class="string">'test-node02'</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">@task # 切换到本地/root目录, 并打包</span></span><br><span class="line"><span class="meta">@runs_once # 这个任务执行一次</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tar_task</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">with</span> lcd(<span class="string">'/root'</span>):</span><br><span class="line">        local(<span class="string">'tar zcvf hello.tar.gz hello.py'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@task # 创建 远程 /home/test目录 ,并将本地的tar包上传到远程</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">put_task</span><span class="params">()</span>:</span>  <span class="comment"># 这个任务将执行多次</span></span><br><span class="line">    run(<span class="string">'mkdir -p /home/test'</span>)</span><br><span class="line">    <span class="keyword">with</span> cd(<span class="string">'/home/test'</span>):</span><br><span class="line">        put(<span class="string">'/root/hello.tar.gz'</span>, <span class="string">'/home/test'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@task # 检验本地和远程文件的md5值</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_task</span><span class="params">()</span>:</span> <span class="comment"># 这个任务执行多次</span></span><br><span class="line">    lmd5 = local(<span class="string">'md5sum /root/hello.tar.gz'</span>, capture=<span class="keyword">True</span>).split(<span class="string">' '</span>)[<span class="number">0</span>]</span><br><span class="line">    rmd5 = run(<span class="string">'md5sum /home/test/hello.tar.gz'</span>).split(<span class="string">' '</span>)[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">if</span> lmd5 == rmd5:</span><br><span class="line">        print(<span class="string">'OK ...'</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">'ERROR ...'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@task  # 执行本地上传的tar包中的hello.py文件</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_task</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">with</span> cd(<span class="string">'/home/test'</span>):</span><br><span class="line">        run(<span class="string">'tar zxvf hello.tar.gz'</span>)</span><br><span class="line">        run(<span class="string">'python hello.py'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@task</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">go</span><span class="params">()</span>:</span></span><br><span class="line">    tar_task()</span><br><span class="line">    put_task()</span><br><span class="line">    check_task()</span><br><span class="line">    run_task()</span><br></pre></td></tr></table></figure>
+<p><strong>运行：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">(chenfanlinux) [root@test-node01 test]<span class="comment"># fab go</span></span><br><span class="line"></span><br><span class="line">--------------------------------- test-master01 -----------------------------------</span><br><span class="line">[test-master01] Executing task <span class="string">'go'</span></span><br><span class="line">[localhost] local: tar zcvf hello.tar.gz hello.py <span class="comment"># 本地打包</span></span><br><span class="line">hello.py</span><br><span class="line">[test-master01] run: mkdir -p /home/test <span class="comment"># 远程建目录</span></span><br><span class="line">[test-master01] put: /root/hello.tar.gz -&gt; /home/test/hello.tar.gz # 本地宝上传到远程</span><br><span class="line">[localhost] local: md5sum /root/hello.tar.gz</span><br><span class="line">[test-master01] run: md5sum /home/test/hello.tar.gz <span class="comment"># 校验md5值</span></span><br><span class="line">[test-master01] out: <span class="number">9897</span>a7ad1211a72d8b9c21d8cb5d9f1e  /home/test/hello.tar.gz</span><br><span class="line">[test-master01] out:</span><br><span class="line"></span><br><span class="line">OK ...</span><br><span class="line">[test-master01] run: tar zxvf hello.tar.gz <span class="comment"># 远程解包</span></span><br><span class="line">[test-master01] out: hello.py</span><br><span class="line">[test-master01] out:</span><br><span class="line"></span><br><span class="line">[test-master01] run: python hello.py <span class="comment"># 远程执行脚本</span></span><br><span class="line">[test-master01] out: Hello,Welcome to my blog www.chenfanlinux.org!</span><br><span class="line">[test-master01] out:</span><br><span class="line"></span><br><span class="line">------------------------------------- test-node02  -----------------------------------</span><br><span class="line">[test-node02] Executing task <span class="string">'go'</span></span><br><span class="line">[test-node02] run: mkdir -p /home/test</span><br><span class="line">[test-node02] put: /root/hello.tar.gz -&gt; /home/test/hello.tar.gz</span><br><span class="line">[localhost] local: md5sum /root/hello.tar.gz</span><br><span class="line">[test-node02] run: md5sum /home/test/hello.tar.gz</span><br><span class="line">[test-node02] out: <span class="number">9897</span>a7ad1211a72d8b9c21d8cb5d9f1e  /home/test/hello.tar.gz</span><br><span class="line">[test-node02] out:</span><br><span class="line"></span><br><span class="line">OK ...</span><br><span class="line">[test-node02] run: tar zxvf hello.tar.gz</span><br><span class="line">[test-node02] out: hello.py</span><br><span class="line">[test-node02] out:</span><br><span class="line"></span><br><span class="line">[test-node02] run: python hello.py</span><br><span class="line">[test-node02] out: Hello,Welcome to my blog www.chenfanlinux.org!</span><br><span class="line">[test-node02] out:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Done.</span><br><span class="line">Disconnecting <span class="keyword">from</span> test-node02... done.</span><br><span class="line">Disconnecting <span class="keyword">from</span> test-master01... done.</span><br></pre></td></tr></table></figure>
+<h2 id="Fabric-2-x-使用范例"><a href="#Fabric-2-x-使用范例" class="headerlink" title="Fabric 2.x 使用范例"></a>Fabric 2.x 使用范例</h2><p><strong>脚本：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># _*_ coding:utf8 _*_</span></span><br><span class="line"><span class="keyword">from</span> fabric <span class="keyword">import</span> Connection, SerialGroup</span><br><span class="line"><span class="comment"># 单个连接</span></span><br><span class="line">simple_conn = Connection(<span class="string">'test-master01'</span>)</span><br><span class="line"><span class="comment"># 多个连接</span></span><br><span class="line">many_conn = SerialGroup(<span class="string">'test-master01'</span>, <span class="string">'test-node01'</span>, <span class="string">'test-node02'</span>)</span><br><span class="line"><span class="comment"># 查看单个磁盘容量</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">disk_free</span><span class="params">(c)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    c : 单个连接</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    uname = c.run(<span class="string">'uname -s'</span>, hide=<span class="keyword">True</span>).stdout</span><br><span class="line">    <span class="keyword">if</span> <span class="string">'Linux'</span> <span class="keyword">in</span> uname:</span><br><span class="line">        command = <span class="string">"df -h / | tail -n1 | awk '&#123;print $5&#125;'"</span></span><br><span class="line">        <span class="keyword">return</span> c.run(command, hide=<span class="keyword">True</span>).stdout.strip()</span><br><span class="line">    err = <span class="string">"No idea how to get disk space on &#123;&#125;!"</span>.format(uname)</span><br><span class="line">    <span class="keyword">raise</span> Exit(err)</span><br><span class="line"></span><br><span class="line">result = &#123;i.host :disk_free(i) <span class="keyword">for</span> i <span class="keyword">in</span> many_conn&#125;</span><br><span class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> result.items():</span><br><span class="line">    print(<span class="string">'主机名是&#123;&#125;,磁盘利用率是&#123;&#125;'</span>.format(k,v))</span><br></pre></td></tr></table></figure>
+<p><strong>运行：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(chenfanlinux) [root@test-master01 test]<span class="comment"># python fabfile.py</span></span><br><span class="line"></span><br><span class="line">主机名是test-master01,磁盘利用率是<span class="number">16</span>%</span><br><span class="line">主机名是test-node01,磁盘利用率是<span class="number">13</span>%</span><br><span class="line">主机名是test-node02,磁盘利用率是<span class="number">11</span>%</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏2块钱,帮我买杯咖啡,继续创作,谢谢大家！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="陈凡 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliyipay.jpg" alt="陈凡 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+        -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+         
+            <a href="/tags/Fabric/" rel="tag"><i class="fa fa-tag"></i>Fabric</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/28/Python操作MongoDB/" rel="next" title="Python操作MongoDB">
+                <i class="fa fa-chevron-left"></i> Python操作MongoDB
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/upload/avatar.gif"
+                alt="陈凡" />
+            
+              <p class="site-author-name" itemprop="name">陈凡</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/chenfanlinux" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:chenfan216@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/3942411590" target="_blank" title="微博">
+                    
+                      <i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/love-hero-80" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Fabric"><span class="nav-number">1.</span> <span class="nav-text">安装Fabric</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fabric-1-x版本-入门示例"><span class="nav-number">2.</span> <span class="nav-text">Fabric 1.x版本 入门示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fabric常用参数"><span class="nav-number">2.1.</span> <span class="nav-text">fabric常用参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fabric常用API"><span class="nav-number">2.2.</span> <span class="nav-text">fabric常用API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fabric全局属性设定"><span class="nav-number">2.3.</span> <span class="nav-text">fabric全局属性设定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fabric-1-x使用范例"><span class="nav-number">3.</span> <span class="nav-text">Fabric 1.x使用范例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#示例1：动态获取远程目录列表"><span class="nav-number">3.1.</span> <span class="nav-text">示例1：动态获取远程目录列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例2：上传文件并执行"><span class="nav-number">3.2.</span> <span class="nav-text">示例2：上传文件并执行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fabric-2-x-使用范例"><span class="nav-number">4.</span> <span class="nav-text">Fabric 2.x 使用范例</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+<script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=ipZXdvME3sKg6viC20OoTCYATcaOJ6SQH2wdaJEUHfc"></script>
+
+<div id="music163player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=525241230&auto=0&height=66"></iframe>
+</div>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈凡</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">96.1k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div> 
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+ <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 98812, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2018/05/31/自动化运维工具Fabric/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/98812/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+<!--页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>  
+
+
+
+<!-- 
+<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-1 count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script> -->
+
+
+</body>
+</html>
