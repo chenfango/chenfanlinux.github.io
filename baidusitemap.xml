@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://www.chenfanlinux.org/2018/05/28/Python%E6%93%8D%E4%BD%9CMongoDB/</loc>
+    <lastmod>2018-06-04T10:26:37.000Z</lastmod>
+    <data>
+        <display>
+        <title>Python操作MongoDB</title>
+        <pubTime>2018-05-28T03:37:40.000Z</pubTime>
+        
+        <tag>MongDB</tag>
+         
+         
+           
+             
+              <breadCrumb title="NoSQL" url="http://www.chenfanlinux.org/categories/NoSQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.chenfanlinux.org/2018/06/04/Python%E6%93%8D%E4%BD%9CRedis/</loc>
     <lastmod>2018-06-04T09:52:21.000Z</lastmod>
     <data>
@@ -59,26 +79,6 @@
            
              
               <breadCrumb title="运维自动化工具" url="http://www.chenfanlinux.org/categories/%E8%BF%90%E7%BB%B4%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E5%85%B7/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.chenfanlinux.org/2018/05/28/Python%E6%93%8D%E4%BD%9CMongoDB/</loc>
-    <lastmod>2018-05-28T03:47:32.000Z</lastmod>
-    <data>
-        <display>
-        <title>Python操作MongoDB</title>
-        <pubTime>2018-05-28T03:37:40.000Z</pubTime>
-        
-        <tag>MongDB</tag>
-         
-         
-           
-             
-              <breadCrumb title="MongDB" url="http://www.chenfanlinux.org/categories/MongDB/"/>
           
         </display>
     </data>
