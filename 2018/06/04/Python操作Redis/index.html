@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="redis,python," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="陈凡的个人站点" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Redis 简介Redis 特点 Redis 是完全开源免费的，遵守BSD协议，是一个高性能的key-value数据库。  Redis 与其他 key - value 缓存产品有以下三个特点：  Redis支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。 Redis不仅仅支持简单的ke">
+<meta name="keywords" content="redis,python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python操作Redis">
+<meta property="og:url" content="http://www.chenfanlinux.org/2018/06/04/Python操作Redis/index.html">
+<meta property="og:site_name" content="陈凡的个人站点">
+<meta property="og:description" content="Redis 简介Redis 特点 Redis 是完全开源免费的，遵守BSD协议，是一个高性能的key-value数据库。  Redis 与其他 key - value 缓存产品有以下三个特点：  Redis支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。 Redis不仅仅支持简单的key-value类型的数据，同时还提供string, list，set，zset，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.runoob.com/wp-content/uploads/2014/11/3B8D633F-14CE-42E3-B174-FCCD48B11FF3.jpg">
+<meta property="og:updated_time" content="2018-06-04T09:52:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python操作Redis">
+<meta name="twitter:description" content="Redis 简介Redis 特点 Redis 是完全开源免费的，遵守BSD协议，是一个高性能的key-value数据库。  Redis 与其他 key - value 缓存产品有以下三个特点：  Redis支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。 Redis不仅仅支持简单的key-value类型的数据，同时还提供string, list，set，zset，">
+<meta name="twitter:image" content="http://www.runoob.com/wp-content/uploads/2014/11/3B8D633F-14CE-42E3-B174-FCCD48B11FF3.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'X18Q8YOK7R',
+      apiKey: '4cf6f4ea962b4c633859ca376c0d6ae9',
+      indexName: 'chenfanlinux',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfanlinux.org/2018/06/04/Python操作Redis/"/>
+
+
+
+
+
+  <title>Python操作Redis | 陈凡的个人站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?your-analytics-id";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+ 
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">陈凡的个人站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">chenfanlinux.org</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/06/04/Python操作Redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Python操作Redis</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-04T17:36:30+08:00">
+                2018-06-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NoSQL/" itemprop="url" rel="index">
+                    <span itemprop="name">NoSQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/04/Python操作Redis/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/06/04/Python操作Redis/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,089
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Redis-简介"><a href="#Redis-简介" class="headerlink" title="Redis 简介"></a>Redis 简介</h2><h3 id="Redis-特点"><a href="#Redis-特点" class="headerlink" title="Redis 特点"></a>Redis 特点</h3><blockquote>
+<p>Redis 是完全开源免费的，遵守BSD协议，是一个高性能的key-value数据库。</p>
+</blockquote>
+<p>Redis 与其他 key - value 缓存产品有以下三个特点：</p>
+<ul>
+<li>Redis支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。</li>
+<li>Redis不仅仅支持简单的key-value类型的数据，同时还提供string, list，set，zset，hash等数据结构的存储。</li>
+<li>Redis支持数据的备份，即master-slave模式的数据备份。</li>
+</ul>
+<h3 id="Redis-优势"><a href="#Redis-优势" class="headerlink" title="Redis 优势"></a>Redis 优势</h3><ul>
+<li>性能极高 – Redis能读的速度是110000次/s,写的速度是81000次/s 。</li>
+<li>丰富的数据类型 – Redis支持二进制案例的 Strings, Lists, Hashes, Sets 及 Ordered Sets 数据类型操作。</li>
+<li>原子 – Redis的所有操作都是原子性的，意思就是要么成功执行要么失败完全不执行。单个操作是原子性的。多个操作也支持事务，即原子性，通过MULTI和EXEC指令包起来。</li>
+<li>丰富的特性 – Redis还支持 publish/subscribe, 通知, key 过期等等特性。</li>
+</ul>
+<a id="more"></a>
+<h3 id="Redis与其他key-value存储有什么不同？"><a href="#Redis与其他key-value存储有什么不同？" class="headerlink" title="Redis与其他key-value存储有什么不同？"></a>Redis与其他key-value存储有什么不同？</h3><ul>
+<li>Redis有着更为复杂的数据结构并且提供对他们的原子性操作，这是一个不同于其他数据库的进化路径。Redis的数据类型都是基于基本数据结构的同时对程序员透明，无需进行额外的抽象。</li>
+<li>Redis运行在内存中但是可以持久化到磁盘，所以在对不同数据集进行高速读写时需要权衡内存，因为数据量不能大于硬件内存。在内存数据库方面的另一个优点是，相比在磁盘上相同的复杂的数据结构，在内存中操作起来非常简单，这样Redis可以做很多内部复杂性很强的事情。同时，在磁盘格式方面他们是紧凑的以追加的方式产生的，因为他们并不需要进行随机访问。</li>
+</ul>
+<h2 id="安装Redis"><a href="#安装Redis" class="headerlink" title="安装Redis"></a>安装Redis</h2><h3 id="windows下安装Redis"><a href="#windows下安装Redis" class="headerlink" title="windows下安装Redis"></a>windows下安装Redis</h3><p><strong>下载地址：</strong><a href="https://github.com/MSOpenTech/redis/releases" target="_blank" rel="noopener">https://github.com/MSOpenTech/redis/releases</a></p>
+<p>Redis 支持 32 位和 64 位。这个需要根据你系统平台的实际情况选择，这里我们下载 <strong>Redis-x64-xxx.zip</strong>压缩包到 F盘，解压后，将文件夹重新命名为 <strong>redis</strong> 。</p>
+<p><img src="http://www.runoob.com/wp-content/uploads/2014/11/3B8D633F-14CE-42E3-B174-FCCD48B11FF3.jpg" alt="redis"></p>
+<p>写一个启动redis服务的redis.bat文件，双击即可以启动服务，方便服务的管理。</p>
+<p>redis.bat文件内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f:</span><br><span class="line"><span class="built_in">cd</span> redis\</span><br><span class="line">redis-server.exe redis.windows.conf</span><br></pre></td></tr></table></figure>
+<p>切换到redis目录下运行 <code>redis-cli.exe -h 127.0.0.1 -p 6379</code>即可以开启客户端。</p>
+<h3 id="linux下安装Redis"><a href="#linux下安装Redis" class="headerlink" title="linux下安装Redis"></a>linux下安装Redis</h3><p><strong>下载地址：</strong><a href="http://redis.io/download" target="_blank" rel="noopener">http://redis.io/download</a>，下载最新稳定版本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ wget http://download.redis.io/releases/redis-2.8.17.tar.gz</span><br><span class="line">$ tar xzf redis-2.8.17.tar.gz</span><br><span class="line">$ <span class="built_in">cd</span> redis-2.8.17</span><br><span class="line">$ make</span><br></pre></td></tr></table></figure>
+<p>make完后 redis-2.8.17目录下会出现编译后的redis服务程序redis-server,还有用于测试的客户端程序redis-cli,两个程序位于安装目录 src 目录下：</p>
+<p>下面启动redis服务:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> src</span><br><span class="line">$ ./redis-server</span><br></pre></td></tr></table></figure>
+<p>注意这种方式启动redis 使用的是默认配置。也可以通过启动参数告诉redis使用指定配置文件使用下面命令启动。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> src</span><br><span class="line">$ ./redis-server redis.conf</span><br></pre></td></tr></table></figure>
+<p>redis.conf是一个默认的配置文件。我们可以根据需要使用自己的配置文件。启动redis服务进程后，就可以使用测试客户端程序redis-cli和redis服务交互了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> src</span><br><span class="line">$ ./redis-cli</span><br><span class="line">redis&gt; <span class="built_in">set</span> foo bar</span><br><span class="line">OK</span><br><span class="line">redis&gt; get foo</span><br><span class="line"><span class="string">"bar"</span></span><br></pre></td></tr></table></figure>
+<h2 id="Redis数据类型"><a href="#Redis数据类型" class="headerlink" title="Redis数据类型"></a>Redis数据类型</h2><blockquote>
+<p>Redis支持五种数据类型：<code>string</code>（字符串），<code>hash</code>（哈希），<code>list</code>（列表），<code>set</code>（集合）及<code>zset</code>(sorted set：有序集合)。</p>
+</blockquote>
+<h3 id="String（字符串）操作"><a href="#String（字符串）操作" class="headerlink" title="String（字符串）操作"></a><code>String</code>（字符串）操作</h3><p>在Redis中设置值，不存在则创建，存在则修改</p>
+<p><code>set(name, value, ex=None, px=None, nx=False, xx=False)</code> </p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ex</td>
+<td>过期时间（秒）</td>
+</tr>
+<tr>
+<td>px</td>
+<td>过期时间（毫秒）</td>
+</tr>
+<tr>
+<td>nx</td>
+<td>如果设置为True，则只有name不存在时，当前set操作才执行,同setnx(name, value)</td>
+</tr>
+<tr>
+<td>xx</td>
+<td>如果设置为True，则只有name存在时，当前set操作才执行</td>
+</tr>
+</tbody>
+</table>
+<p><code>setex(name, value, time)</code> 设置过期时间（秒）</p>
+<p><code>psetex(name, time_ms, value)</code> 设置过期时间（豪秒）</p>
+<p><code>mset(name1=&#39;***&#39;, name2=&#39;***&#39;,......)</code> 批量设置值</p>
+<p><code>get(name)</code> 获取值</p>
+<p><code>mget(*keys)</code> 批量获取值</p>
+<p><code>getset(name, value)</code> 设置新值，打印原值</p>
+<p><code>getrange(key, start, end)</code> 获取值,并切片，返回切片后的结果</p>
+<p><code>setrange(name, offset, value)</code> 修改字符串内容，从指定字符串索引开始向后替换，如果新值太长时，则向后添加</p>
+<p><code>setbit(name, offset, value)</code> 对二进制表示位进行操作</p>
+<p><code>getbit(name, offset)</code> 获取name对应值的二进制中某位的值(0或1)</p>
+<p><code>bitcount(key, start=None, end=None)</code> 获取对应二进制中1的个数</p>
+<p><code>strlen(name)</code> 返回name对应值的字节长度（一个汉字3个字节）</p>
+<p><code>incr(name, amount=1)</code> 自增name对应的值，当name不存在时，则创建name＝amount，否则，则自增,amount为自增数(整数)</p>
+<p><code>incrbyfloat(name, amount=1.0)</code> 类似<code>incr()</code>自增,amount为自增数(浮点数)</p>
+<p><code>decr(name, amount=1)</code> 自减name对应的值,当name不存在时,则创建name＝amount，否则，则自减，amount为自增数(整数)</p>
+<p><code>append(name, value)</code> 在name对应的值后面追加内容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> redis</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = redis.Redis(host=<span class="string">'127.0.0.1'</span>, port=<span class="number">6379</span>)</span><br><span class="line">r.set(<span class="string">'key1'</span>,<span class="string">'value1'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Hash（哈希）操作"><a href="#Hash（哈希）操作" class="headerlink" title="Hash（哈希）操作"></a><code>Hash</code>（哈希）操作</h3><blockquote>
+<p>redis中的Hash 在内存中类似于一个name对应一个dic来存储</p>
+</blockquote>
+<p><code>hset(name, key, value)</code> name对应的hash中设置一个键值对。不存在，则创建，否则，修改。</p>
+<p><code>hget(name,key)</code> 在name对应的hash中根据key获取value</p>
+<p><code>hgetall(name)</code> 获取name对应hash的所有键值</p>
+<p><code>hmset(name, dict)</code> 在name对应的hash中批量设置键值对</p>
+<p><code>hmget(name, keys)</code> 在name对应的hash中获取多个key的值</p>
+<p><code>hlen(name)</code> 获取hash中键值对的个数</p>
+<p><code>hkeys(name)</code> 获取hash中所有的key的值</p>
+<p><code>hvals(name)</code> 获取hash中所有的value的值</p>
+<p><code>hexists(name, key)</code> 检查name对应的hash是否存在当前传入的key</p>
+<p><code>hdel(name,*keys)</code> 删除指定name对应的key所在的键值对</p>
+<p><code>hincrby(name, key, amount)</code> 自增hash中key对应的值，不存在则创建key=amount(amount为整数)</p>
+<p><code>hincrbyfloat(name, key, amount)</code> 自增hash中key对应的值，不存在则创建key=amount(amount为浮点数)</p>
+<p><code>hscan(name, cursor=0, match=None, count=None)</code></p>
+<p><code>hscan_iter(name, match=None, count=None)</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> redis</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r.hset(<span class="string">'hkey'</span>,<span class="string">'key1'</span>,<span class="string">'value1'</span>)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r.hget(<span class="string">'hkey'</span>,<span class="string">'key1'</span>)</span><br><span class="line"><span class="string">b'value1</span></span><br></pre></td></tr></table></figure>
+<h3 id="List（列表）操作"><a href="#List（列表）操作" class="headerlink" title="List（列表）操作"></a><code>List</code>（列表）操作</h3><blockquote>
+<p>redis中的List在在内存中按照一个name对应一个List来存储</p>
+</blockquote>
+<p><code>lpush(name,*values)</code> 在name对应的list中添加元素，每个新的元素都添加到列表的最左边</p>
+<p><code>rpush(name,*values)</code> 同<code>lpush</code>，但每个新的元素都添加到列表的最右边</p>
+<p><code>lpushx(name,value)</code> 在name对应的list中添加元素，只有name已经存在时，值添加到列表的最左边</p>
+<p><code>rpushx(name,value)</code> 在name对应的list中添加元素，只有name已经存在时，值添加到列表的最右边</p>
+<p><code>llen(name)</code> name对应的list元素的个数</p>
+<p><code>linsert(name, where, refvalue, value))</code> 在name对应的列表的某一个值前或后插入一个新值</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>redis的name</td>
+</tr>
+<tr>
+<td>where</td>
+<td>BEFORE（前）或AFTER（后）</td>
+</tr>
+<tr>
+<td>refvalue</td>
+<td>列表内的值</td>
+</tr>
+<tr>
+<td>value</td>
+<td>要插入的数据</td>
+</tr>
+</tbody>
+</table>
+<p><code>r.lset(name, index, value)</code> 对list中的某一个索引位置重新赋值</p>
+<p><code>lrem(name, value, num)</code> 删除name对应的list中的指定值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">name  ---  redis的name</span><br><span class="line">value ---  要删除的值</span><br><span class="line">num   ---  num为0，表示删除列表中所有的指定值；</span><br><span class="line">           num为n，表示从前到后删除n个；</span><br><span class="line">           num为-n：从后向前删除n个</span><br></pre></td></tr></table></figure>
+<p><code>lpop(name)</code> 移除列表的左侧第一个元素，返回值是移除的元素</p>
+<p><code>lindex(name, index)</code> 根据索引获取列表内元素</p>
+<p><code>lrange(name, start, end)</code> 分片获取元素</p>
+<p><code>ltrim(name, start, end)</code> 移除列表内没有在该索引之内的值</p>
+<p><code>rpoplpush(src, dst)</code> # 从一个列表取出最右边的元素，同时将其添加至另一个列表的最左边，src要取数据的列表，dst要添加数据的列表</p>
+<p><code>brpoplpush(src, dst, timeout=0)</code> 同rpoplpush，多了个timeout, timeout：取数据的列表没元素后的阻塞时间，0为一直阻塞</p>
+<p><code>blpop(keys, timeout)</code> 将多个列表排列,按照从左到右去移除各个列表内的元素；timeout: 超时时间，获取完所有列表的元素之后，阻塞等待列表内有数据的时间（秒）, 0 表示永远阻塞</p>
+<p><code>brpop(keys, timeout)</code> 同blpop，将多个列表排列,按照从右像左去移除各个列表内的元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>r.lpush(<span class="string">'rlist'</span>,(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>))</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h3 id="Set（集合）操作"><a href="#Set（集合）操作" class="headerlink" title="Set（集合）操作"></a><code>Set</code>（集合）操作</h3><blockquote>
+<p>Set集合就是不允许重复的列表</p>
+</blockquote>
+<p><code>sadd(name,*values)</code> 给name对应的集合中添加元素</p>
+<p><code>smembers(name)</code> 获取name对应的集合的所有成员</p>
+<p><code>scard(name)</code> 获取name对应的集合中的元素个数</p>
+<p><code>sdiff(name, *names)</code> 在第一个name对应的集合中且不在其他name对应的集合的元素集合</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> redis,time</span><br><span class="line"></span><br><span class="line">r = redis.Redis(host=<span class="string">'127.0.0.1'</span>, port=<span class="number">6379</span>)</span><br><span class="line">r.sadd(<span class="string">"name"</span>,<span class="string">"a"</span>,<span class="string">"b"</span>)</span><br><span class="line">r.sadd(<span class="string">"name1"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>)</span><br><span class="line">r.sadd(<span class="string">"name2"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>)</span><br><span class="line">print(r.sdiff(<span class="string">"name"</span>,<span class="string">"name1"</span>,<span class="string">"name2"</span>))<span class="comment">#输出:｛a｝</span></span><br></pre></td></tr></table></figure>
+<p><code>sdiffstore(dest, name, *names)</code> 相当于把<code>sdiff</code>获取的值加入到dest对应的集合中</p>
+<p><code>sinter(*names)</code> 获取多个name对应集合的交集</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> redis,time</span><br><span class="line"></span><br><span class="line">r = redis.Redis(host=<span class="string">'127.0.0.1'</span>, port=<span class="number">6379</span>)</span><br><span class="line">r.sadd(<span class="string">"name"</span>,<span class="string">"a"</span>,<span class="string">"b"</span>)</span><br><span class="line">r.sadd(<span class="string">"name1"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>)</span><br><span class="line">r.sadd(<span class="string">"name2"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>)</span><br><span class="line">print(r.sinter(<span class="string">"name"</span>,<span class="string">"name1"</span>,<span class="string">"name2"</span>))<span class="comment">#输出:｛b｝</span></span><br></pre></td></tr></table></figure>
+<p><code>sinterstore(dest, name, *names)</code> 获取多个name对应集合的交集，再讲其加入到dest对应的集合中；相当于把<code>sinter</code>获取的值加入到dest对应的集合中</p>
+<p><code>sismember(name, value)</code> 检查value是否是name对应的集合内的元素</p>
+<p><code>smove(src, dst, value)</code> 将某个元素从一个集合中移动到另外一个集合</p>
+<p><code>spop(name)</code> 从集合的右侧移除一个元素，并将其返回</p>
+<p><code>srandmember(name, numbers)</code> 从name对应的集合中随机获取numbers个元素</p>
+<p><code>srem(name, *values)</code> 删除name对应的集合中的某些值</p>
+<p><code>sunion(*names)</code> 获取多个name对应的集合的并集</p>
+<p><code>sunionstore(dest,*names)</code> 获取多个name对应的集合的并集，并将结果保存到dest对应的集合中</p>
+<h3 id="zset（有序集合）"><a href="#zset（有序集合）" class="headerlink" title="zset（有序集合）"></a><code>zset</code>（有序集合）</h3><blockquote>
+<p>在集合的基础上，为每元素排序，元素的排序需要根据另外一个值来进行比较，所以，对于有序集合，每一个元素有两个值，即：值和分数，分数专门用来做排序 。</p>
+</blockquote>
+<p><code>zadd(name, *args, **kwargs)</code> 在name对应的有序集合中添加元素</p>
+<p><code>zcard(name)</code> 获取有序集合内元素的数量</p>
+<p><code>zcount(name, min, max)</code> 获取有序集合中分数在min~max之间的个数</p>
+<p><code>zincrby(name, value, amount)</code> 自增有序集合内value对应的分数</p>
+<p><code>zrange( name, start, end, desc=False, withscores=False, score_cast_func=float)</code> 按照索引范围获取name对应的有序集合的元素</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>redis的name</td>
+</tr>
+<tr>
+<td>start</td>
+<td>有序集合索引起始位置</td>
+</tr>
+<tr>
+<td>end</td>
+<td>有序集合索引结束位置</td>
+</tr>
+<tr>
+<td>desc</td>
+<td>排序规则，默认按照分数从小到大排序</td>
+</tr>
+<tr>
+<td>withscores</td>
+<td>是否获取元素的分数，默认只获取元素的值</td>
+</tr>
+<tr>
+<td>score_cast_func</td>
+<td>对分数进行数据转换的函数</td>
+</tr>
+</tbody>
+</table>
+<p><code>zrevrange(name, start, end, withscores=False, score_cast_func=float)</code> 同<code>zrange</code>，集合是从大到小排序的</p>
+<p><code>zrank(name, value)</code> 获取value值在name对应的有序集合中的排行位置（从0开始）</p>
+<p><code>zrevrank(name, value)</code> 同<code>zrank</code>，集合是从大到小排序的</p>
+<p><code>zscore(name, value)</code> 获取name对应有序集合中 value 对应的分数</p>
+<p><code>zrem(name, *values)</code> 删除name对应的有序集合中值是values的成员</p>
+<p><code>zremrangebyrank(name, min, max)</code> 根据排行范围删除</p>
+<p><code>zremrangebyscore(name, min, max)</code> 根据分数范围删除</p>
+<p><code>zinterstore(dest, *keys, aggregate=None)</code> 获取两个有序集合的交集并放入dest集合，如果遇到相同值不同分数，则按照aggregate进行操作。aggregate的值为: SUM MIN MAX</p>
+<p><code>zunionstore(dest, keys, aggregate=None)</code> 获取两个有序集合的并集并放入dest集合，其他同<code>zinterstore</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>r.zadd(<span class="string">'zset1'</span>,a=<span class="number">2</span>,b=<span class="number">3</span>,c=<span class="number">4</span>)</span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
+<h2 id="其他常用操作"><a href="#其他常用操作" class="headerlink" title="其他常用操作"></a>其他常用操作</h2><p><code>delete(*names)</code> 根据name删除redis中的任意数据类型</p>
+<p><code>exists(name)</code> 检测redis的name是否存在</p>
+<p><code>keys(pattern=&#39;*&#39;)</code> 根据* ？等通配符匹配获取redis的name</p>
+<p><code>expire(name ,time)</code> 为某个name设置超时时间</p>
+<p><code>rename(src, dst)</code> 重命名</p>
+<p><code>move(name, db))</code> 将redis的某个值移动到指定的db下</p>
+<p><code>randomkey()</code> 随机获取一个redis的name（不删除）</p>
+<p><code>type(name)</code> 获取name对应值的类型</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏2块钱,帮我买杯咖啡,继续创作,谢谢大家！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="陈凡 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliyipay.jpg" alt="陈凡 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+        -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+         
+            <a href="/tags/redis/" rel="tag"><i class="fa fa-tag"></i>redis</a>
+          
+         
+            <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i>python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/03/Python内建函数/" rel="next" title="Python内建函数">
+                <i class="fa fa-chevron-left"></i> Python内建函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/upload/avatar.gif"
+                alt="陈凡" />
+            
+              <p class="site-author-name" itemprop="name">陈凡</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/chenfanlinux" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:chenfan216@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/3942411590" target="_blank" title="微博">
+                    
+                      <i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/love-hero-80" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-简介"><span class="nav-number">1.</span> <span class="nav-text">Redis 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-特点"><span class="nav-number">1.1.</span> <span class="nav-text">Redis 特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-优势"><span class="nav-number">1.2.</span> <span class="nav-text">Redis 优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis与其他key-value存储有什么不同？"><span class="nav-number">1.3.</span> <span class="nav-text">Redis与其他key-value存储有什么不同？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Redis"><span class="nav-number">2.</span> <span class="nav-text">安装Redis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#windows下安装Redis"><span class="nav-number">2.1.</span> <span class="nav-text">windows下安装Redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linux下安装Redis"><span class="nav-number">2.2.</span> <span class="nav-text">linux下安装Redis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis数据类型"><span class="nav-number">3.</span> <span class="nav-text">Redis数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#String（字符串）操作"><span class="nav-number">3.1.</span> <span class="nav-text">String（字符串）操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hash（哈希）操作"><span class="nav-number">3.2.</span> <span class="nav-text">Hash（哈希）操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List（列表）操作"><span class="nav-number">3.3.</span> <span class="nav-text">List（列表）操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set（集合）操作"><span class="nav-number">3.4.</span> <span class="nav-text">Set（集合）操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zset（有序集合）"><span class="nav-number">3.5.</span> <span class="nav-text">zset（有序集合）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他常用操作"><span class="nav-number">4.</span> <span class="nav-text">其他常用操作</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+<script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=ipZXdvME3sKg6viC20OoTCYATcaOJ6SQH2wdaJEUHfc"></script>
+
+<div id="music163player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=525241230&auto=0&height=66"></iframe>
+</div>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈凡</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">106.5k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div> 
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+ <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 98812, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2018/06/04/Python操作Redis/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/98812/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+<!--页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>  
+
+
+
+<!-- 
+<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-1 count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script> -->
+
+
+</body>
+</html>

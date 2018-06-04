@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://www.chenfanlinux.org/2018/06/04/Python%E6%93%8D%E4%BD%9CRedis/</loc>
+    <lastmod>2018-06-04T09:52:21.000Z</lastmod>
+    <data>
+        <display>
+        <title>Python操作Redis</title>
+        <pubTime>2018-06-04T09:36:30.000Z</pubTime>
+        
+        <tag>redis</tag>
+         
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="NoSQL" url="http://www.chenfanlinux.org/categories/NoSQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.chenfanlinux.org/2018/06/03/Python%E5%86%85%E5%BB%BA%E5%87%BD%E6%95%B0/</loc>
     <lastmod>2018-06-03T06:12:36.000Z</lastmod>
     <data>
