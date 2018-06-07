@@ -339,6 +339,229 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/06/07/运维自动化工具Ansible/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/07/运维自动化工具Ansible/" itemprop="url">运维自动化工具Ansible</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-07T16:46:07+08:00">
+                2018-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/运维自动化工具/" itemprop="url" rel="index">
+                    <span itemprop="name">运维自动化工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/07/运维自动化工具Ansible/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/06/07/运维自动化工具Ansible/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4,062
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  18
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Ansible简介"><a href="#Ansible简介" class="headerlink" title="Ansible简介"></a>Ansible简介</h2><h3 id="Ansible-是什么？"><a href="#Ansible-是什么？" class="headerlink" title="Ansible 是什么？"></a>Ansible 是什么？</h3><p><strong>Ansible</strong> 简单的说是一个配置管理系统(configuration management system)。你只需要可以使用 ssh 访问你的服务器或设备就行。它也不同于其他工具，因为它使用推送的方式，而不是像 puppet 等 那样使用拉取安装agent的方式。你可以将代码部署到任意数量的服务器上!</p>
+<h3 id="Ansible能做什么？"><a href="#Ansible能做什么？" class="headerlink" title="Ansible能做什么？"></a>Ansible能做什么？</h3><blockquote>
+<p>ansible可以帮助我们完成一些批量任务，或者完成一些需要经常重复的工作，这些场景中我们都可以使用到ansible。</p>
+</blockquote>
+<ul>
+<li>同时在100台服务器上安装nginx服务，并在安装后启动它们</li>
+<li>将某个文件一次性拷贝到100台服务器上。</li>
+<li>每当有新服务器加入工作环境时，你都要为新服务器部署某个服务，也就是说你需要经常重复的完成相同的工作。</li>
+</ul>
+<h3 id="Ansible特性"><a href="#Ansible特性" class="headerlink" title="Ansible特性"></a>Ansible特性</h3><ul>
+<li>模块化：调用特定的模块，完成特定的任务。</li>
+<li>有Paramiko, PyYAMl, Jinja2(模板语言)  三个关键模块</li>
+<li>支持自定义模块</li>
+<li>基于Python语言实现</li>
+<li>部署简单，基于python和SSH(默认已安装), agentless</li>
+<li>安全，基于OpenSSH</li>
+<li>支持playbook任务编排</li>
+<li>幂等性：一次任务执行一遍和执行n遍效果一样，不会重复执行带来意外情况</li>
+<li>无需代理不依赖PKI(无需ssl)</li>
+<li>可使用任何编程语言写模块</li>
+<li>YAML格式，编排任务，丰富的数据结构</li>
+<li>较强大的多层解决方案</li>
+</ul>
+<h3 id="Ansible架构"><a href="#Ansible架构" class="headerlink" title="Ansible架构"></a>Ansible架构</h3><p><img src="https://s1.ax1x.com/2018/06/07/CHJYMF.png" alt="ansible"></p>
+<h3 id="Ansible主要组成部分功能说明"><a href="#Ansible主要组成部分功能说明" class="headerlink" title="Ansible主要组成部分功能说明"></a>Ansible主要组成部分功能说明</h3><ul>
+<li><strong>PLAYBOOKS</strong>：任务剧本（任务集），编排定义Ansible任务集的配置文件，由Ansible顺序依次执行，通常是JSON格式的YAML文件。</li>
+<li><strong>INVENTORY</strong>： Ansible管理主机的清单/etc/anaible/hosts。</li>
+<li><strong>MODULES</strong>： Ansible执行命令的功能模块，多数为内置的核心模块，也可自定义,ansible-doc –l 可查看模块。</li>
+<li><strong>PLUGINS</strong>： 模块功能的补充，如连接类型插件、循环插件、变量插件、过滤插件等，该功能不常用。</li>
+<li><strong>API</strong>：供第三方程序调用的应用程序编程接口。</li>
+<li><strong>ANSIBLE</strong>：组合INVENTORY、 API、 MODULES、PLUGINS的绿框，可以理解为是ansible命令工具，其为核心执行工具。</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/07/运维自动化工具Ansible/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    
+    <div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/06/06/Python变量进阶/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2184,204 +2407,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/04/18/Python数据分析之开发工具Anaconda-一/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/18/Python数据分析之开发工具Anaconda-一/" itemprop="url">Python数据分析之开发工具Anaconda(一)</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-18T11:05:38+08:00">
-                2018-04-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python数据分析/" itemprop="url" rel="index">
-                    <span itemprop="name">python数据分析</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/18/Python数据分析之开发工具Anaconda-一/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/04/18/Python数据分析之开发工具Anaconda-一/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  344
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Anaconda概述"><a href="#Anaconda概述" class="headerlink" title="Anaconda概述"></a>Anaconda概述</h2><p>Anaconda  是一个用于科学计算的Python发行版，支持 Linux, Mac, Windows系统，提供了包管理与环境管理的功能，可以很方便地解决多版本python并存、切换以及各种第三方包安装问题。Anaconda利用工具/命令conda来进行package和environment的管理，并且已经包含了Python和相关的配套工具。<a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/" target="_blank" rel="noopener">下载Anaconda地址</a></p>
-<h2 id="设置国内镜像"><a href="#设置国内镜像" class="headerlink" title="设置国内镜像"></a>设置国内镜像</h2><p>如果你现在就猴急猴急地去安装很多packages，你会被conda的龟速感动得声泪俱下，因为Anaconda.org的服务器在国外。所幸的是，清华TUNA镜像源有Anaconda仓库的镜像，我们将其加入conda的配置即可。</p>
-<p>请在cmd中运行以下代码：TUNA 还提供了 Anaconda 仓库的镜像，运行以下命令:</p>
-<pre><code>$ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-$ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
-$ conda config --set show_channel_urls yes
-</code></pre>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/18/Python数据分析之开发工具Anaconda-一/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    
-    <div>
-  
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2436,7 +2461,7 @@ $ conda config --set show_channel_urls yes
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2458,7 +2483,7 @@ $ conda config --set show_channel_urls yes
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2546,7 +2571,7 @@ $ conda config --set show_channel_urls yes
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">108.5k</span>
+    <span title="Site words total count">112.6k</span>
   
 </div>
 
