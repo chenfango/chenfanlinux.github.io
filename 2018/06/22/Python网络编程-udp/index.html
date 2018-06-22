@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="upd网络编程," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="陈凡的个人站点" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="网络编程中的重要概念 所谓的网络编程就是，让在不同的电脑上的软件能够进行数据传递，即进程之间的通信。  网络 使用网络能够把多方链接在一起，然后可以进行数据传递 所谓的网络编程就是，让在不同的电脑上的软件能够进行数据传递，即进程之间的通信  ip地址用来在网络中标记一台电脑，比如192.168.1.1；在本地局域网上是">
+<meta name="keywords" content="upd网络编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python网络编程-udp">
+<meta property="og:url" content="http://www.chenfanlinux.org/2018/06/22/Python网络编程-udp/index.html">
+<meta property="og:site_name" content="陈凡的个人站点">
+<meta property="og:description" content="网络编程中的重要概念 所谓的网络编程就是，让在不同的电脑上的软件能够进行数据传递，即进程之间的通信。  网络 使用网络能够把多方链接在一起，然后可以进行数据传递 所谓的网络编程就是，让在不同的电脑上的软件能够进行数据传递，即进程之间的通信  ip地址用来在网络中标记一台电脑，比如192.168.1.1；在本地局域网上是唯一的。每一个IP地址包括两部分：网络地址和主机地址。  一个A类IP地址由1字">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax1x.com/2018/06/22/PSzWFS.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/06/22/PpSNXn.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/06/22/PpSRn1.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/06/22/PpS5tO.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/06/22/Pp99IK.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/06/22/PpCZpF.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/06/22/PpCKmR.png">
+<meta property="og:updated_time" content="2018-06-22T03:47:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python网络编程-udp">
+<meta name="twitter:description" content="网络编程中的重要概念 所谓的网络编程就是，让在不同的电脑上的软件能够进行数据传递，即进程之间的通信。  网络 使用网络能够把多方链接在一起，然后可以进行数据传递 所谓的网络编程就是，让在不同的电脑上的软件能够进行数据传递，即进程之间的通信  ip地址用来在网络中标记一台电脑，比如192.168.1.1；在本地局域网上是唯一的。每一个IP地址包括两部分：网络地址和主机地址。  一个A类IP地址由1字">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/06/22/PSzWFS.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'X18Q8YOK7R',
+      apiKey: '4cf6f4ea962b4c633859ca376c0d6ae9',
+      indexName: 'chenfanlinux',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfanlinux.org/2018/06/22/Python网络编程-udp/"/>
+
+
+
+
+
+  <title>Python网络编程-udp | 陈凡的个人站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?your-analytics-id";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+ 
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">陈凡的个人站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">chenfanlinux.org</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/06/22/Python网络编程-udp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Python网络编程-udp</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-22T11:46:03+08:00">
+                2018-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">Python网络编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/22/Python网络编程-udp/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/06/22/Python网络编程-udp/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,989
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="网络编程中的重要概念"><a href="#网络编程中的重要概念" class="headerlink" title="网络编程中的重要概念"></a>网络编程中的重要概念</h2><blockquote>
+<p>所谓的网络编程就是，让在不同的电脑上的软件能够进行数据传递，即进程之间的通信。</p>
+</blockquote>
+<h3 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h3><ul>
+<li>使用网络能够把多方链接在一起，然后可以进行数据传递</li>
+<li>所谓的网络编程就是，让在不同的电脑上的软件能够进行数据传递，即进程之间的通信</li>
+</ul>
+<h3 id="ip地址"><a href="#ip地址" class="headerlink" title="ip地址"></a>ip地址</h3><p><strong>用来在网络中标记一台电脑，比如192.168.1.1；在本地局域网上是唯一的。每一个IP地址包括两部分：网络地址和主机地址。</strong></p>
+<ul>
+<li><p>一个A类IP地址由1字节的网络地址和3字节主机地址组成，网络地址的最高位必须是“0”，</p>
+<p>地址范围1.0.0.1-126.255.255.254。</p>
+</li>
+<li><p>一个B类IP地址由2个字节的网络地址和2个字节的主机地址组成，网络地址的最高位必须是“10”，</p>
+<p>地址范围128.1.0.1-191.255.255.254。</p>
+</li>
+<li><p>一个C类IP地址由3字节的网络地址和1字节的主机地址组成，网络地址的最高位必须是“110”</p>
+<p>范围192.0.1.1-223.255.255.254。</p>
+</li>
+<li><p>D类IP地址第一个字节以“1110”开始，它是一个专门保留的地址。</p>
+</li>
+<li><p>E类地址保留，仅作实验和开发用 。</p>
+</li>
+<li><p>在这么多网络IP中，国际规定有一部分IP地址是用于我们的局域网使用，也就</p>
+<p>是属于私网IP。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 私网ip的地址</span></span><br><span class="line">10.0.0.0～10.255.255.255</span><br><span class="line">172.16.0.0～172.31.255.255</span><br><span class="line">192.168.0.0～192.168.255.255</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<a id="more"></a>
+<h3 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h3><blockquote>
+<p>如果一个程序需要收发网络数据，那么就需要有这样的端口，在linux系统中，端口可以有65536（2的16次方）个之多！既然有这么多，操作系统为了统一管理，所以进行了编号，这就是<code>端口号</code> 。</p>
+</blockquote>
+<h4 id="端口分类"><a href="#端口分类" class="headerlink" title="端口分类"></a>端口分类</h4><ul>
+<li>知名端口：知名端口是众所周知的端口号，范围从0到1023 。一般情况下，如果一个程序需要使用知名端口的需要有root权限 。</li>
+<li>动态端口：动态端口的范围是从1024到65535 。动态分配是指当一个系统程序或应用程序程序需要网络通信时，它向主机申请一个端口，主机从可用的端口号中分配一个供它使用。当这个程序关闭时，同时也就释放了所占用的端口号。</li>
+</ul>
+<h4 id="怎样查看端口？"><a href="#怎样查看端口？" class="headerlink" title="怎样查看端口？"></a>怎样查看端口？</h4><ul>
+<li>用<code>netstat －tnlp</code>查看端口状态</li>
+<li><code>lsof -i [tcp/udp]:2425</code>  查看端口对应的进程</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>端口有什么用呢？我们知道，一台拥有IP地址的主机可以提供许多服务，比如HTTP（万维网服务）、FTP（文件传输）、SMTP（电子邮件）等，这些服务完全可以通过1个IP地址来实现。那么，主机是怎样区分不同的网络服务呢？显然不能只靠IP地址，因为IP地址与网络服务的关系是一对多的关系。实际上是通过“IP地址+端口号”来区分不同的服务的。</p>
+<h3 id="socket简介"><a href="#socket简介" class="headerlink" title="socket简介"></a>socket简介</h3><h4 id="不同的电脑之间如何通信？"><a href="#不同的电脑之间如何通信？" class="headerlink" title="不同的电脑之间如何通信？"></a>不同的电脑之间如何通信？</h4><p>首要解决的问题是如何唯一标识一个进程，否则通信无从谈起！ 在1台电脑上可以通过进程号（PID）来唯一标识一个进程，但是在网络中这是行不通的。 其实TCP/IP协议族已经帮我们解决了这个问题，网络层的“ip地址”可以唯一标识网络中的主机，而传输层的“协议+端口”可以唯一标识主机中的应用进程（进程）。</p>
+<p>这样利用    <strong><em>ip地址, 协议,端口</em></strong>   就可以标识网络的进程 。</p>
+<p><strong>注意知识点：</strong></p>
+<ul>
+<li>所谓<code>进程</code>指的是：运行的程序以及运行时用到的资源这个整体称之为进程。</li>
+<li>所谓<code>进程间通信</code>指的是：运行的程序之间的数据共享。</li>
+</ul>
+<h4 id="什么是socket？"><a href="#什么是socket？" class="headerlink" title="什么是socket？"></a>什么是socket？</h4><p>socket(简称<code>套接字</code>)是进程间通信的一种方式，它与其他进程间通信的一个主要不同是：它能实现不同主机间的进程间通信，我们网络上各种各样的服务大多都是基于Socket 来完成通信的，例如我们每天浏览网页、QQ 聊天、收发email 等等。为了区别不同的应用程序进程和连接，许多计算机操作系统为应用程序与TCP／IP协议交互提供了称为套接字 (Socket)的接口，区分不同应用程序进程间的网络通信和连接。</p>
+<h4 id="创建socket"><a href="#创建socket" class="headerlink" title="创建socket"></a>创建socket</h4><p>在Python 中使用socket 模块的函数socket 就可以完成：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line">socket.socket(AddressFamily, Type)</span><br></pre></td></tr></table></figure>
+<p><strong>说明：</strong></p>
+<p>通过类socket.socket 创建一个socket对象，该对象带有两个参数：</p>
+<ul>
+<li>Address Family：可以选择AF_INET（用于Internet 进程间通信） 或者AF_UNIX（用于同一台机器进程间通信）,实际工作中常用AF_INET。</li>
+<li>Type：套接字类型，可以是SOCK_STREAM（流式套接字，主要用于TCP 协议）或者SOCK_DGRAM（数据报套接字，主要用于UDP 协议 。</li>
+</ul>
+<p>使用方式：</p>
+<ol>
+<li>创建套接字</li>
+<li>使用套接字收/发数据</li>
+<li>关闭套接字</li>
+</ol>
+<p>创建一个tcp socket（tcp套接字)：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建tcp的套接字</span></span><br><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ...这里是使用套接字的功能（省略）...</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 不用的时候，关闭套接字</span></span><br><span class="line">s.close()</span><br></pre></td></tr></table></figure>
+<p>创建一个udp socket（udp套接字） :</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建udp的套接字</span></span><br><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ...这里是使用套接字的功能（省略）...</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 不用的时候，关闭套接字</span></span><br><span class="line">s.close()</span><br></pre></td></tr></table></figure>
+<h2 id="udp网络程序-发送、接收数据"><a href="#udp网络程序-发送、接收数据" class="headerlink" title="udp网络程序-发送、接收数据"></a>udp网络程序-发送、接收数据</h2><h3 id="发送数据"><a href="#发送数据" class="headerlink" title="发送数据"></a>发送数据</h3><p>创建一个基于udp的网络程序流程很简单，具体步骤如下：</p>
+<ol>
+<li>创建客户端套接字</li>
+<li>发送/接收数据</li>
+<li>关闭套接字</li>
+</ol>
+<p><img src="https://s1.ax1x.com/2018/06/22/PSzWFS.png" alt=""></p>
+<p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># _*_ coding=utf-8 _*_</span></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 创建udp套接字</span></span><br><span class="line">udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 准备接收方的地址</span></span><br><span class="line"><span class="comment"># '192.168.30.71'表示目的ip地址</span></span><br><span class="line"><span class="comment"># 8080表示目的端口</span></span><br><span class="line">dest_addr = (<span class="string">'192.168.30.71'</span>, <span class="number">8080</span>)  <span class="comment"># 注意是元组，ip是字符串，端口是数字</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 从键盘获取数据</span></span><br><span class="line">send_data = input(<span class="string">"请输入要发送的数据:"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 发送数据到指定的电脑上的指定程序中</span></span><br><span class="line">udp_socket.sendto(send_data.encode(<span class="string">'utf-8'</span>), dest_addr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 关闭套接字</span></span><br><span class="line">udp_socket.close()</span><br></pre></td></tr></table></figure>
+<p>运行的脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python 01_udp.py</span></span><br><span class="line">请输入要发送的数据: welcome to chenfanlinux.org!</span><br></pre></td></tr></table></figure>
+<p>windows网络调试助手：</p>
+<p><img src="https://s1.ax1x.com/2018/06/22/PpSNXn.png" alt=""></p>
+<h3 id="发送、接收数据"><a href="#发送、接收数据" class="headerlink" title="发送、接收数据"></a>发送、接收数据</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># _*_ coding=utf-8 _*_</span></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 创建udp套接字</span></span><br><span class="line">udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 准备接收方的地址</span></span><br><span class="line">dest_addr = (<span class="string">'192.168.30.71'</span>, <span class="number">8080</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 从键盘获取数据</span></span><br><span class="line">send_data = input(<span class="string">"请输入要发送的数据:"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 发送数据到指定的电脑上</span></span><br><span class="line">udp_socket.sendto(send_data.encode(<span class="string">'utf-8'</span>), dest_addr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 等待接收对方发送的数据</span></span><br><span class="line">recv_data = udp_socket.recvfrom(<span class="number">1024</span>)  <span class="comment"># 1024表示本次接收的最大字节数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 6. 显示对方发送的数据</span></span><br><span class="line"><span class="comment"># 接收到的数据recv_data是一个元组</span></span><br><span class="line"><span class="comment"># 第1个元素是对方发送的数据</span></span><br><span class="line"><span class="comment"># 第2个元素是对方的ip和端口</span></span><br><span class="line">print(recv_data[<span class="number">0</span>].decode(<span class="string">'gbk'</span>))  <span class="comment"># windows上用'gbk'编码,此处接收数据同样的方式解码。</span></span><br><span class="line">print(recv_data[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 7. 关闭套接字</span></span><br><span class="line">udp_socket.close()</span><br></pre></td></tr></table></figure>
+<p>运行脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python 01_udp.py</span></span><br><span class="line">请输入要发送的数据: 你好啊,非常高兴看来我的博客!</span><br><span class="line">你的博客内容非常好啊，以后会经常来！</span><br><span class="line">(<span class="string">'127.0.0.1'</span>, 8080)</span><br></pre></td></tr></table></figure>
+<p>windows网络调试助手：</p>
+<p><img src="https://s1.ax1x.com/2018/06/22/PpSRn1.png" alt=""></p>
+<h2 id="udp端口绑定"><a href="#udp端口绑定" class="headerlink" title="udp端口绑定"></a>udp端口绑定</h2><h3 id="会变的端口号"><a href="#会变的端口号" class="headerlink" title="会变的端口号"></a>会变的端口号</h3><p>重新运行多次脚本，然后在“网络调试助手”中，看到的现象如下：</p>
+<p><img src="https://s1.ax1x.com/2018/06/22/PpS5tO.png" alt=""></p>
+<p>说明：</p>
+<ul>
+<li>每重新运行一次网络程序，上图中红圈中的数字，不一样的原因在于，这个数字标识这个网络程序，当重新运行时，如果没有确定到底用哪个，系统默认会随机分配。</li>
+<li>记住一点：这个网络程序在运行的过程中，这个就唯一标识这个程序，所以如果其他电脑上的网络程序如果想要向此程序发送数据，那么就需要向这个数字（即端口）标识的程序发送即可。</li>
+</ul>
+<h3 id="udp绑定信息"><a href="#udp绑定信息" class="headerlink" title="udp绑定信息"></a>udp绑定信息</h3><p>一般情况下，在一台电脑上运行的网络程序有很多，为了不与其他的网络程序占用同一个端口号，往往在编程中，udp的端口号一般不绑定 。但是如果需要做成一个服务器端的程序的话，是需要绑定的 。</p>
+<p>代码实例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># _*_ coding=utf-8 _*_</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 创建套接字</span></span><br><span class="line">udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 绑定本地的相关信息，如果一个网络程序不绑定，则系统会随机分配</span></span><br><span class="line">local_addr = (<span class="string">''</span>, <span class="number">7788</span>) <span class="comment">#  ip地址和端口号，ip一般不用写，表示本机的任何一个ip</span></span><br><span class="line">udp_socket.bind(local_addr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 等待接收对方发送的数据</span></span><br><span class="line">recv_data = udp_socket.recvfrom(<span class="number">1024</span>) <span class="comment">#  1024表示本次接收的最大字节数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 显示接收到的数据</span></span><br><span class="line">print(recv_data[<span class="number">0</span>].decode(<span class="string">'gbk'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 关闭套接字</span></span><br><span class="line">udp_socket.close()</span><br></pre></td></tr></table></figure>
+<p>windows网络调试助手：</p>
+<p><img src="https://s1.ax1x.com/2018/06/22/Pp99IK.png" alt=""></p>
+<p>代码接收到的结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">λ python 01_udp.py</span><br><span class="line">你好，我知道你绑定了端口7788，以后通过这个端口和你通信。</span><br></pre></td></tr></table></figure>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>一个udp网络程序，可以不绑定，此时操作系统会随机进行分配一个端口，如果重新运行此程序端口可能会发生变化。</li>
+<li>一个udp网络程序，也可以绑定信息（ip地址，端口号），如果绑定成功，那么操作系统用这个端口号来进行区别收到的网络数据是否是此进程的。</li>
+</ul>
+<h2 id="应用：udp聊天器"><a href="#应用：udp聊天器" class="headerlink" title="应用：udp聊天器"></a>应用：udp聊天器</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>在一个电脑中编写1个程序，有2个功能。</p>
+<ul>
+<li>1.获取键盘数据，并将其发送给对方</li>
+<li>2.接收数据并显示</li>
+<li>3.并且功能数据进行选择以上的2个功能调用</li>
+</ul>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># _*_ coding:utf8 _*_</span></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">在一个电脑中编写1个程序，有2个功能</span></span><br><span class="line"><span class="string">1.获取键盘数据，并将其发送给对方</span></span><br><span class="line"><span class="string">2.接收数据并显示</span></span><br><span class="line"><span class="string">并且功能数据进行选择以上的2个功能调用</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_data</span><span class="params">(udp_socket)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取对方的ip/port</span></span><br><span class="line">    dest_ip = input(<span class="string">"请输入对方的ip: "</span>)</span><br><span class="line">    dest_port = int(input(<span class="string">"请输入对方的port: "</span>))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 从键盘获取数据</span></span><br><span class="line">    send_data = input(<span class="string">"请输入要发送的数据: "</span>)</span><br><span class="line">    <span class="comment"># 可以使用套接字收发数据,发送任意数据,这里编码为bytes</span></span><br><span class="line">    udp_socket.sendto(send_data.encode(<span class="string">"utf-8"</span>), (dest_ip, dest_port))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">recv_data</span><span class="params">(udp_socket)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 接收回送过来的数据</span></span><br><span class="line">    recv_data = udp_socket.recvfrom(<span class="number">1024</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 解码</span></span><br><span class="line">    recv_ip = str(recv_data[<span class="number">1</span>])</span><br><span class="line">    recv_msg = recv_data[<span class="number">0</span>].decode(<span class="string">'gbk'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 打印收到的数据</span></span><br><span class="line">    recv_msg = <span class="string">"%s: %s"</span> % (recv_ip, recv_msg)</span><br><span class="line">    print(recv_msg)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 创建套接字</span></span><br><span class="line">    udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</span><br><span class="line">    <span class="comment"># 绑定本地信息</span></span><br><span class="line">    udp_socket.bind((<span class="string">""</span>, <span class="number">7890</span>))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        <span class="comment"># 选择功能</span></span><br><span class="line">        print(<span class="string">"="</span> * <span class="number">30</span>)</span><br><span class="line">        print(<span class="string">"1:发送消息"</span>)</span><br><span class="line">        print(<span class="string">"2:接收消息"</span>)</span><br><span class="line">        print(<span class="string">"="</span> * <span class="number">30</span>)</span><br><span class="line">        op = input(<span class="string">"请选择您要选择的功能: "</span>)</span><br><span class="line">        <span class="keyword">if</span> op == <span class="string">"1"</span>:</span><br><span class="line">            <span class="comment"># 发送数据</span></span><br><span class="line">            send_data(udp_socket)</span><br><span class="line">        <span class="keyword">elif</span> op == <span class="string">"2"</span>:</span><br><span class="line">            <span class="comment"># 接收数据</span></span><br><span class="line">            recv_data(udp_socket)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">"输入有误，请重新输入..."</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 关闭套接字</span></span><br><span class="line">    udp_socket.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<h3 id="功能演练"><a href="#功能演练" class="headerlink" title="功能演练"></a>功能演练</h3><p>脚本运行：</p>
+<p><img src="https://s1.ax1x.com/2018/06/22/PpCZpF.png" alt=""></p>
+<p>windows调试工具：</p>
+<p><img src="https://s1.ax1x.com/2018/06/22/PpCKmR.png" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏2块钱,帮我买杯咖啡,继续创作,谢谢大家！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="陈凡 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliyipay.jpg" alt="陈凡 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+        -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+         
+            <a href="/tags/upd网络编程/" rel="tag"><i class="fa fa-tag"></i>upd网络编程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/07/运维自动化工具Ansible/" rel="next" title="运维自动化工具Ansible">
+                <i class="fa fa-chevron-left"></i> 运维自动化工具Ansible
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/upload/avatar.gif"
+                alt="陈凡" />
+            
+              <p class="site-author-name" itemprop="name">陈凡</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/chenfanlinux" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:chenfan216@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/3942411590" target="_blank" title="微博">
+                    
+                      <i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/love-hero-80" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络编程中的重要概念"><span class="nav-number">1.</span> <span class="nav-text">网络编程中的重要概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络"><span class="nav-number">1.1.</span> <span class="nav-text">网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ip地址"><span class="nav-number">1.2.</span> <span class="nav-text">ip地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#端口"><span class="nav-number">1.3.</span> <span class="nav-text">端口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#端口分类"><span class="nav-number">1.3.1.</span> <span class="nav-text">端口分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#怎样查看端口？"><span class="nav-number">1.3.2.</span> <span class="nav-text">怎样查看端口？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.3.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#socket简介"><span class="nav-number">1.4.</span> <span class="nav-text">socket简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#不同的电脑之间如何通信？"><span class="nav-number">1.4.1.</span> <span class="nav-text">不同的电脑之间如何通信？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是socket？"><span class="nav-number">1.4.2.</span> <span class="nav-text">什么是socket？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建socket"><span class="nav-number">1.4.3.</span> <span class="nav-text">创建socket</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#udp网络程序-发送、接收数据"><span class="nav-number">2.</span> <span class="nav-text">udp网络程序-发送、接收数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#发送数据"><span class="nav-number">2.1.</span> <span class="nav-text">发送数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发送、接收数据"><span class="nav-number">2.2.</span> <span class="nav-text">发送、接收数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#udp端口绑定"><span class="nav-number">3.</span> <span class="nav-text">udp端口绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#会变的端口号"><span class="nav-number">3.1.</span> <span class="nav-text">会变的端口号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#udp绑定信息"><span class="nav-number">3.2.</span> <span class="nav-text">udp绑定信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-1"><span class="nav-number">3.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用：udp聊天器"><span class="nav-number">4.</span> <span class="nav-text">应用：udp聊天器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求"><span class="nav-number">4.1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">4.2.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#功能演练"><span class="nav-number">4.3.</span> <span class="nav-text">功能演练</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+<script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=ipZXdvME3sKg6viC20OoTCYATcaOJ6SQH2wdaJEUHfc"></script>
+
+<div id="music163player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=525241230&auto=0&height=66"></iframe>
+</div>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈凡</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">115.5k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div> 
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+ <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 98812, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2018/06/22/Python网络编程-udp/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/98812/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+<!--页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>  
+
+
+
+<!-- 
+<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-1 count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script> -->
+
+
+</body>
+</html>
