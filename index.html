@@ -339,6 +339,218 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/08/10/Django基础入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/10/Django基础入门/" itemprop="url">Django基础入门</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-10T10:47:14+08:00">
+                2018-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django入门/" itemprop="url" rel="index">
+                    <span itemprop="name">Django入门</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/10/Django基础入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/08/10/Django基础入门/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  5,848
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  23
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="认识Django"><a href="#认识Django" class="headerlink" title="认识Django"></a>认识Django</h2><h3 id="Django简介"><a href="#Django简介" class="headerlink" title="Django简介"></a>Django简介</h3><p>Django，发音为[`dʒæŋɡəʊ]，是用python语言写的开源web开发框架，并遵循MVC设计。劳伦斯出版集团为了开发以新闻内容为主的网站，而开发出来了这个框架，于2005年7月在BSD许可证下发布。这个名称来源于比利时的爵士音乐家DjangoReinhardt，他是一个吉普赛人，主要以演奏吉它为主，还演奏过小提琴等。由于Django在近年来的迅速发展，应用越来越广泛，被著名IT开发杂志SDTimes评选为2013SDTimes100，位列”API、库和框架”分类第6位，被认为是该领域的佼佼者。Django的主要目的是简便、快速的开发数据库驱动的网站。它强调代码复用，多个组件可以很方便的以”插件”形式服务于整个框架，Django有许多功能强大的第三方插件，你甚至可以很方便的开发出自己的工具包。这使得Django具有很强的可扩展性。它还强调快速开发和DRY(DoNotRepeatYourself)原则。</p>
+<blockquote>
+<p>点击查看<a href="https://www.djangoproject.com/" target="_blank" rel="noopener">django官方网站</a></p>
+<p>点击查看<a href="https://github.com/django/django" target="_blank" rel="noopener">django源码</a></p>
+<p>点击查看<a href="https://yiyibooks.cn/xx/django_182/index.html" target="_blank" rel="noopener">1.8.2官方中文文档</a></p>
+</blockquote>
+<h3 id="MVC简介"><a href="#MVC简介" class="headerlink" title="MVC简介"></a>MVC简介</h3><p>MVC的全拼为Model-View-Controller，最早由TrygveReenskaug在1978年提出，是施乐帕罗奥多研究中心(Xerox PARC)在20世纪80年代为程序语言Smalltalk发明的一种软件设计模式，是为了将传统的输入（input）、处理（processing）、输出（output）任务运用到图形化用户交互模型中而设计的。随着标准输入输出设备的出现，开发人员只需要将精力集中在业务逻辑的分析与实现上。后来被推荐为Oracle旗下Sun公司Java EE平台的设计模式，并且受到越来越多的使用ColdFusion和PHP的开发者的欢迎。现在虽然不再使用原来的分工方式，但是这种<strong>分工的思想</strong>被沿用下来，广泛应用于软件工程中，是一种典型并且应用广泛的软件架构模式。后来，MVC的思想被应用在了Ｗeb开发方面，被称为Ｗeb MVC框架。</p>
+<p>MVC框架的核心思想是：<strong>解耦</strong>，让不同的代码块之间降低耦合，增强代码的可扩展性和可移植性，实现向后兼容。当前主流的开发语言如Java、PHP、Python中都有MVC框架。</p>
+<h3 id="Web-MVC各部分的功能"><a href="#Web-MVC各部分的功能" class="headerlink" title="Ｗeb MVC各部分的功能"></a>Ｗeb MVC各部分的功能</h3><ul>
+<li>M全拼为Model，主要封装对数据库层的访问，对数据库中的数据进行增、删、改、查操作。</li>
+<li>V全拼为View，用于封装结果，生成页面展示的html内容。</li>
+<li>C全拼为Controller，用于接收请求，处理业务逻辑，与Model和View交互，返回结果。</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2018/08/09/PyriXF.png" alt="mvc"></p>
+<h3 id="MVT各部分的功能"><a href="#MVT各部分的功能" class="headerlink" title="MVT各部分的功能"></a>MVT各部分的功能</h3><p>Django框架遵循MVC设计，并且有一个专有名词：MVT</p>
+<ul>
+<li>M全拼为Model，与MVC中的M功能相同，负责和数据库交互，进行数据处理。</li>
+<li>V全拼为View，与MVC中的C功能相同，接收请求，进行业务处理，返回应答。</li>
+<li>T全拼为Template，与MVC中的V功能相同，负责封装构造要返回的html。</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2018/08/09/PyrA0J.png" alt="mvt"></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/10/Django基础入门/#meer" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    
+    <div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/06/22/Python网络编程-tcp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -487,7 +699,7 @@
 <p>流量控制用来避免主机发送得过快而使接收方来不及完全收下。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/06/22/Python网络编程-tcp/#espandi" rel="contents">
+            <a class="btn" href="/2018/06/22/Python网络编程-tcp/#meer" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -705,7 +917,7 @@
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/06/22/Python网络编程-udp/#espandi" rel="contents">
+            <a class="btn" href="/2018/06/22/Python网络编程-udp/#meer" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -928,7 +1140,7 @@
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/06/07/运维自动化工具Ansible/#espandi" rel="contents">
+            <a class="btn" href="/2018/06/07/运维自动化工具Ansible/#meer" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1145,7 +1357,7 @@
 </blockquote>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/06/06/Python变量进阶/#espandi" rel="contents">
+            <a class="btn" href="/2018/06/06/Python变量进阶/#meer" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1351,7 +1563,7 @@
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/06/04/Python操作Redis/#espandi" rel="contents">
+            <a class="btn" href="/2018/06/04/Python操作Redis/#meer" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1570,7 +1782,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dir(str) <span class="comment"># 查找str类型对象所对应的方法</span></span><br><span class="line">[<span class="string">'__add__'</span>, <span class="string">'__class__'</span>, <span class="string">'__contains__'</span>, <span class="string">'__delattr__'</span>, <span class="string">'__dir__'</span>, <span class="string">'__doc__'</span>, <span class="string">'__eq__'</span>, <span class="string">'__format__'</span>, <span class="string">'__ge__'</span>, <span class="string">'__getattribute__'</span>, <span class="string">'__getitem__'</span>, <span class="string">'__getnewargs__'</span>, <span class="string">'__gt__'</span>, <span class="string">'__hash__'</span>, <span class="string">'__init__'</span>, <span class="string">'__iter__'</span>, <span class="string">'__le__'</span>, <span class="string">'__len__'</span>, <span class="string">'__lt__'</span>, <span class="string">'__mod__'</span>, <span class="string">'__mul__'</span>, <span class="string">'__ne__'</span>, <span class="string">'__new__'</span>, <span class="string">'__reduce__'</span>, <span class="string">'__reduce_ex__'</span>, <span class="string">'__repr__'</span>, <span class="string">'__rmod__'</span>, <span class="string">'__rmul__'</span>, <span class="string">'__setattr__'</span>, <span class="string">'__sizeof__'</span>, <span class="string">'__str__'</span>, <span class="string">'__subclasshook__'</span>, <span class="string">'capitalize'</span>, <span class="string">'casefold'</span>, <span class="string">'center'</span>, <span class="string">'count'</span>, <span class="string">'encode'</span>, <span class="string">'endswith'</span>, <span class="string">'expandtabs'</span>, <span class="string">'find'</span>, <span class="string">'format'</span>, <span class="string">'format_map'</span>, <span class="string">'index'</span>, <span class="string">'isalnum'</span>, <span class="string">'isalpha'</span>, <span class="string">'isdecimal'</span>, <span class="string">'isdigit'</span>, <span class="string">'isidentifier'</span>, <span class="string">'islower'</span>, <span class="string">'isnumeric'</span>, <span class="string">'isprintable'</span>, <span class="string">'isspace'</span>, <span class="string">'istitle'</span>, <span class="string">'isupper'</span>, <span class="string">'join'</span>, <span class="string">'ljust'</span>, <span class="string">'lower'</span>, <span class="string">'lstrip'</span>, <span class="string">'maketrans'</span>, <span class="string">'partition'</span>, <span class="string">'replace'</span>, <span class="string">'rfind'</span>, <span class="string">'rindex'</span>, <span class="string">'rjust'</span>, <span class="string">'rpartition'</span>, <span class="string">'rsplit'</span>, <span class="string">'rstrip'</span>, <span class="string">'split'</span>, <span class="string">'splitlines'</span>, <span class="string">'startswith'</span>, <span class="string">'strip'</span>, <span class="string">'swapcase'</span>, <span class="string">'title'</span>, <span class="string">'translate'</span>, <span class="string">'upper'</span>, <span class="string">'zfill'</span>]</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/06/03/Python内建函数/#espandi" rel="contents">
+            <a class="btn" href="/2018/06/03/Python内建函数/#meer" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1767,7 +1979,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ yum install python-pip</span><br><span class="line">$ pip install --upgrade pip</span><br><span class="line">$ pip install fabric==<span class="number">1.14</span><span class="number">.0</span>   <span class="comment"># 指定版本安装，这里如果不指定的话，安装最新版本</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/31/自动化运维工具Fabric/#espandi" rel="contents">
+            <a class="btn" href="/2018/05/31/自动化运维工具Fabric/#meer" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1974,7 +2186,7 @@
 <p>实际上，在PyMongo 3.x版本中，官方已经不推荐使用<code>insert()</code>方法了。当然，继续使用也没有什么问题。官方推荐使用<code>insert_one()</code>和<code>insert_many()</code>方法来分别插入单条记录和多条记录 。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/28/Python操作MongoDB/#espandi" rel="contents">
+            <a class="btn" href="/2018/05/28/Python操作MongoDB/#meer" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2173,210 +2385,7 @@
 <h3 id="5-保证充足的睡眠"><a href="#5-保证充足的睡眠" class="headerlink" title="5.保证充足的睡眠"></a>5.保证充足的睡眠</h3><p>睡觉时，脑脊液在脑细胞间的循环比清醒时快很多，帮助大脑排出 “垃圾”,因为尽量避免熬夜，让大脑充分休息。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/27/如何提升你的记忆力/#espandi" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    
-    <div>
-  
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/05/01/Python数据分析之Pandas入门修订版-四/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/01/Python数据分析之Pandas入门修订版-四/" itemprop="url">Python数据分析之Pandas入门修订版(四)</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-01T20:32:42+08:00">
-                2018-05-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python数据分析/" itemprop="url" rel="index">
-                    <span itemprop="name">python数据分析</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/05/01/Python数据分析之Pandas入门修订版-四/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/05/01/Python数据分析之Pandas入门修订版-四/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3,850
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  19
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Pandas的数据结构"><a href="#Pandas的数据结构" class="headerlink" title="Pandas的数据结构"></a>Pandas的数据结构</h2><blockquote>
-<p>Pandas 的数据结构：Pandas 主要有 Series（一维数组），DataFrame（二维数组），Panel（三维数组），Panel4D（四维数组），PanelND（更多维数组）等数据结构。其中 Series 和 DataFrame 应用的最为广泛。</p>
-</blockquote>
-<h3 id="Series"><a href="#Series" class="headerlink" title="Series"></a>Series</h3><p>Series是一种类似于一维数组的对象，它由一组数据（各种NumPy数据类型）以及一组与之相关的数据索引组成。仅由一组数据即可产生最简单的Series。 Series看成是一个定长的有序字典，因为它是索引值到数据值的一个映射，这种数据结构相对于数组来说，使用起来更加的灵活。</p>
-<p><img src="https://s1.ax1x.com/2018/04/28/C8mNSx.png" alt="Series"></p>
-<h4 id="通过list构建Series"><a href="#通过list构建Series" class="headerlink" title="通过list构建Series"></a>通过list构建Series</h4><pre><code>&gt;&gt;&gt; import numpy as np
-&gt;&gt;&gt; import pandas as pd
-&gt;&gt;&gt; from pandas import Series,DataFrame
-&gt;&gt;&gt; s1= Series(range(10, 20))
-&gt;&gt;&gt; print(type(s1)) 
-&lt;class &apos;pandas.core.series.Series&apos;&gt;
-</code></pre><p>由于我们没有为数据指定索引，于是会自动创建一个0到N-1（N为数据的长度）的整数型索引。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/01/Python数据分析之Pandas入门修订版-四/#espandi" rel="contents">
+            <a class="btn" href="/2018/05/27/如何提升你的记忆力/#meer" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2471,7 +2480,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2482,7 +2491,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2493,7 +2502,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2581,7 +2590,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">118.0k</span>
+    <span title="Site words total count">123.9k</span>
   
 </div>
 

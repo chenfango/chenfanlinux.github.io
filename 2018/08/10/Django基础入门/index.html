@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Django," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="陈凡的个人站点" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="认识DjangoDjango简介Django，发音为[`dʒæŋɡəʊ]，是用python语言写的开源web开发框架，并遵循MVC设计。劳伦斯出版集团为了开发以新闻内容为主的网站，而开发出来了这个框架，于2005年7月在BSD许可证下发布。这个名称来源于比利时的爵士音乐家DjangoReinhardt，他是一个吉普赛人">
+<meta name="keywords" content="Django">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django基础入门">
+<meta property="og:url" content="http://www.chenfanlinux.org/2018/08/10/Django基础入门/index.html">
+<meta property="og:site_name" content="陈凡的个人站点">
+<meta property="og:description" content="认识DjangoDjango简介Django，发音为[`dʒæŋɡəʊ]，是用python语言写的开源web开发框架，并遵循MVC设计。劳伦斯出版集团为了开发以新闻内容为主的网站，而开发出来了这个框架，于2005年7月在BSD许可证下发布。这个名称来源于比利时的爵士音乐家DjangoReinhardt，他是一个吉普赛人，主要以演奏吉它为主，还演奏过小提琴等。由于Django在近年来的迅速发展，应用">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/09/PyriXF.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/09/PyrA0J.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/09/PysQCq.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/09/PysNVJ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/09/Pys08x.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/09/PysDxK.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/09/PyshGt.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/09/PysbZQ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/09/PyyPZ4.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/09/PyyAiR.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/09/PyymQK.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/09/PyyuLD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/09/Pyylod.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/09/PyyGWt.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/09/PyyDFs.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/09/PyyX0e.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/09/Pyyxkd.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/09/Py6P6f.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/09/Py6knS.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/09/Py6DBD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/10/P69o4g.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/10/P69bgs.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/10/P69qvn.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/10/P69jbV.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/10/P6Cd2j.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/10/P6CeUO.png">
+<meta property="og:updated_time" content="2018-08-10T02:55:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django基础入门">
+<meta name="twitter:description" content="认识DjangoDjango简介Django，发音为[`dʒæŋɡəʊ]，是用python语言写的开源web开发框架，并遵循MVC设计。劳伦斯出版集团为了开发以新闻内容为主的网站，而开发出来了这个框架，于2005年7月在BSD许可证下发布。这个名称来源于比利时的爵士音乐家DjangoReinhardt，他是一个吉普赛人，主要以演奏吉它为主，还演奏过小提琴等。由于Django在近年来的迅速发展，应用">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/08/09/PyriXF.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'X18Q8YOK7R',
+      apiKey: '4cf6f4ea962b4c633859ca376c0d6ae9',
+      indexName: 'chenfanlinux',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfanlinux.org/2018/08/10/Django基础入门/"/>
+
+
+
+
+
+  <title>Django基础入门 | 陈凡的个人站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?your-analytics-id";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+ 
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">陈凡的个人站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">chenfanlinux.org</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/08/10/Django基础入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Django基础入门</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-10T10:47:14+08:00">
+                2018-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django入门/" itemprop="url" rel="index">
+                    <span itemprop="name">Django入门</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/10/Django基础入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/08/10/Django基础入门/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  5,848
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  23
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="认识Django"><a href="#认识Django" class="headerlink" title="认识Django"></a>认识Django</h2><h3 id="Django简介"><a href="#Django简介" class="headerlink" title="Django简介"></a>Django简介</h3><p>Django，发音为[`dʒæŋɡəʊ]，是用python语言写的开源web开发框架，并遵循MVC设计。劳伦斯出版集团为了开发以新闻内容为主的网站，而开发出来了这个框架，于2005年7月在BSD许可证下发布。这个名称来源于比利时的爵士音乐家DjangoReinhardt，他是一个吉普赛人，主要以演奏吉它为主，还演奏过小提琴等。由于Django在近年来的迅速发展，应用越来越广泛，被著名IT开发杂志SDTimes评选为2013SDTimes100，位列”API、库和框架”分类第6位，被认为是该领域的佼佼者。Django的主要目的是简便、快速的开发数据库驱动的网站。它强调代码复用，多个组件可以很方便的以”插件”形式服务于整个框架，Django有许多功能强大的第三方插件，你甚至可以很方便的开发出自己的工具包。这使得Django具有很强的可扩展性。它还强调快速开发和DRY(DoNotRepeatYourself)原则。</p>
+<blockquote>
+<p>点击查看<a href="https://www.djangoproject.com/" target="_blank" rel="noopener">django官方网站</a></p>
+<p>点击查看<a href="https://github.com/django/django" target="_blank" rel="noopener">django源码</a></p>
+<p>点击查看<a href="https://yiyibooks.cn/xx/django_182/index.html" target="_blank" rel="noopener">1.8.2官方中文文档</a></p>
+</blockquote>
+<h3 id="MVC简介"><a href="#MVC简介" class="headerlink" title="MVC简介"></a>MVC简介</h3><p>MVC的全拼为Model-View-Controller，最早由TrygveReenskaug在1978年提出，是施乐帕罗奥多研究中心(Xerox PARC)在20世纪80年代为程序语言Smalltalk发明的一种软件设计模式，是为了将传统的输入（input）、处理（processing）、输出（output）任务运用到图形化用户交互模型中而设计的。随着标准输入输出设备的出现，开发人员只需要将精力集中在业务逻辑的分析与实现上。后来被推荐为Oracle旗下Sun公司Java EE平台的设计模式，并且受到越来越多的使用ColdFusion和PHP的开发者的欢迎。现在虽然不再使用原来的分工方式，但是这种<strong>分工的思想</strong>被沿用下来，广泛应用于软件工程中，是一种典型并且应用广泛的软件架构模式。后来，MVC的思想被应用在了Ｗeb开发方面，被称为Ｗeb MVC框架。</p>
+<p>MVC框架的核心思想是：<strong>解耦</strong>，让不同的代码块之间降低耦合，增强代码的可扩展性和可移植性，实现向后兼容。当前主流的开发语言如Java、PHP、Python中都有MVC框架。</p>
+<h3 id="Web-MVC各部分的功能"><a href="#Web-MVC各部分的功能" class="headerlink" title="Ｗeb MVC各部分的功能"></a>Ｗeb MVC各部分的功能</h3><ul>
+<li>M全拼为Model，主要封装对数据库层的访问，对数据库中的数据进行增、删、改、查操作。</li>
+<li>V全拼为View，用于封装结果，生成页面展示的html内容。</li>
+<li>C全拼为Controller，用于接收请求，处理业务逻辑，与Model和View交互，返回结果。</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2018/08/09/PyriXF.png" alt="mvc"></p>
+<h3 id="MVT各部分的功能"><a href="#MVT各部分的功能" class="headerlink" title="MVT各部分的功能"></a>MVT各部分的功能</h3><p>Django框架遵循MVC设计，并且有一个专有名词：MVT</p>
+<ul>
+<li>M全拼为Model，与MVC中的M功能相同，负责和数据库交互，进行数据处理。</li>
+<li>V全拼为View，与MVC中的C功能相同，接收请求，进行业务处理，返回应答。</li>
+<li>T全拼为Template，与MVC中的V功能相同，负责封装构造要返回的html。</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2018/08/09/PyrA0J.png" alt="mvt"></p>
+<a id="more"></a>
+<h2 id="搭建项目虚拟环境"><a href="#搭建项目虚拟环境" class="headerlink" title="搭建项目虚拟环境"></a>搭建项目虚拟环境</h2><h3 id="为什么要使用虚拟环境"><a href="#为什么要使用虚拟环境" class="headerlink" title="为什么要使用虚拟环境?"></a>为什么要使用虚拟环境?</h3><p>在开发过程中，当需要使用python的包时可以联网安装 。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install 包名称</span><br></pre></td></tr></table></figure>
+<p><strong>产生的问题</strong></p>
+<p>如果在一台机器上，想开发多个不同的项目，需要用到同一个包的不同版本，如果还使用上面的命令，在同一个目录下安装或者更新，其它的项目必须就无法运行了，怎么办呢？</p>
+<blockquote>
+<p>解决方案：<strong>虚拟环境</strong>。</p>
+</blockquote>
+<p><strong>什么是虚拟环境呢 </strong></p>
+<p><strong>虚拟环境其实就是对真实pyhton环境的复制</strong>，这样我们在复制的python环境中安装包就不会影响到真实的python环境。通过建立多个虚拟环境，在不同的虚拟环境中开发项目就实现了项目之间的隔离。</p>
+<h3 id="创建虚拟环境"><a href="#创建虚拟环境" class="headerlink" title="创建虚拟环境"></a>创建虚拟环境</h3><p><strong>安装软件包</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pip3 install virtualenv</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> pip3 install virtualenvwrapper</span></span><br></pre></td></tr></table></figure>
+<p><strong>修改配置</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vim /root/.bashrc</span></span><br><span class="line">export WORKON_HOME=$HOME/.virtualenvs</span><br><span class="line">source /usr/local/bin/virtualenvwrapper.sh</span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">source</span> /root/.bashrc <span class="comment"># 配置重新加载</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>创建虚拟环境</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 例子: mkvirtualenv -p python3 虚拟环境名称</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkvirtualenv -p python3 py3_django</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用虚拟环境"><a href="#使用虚拟环境" class="headerlink" title="使用虚拟环境"></a>使用虚拟环境</h3><p><strong>退出</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 退出虚拟环境的命令如下</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> deactivate</span></span><br></pre></td></tr></table></figure>
+<p><strong>查看与使用</strong></p>
+<p>查看所有虚拟环境的命令如下：</p>
+<blockquote>
+<p>提示：workon后面有个空格，再按两次tab键。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 进入到所需的虚拟环境</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> workon py3_django</span></span><br></pre></td></tr></table></figure>
+<p><strong>删除</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 先退出：deactivate</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 再删除：rmvirtualenv py_django</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> rmvirtualenv py3_django</span></span><br></pre></td></tr></table></figure>
+<h3 id="包操作"><a href="#包操作" class="headerlink" title="包操作"></a>包操作</h3><p><strong>安装包</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pip install 包名称</span></span><br></pre></td></tr></table></figure>
+<p><strong>查看安装的包</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pip list</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> pip freeze</span></span><br></pre></td></tr></table></figure>
+<p><strong>安装django包</strong></p>
+<p>后面要学习使用django，我们使用的是django1.8.2的版本，这是一个稳定性高、使用广、文档多的版本，<strong>注意</strong>，如果前面删除过虚拟环境py3_django，则需要先创建一下，否则直接安装django包即可。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pip install django==1.8.2</span></span><br></pre></td></tr></table></figure>
+<h2 id="创建Django项目"><a href="#创建Django项目" class="headerlink" title="创建Django项目"></a>创建Django项目</h2><blockquote>
+<p>我们以一个电商网站为例，网站上有跟用户有关的页面，有跟商品有关的页面，还有跟订单有关的页面，这样的一块内容其实就是网站的一个功能模块。在django中，项目的组织结构为一个项目包含多个<strong>应用</strong>，一个应用对应一个业务模块。</p>
+</blockquote>
+<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><p>此处在/home/python/pytest/目录下创建项目</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /home/python/</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir pytest</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> pytest</span></span><br></pre></td></tr></table></figure>
+<p>创建项目的命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> django-admin startproject 项目名称</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> django-admin startproject test1</span></span><br></pre></td></tr></table></figure>
+<h3 id="项目默认目录说明"><a href="#项目默认目录说明" class="headerlink" title="项目默认目录说明"></a>项目默认目录说明</h3><p>进入test1目录，查看目录树形结构</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> test1</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> tree</span></span><br></pre></td></tr></table></figure>
+<p>目录结构如下图：</p>
+<p><img src="https://s1.ax1x.com/2018/08/09/PysQCq.png" alt="项目初始目录"></p>
+<p>目录文件说明：</p>
+<ul>
+<li>manage.py是项目管理文件，通过它管理项目。</li>
+<li>与项目同名的目录，此处为test1。</li>
+<li>__init__.py 是一个空文件，作用是这个目录test1可以被当作包使用。</li>
+<li>settings.py 是项目的整体配置文件。</li>
+<li>urls.py 是项目的URL配置文件。</li>
+<li>wsgi.py 是项目与WSGI兼容的Web服务器入口。</li>
+</ul>
+<h3 id="创建项目应用"><a href="#创建项目应用" class="headerlink" title="创建项目应用"></a>创建项目应用</h3><p>使用一个应用开发一个业务模块，此处创建应用名称为booktest，完成图书－英雄的信息维护。</p>
+<p>创建应用的命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> python manage.py startapp booktest</span></span><br></pre></td></tr></table></figure>
+<p>应用初始目录结构如下：</p>
+<p><img src="https://s1.ax1x.com/2018/08/09/PysNVJ.png" alt="应用初始目录"></p>
+<p>应用文件结构说明:</p>
+<ul>
+<li>__init__.py 是一个空文件，作用是这个目录booktest可以被当作包使用。</li>
+<li>tests.py文件用于开发测试用例，在实际开发中会有专门的测试人员，这个事情不需要我们来做。</li>
+<li>models.py文件跟数据库操作相关。</li>
+<li>views.py文件跟接收浏览器请求，进行处理，返回页面相关。</li>
+<li>admin.py文件跟网站的后台管理相关。</li>
+<li>migrations文件夹之后给大家介绍。</li>
+</ul>
+<h3 id="安装应用"><a href="#安装应用" class="headerlink" title="安装应用"></a>安装应用</h3><p>应用创建成功后，需要安装才可以使用，也就是建立应用和项目之间的关联，在test1/settings.py中INSTALLED_APPS下添加应用的名称就可以完成安装。</p>
+<p>初始项目的INSTALLED_APPS如下图：</p>
+<p><img src="https://s1.ax1x.com/2018/08/09/Pys08x.png" alt="安装应用"></p>
+<p>接下来在元组中添加一个新的项，当前示例为booktest</p>
+<p><img src="https://s1.ax1x.com/2018/08/09/PysDxK.png" alt="添加应用"></p>
+<h3 id="开发服务器"><a href="#开发服务器" class="headerlink" title="开发服务器"></a>开发服务器</h3><p>在开发阶段，为了能够快速预览到开发的效果，django提供了一个纯python编写的轻量级web服务器，仅在开发阶段使用。</p>
+<p> 运行服务器命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> $ python manage.py runserver ip:端口</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> python manage.py runserver</span></span><br></pre></td></tr></table></figure>
+<p><strong>可以不写IP和端口，默认IP是127.0.0.1，默认端口为8000</strong>。</p>
+<p>服务器成功启动后如下图：</p>
+<p><img src="https://s1.ax1x.com/2018/08/09/PyshGt.png" alt="服务器启动"></p>
+<p>紧接着在浏览器中输入网址“127.0.0.1:8000”，或者按着ctrl键点击上图中标示出来的地址，可以查看当前站点开发效果。</p>
+<p><img src="https://s1.ax1x.com/2018/08/09/PysbZQ.png" alt="浏览器访问django"></p>
+<h2 id="模型设计"><a href="#模型设计" class="headerlink" title="模型设计"></a>模型设计</h2><blockquote>
+<p>我们之前操作数据库是通过写sql语句，那么能不能不写sql语句就可以操作数据库呢？ 可以，就是通过接下来要给大家讲的<strong>ORM框架</strong>。</p>
+</blockquote>
+<h3 id="ORM框架"><a href="#ORM框架" class="headerlink" title="ORM框架"></a>ORM框架</h3><p>O是object，也就<strong>类对象</strong>的意思，R是relation，翻译成中文是关系，也就是关系数据库中<strong>数据表</strong>的意思，M是mapping，是<strong>映射</strong>的意思。在ORM框架中，它帮我们把类和数据表进行了一个映射，可以让我们<strong>通过类和类对象就能操作它所对应的表格中的数据</strong>。ORM框架还有一个功能，它可以<strong>根据我们设计的类自动帮我们生成数据库中的表格</strong>，省去了我们自己建表的过程。</p>
+<p>django中内嵌了ORM框架，不需要直接面向数据库编程，而是定义模型类，通过模型类和对象完成数据表的增删改查操作。</p>
+<p><strong>使用django进行数据库开发的步骤如下：</strong></p>
+<ul>
+<li>1.在models.py中定义模型类</li>
+<li>2.迁移</li>
+<li>3.通过类和对象完成数据增删改查操作</li>
+</ul>
+<p>下面我们以保存图书信息为例来给大家介绍Django中进行数据库开发的整个流程。</p>
+<h3 id="定义模型类"><a href="#定义模型类" class="headerlink" title="定义模型类"></a>定义模型类</h3><blockquote>
+<p>模型类定义在models.py文件中，继承自models.Model类。</p>
+</blockquote>
+<p><strong>设计图书类</strong></p>
+<p>图书类：</p>
+<ul>
+<li>类名：BookInfo</li>
+<li>图书名称：btitle</li>
+<li>图书发布日期：bpub_date</li>
+</ul>
+<p><strong>模型类的设计</strong></p>
+<p>根据设计，在models.py中定义模型类如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BookInfo</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    btitle = models.CharField(max_length=<span class="number">20</span>)</span><br><span class="line">    bpub_date = models.DateField()</span><br></pre></td></tr></table></figure>
+<h3 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a>迁移</h3><p>迁移前目录结构如下图：</p>
+<p><img src="https://s1.ax1x.com/2018/08/09/PyyPZ4.png" alt="迁移前目录结构"></p>
+<p>迁移由两步完成:</p>
+<ul>
+<li>1.生成迁移文件：根据模型类生成创建表的迁移文件。</li>
+<li>2.执行迁移：根据第一步生成的迁移文件在数据库中创建表。</li>
+</ul>
+<p>生成迁移文件命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> python manage.py makemigrations</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://s1.ax1x.com/2018/08/09/PyyAiR.png" alt="生成迁移文件"></p>
+<p>执行生成迁移文件命令后，会在应用booktest目录下的migrations目录中生成迁移文件。生成迁移文件后的目录结构：</p>
+<p><img src="https://s1.ax1x.com/2018/08/09/PyymQK.png" alt="迁移命令"></p>
+<p>打开上图中的迁移文件，内容如下：</p>
+<p><img src="https://s1.ax1x.com/2018/08/09/PyyuLD.png" alt="迁移文件内容"></p>
+<p>Django框架根据我们设计的模型类生成了迁移文件，在迁移文件中我们可以看到fields列表中每一个元素跟BookInfo类属性名以及属性的类型是一致的。同时我们发现多了一个id项，这一项是Django框架帮我们自动生成的，在创建表的时候id就会作为对应表的主键列，并且主键列自动增长。</p>
+<p>执行迁移命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> python manage.py migrate</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://s1.ax1x.com/2018/08/09/Pyylod.png" alt="迁移后"></p>
+<p>当执行迁移命令后，Django框架会读取迁移文件自动帮我们在数据库中生成对应的表格。</p>
+<p>迁移后目录结构如下图：</p>
+<p><img src="https://s1.ax1x.com/2018/08/09/PyyGWt.png" alt="迁移后"></p>
+<p>Django默认采用sqlite3数据库，上图中的db.sqlite3就是Django框架帮我们自动生成的数据库文件。 sqlite3是一个很小的数据库，通常用在手机中，它跟mysql一样，我们也可以通过sql语句来操作它。</p>
+<p>下面使用sqliteman打开db.sqlite3文件进行查看。如果没有安装sqliteman，需要先使用如下命令进行安装。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> apt-get install sqliteman</span></span><br></pre></td></tr></table></figure>
+<p>安装成功之后，在终端输入sqliteman命令，敲击回车即可打开软件。</p>
+<p><img src="https://s1.ax1x.com/2018/08/09/PyyDFs.png" alt="sqliteman"></p>
+<p>细心会发现我们上面生成的表的名字叫做booktest_bookinfo，booktest是应用的名字，bookinfo是模型类的名字。</p>
+<p>数据表的默认名称为：</p>
+<blockquote>
+<p><app_name>_<model_name></model_name></app_name></p>
+</blockquote>
+<h3 id="设计英雄类"><a href="#设计英雄类" class="headerlink" title="设计英雄类"></a>设计英雄类</h3><p>英雄类：</p>
+<ul>
+<li>类名：HeroInfo</li>
+<li>英雄姓名：hname</li>
+<li>英雄性别：hgender</li>
+<li>英雄简介：hcomment</li>
+<li>英雄所属图书：hbook</li>
+<li>图书-英雄的关系为一对多</li>
+</ul>
+<p>打开booktest/models.py，定义英雄类代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HeroInfo</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    hname = models.CharField(max_length=<span class="number">20</span>)</span><br><span class="line">    hgender = models.BooleanField()</span><br><span class="line">    hcomment = models.CharField(max_length=<span class="number">100</span>)</span><br><span class="line">    hbook = models.ForeignKey(<span class="string">'BookInfo'</span>)</span><br></pre></td></tr></table></figure>
+<p>这里要说明的是，BookInfo类和HeroInfo类之间具有一对多的关系，这个一对多的关系应该定义在多的那个类，也就是HeroInfo类中。</p>
+<blockquote>
+<p>hbook = models.ForeignKey(‘BookInfo’)这句代码就让BookInfo类和HeroInfo类之间建立了一对多的关系。</p>
+</blockquote>
+<p><strong>在我们之后迁移生成表的时候，Django框架就会自动帮我们在图书表和英雄表之间建立一个外键关系。</strong></p>
+<p>生成迁移文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> python manage.py makemigrations</span></span><br></pre></td></tr></table></figure>
+<p>结果如下图：</p>
+<p><img src="https://s1.ax1x.com/2018/08/09/PyyX0e.png" alt="英雄迁移"></p>
+<p>项目目录结构：</p>
+<p><img src="https://s1.ax1x.com/2018/08/09/Pyyxkd.png" alt="项目目录"></p>
+<p>执行迁移的命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> python manage.py migrate</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://s1.ax1x.com/2018/08/09/Py6P6f.png" alt="迁移后"></p>
+<p>最后我们可以看到数据库中生成的英雄表如下图：</p>
+<p><img src="https://s1.ax1x.com/2018/08/09/Py6knS.png" alt="迁移sqlieman"></p>
+<p>注意上图中booktest_heroinfo表中有一列hbook_id，这一列名为什么不叫hbook？ hbook_id是根据HeroInfo类的关系属性hbook生成的，对应着图书表中的主键id。</p>
+<h3 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h3><p>完成数据表的迁移之后，下面就可以通过进入项目的shell，进行简单的API操作。如果需要退出项目，可以使用ctrl+d快捷键或输入quit()。</p>
+<p><strong>基础操作</strong></p>
+<p>进入项目shell的命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> python manage.py shell</span></span><br></pre></td></tr></table></figure>
+<p>首先引入booktest/models中的类：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> from booktest.models import BookInfo,HeroInfo</span></span><br></pre></td></tr></table></figure>
+<p>查询所有图书信息：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> BookInfo.objects.all()</span></span><br></pre></td></tr></table></figure>
+<p>新建图书对象：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> b=BookInfo()</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> b.btitle=<span class="string">"射雕英雄传"</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> from datetime import date</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> b.bpub_date=date(1991,1,31)</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> b.save()</span></span><br></pre></td></tr></table></figure>
+<p>再次查询所有图书信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ BookInfo.objects.all()</span><br><span class="line">  [&lt;BookInfo: BookInfo object&gt;]</span><br></pre></td></tr></table></figure>
+<p>查找图书信息并查看值：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> b=BookInfo.objects.get(id=1)</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> b.id</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> b.btitle</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> b.bpub_date</span></span><br></pre></td></tr></table></figure>
+<p>修改图书信息：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b.bpub_date=date(2017,1,1)</span><br><span class="line">b.save()</span><br></pre></td></tr></table></figure>
+<p>删除图书信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b.delete()</span><br></pre></td></tr></table></figure>
+<p><strong>对象的关联操作</strong></p>
+<p>对于HeroInfo可以按照上面的方式进行增删改查操作。</p>
+<p>创建一个BookInfo对象</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> b=BookInfo()</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> b.btitle=<span class="string">'abc'</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> b.bpub_date=date(2017,1,1)</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> b.save()</span></span><br></pre></td></tr></table></figure>
+<p>创建一个HeroInfo对象</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> h=HeroInfo()</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> h.hname=<span class="string">'a1'</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> h.hgender=False</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> h.hcomment=<span class="string">'he is a boy'</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> h.hbook=b</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> h.save()</span></span><br></pre></td></tr></table></figure>
+<p>图书与英雄是一对多的关系，django中提供了关联的操作方式。</p>
+<p>获得关联集合：返回当前book对象的所有hero。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> b.heroinfo_set.all()</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> h.hbook</span></span><br></pre></td></tr></table></figure>
+<h2 id="后台管理"><a href="#后台管理" class="headerlink" title="后台管理"></a>后台管理</h2><blockquote>
+<p>Django能够根据定义的模型类自动地生成管理页面。 所以我们可以设计一个页面，通过对这个页面的操作来实现对新闻数据库的增删改查操作。 <strong>这就是Django的后台管理</strong></p>
+</blockquote>
+<p>使用Django的管理模块，需要按照如下步骤操作：</p>
+<ul>
+<li>1.管理界面本地化</li>
+<li>2.创建管理员</li>
+<li>3.注册模型类</li>
+<li>4.自定义管理页面</li>
+</ul>
+<h3 id="管理界面的本地化"><a href="#管理界面的本地化" class="headerlink" title="管理界面的本地化"></a>管理界面的本地化</h3><p>本地化是将显示的语言、时间等使用本地的习惯，这里的本地化就是进行中国化，中国大陆地区使用简体中文，时区使用亚洲/上海时区，注意这里不使用北京时区表示。</p>
+<p>打开test1/settings.py文件，找到语言编码、时区的设置项，将内容改为如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vim test1/settings.py</span></span><br><span class="line">LANGUAGE_CODE = 'zh-hans' #使用中国语言</span><br><span class="line">TIME_ZONE = 'Asia/Shanghai' #使用中国上海时间</span><br></pre></td></tr></table></figure>
+<h3 id="创建管理员"><a href="#创建管理员" class="headerlink" title="创建管理员"></a>创建管理员</h3><p>创建管理员的命令如下，按提示输入用户名、邮箱、密码。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> python manage.py createsuperuser</span></span><br></pre></td></tr></table></figure>
+<p>接下来启动服务器。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> python manage.py runserver</span></span><br></pre></td></tr></table></figure>
+<p>打开浏览器，在地址栏中输入如下地址后回车。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8000/admin/</span><br></pre></td></tr></table></figure>
+<p>登录成功后界面如下，但是并没有图书、英雄的管理入口，接下来进行第三步操作。</p>
+<p><img src="https://s1.ax1x.com/2018/08/09/Py6DBD.png" alt="登录成功"></p>
+<h3 id="注册模型类"><a href="#注册模型类" class="headerlink" title="注册模型类"></a>注册模型类</h3><p>登录后台管理后，默认没有我们创建的应用中定义的模型类，需要在自己应用中的admin.py文件中注册，才可以在后台管理中看到，并进行增删改查操作。</p>
+<p>打开booktest/admin.py文件，编写如下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> booktest.models <span class="keyword">import</span> BookInfo,HeroInfo</span><br><span class="line"></span><br><span class="line">admin.site.register(BookInfo)</span><br><span class="line">admin.site.register(HeroInfo)</span><br></pre></td></tr></table></figure>
+<p>到浏览器中刷新页面，可以看到模型类BookInfo和HeroInfo的管理了。</p>
+<h3 id="自定义管理页面"><a href="#自定义管理页面" class="headerlink" title="自定义管理页面"></a>自定义管理页面</h3><p>在列表页只显示出了BookInfo object，对象的其它属性并没有列出来，查看非常不方便。 Django提供了自定义管理页面的功能，比如列表页要显示哪些值。</p>
+<p>打开booktest/admin.py文件，自定义类，继承自admin.ModelAdmin类。</p>
+<ul>
+<li>属性list_display表示要显示哪些属性</li>
+<li><p>修改模型类BookInfo的注册代码如下</p>
+</li>
+<li><p>最终booktest/admin.py文件代码如下</p>
+</li>
+</ul>
+<p>最终自定义如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> booktest.models <span class="keyword">import</span> BookInfo,HeroInfo</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BookInfoAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    list_display = [<span class="string">'id'</span>, <span class="string">'btitle'</span>, <span class="string">'bpub_date'</span>]</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HeroInfoAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    list_display = [<span class="string">'id'</span>, <span class="string">'hname'</span>,<span class="string">'hgender'</span>,<span class="string">'hcomment'</span>]</span><br><span class="line"></span><br><span class="line">admin.site.register(BookInfo,BookInfoAdmin)</span><br><span class="line">admin.site.register(HeroInfo,HeroInfoAdmin)</span><br></pre></td></tr></table></figure>
+<h2 id="视图及URL"><a href="#视图及URL" class="headerlink" title="视图及URL"></a>视图及URL</h2><blockquote>
+<p>后台管理页面做好了，接下来就要做公共访问的页面了。当我们刚刚在浏览器中输入 <a href="http://127.0.0.1:8000/admin/" target="_blank" rel="noopener">http://127.0.0.1:8000/admin/</a> 之后，浏览器显示出了后台管理的登录页面，那有没有同学想过这个服务器是怎么给我们找到这个页面并返回呢？/admin/是我们想要请求的页面，服务器在收到这个请求之后，就一定对应着一个处理动作，这个处理动作就是帮我们产生页面内容并返回回来，这个过程是由<strong>视图</strong>来做的。</p>
+</blockquote>
+<p>对于django的设计框架MVT，用户在URL中请求的是视图，视图接收请求后进行处理，并将处理的结果返回给请求者。</p>
+<p>使用视图时需要进行两步操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* 1.定义视图函数</span><br><span class="line">* 2.配置URLconf</span><br></pre></td></tr></table></figure>
+<h3 id="定义视图函数"><a href="#定义视图函数" class="headerlink" title="定义视图函数"></a>定义视图函数</h3><p>视图就是一个Python函数，被定义在views.py中。视图的必须有一个参数，一般叫request，视图必须返回HttpResponse对象，HttpResponse中的参数内容会显示在浏览器的页面上。打开booktest/views.py文件，定义视图index如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"index"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="配置URLconf"><a href="#配置URLconf" class="headerlink" title="配置URLconf"></a>配置URLconf</h3><p>请求者在浏览器地址栏中输入url，请求到网站后，获取url信息，然后与编写好的URLconf逐条匹配，如果匹配成功则调用对应的视图函数，如果所有的URLconf都没有匹配成功，则返回404错误。</p>
+<p>一条URLconf包括url规则、视图两部分：</p>
+<ul>
+<li>url规则使用正则表达式定义。</li>
+<li>视图就是在views.py中定义的视图函数。</li>
+</ul>
+<p>需要两步完成URLconf配置：</p>
+<ul>
+<li>1.在应用中定义URLconf</li>
+<li>2.包含到项目的URLconf中</li>
+</ul>
+<p>在booktest/应用下创建urls.py文件，定义代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"><span class="keyword">from</span> booktest <span class="keyword">import</span> views</span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^$'</span>, views.index),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>包含到项目中：打开test1/urls.py文件，为urlpatterns列表增加项如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(<span class="string">r'^'</span>, include(<span class="string">'booktest.urls'</span>)),</span><br></pre></td></tr></table></figure>
+<p>test1/urls.py文件完整代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from django.conf.urls import include, url</span><br><span class="line">from django.contrib import admin</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(r&apos;^admin/&apos;, include(admin.site.urls)),</span><br><span class="line">    url(r&apos;^&apos;, include(&apos;booktest.urls&apos;)),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>视图和URLconf都定义好了，接下来在浏览器地址栏中输入网址：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8000/</span><br></pre></td></tr></table></figure>
+<p>网页显示效果如下图，视图被成功执行了。</p>
+<p><img src="https://s1.ax1x.com/2018/08/10/P69o4g.png" alt="首页"></p>
+<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><h3 id="为什么使用模版？"><a href="#为什么使用模版？" class="headerlink" title="为什么使用模版？"></a>为什么使用模版？</h3><p><strong>如何向请求者返回一个漂亮的页面呢？</strong></p>
+<p>肯定需要用到html、css，如果想要更炫的效果还要加入js，问题来了，这么一堆字段串全都写到视图中，作为HttpResponse()的参数吗？这样定义就太麻烦了吧，因为定义字符串是不会出任何效果和错误的，如果有一个专门定义前端页面的地方就好了。</p>
+<p>解决问题的技术来了：<strong>模板</strong>。</p>
+<p>在Django中，将前端的内容定义在模板中，然后再把模板交给视图调用，各种漂亮、炫酷的效果就出现了。</p>
+<h3 id="创建模板"><a href="#创建模板" class="headerlink" title="创建模板"></a>创建模板</h3><p>为应用booktest下的视图index创建模板index.html，目录结构如下图：</p>
+<p><img src="https://s1.ax1x.com/2018/08/10/P69bgs.png" alt="创建模板"></p>
+<p>设置查找模板的路径：打开test1/settings.py文件，设置TEMPLATES的DIRS值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'DIRS'</span>: [os.path.join(BASE_DIR, <span class="string">'templates'</span>)],</span><br></pre></td></tr></table></figure>
+<p><img src="https://s1.ax1x.com/2018/08/10/P69qvn.png" alt="模板地址"></p>
+<h3 id="定义模板"><a href="#定义模板" class="headerlink" title="定义模板"></a>定义模板</h3><p>打开templtes/booktest/index.html文件，定义代码如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;图书列表&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h1&gt;&#123;&#123;title&#125;&#125;&lt;/h1&gt;</span><br><span class="line">&#123;%<span class="keyword">for</span> i <span class="keyword">in</span> list%&#125;</span><br><span class="line">&#123;&#123;i&#125;&#125;&lt;br&gt;</span><br><span class="line">&#123;%endfor%&#125;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>在模板中输出变量语法如下，变量可能是从视图中传递过来的，也可能是在模板中定义的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;变量名&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>在模板中编写代码段语法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;%代码段%&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="视图调用模板"><a href="#视图调用模板" class="headerlink" title="视图调用模板"></a>视图调用模板</h3><p>调用模板分为三步骤：</p>
+<ul>
+<li>1.找到模板</li>
+<li>2.定义上下文</li>
+<li>3.渲染模板</li>
+</ul>
+<p>打开booktst/views.py文件，调用上面定义的模板文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"><span class="keyword">from</span> django.template <span class="keyword">import</span> loader,RequestContext</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="comment"># 1.获取模板</span></span><br><span class="line">    template=loader.get_template(<span class="string">'booktest/index.html'</span>)</span><br><span class="line">    <span class="comment"># 2.定义上下文</span></span><br><span class="line">    context=RequestContext(request,&#123;<span class="string">'title'</span>:<span class="string">'图书列表'</span>,<span class="string">'list'</span>:range(<span class="number">10</span>)&#125;)</span><br><span class="line">    <span class="comment"># 3.渲染模板</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(template.render(context))</span><br></pre></td></tr></table></figure>
+<p>打开浏览器刷新页面，显示效果如下图：</p>
+<p><img src="https://s1.ax1x.com/2018/08/10/P69jbV.png" alt="图书列表"></p>
+<h3 id="视图调用模板简写"><a href="#视图调用模板简写" class="headerlink" title="视图调用模板简写"></a>视图调用模板简写</h3><p>视图调用模板都要执行以上三部分，于是Django提供了一个函数render封装了以上代码。 方法render包含3个参数：</p>
+<ul>
+<li>第一个参数为request对象</li>
+<li>第二个参数为模板文件路径</li>
+<li>第三个参数为字典，表示向模板中传递的上下文数据</li>
+</ul>
+<p>打开booktst/views.py文件，调用render的代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">    context=&#123;<span class="string">'title'</span>:<span class="string">'图书列表'</span>,<span class="string">'list'</span>:range(<span class="number">10</span>)&#125;</span><br><span class="line">    <span class="keyword">return</span> render(request,<span class="string">'booktest/index.html'</span>,context)</span><br></pre></td></tr></table></figure>
+<h2 id="完成小项目"><a href="#完成小项目" class="headerlink" title="完成小项目"></a>完成小项目</h2><p>现在还需要的代码包括三个方面，三个方面顺序不分先后。</p>
+<ul>
+<li>1.定义视图</li>
+<li>2.定义URLconf</li>
+<li>3.定义模板</li>
+</ul>
+<h3 id="定义视图"><a href="#定义视图" class="headerlink" title="定义视图"></a>定义视图</h3><p>编写booktest/views.py文件如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"><span class="keyword">from</span> booktest.models <span class="keyword">import</span> BookInfo</span><br><span class="line"></span><br><span class="line"><span class="comment">#首页，展示所有图书</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(reqeust)</span>:</span></span><br><span class="line">    <span class="comment">#查询所有图书</span></span><br><span class="line">    booklist = BookInfo.objects.all()</span><br><span class="line">    <span class="comment">#将图书列表传递到模板中，然后渲染模板</span></span><br><span class="line">    <span class="keyword">return</span> render(reqeust, <span class="string">'booktest/index.html'</span>, &#123;<span class="string">'booklist'</span>: booklist&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">#详细页，接收图书的编号，根据编号查询，再通过关系找到本图书的所有英雄并展示</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">detail</span><span class="params">(reqeust, bid)</span>:</span></span><br><span class="line">    <span class="comment">#根据图书编号对应图书</span></span><br><span class="line">    book = BookInfo.objects.get(id=int(bid))</span><br><span class="line">    <span class="comment">#查找book图书中的所有英雄信息</span></span><br><span class="line">    heros = book.heroinfo_set.all()</span><br><span class="line">    <span class="comment">#将图书信息传递到模板中，然后渲染模板</span></span><br><span class="line">    <span class="keyword">return</span> render(reqeust, <span class="string">'booktest/detail.html'</span>, &#123;<span class="string">'book'</span>:book,<span class="string">'heros'</span>:heros&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="定义URLconf"><a href="#定义URLconf" class="headerlink" title="定义URLconf"></a>定义URLconf</h3><p>编写booktest/urls.py文件如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"><span class="comment">#引入视图模块</span></span><br><span class="line"><span class="keyword">from</span> booktest <span class="keyword">import</span> views</span><br><span class="line">urlpatterns = [</span><br><span class="line">    <span class="comment">#配置首页url</span></span><br><span class="line">    url(<span class="string">r'^$'</span>, views.index),</span><br><span class="line">    <span class="comment">#配置详细页url，\d+表示多个数字，小括号用于取值，建议复习下正则表达式</span></span><br><span class="line">    url(<span class="string">r'^(\d+)/$'</span>,views.detail),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="定义模板-1"><a href="#定义模板-1" class="headerlink" title="定义模板"></a>定义模板</h3><p>编写templates/booktest/index.html文件如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;首页&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h1&gt;图书列表&lt;/h1&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    &#123;<span class="comment">#遍历图书列表#&#125;</span></span><br><span class="line">    &#123;%<span class="keyword">for</span> book <span class="keyword">in</span> booklist%&#125;</span><br><span class="line">    &lt;li&gt;</span><br><span class="line">     &#123;<span class="comment">#输出图书名称，并设置超链接，链接地址是一个数字#&#125;</span></span><br><span class="line">      &lt;a href="/&#123;&#123;book.id&#125;&#125;/"&gt;&#123;&#123;book.btitle&#125;&#125;&lt;/a&gt;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">    &#123;%endfor%&#125;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>编写templates/booktest/detail.html文件如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;详细页&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&#123;<span class="comment">#输出图书标题#&#125;</span></span><br><span class="line">&lt;h1&gt;&#123;&#123;book.btitle&#125;&#125;&lt;/h1&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    &#123;<span class="comment">#通过关系找到本图书的所有英雄，并遍历#&#125;</span></span><br><span class="line">    &#123;%<span class="keyword">for</span> hero <span class="keyword">in</span> heros%&#125;</span><br><span class="line">    &#123;<span class="comment">#输出英雄的姓名及描述#&#125;</span></span><br><span class="line">    &lt;li&gt;&#123;&#123;hero.hname&#125;&#125;---&#123;&#123;hero.hcomment&#125;&#125;&lt;/li&gt;</span><br><span class="line">    &#123;%endfor%&#125;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="项目效果"><a href="#项目效果" class="headerlink" title="项目效果"></a>项目效果</h3><p><strong>首页：</strong></p>
+<p><img src="https://s1.ax1x.com/2018/08/10/P6Cd2j.png" alt="首页"></p>
+<p><strong>详情页：</strong></p>
+<p><img src="https://s1.ax1x.com/2018/08/10/P6CeUO.png" alt="详情页"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏2块钱,帮我买杯咖啡,继续创作,谢谢大家！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="陈凡 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliyipay.jpg" alt="陈凡 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+        -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+         
+            <a href="/tags/Django/" rel="tag"><i class="fa fa-tag"></i>Django</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/22/Python网络编程-tcp/" rel="next" title="Python网络编程-tcp">
+                <i class="fa fa-chevron-left"></i> Python网络编程-tcp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/upload/avatar.gif"
+                alt="陈凡" />
+            
+              <p class="site-author-name" itemprop="name">陈凡</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/chenfanlinux" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:chenfan216@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/3942411590" target="_blank" title="微博">
+                    
+                      <i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/love-hero-80" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#认识Django"><span class="nav-number">1.</span> <span class="nav-text">认识Django</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Django简介"><span class="nav-number">1.1.</span> <span class="nav-text">Django简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVC简介"><span class="nav-number">1.2.</span> <span class="nav-text">MVC简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-MVC各部分的功能"><span class="nav-number">1.3.</span> <span class="nav-text">Ｗeb MVC各部分的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVT各部分的功能"><span class="nav-number">1.4.</span> <span class="nav-text">MVT各部分的功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建项目虚拟环境"><span class="nav-number">2.</span> <span class="nav-text">搭建项目虚拟环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要使用虚拟环境"><span class="nav-number">2.1.</span> <span class="nav-text">为什么要使用虚拟环境?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建虚拟环境"><span class="nav-number">2.2.</span> <span class="nav-text">创建虚拟环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用虚拟环境"><span class="nav-number">2.3.</span> <span class="nav-text">使用虚拟环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包操作"><span class="nav-number">2.4.</span> <span class="nav-text">包操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建Django项目"><span class="nav-number">3.</span> <span class="nav-text">创建Django项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建项目"><span class="nav-number">3.1.</span> <span class="nav-text">创建项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目默认目录说明"><span class="nav-number">3.2.</span> <span class="nav-text">项目默认目录说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建项目应用"><span class="nav-number">3.3.</span> <span class="nav-text">创建项目应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装应用"><span class="nav-number">3.4.</span> <span class="nav-text">安装应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发服务器"><span class="nav-number">3.5.</span> <span class="nav-text">开发服务器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型设计"><span class="nav-number">4.</span> <span class="nav-text">模型设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ORM框架"><span class="nav-number">4.1.</span> <span class="nav-text">ORM框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义模型类"><span class="nav-number">4.2.</span> <span class="nav-text">定义模型类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迁移"><span class="nav-number">4.3.</span> <span class="nav-text">迁移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计英雄类"><span class="nav-number">4.4.</span> <span class="nav-text">设计英雄类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据操作"><span class="nav-number">4.5.</span> <span class="nav-text">数据操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后台管理"><span class="nav-number">5.</span> <span class="nav-text">后台管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#管理界面的本地化"><span class="nav-number">5.1.</span> <span class="nav-text">管理界面的本地化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建管理员"><span class="nav-number">5.2.</span> <span class="nav-text">创建管理员</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注册模型类"><span class="nav-number">5.3.</span> <span class="nav-text">注册模型类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义管理页面"><span class="nav-number">5.4.</span> <span class="nav-text">自定义管理页面</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图及URL"><span class="nav-number">6.</span> <span class="nav-text">视图及URL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义视图函数"><span class="nav-number">6.1.</span> <span class="nav-text">定义视图函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置URLconf"><span class="nav-number">6.2.</span> <span class="nav-text">配置URLconf</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板"><span class="nav-number">7.</span> <span class="nav-text">模板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么使用模版？"><span class="nav-number">7.1.</span> <span class="nav-text">为什么使用模版？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建模板"><span class="nav-number">7.2.</span> <span class="nav-text">创建模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义模板"><span class="nav-number">7.3.</span> <span class="nav-text">定义模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视图调用模板"><span class="nav-number">7.4.</span> <span class="nav-text">视图调用模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视图调用模板简写"><span class="nav-number">7.5.</span> <span class="nav-text">视图调用模板简写</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完成小项目"><span class="nav-number">8.</span> <span class="nav-text">完成小项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义视图"><span class="nav-number">8.1.</span> <span class="nav-text">定义视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义URLconf"><span class="nav-number">8.2.</span> <span class="nav-text">定义URLconf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义模板-1"><span class="nav-number">8.3.</span> <span class="nav-text">定义模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目效果"><span class="nav-number">8.4.</span> <span class="nav-text">项目效果</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+<script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=ipZXdvME3sKg6viC20OoTCYATcaOJ6SQH2wdaJEUHfc"></script>
+
+<div id="music163player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=525241230&auto=0&height=66"></iframe>
+</div>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈凡</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">123.9k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div> 
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+ <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 98812, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2018/08/10/Django基础入门/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/98812/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+<!--页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>  
+
+
+
+<!-- 
+<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-1 count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script> -->
+
+
+</body>
+</html>
