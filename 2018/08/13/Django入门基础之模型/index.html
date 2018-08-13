@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Django," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="陈凡的个人站点" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="ORM简介 ORM，全拼Object-Relation Mapping，中文意为对象-关系映射，是随着面向对象的软件开发方法发展而产生的。面向对象的开发方法是当今企业级应用开发环境中的主流开发方法，关系数据库是企业级应用环境中永久存放数据的主流数据存储系统。对象和关系数据是业务实体的两种表现形式，业务实体在内存中表现为">
+<meta name="keywords" content="Django">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django入门基础之模型">
+<meta property="og:url" content="http://www.chenfanlinux.org/2018/08/13/Django入门基础之模型/index.html">
+<meta property="og:site_name" content="陈凡的个人站点">
+<meta property="og:description" content="ORM简介 ORM，全拼Object-Relation Mapping，中文意为对象-关系映射，是随着面向对象的软件开发方法发展而产生的。面向对象的开发方法是当今企业级应用开发环境中的主流开发方法，关系数据库是企业级应用环境中永久存放数据的主流数据存储系统。对象和关系数据是业务实体的两种表现形式，业务实体在内存中表现为对象，在数据库中表现为关系数据。内存中的对象之间存在关联和继承关系，而在数据库中">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/13/Pgp8yR.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/13/PgpgTf.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/13/Pgp7mq.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/13/Pg9unI.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/13/Pg9WHx.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/13/Pg94UK.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/13/PgPnTP.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/13/PgiZ3F.png">
+<meta property="og:updated_time" content="2018-08-13T04:18:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django入门基础之模型">
+<meta name="twitter:description" content="ORM简介 ORM，全拼Object-Relation Mapping，中文意为对象-关系映射，是随着面向对象的软件开发方法发展而产生的。面向对象的开发方法是当今企业级应用开发环境中的主流开发方法，关系数据库是企业级应用环境中永久存放数据的主流数据存储系统。对象和关系数据是业务实体的两种表现形式，业务实体在内存中表现为对象，在数据库中表现为关系数据。内存中的对象之间存在关联和继承关系，而在数据库中">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/08/13/Pgp8yR.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'X18Q8YOK7R',
+      apiKey: '4cf6f4ea962b4c633859ca376c0d6ae9',
+      indexName: 'chenfanlinux',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfanlinux.org/2018/08/13/Django入门基础之模型/"/>
+
+
+
+
+
+  <title>Django入门基础之模型 | 陈凡的个人站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?your-analytics-id";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+ 
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">陈凡的个人站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">chenfanlinux.org</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/08/13/Django入门基础之模型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Django入门基础之模型</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-13T12:16:56+08:00">
+                2018-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django入门/" itemprop="url" rel="index">
+                    <span itemprop="name">Django入门</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/13/Django入门基础之模型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/08/13/Django入门基础之模型/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  6,234
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  25
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="ORM简介"><a href="#ORM简介" class="headerlink" title="ORM简介"></a>ORM简介</h2><blockquote>
+<p>ORM，全拼Object-Relation Mapping，中文意为对象-关系映射，是随着面向对象的软件开发方法发展而产生的。面向对象的开发方法是当今企业级应用开发环境中的主流开发方法，关系数据库是企业级应用环境中永久存放数据的主流数据存储系统。对象和关系数据是业务实体的两种表现形式，业务实体在内存中表现为对象，在数据库中表现为关系数据。内存中的对象之间存在关联和继承关系，而在数据库中，关系数据无法直接表达多对多关联和继承关系。因此，对象-关系映射ORM系统一般以中间件的形式存在，主要实现程序对象到关系数据库数据的映射。面向对象是从软件工程基本原则(如耦合、聚合、封装)的基础上发展起来的，而关系数据库则是从数学理论发展而来的，两套理论存在显著的区别。为了解决这个不匹配的现象,对象关系映射技术应运而生。O/R中字母O起源于”对象”(Object),而R则来自于”关系”(Relational)。几乎所有的程序里面，都存在对象和关系数据库。在业务逻辑层和用户界面层中，我们是面向对象的。当对象信息发生变化的时候，我们需要把对象的信息保存在关系数据库中。</p>
+</blockquote>
+<h3 id="ORM的好处"><a href="#ORM的好处" class="headerlink" title="ORM的好处"></a>ORM的好处</h3><p>在MVC框架中的Model模块中都包括ORM，对于开发人员主要带来了如下好处：</p>
+<ul>
+<li>实现了数据模型与数据库的解耦，通过简单的配置就可以轻松更换数据库，而不需要修改代码。</li>
+<li>只需要面向对象编程，不需要面向数据库编写代码。</li>
+<li>在MVC中Model中定义的类，通过ORM与关系型数据库中的表对应，对象的属性体现对象间的关系，这种关系也被映射到数据表中。</li>
+</ul>
+<h3 id="ORM示意图"><a href="#ORM示意图" class="headerlink" title="ORM示意图"></a>ORM示意图</h3><p><img src="https://s1.ax1x.com/2018/08/13/Pgp8yR.png" alt="ORM示意图"></p>
+<a id="more"></a>
+<h3 id="更换数据库为MySQL"><a href="#更换数据库为MySQL" class="headerlink" title="更换数据库为MySQL"></a>更换数据库为MySQL</h3><p><strong>创建一个新的的项目test</strong></p>
+<p>进入虚拟环境py_django。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> workon py_django</span></span><br></pre></td></tr></table></figure>
+<p>在/home/python/pytest目录下创建项目test2。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> django-admin startproject test2</span></span><br></pre></td></tr></table></figure>
+<p>下面是手动创建数据库，打开新终端，在命令行登录mysql，创建数据库test2。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> create database chenfanlinux charset=utf8;</span></span><br></pre></td></tr></table></figure>
+<p>打开test2/settings.py文件，找到DATABASES项，默认使用SQLite3数据库</p>
+<p><img src="https://s1.ax1x.com/2018/08/13/PgpgTf.png" alt="sqlite"></p>
+<p>修改为使用MySQL数据库，代码如下:</p>
+<blockquote>
+<p>将引擎改为mysql，提供连接的主机HOST、端口PORT、数据库名NAME、用户名USER、密码PASSWORD。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DATABASES = &#123;</span><br><span class="line">    'default': &#123;</span><br><span class="line">        'ENGINE': 'django.db.backends.mysql',</span><br><span class="line">        'NAME': 'chenfanlinux', #数据库名字，</span><br><span class="line">        'USER': 'root', #数据库登录用户名</span><br><span class="line">        'PASSWORD': 'mysql', #数据库登录密码</span><br><span class="line">        'HOST': 'localhost', #数据库所在主机</span><br><span class="line">        'PORT': '3306', #数据库端口</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>返回第一个终端，进入test2目录，创建应用booktest。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> test2</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> python manage.py startapp booktest</span></span><br></pre></td></tr></table></figure>
+<p>将应用booktest注册到项目中：打开test2/settings.py文件，找到INSTALLED_APPS项，加入如下代码：</p>
+<p><img src="https://s1.ax1x.com/2018/08/13/Pgp7mq.png" alt="booktest"></p>
+<h2 id="实例演示"><a href="#实例演示" class="headerlink" title="实例演示"></a>实例演示</h2><ul>
+<li>模型类被定义在”应用/models.py”文件中，此例中为”booktest/models.py”文件。</li>
+<li>模型类必须继承自Model类，位于包django.db.models中。</li>
+<li>提示：对于重要数据使用逻辑删除。</li>
+</ul>
+<h3 id="定义模型类"><a href="#定义模型类" class="headerlink" title="定义模型类"></a>定义模型类</h3><p><strong>1.打开booktest/models.py文件，定义模型类如下</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义图书模型类BookInfo</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BookInfo</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    btitle = models.CharField(max_length=<span class="number">20</span>)<span class="comment">#图书名称</span></span><br><span class="line">    bpub_date = models.DateField()<span class="comment">#发布日期</span></span><br><span class="line">    bread = models.IntegerField(default=<span class="number">0</span>)<span class="comment">#阅读量</span></span><br><span class="line">    bcomment = models.IntegerField(default=<span class="number">0</span>)<span class="comment">#评论量</span></span><br><span class="line">    isDelete = models.BooleanField(default=<span class="keyword">False</span>)<span class="comment">#逻辑删除</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#定义英雄模型类HeroInfo</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HeroInfo</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    hname = models.CharField(max_length=<span class="number">20</span>)<span class="comment">#英雄姓名</span></span><br><span class="line">    hgender = models.BooleanField(default=<span class="keyword">True</span>)<span class="comment">#英雄性别</span></span><br><span class="line">    isDelete = models.BooleanField(default=<span class="keyword">False</span>)<span class="comment">#逻辑删除</span></span><br><span class="line">    hcomment = models.CharField(max_length=<span class="number">200</span>)<span class="comment">#英雄描述信息</span></span><br><span class="line">    hbook = models.ForeignKey(<span class="string">'BookInfo'</span>)<span class="comment">#英雄与图书表的关系为一对多，所以属性定义在英雄模型类中</span></span><br></pre></td></tr></table></figure>
+<p><strong>2.迁移</strong></p>
+<p>生成迁移文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations</span><br></pre></td></tr></table></figure>
+<p>生成迁移文件的时候出现错误，把数据库切换成了mysql，需要安装pymysql模块之后，Django框架才可以操作mysql数据库。安装命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pymysql</span><br></pre></td></tr></table></figure>
+<p>安装成功之后，在test2/__init__.py文件中加上如下代码:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import pymysql</span><br><span class="line">pymysql.install_as_MySQLdb()</span><br></pre></td></tr></table></figure>
+<p>然后执行如下命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations  <span class="comment"># 生成迁移文件</span></span><br><span class="line">python manage.py migrate  <span class="comment"># 开始迁移</span></span><br></pre></td></tr></table></figure>
+<p><strong>3. 运行服务器</strong></p>
+<p>当你运行服务器的时候，可能会报连接不上数据库的问题 :</p>
+<p><img src="https://s1.ax1x.com/2018/08/13/Pg9unI.png" alt="数据库权限问题"></p>
+<h3 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h3><p>在数据库命令行中，复制如下语句执行，向booktest_bookinfo表中插入测试数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> booktest_bookinfo(btitle,bpub_date,bread,bcomment,isDelete) <span class="keyword">values</span></span><br><span class="line">(<span class="string">'射雕英雄传'</span>,<span class="string">'1980-5-1'</span>,<span class="number">12</span>,<span class="number">34</span>,<span class="number">0</span>),</span><br><span class="line">(<span class="string">'天龙八部'</span>,<span class="string">'1986-7-24'</span>,<span class="number">36</span>,<span class="number">40</span>,<span class="number">0</span>),</span><br><span class="line">(<span class="string">'笑傲江湖'</span>,<span class="string">'1995-12-24'</span>,<span class="number">20</span>,<span class="number">80</span>,<span class="number">0</span>),</span><br><span class="line">(<span class="string">'雪山飞狐'</span>,<span class="string">'1987-11-11'</span>,<span class="number">58</span>,<span class="number">24</span>,<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p>再复制如下语句执行，向booktest_heroinfo表中插入测试数据：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> booktest_heroinfo(hname,hgender,hbook_id,hcomment,isDelete) <span class="keyword">values</span></span><br><span class="line">(<span class="string">'郭靖'</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="string">'降龙十八掌'</span>,<span class="number">0</span>),</span><br><span class="line">(<span class="string">'黄蓉'</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="string">'打狗棍法'</span>,<span class="number">0</span>),</span><br><span class="line">(<span class="string">'黄药师'</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="string">'弹指神通'</span>,<span class="number">0</span>),</span><br><span class="line">(<span class="string">'欧阳锋'</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="string">'蛤蟆功'</span>,<span class="number">0</span>),</span><br><span class="line">(<span class="string">'梅超风'</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="string">'九阴白骨爪'</span>,<span class="number">0</span>),</span><br><span class="line">(<span class="string">'乔峰'</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="string">'降龙十八掌'</span>,<span class="number">0</span>),</span><br><span class="line">(<span class="string">'段誉'</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="string">'六脉神剑'</span>,<span class="number">0</span>),</span><br><span class="line">(<span class="string">'虚竹'</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="string">'天山六阳掌'</span>,<span class="number">0</span>),</span><br><span class="line">(<span class="string">'王语嫣'</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="string">'神仙姐姐'</span>,<span class="number">0</span>),</span><br><span class="line">(<span class="string">'令狐冲'</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="string">'独孤九剑'</span>,<span class="number">0</span>),</span><br><span class="line">(<span class="string">'任盈盈'</span>,<span class="number">0</span>,<span class="number">3</span>,<span class="string">'弹琴'</span>,<span class="number">0</span>),</span><br><span class="line">(<span class="string">'岳不群'</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="string">'华山剑法'</span>,<span class="number">0</span>),</span><br><span class="line">(<span class="string">'东方不败'</span>,<span class="number">0</span>,<span class="number">3</span>,<span class="string">'葵花宝典'</span>,<span class="number">0</span>),</span><br><span class="line">(<span class="string">'胡斐'</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="string">'胡家刀法'</span>,<span class="number">0</span>),</span><br><span class="line">(<span class="string">'苗若兰'</span>,<span class="number">0</span>,<span class="number">4</span>,<span class="string">'黄衣'</span>,<span class="number">0</span>),</span><br><span class="line">(<span class="string">'程灵素'</span>,<span class="number">0</span>,<span class="number">4</span>,<span class="string">'医术'</span>,<span class="number">0</span>),</span><br><span class="line">(<span class="string">'袁紫衣'</span>,<span class="number">0</span>,<span class="number">4</span>,<span class="string">'六合拳'</span>,<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="定义视图"><a href="#定义视图" class="headerlink" title="定义视图"></a>定义视图</h3><p>打开booktest/views.py文件，定义视图代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render,redirect</span><br><span class="line"><span class="keyword">from</span> booktest.models <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> date</span><br><span class="line"></span><br><span class="line"><span class="comment">#查询所有图书并显示</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">    list=BookInfo.objects.all()</span><br><span class="line">    <span class="keyword">return</span> render(request,<span class="string">'booktest/index.html'</span>,&#123;<span class="string">'list'</span>:list&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建新图书</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(request)</span>:</span></span><br><span class="line">    book=BookInfo()</span><br><span class="line">    book.btitle = <span class="string">'流星蝴蝶剑'</span></span><br><span class="line">    book.bpub_date = date(<span class="number">1995</span>,<span class="number">12</span>,<span class="number">30</span>)</span><br><span class="line">    book.save()</span><br><span class="line">    <span class="comment">#转向到首页</span></span><br><span class="line">    <span class="keyword">return</span> redirect(<span class="string">'/'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#逻辑删除指定编号的图书</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete</span><span class="params">(request,id)</span>:</span></span><br><span class="line">    book=BookInfo.objects.get(id=int(id))</span><br><span class="line">    book.delete()</span><br><span class="line">    <span class="comment">#转向到首页</span></span><br><span class="line">    <span class="keyword">return</span> redirect(<span class="string">'/'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="配置url"><a href="#配置url" class="headerlink" title="配置url"></a>配置url</h3><p>打开test2/urls.py文件，配置url如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> include, url</span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^admin/'</span>, include(admin.site.urls)),</span><br><span class="line">    <span class="comment">#引入booktest的url配置</span></span><br><span class="line">    url(<span class="string">r'^'</span>,include(<span class="string">'booktest.urls'</span>)),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>在booktest应用下创建urls.py文件，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"><span class="keyword">from</span> booktest <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns=[</span><br><span class="line">    url(<span class="string">r'^$'</span>,views.index),</span><br><span class="line">    url(<span class="string">r'^delete(\d+)/$'</span>,views.delete),</span><br><span class="line">    url(<span class="string">r'^create/$'</span>,views.create),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="创建模板"><a href="#创建模板" class="headerlink" title="创建模板"></a>创建模板</h3><p>打开test2/settings.py文件，配置模板查找目录TEMPLATES的DIRS。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'DIRS'</span>: [os.path.join(BASE_DIR,<span class="string">'templates'</span>)],</span><br></pre></td></tr></table></figure>
+<p>创建templates/booktest/index.html文件。</p>
+<p>模板代码如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;复习案例&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;a href="/create/"&gt;创建&lt;/a&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">&#123;%<span class="keyword">for</span> book <span class="keyword">in</span> list%&#125;</span><br><span class="line">    &lt;li&gt;&#123;&#123;book.btitle&#125;&#125;--&lt;a href="/delete&#123;&#123;book.id&#125;&#125;/"&gt;删除&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">&#123;%endfor%&#125;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>运行服务器。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ python manage.py runserver</span><br></pre></td></tr></table></figure>
+<p>在浏览器中查看：</p>
+<p><img src="https://s1.ax1x.com/2018/08/13/Pg9WHx.png" alt="运行服务器"></p>
+<p>在mysql命令行中查看数据表变化如下图：</p>
+<p><img src="https://s1.ax1x.com/2018/08/13/Pg94UK.png" alt="数据表变化"></p>
+<h2 id="模型类定义属性"><a href="#模型类定义属性" class="headerlink" title="模型类定义属性"></a>模型类定义属性</h2><h3 id="属性特性"><a href="#属性特性" class="headerlink" title="属性特性"></a>属性特性</h3><p><strong>Django根据属性的类型确定以下信息：</strong></p>
+<ul>
+<li>当前选择的数据库支持字段的类型</li>
+<li>渲染管理表单时使用的默认html控件</li>
+<li>在管理站点最低限度的验证</li>
+</ul>
+<p>django会为表创建自动增长的主键列，每个模型只能有一个主键列，如果使用选项设置某属性为主键列后django不会再创建自动增长的主键列。</p>
+<p><strong>属性命名限制： </strong></p>
+<ul>
+<li>不能是python的保留关键字。</li>
+<li>不允许使用连续的下划线，这是由django的查询方式决定的，在第4节会详细讲解查询。</li>
+<li>定义属性时需要指定字段类型，通过字段类型的参数指定选项</li>
+</ul>
+<h3 id="字段类型及选项"><a href="#字段类型及选项" class="headerlink" title="字段类型及选项"></a>字段类型及选项</h3><p><strong>字段类型</strong></p>
+<p>使用时需要引入django.db.models包，字段类型如下：</p>
+<ul>
+<li>AutoField：自动增长的IntegerField，通常不用指定，不指定时Django会自动创建属性名为id的自动增长属性。</li>
+<li>BooleanField：布尔字段，值为True或False。</li>
+<li>NullBooleanField：支持Null、True、False三种值。</li>
+<li>CharField(max_length=字符长度)：字符串。 参数max_length表示最大字符个数。</li>
+<li>TextField：大文本字段，一般超过4000个字符时使用。</li>
+<li>IntegerField：整数。</li>
+<li>DecimalField(max_digits=None, decimal_places=None)：十进制浮点数。<ul>
+<li>参数max_digits表示总位数。</li>
+<li>参数decimal_places表示小数位数。</li>
+</ul>
+</li>
+<li>DateField[auto_now=False, auto_now_add=False])：日期。<ul>
+<li>参数auto_now表示每次保存对象时，自动设置该字段为当前时间，用于”最后一次修改”的时间戳，它总是使用当前日期，默认为false。</li>
+<li>参数auto_now_add表示当对象第一次被创建时自动设置当前时间，用于创建的时间戳，它总是使用当前日期，默认为false。</li>
+<li>参数auto_now_add和auto_now是相互排斥的，组合将会发生错误。</li>
+</ul>
+</li>
+<li>TimeField：时间，参数同DateField。</li>
+<li>DateTimeField：日期时间，参数同DateField。</li>
+<li>FileField：上传文件字段。</li>
+<li>ImageField：继承于FileField，对上传的内容进行校验，确保是有效的图片。</li>
+</ul>
+<p><strong>字段选项</strong></p>
+<p>通过选项实现对字段的约束，选项如下：</p>
+<ul>
+<li>null：如果为True，表示允许为空，默认值是False。</li>
+<li>blank：如果为True，则该字段允许为空白，默认值是False。</li>
+<li><strong>对比：null是数据库范畴的概念，blank是表单验证范畴的</strong>。</li>
+<li>db_column：字段的名称，如果未指定，则使用属性的名称。</li>
+<li>db_index：若值为True, 则在表中会为此字段创建索引，默认值是False。</li>
+<li>default：默认值。</li>
+<li>primary_key：若为True，则该字段会成为模型的主键字段，默认值是False，一般作为AutoField的选项使用。</li>
+<li>unique：如果为True, 这个字段在表中必须有唯一值，默认值是False。</li>
+</ul>
+<h3 id="综合演示"><a href="#综合演示" class="headerlink" title="综合演示"></a>综合演示</h3><p>修改booktest/models.py中的模型类，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义图书模型类BookInfo</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BookInfo</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="comment">#btitle = models.CharField(max_length=20)#图书名称</span></span><br><span class="line">    btitle = models.CharField（max_length=<span class="number">20</span>, db_column=<span class="string">'title'</span>)<span class="comment">#通过db_column指定btitle对应表格中字段的名字为title</span></span><br><span class="line">    bpub_date = models.DateField()<span class="comment">#发布日期</span></span><br><span class="line">    bread = models.IntegerField(default=<span class="number">0</span>)<span class="comment">#阅读量</span></span><br><span class="line">    bcomment = models.IntegerField(default=<span class="number">0</span>)<span class="comment">#评论量</span></span><br><span class="line">    isDelete = models.BooleanField(default=<span class="keyword">False</span>)<span class="comment">#逻辑删除</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#定义英雄模型类HeroInfo</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HeroInfo</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    hname = models.CharField(max_length=<span class="number">20</span>)<span class="comment">#英雄姓名</span></span><br><span class="line">    hgender = models.BooleanField(default=<span class="keyword">True</span>)<span class="comment">#英雄性别</span></span><br><span class="line">    isDelete = models.BooleanField(default=<span class="keyword">False</span>)<span class="comment">#逻辑删除</span></span><br><span class="line">    <span class="comment">#hcomment = models.CharField(max_length=200)#英雄描述信息</span></span><br><span class="line">    hcomment = models.CharField(max_length=<span class="number">200</span>, null=<span class="keyword">True</span>, blank=<span class="keyword">False</span>) <span class="comment">#hcomment对应的数据库中的字段可以为空，但通过后台管理页面添加英雄信息时hcomment对应的输入框不能为空</span></span><br><span class="line">    hbook = models.ForeignKey(<span class="string">'BookInfo'</span>)<span class="comment">#英雄与图书表的关系为一对多，所以属性定义在英雄模型类中</span></span><br></pre></td></tr></table></figure>
+<p>然后生成迁移文件并执行迁移命令，最后查看test2数据库中的内容。</p>
+<h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h2><blockquote>
+<p>实现sql中where的功能，调用过滤器filter()、exclude()、get()，下面以filter()为例。通过”属性名_id”表示外键对应对象的id值。</p>
+</blockquote>
+<p>语法如下：</p>
+<blockquote>
+<p>说明：属性名称和比较运算符间使用两个下划线，所以属性名不能包括多个下划线。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">属性名称__比较运算符=值</span><br></pre></td></tr></table></figure>
+<h3 id="查看MySQL日志"><a href="#查看MySQL日志" class="headerlink" title="查看MySQL日志"></a>查看MySQL日志</h3><p>查看mysql数据库日志可以查看对数据库的操作记录。 mysql日志文件默认没有产生，需要做如下配置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/mysql/mysql.conf.d/mysqld.conf</span><br><span class="line"><span class="meta">#</span><span class="bash"> 打开68,69行日志记录</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://s1.ax1x.com/2018/08/13/PgPnTP.png" alt="mysql日志"></p>
+<p>使用如下命令打开mysql日志文件:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -f /var/<span class="built_in">log</span>/mysql/mysql.log <span class="comment">#可以实时查看数据库的日志内容</span></span><br></pre></td></tr></table></figure>
+<h3 id="条件运算符"><a href="#条件运算符" class="headerlink" title="条件运算符"></a>条件运算符</h3><p>1) 查询等</p>
+<p><strong>exact：表示判等。</strong></p>
+<p>例：查询编号为1的图书。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先进入shell交互式命令行</span></span><br><span class="line">$ python manage.py shell</span><br><span class="line">list=BookInfo.objects.filter(id__exact=1)</span><br><span class="line">可简写为：</span><br><span class="line">list=BookInfo.objects.filter(id=1)</span><br></pre></td></tr></table></figure>
+<p>2) 模糊查询</p>
+<p><strong>contains：是否包含。</strong></p>
+<p>例：查询书名包含’传’的图书。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list = BookInfo.objects.filter(btitle__contains=<span class="string">'传'</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>startswith、endswith：以指定值开头或结尾。</strong></p>
+<p>例：查询书名以’部’结尾的图书</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list = BookInfo.objects.filter(btitle__endswith=<span class="string">'部'</span>)</span><br></pre></td></tr></table></figure>
+<p>3) 空查询</p>
+<p><strong>isnull：是否为null。</strong></p>
+<p>例：查询书名不为空的图书。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list = BookInfo.objects.filter(btitle__isnull=False)</span><br></pre></td></tr></table></figure>
+<p>4) 范围查询</p>
+<p><strong>in：是否包含在范围内。</strong></p>
+<p>例：查询编号为1或3或5的图书</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list = BookInfo.objects.filter(id__in=[1, 3, 5])</span><br></pre></td></tr></table></figure>
+<p>5) 比较查询</p>
+<p><strong>gt、gte、lt、lte：大于、大于等于、小于、小于等于。</strong></p>
+<p>例：查询编号大于3的图书</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list = BookInfo.objects.filter(id__gt=3)</span><br></pre></td></tr></table></figure>
+<p><strong>不等于的运算符，使用exclude()过滤器。</strong></p>
+<p>例：查询编号不等于3的图书</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list = BookInfo.objects.exclude(id=3)</span><br></pre></td></tr></table></figure>
+<p>6) 日期查询</p>
+<p><strong>year、month、day、week_day、hour、minute、second：对日期时间类型的属性进行运算。</strong></p>
+<p>例：查询1980年发表的图书。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list = BookInfo.objects.filter(bpub_date__year=1980)</span><br></pre></td></tr></table></figure>
+<p>例：查询1980年1月1日后发表的图书。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list = BookInfo.objects.filter(bpub_date__gt=date(1990, 1, 1))</span><br></pre></td></tr></table></figure>
+<h3 id="F对象"><a href="#F对象" class="headerlink" title="F对象"></a>F对象</h3><p>之前的查询都是对象的属性与常量值比较，两个属性怎么比较呢？ 答：使用F对象，被定义在django.db.models中。</p>
+<p>例：查询阅读量大于等于评论量的图书。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db.models <span class="keyword">import</span> F</span><br><span class="line">list = BookInfo.objects.filter(bread__gte=F(<span class="string">'bcomment'</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="Q对象"><a href="#Q对象" class="headerlink" title="Q对象"></a>Q对象</h3><p>多个过滤器逐个调用表示逻辑与关系，同sql语句中where部分的and关键字。</p>
+<p>例：查询阅读量大于20，并且编号小于3的图书。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list=BookInfo.objects.filter(bread__gt=<span class="number">20</span>,id__lt=<span class="number">3</span>)</span><br><span class="line">或</span><br><span class="line">list=BookInfo.objects.filter(bread__gt=<span class="number">20</span>).filter(id__lt=<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>如果需要实现逻辑或or的查询，需要使用Q()对象结合|运算符，Q对象被义在django.db.models中。</p>
+<p>语法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Q(属性名__运算符=值)</span><br></pre></td></tr></table></figure>
+<p>例：查询阅读量大于20的图书，改写为Q对象如下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db.models <span class="keyword">import</span> Q</span><br><span class="line">list = BookInfo.objects.filter(Q(bread__gt=<span class="number">20</span>))</span><br></pre></td></tr></table></figure>
+<p>Q对象可以使用&amp;、|连接，&amp;表示逻辑与，|表示逻辑或。</p>
+<p>例：查询阅读量大于20，或编号小于3的图书，只能使用Q对象实现</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list = BookInfo.objects.filter(Q(bread__gt=20) | Q(pk__lt=3))</span><br></pre></td></tr></table></figure>
+<p>Q对象前可以使用~操作符，表示非not。</p>
+<p>例：查询编号不等于3的图书。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list = BookInfo.objects.filter(~Q(pk=3))</span><br></pre></td></tr></table></figure>
+<h3 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h3><p>使用aggregate()过滤器调用聚合函数。聚合函数包括：Avg，Count，Max，Min，Sum，被定义在django.db.models中。</p>
+<p>例：查询图书的总阅读量。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db.models <span class="keyword">import</span> Sum</span><br><span class="line">list = BookInfo.objects.aggregate(Sum(<span class="string">'bread'</span>))</span><br></pre></td></tr></table></figure>
+<p>注意aggregate的返回值是一个字典类型，格式如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;'聚合类小写__属性名':值&#125;</span><br><span class="line">如:&#123;'sum__bread':3&#125;</span><br></pre></td></tr></table></figure>
+<p>使用count时一般不使用aggregate()过滤器。</p>
+<p>例：查询图书总数。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list = BookInfo.objects.count()</span><br></pre></td></tr></table></figure>
+<p>注意count函数的返回值是一个数字。</p>
+<h2 id="查询集"><a href="#查询集" class="headerlink" title="查询集"></a>查询集</h2><blockquote>
+<p>查询集表示从数据库中获取的对象集合，在管理器上调用某些过滤器方法会返回查询集，查询集可以含有零个、一个或多个过滤器。过滤器基于所给的参数限制查询的结果，从Sql的角度，查询集和select语句等价，过滤器像where和limit子句。</p>
+</blockquote>
+<h3 id="查询集的过滤器"><a href="#查询集的过滤器" class="headerlink" title="查询集的过滤器"></a>查询集的过滤器</h3><p><strong>返回查询集的过滤器如下</strong>：</p>
+<ul>
+<li>all()：返回所有数据。</li>
+<li>filter()：返回满足条件的数据。</li>
+<li>exclude()：返回满足条件之外的数据，相当于sql语句中where部分的not关键字。</li>
+<li>order_by()：对结果进行排序。</li>
+</ul>
+<p><strong>返回单个值的过滤器如下</strong>：</p>
+<ul>
+<li>get()：返回单个满足条件的对象<ul>
+<li>如果未找到会引发”模型类.DoesNotExist”异常。</li>
+<li>如果多条被返回，会引发”模型类.MultipleObjectsReturned”异常。</li>
+</ul>
+</li>
+<li>count()：返回当前查询结果的总条数。</li>
+<li>aggregate()：聚合，返回一个字典。</li>
+</ul>
+<p><strong>判断某一个查询集中是否有数据</strong>：</p>
+<ul>
+<li>exists()：判断查询集中是否有数据，如果有则返回True，没有则返回False。</li>
+</ul>
+<h3 id="查询集的特性"><a href="#查询集的特性" class="headerlink" title="查询集的特性"></a>查询集的特性</h3><ul>
+<li>惰性执行：创建查询集不会访问数据库，直到调用数据时，才会访问数据库，调用数据的情况包括迭代、序列化、与if合用。</li>
+<li>缓存：使用同一个查询集，第一次使用时会发生数据库的查询，然后把结果缓存下来，再次使用这个查询集时会使用缓存的数据。</li>
+</ul>
+<h3 id="限制查询集"><a href="#限制查询集" class="headerlink" title="限制查询集"></a>限制查询集</h3><p>可以对查询集进行取下标或切片操作，等同于sql中的limit和offset子句。</p>
+<blockquote>
+<p>注意：不支持负数索引。</p>
+</blockquote>
+<p>对查询集进行切片后返回一个新的查询集，不会立即执行查询。</p>
+<p>如果获取一个对象，直接使用[0]，等同于[0:1].get()，但是如果没有数据，[0]引发IndexError异常，[0:1].get()如果没有数据引发DoesNotExist异常。</p>
+<h2 id="模型类关系"><a href="#模型类关系" class="headerlink" title="模型类关系"></a>模型类关系</h2><h3 id="关系字段类型"><a href="#关系字段类型" class="headerlink" title="关系字段类型"></a>关系字段类型</h3><p>关系型数据库的关系包括三种类型：</p>
+<ul>
+<li>ForeignKey：一对多，将字段定义在多的一端中。</li>
+<li>ManyToManyField：多对多，将字段定义在任意一端中。</li>
+<li>OneToOneField：一对一，将字段定义在任意一端中。</li>
+<li>可以维护递归的关联关系，使用’self’指定，详见”自关联”。</li>
+</ul>
+<h3 id="一对多关系"><a href="#一对多关系" class="headerlink" title="一对多关系"></a>一对多关系</h3><p>参见booktest应用中的BookInfo类和HeroInfo类。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#定义图书模型类BookInfo</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BookInfo</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    btitle = models.CharField(max_length=<span class="number">20</span>)<span class="comment">#图书名称</span></span><br><span class="line">    bpub_date = models.DateField()<span class="comment">#发布日期</span></span><br><span class="line">    bread = models.IntegerField(default=<span class="number">0</span>)<span class="comment">#阅读量</span></span><br><span class="line">    bcomment = models.IntegerField(default=<span class="number">0</span>)<span class="comment">#评论量</span></span><br><span class="line">    isDelete = models.BooleanField(default=<span class="keyword">False</span>)<span class="comment">#逻辑删除</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#定义英雄模型类HeroInfo</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HeroInfo</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    hname = models.CharField(max_length=<span class="number">20</span>)<span class="comment">#英雄姓名</span></span><br><span class="line">    hgender = models.BooleanField(default=<span class="keyword">True</span>)<span class="comment">#英雄性别</span></span><br><span class="line">    isDelete = models.BooleanField(default=<span class="keyword">False</span>)<span class="comment">#逻辑删除</span></span><br><span class="line">    hcomment = models.CharField(max_length=<span class="number">200</span>)<span class="comment">#英雄描述信息</span></span><br><span class="line">    hbook = models.ForeignKey(<span class="string">'BookInfo'</span>)<span class="comment">#英雄与图书表的关系为一对多，所以属性定义在英雄模型类中</span></span><br></pre></td></tr></table></figure>
+<h3 id="多对多关系"><a href="#多对多关系" class="headerlink" title="多对多关系"></a>多对多关系</h3><p>我们下面设计一个新闻类和新闻类型类，一个新闻类型下可以用很多条新闻，一条新闻也可能归属于多种新闻类型。重新在项目test2下新建一个应用newstest,注册应用之后，编辑newstest/models.py文件设计模型类。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TypeInfo</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">  tname = models.CharField(max_length=<span class="number">20</span>) <span class="comment">#新闻类别</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NewsInfo</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">  ntitle = models.CharField(max_length=<span class="number">60</span>) <span class="comment">#新闻标题</span></span><br><span class="line">  ncontent = models.TextField() <span class="comment">#新闻内容</span></span><br><span class="line">  npub_date = models.DateTimeField(auto_now_add=<span class="keyword">True</span>) <span class="comment">#新闻发布时间</span></span><br><span class="line">  ntype = models.ManyToManyField(<span class="string">'TypeInfo'</span>) <span class="comment">#通过ManyToManyField建立TypeInfo类和NewsInfo类之间多对多的关系</span></span><br></pre></td></tr></table></figure>
+<h3 id="关联查询"><a href="#关联查询" class="headerlink" title="关联查询"></a>关联查询</h3><h4 id="通过对象执行关联查询"><a href="#通过对象执行关联查询" class="headerlink" title="通过对象执行关联查询"></a>通过对象执行关联查询</h4><p>在定义模型类时，可以指定三种关联关系，最常用的是一对多关系，如本例中的”图书-英雄”就为一对多关系，接下来进入shell练习关系的查询。</p>
+<p>由一到多的访问语法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 一对应的模型类对象.多对应的模型类名小写_set   (bookinfo-heroinf)</span></span><br><span class="line">例：</span><br><span class="line">b = BookInfo.objects.get(id=1)</span><br><span class="line">b.heroinfo_set.all()</span><br></pre></td></tr></table></figure>
+<p>由多到一的访问语法:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">多对应的模型类对象.多对应的模型类中的关系类属性名</span><br><span class="line">例：</span><br><span class="line">h = HeroInfo.objects.get(id=1)</span><br><span class="line">h.hbook</span><br></pre></td></tr></table></figure>
+<p>访问一对应的模型类关联对象的id语法:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">多对应的模型类对象.关联类属性_id</span><br><span class="line">例：</span><br><span class="line">h = HeroInfo.objects.get(id=1)</span><br><span class="line">h.book_id</span><br></pre></td></tr></table></figure>
+<p><strong>由一类查多类</strong></p>
+<p>例：查询编号为1的图书。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">book=BookInfo.objects.get(pk=1)</span><br></pre></td></tr></table></figure>
+<p>例：获得book图书的所有英雄。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">book.heroinfo_set.all()</span><br></pre></td></tr></table></figure>
+<p><strong>由多类查一类</strong></p>
+<p>例：获得编号为1的英雄。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hero=HeroInfo.objects.get(pk=1)</span><br></pre></td></tr></table></figure>
+<p>例：获得hero英雄出自的图书。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hero.hbook</span><br></pre></td></tr></table></figure>
+<h4 id="通过模型类执行关联查询"><a href="#通过模型类执行关联查询" class="headerlink" title="通过模型类执行关联查询"></a>通过模型类执行关联查询</h4><p><strong>由多模型类条件查询一模型类数据</strong>:</p>
+<p>语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">关联模型类名小写__属性名__条件运算符=值</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果没有”__运算符”部分，表示等于，结果和sql中的inner join相同。</p>
+</blockquote>
+<p>例：查询图书，要求图书中英雄的描述包含’八’。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list = BookInfo.objects.filter(heroinfo__hcontent__contains=&apos;八&apos;)</span><br></pre></td></tr></table></figure>
+<p><strong>由一模型类条件查询多模型类数据</strong>:</p>
+<p>语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一模型类关联属性名__一模型类属性名__条件运算符=值</span><br></pre></td></tr></table></figure>
+<p>例：查询书名为“天龙八部”的所有英雄。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list = HeroInfo.objects.filter(hbook__btitle=&apos;天龙八部&apos;)</span><br></pre></td></tr></table></figure>
+<h3 id="自关联"><a href="#自关联" class="headerlink" title="自关联"></a>自关联</h3><blockquote>
+<p>对于地区信息、分类信息等数据，表结构非常类似，每个表的数据量十分有限，为了充分利用数据表的大量数据存储功能，可以设计成一张表，内部的关系字段指向本表的主键，这就是自关联的表结构。</p>
+</blockquote>
+<p>打开booktest/models.py文件，定义AreaInfo类。</p>
+<blockquote>
+<p>说明：关系属性使用self指向本类，要求null和blank允许为空，因为一级数据是没有父级的。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#定义地区模型类，存储省、市、区县信息</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AreaInfo</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    atitle=models.CharField(max_length=<span class="number">30</span>)<span class="comment">#名称</span></span><br><span class="line">    aParent=models.ForeignKey(<span class="string">'self'</span>,null=<span class="keyword">True</span>,blank=<span class="keyword">True</span>)<span class="comment">#关系</span></span><br></pre></td></tr></table></figure>
+<p>迁移:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations</span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
+<p> 打开mysql命令行，导入数据。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> areas.sql <span class="comment"># 这里的数据找我要</span></span><br></pre></td></tr></table></figure>
+<p>打开booktest/views.py文件，定义视图area。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from booktest.models import AreaInfo</span><br><span class="line">...</span><br><span class="line"><span class="comment">#查询广州市的信息</span></span><br><span class="line">def area(request):</span><br><span class="line">    area = AreaInfo.objects.get(pk=440100)</span><br><span class="line">    <span class="built_in">return</span> render(request, <span class="string">'booktest/area.html'</span>, &#123;<span class="string">'area'</span>: area&#125;)</span><br></pre></td></tr></table></figure>
+<p>打开booktest/urls.py文件，新建一条url。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">urlpatterns = [</span><br><span class="line">    url(r&apos;^area/$&apos;, views.area),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>在templates/booktest目录下，新建area.html文件。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>地区<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">当前地区：&#123;&#123;area.atitle&#125;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>/&gt;</span></span><br><span class="line">上级地区：&#123;&#123;area.aParent.atitle&#125;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>/&gt;</span></span><br><span class="line">下级地区：</span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    &#123;%for a in area.areainfo_set.all%&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;&#123;a.atitle&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    &#123;%endfor%&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>运行服务器。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py runserver</span><br></pre></td></tr></table></figure>
+<p>在浏览器中输出效果如下图：</p>
+<p><img src="https://s1.ax1x.com/2018/08/13/PgiZ3F.png" alt="自关联"></p>
+<h2 id="模型类的扩展"><a href="#模型类的扩展" class="headerlink" title="模型类的扩展"></a>模型类的扩展</h2><h3 id="模型实例方法"><a href="#模型实例方法" class="headerlink" title="模型实例方法"></a>模型实例方法</h3><ul>
+<li>str()：在将对象转换成字符串时会被调用。</li>
+<li>save()：将模型对象保存到数据表中，ORM框架会转换成对应的insert或update语句。</li>
+<li>delete()：将模型对象从数据表中删除，ORM框架会转换成对应的delete语句。</li>
+</ul>
+<h3 id="模型类的属性"><a href="#模型类的属性" class="headerlink" title="模型类的属性"></a>模型类的属性</h3><p>属性objects：管理器，是models.Manager类型的对象，用于与数据库进行交互。</p>
+<blockquote>
+<p>当没有为模型类定义管理器时，Django会为每一个模型类生成一个名为objects的管理器，自定义管理器后，Django不再生成默认管理器objects。</p>
+</blockquote>
+<p>为模型类BookInfo定义管理器books语法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BookInfo</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    ...</span><br><span class="line">    books = models.Manager()</span><br></pre></td></tr></table></figure>
+<h3 id="管理器Manager"><a href="#管理器Manager" class="headerlink" title="管理器Manager"></a>管理器Manager</h3><p>管理器是Django的模型进行数据库操作的接口，Django应用的每个模型类都拥有至少一个管理器。Django支持自定义管理器类，继承自models.Manager。</p>
+<p>自定义管理器类主要用于两种情况：</p>
+<ul>
+<li>1.修改原始查询集，重写all()方法</li>
+<li>2.向管理器类中添加额外的方法，如向数据库中插入数据。</li>
+</ul>
+<p><strong>1.修改原始查询集，重写all()方法 </strong></p>
+<p>a）打开booktest/models.py文件，定义类BookInfoManager</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#图书管理器</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BookInfoManager</span><span class="params">(models.Manager)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">all</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment">#默认查询未删除的图书信息</span></span><br><span class="line">        <span class="comment">#调用父类的成员语法为：super().方法名</span></span><br><span class="line">        <span class="keyword">return</span> super().all().filter(isDelete=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
+<p>b）在模型类BookInfo中定义管理器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class BookInfo(models.Model):</span><br><span class="line">    books = BookInfoManager()</span><br></pre></td></tr></table></figure>
+<p><strong>2.在管理器类中定义创建对象的方法</strong></p>
+<p>对模型类对应的数据表进行操作时，推荐将这些操作数据表的方法封装起来，放到模型管理器类中。</p>
+<p>a）打开booktest/models.py文件，定义方法create。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BookInfoManager</span><span class="params">(models.Manager)</span>:</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">#创建模型类，接收参数为属性赋值</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create_book</span><span class="params">(self, title, pub_date)</span>:</span></span><br><span class="line">        <span class="comment">#创建模型类对象self.model可以获得模型类</span></span><br><span class="line">        book = self.model()</span><br><span class="line">        book.btitle = title</span><br><span class="line">        book.bpub_date = pub_date</span><br><span class="line">        book.bread=<span class="number">0</span></span><br><span class="line">        book.bcommet=<span class="number">0</span></span><br><span class="line">        book.isDelete = <span class="keyword">False</span></span><br><span class="line">        <span class="comment"># 将数据插入进数据表</span></span><br><span class="line">        book.save()</span><br><span class="line">        <span class="keyword">return</span> book</span><br></pre></td></tr></table></figure>
+<p>b）为模型类BookInfo定义管理器books语法如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BookInfo</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    books = BookInfoManager()</span><br></pre></td></tr></table></figure>
+<p>c）调用语法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 调用</span></span><br><span class="line">book=BookInfo.books.create_book(<span class="string">"abc"</span>,date(<span class="number">1980</span>,<span class="number">1</span>,<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="元选项"><a href="#元选项" class="headerlink" title="元选项"></a>元选项</h3><p>在模型类中定义类Meta，用于设置元信息，如使用db_table自定义表的名字。</p>
+<p>数据表的默认名称为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;app_name&gt;_&lt;model_name&gt;</span><br><span class="line">例：</span><br><span class="line">booktest_bookinfo</span><br></pre></td></tr></table></figure>
+<p><strong>例：指定BookInfo模型类生成的数据表名为bookinfo。</strong></p>
+<p>在BookInfo模型类中添加如下内容，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#定义图书模型类BookInfo</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BookInfo</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="comment">#定义元选项</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">      db_table=<span class="string">'bookinfo'</span> <span class="comment">#指定BookInfo生成的数据表名为bookinfo</span></span><br></pre></td></tr></table></figure>
+<h2 id="重要知识点总结"><a href="#重要知识点总结" class="headerlink" title="重要知识点总结"></a>重要知识点总结</h2><ul>
+<li>修改配置文件使用mysql数据库</li>
+<li>属性类型及选项</li>
+<li>条件查询和查询集</li>
+<li>模型类关联</li>
+<li>关联查询</li>
+<li>自定义管理器及用途</li>
+<li>元选项</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏2块钱,帮我买杯咖啡,继续创作,谢谢大家！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="陈凡 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliyipay.jpg" alt="陈凡 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+        -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+         
+            <a href="/tags/Django/" rel="tag"><i class="fa fa-tag"></i>Django</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/10/Django基础入门/" rel="next" title="Django基础入门">
+                <i class="fa fa-chevron-left"></i> Django基础入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/upload/avatar.gif"
+                alt="陈凡" />
+            
+              <p class="site-author-name" itemprop="name">陈凡</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/chenfanlinux" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:chenfan216@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/3942411590" target="_blank" title="微博">
+                    
+                      <i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/love-hero-80" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ORM简介"><span class="nav-number">1.</span> <span class="nav-text">ORM简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ORM的好处"><span class="nav-number">1.1.</span> <span class="nav-text">ORM的好处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ORM示意图"><span class="nav-number">1.2.</span> <span class="nav-text">ORM示意图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更换数据库为MySQL"><span class="nav-number">1.3.</span> <span class="nav-text">更换数据库为MySQL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例演示"><span class="nav-number">2.</span> <span class="nav-text">实例演示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义模型类"><span class="nav-number">2.1.</span> <span class="nav-text">定义模型类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试数据"><span class="nav-number">2.2.</span> <span class="nav-text">测试数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义视图"><span class="nav-number">2.3.</span> <span class="nav-text">定义视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置url"><span class="nav-number">2.4.</span> <span class="nav-text">配置url</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建模板"><span class="nav-number">2.5.</span> <span class="nav-text">创建模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行"><span class="nav-number">2.6.</span> <span class="nav-text">运行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型类定义属性"><span class="nav-number">3.</span> <span class="nav-text">模型类定义属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#属性特性"><span class="nav-number">3.1.</span> <span class="nav-text">属性特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字段类型及选项"><span class="nav-number">3.2.</span> <span class="nav-text">字段类型及选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#综合演示"><span class="nav-number">3.3.</span> <span class="nav-text">综合演示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#条件查询"><span class="nav-number">4.</span> <span class="nav-text">条件查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看MySQL日志"><span class="nav-number">4.1.</span> <span class="nav-text">查看MySQL日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件运算符"><span class="nav-number">4.2.</span> <span class="nav-text">条件运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#F对象"><span class="nav-number">4.3.</span> <span class="nav-text">F对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Q对象"><span class="nav-number">4.4.</span> <span class="nav-text">Q对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚合函数"><span class="nav-number">4.5.</span> <span class="nav-text">聚合函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询集"><span class="nav-number">5.</span> <span class="nav-text">查询集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查询集的过滤器"><span class="nav-number">5.1.</span> <span class="nav-text">查询集的过滤器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询集的特性"><span class="nav-number">5.2.</span> <span class="nav-text">查询集的特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#限制查询集"><span class="nav-number">5.3.</span> <span class="nav-text">限制查询集</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型类关系"><span class="nav-number">6.</span> <span class="nav-text">模型类关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关系字段类型"><span class="nav-number">6.1.</span> <span class="nav-text">关系字段类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一对多关系"><span class="nav-number">6.2.</span> <span class="nav-text">一对多关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多对多关系"><span class="nav-number">6.3.</span> <span class="nav-text">多对多关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关联查询"><span class="nav-number">6.4.</span> <span class="nav-text">关联查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通过对象执行关联查询"><span class="nav-number">6.4.1.</span> <span class="nav-text">通过对象执行关联查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过模型类执行关联查询"><span class="nav-number">6.4.2.</span> <span class="nav-text">通过模型类执行关联查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自关联"><span class="nav-number">6.5.</span> <span class="nav-text">自关联</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型类的扩展"><span class="nav-number">7.</span> <span class="nav-text">模型类的扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型实例方法"><span class="nav-number">7.1.</span> <span class="nav-text">模型实例方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型类的属性"><span class="nav-number">7.2.</span> <span class="nav-text">模型类的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管理器Manager"><span class="nav-number">7.3.</span> <span class="nav-text">管理器Manager</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元选项"><span class="nav-number">7.4.</span> <span class="nav-text">元选项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要知识点总结"><span class="nav-number">8.</span> <span class="nav-text">重要知识点总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+<script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=ipZXdvME3sKg6viC20OoTCYATcaOJ6SQH2wdaJEUHfc"></script>
+
+<div id="music163player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=525241230&auto=0&height=66"></iframe>
+</div>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈凡</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">130.1k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div> 
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+ <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 98812, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2018/08/13/Django入门基础之模型/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/98812/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+<!--页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>  
+
+
+
+<!-- 
+<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-1 count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script> -->
+
+
+</body>
+</html>

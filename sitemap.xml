@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.chenfanlinux.org/2018/08/13/Django%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%A8%A1%E5%9E%8B/</loc>
+    
+    <lastmod>2018-08-13T04:18:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.chenfanlinux.org/2018/08/10/Django%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/</loc>
     
     <lastmod>2018-08-10T02:55:05.000Z</lastmod>

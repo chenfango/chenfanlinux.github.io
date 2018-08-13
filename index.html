@@ -339,6 +339,207 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/08/13/Django入门基础之模型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/13/Django入门基础之模型/" itemprop="url">Django入门基础之模型</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-13T12:16:56+08:00">
+                2018-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django入门/" itemprop="url" rel="index">
+                    <span itemprop="name">Django入门</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/13/Django入门基础之模型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/08/13/Django入门基础之模型/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  6,234
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  25
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="ORM简介"><a href="#ORM简介" class="headerlink" title="ORM简介"></a>ORM简介</h2><blockquote>
+<p>ORM，全拼Object-Relation Mapping，中文意为对象-关系映射，是随着面向对象的软件开发方法发展而产生的。面向对象的开发方法是当今企业级应用开发环境中的主流开发方法，关系数据库是企业级应用环境中永久存放数据的主流数据存储系统。对象和关系数据是业务实体的两种表现形式，业务实体在内存中表现为对象，在数据库中表现为关系数据。内存中的对象之间存在关联和继承关系，而在数据库中，关系数据无法直接表达多对多关联和继承关系。因此，对象-关系映射ORM系统一般以中间件的形式存在，主要实现程序对象到关系数据库数据的映射。面向对象是从软件工程基本原则(如耦合、聚合、封装)的基础上发展起来的，而关系数据库则是从数学理论发展而来的，两套理论存在显著的区别。为了解决这个不匹配的现象,对象关系映射技术应运而生。O/R中字母O起源于”对象”(Object),而R则来自于”关系”(Relational)。几乎所有的程序里面，都存在对象和关系数据库。在业务逻辑层和用户界面层中，我们是面向对象的。当对象信息发生变化的时候，我们需要把对象的信息保存在关系数据库中。</p>
+</blockquote>
+<h3 id="ORM的好处"><a href="#ORM的好处" class="headerlink" title="ORM的好处"></a>ORM的好处</h3><p>在MVC框架中的Model模块中都包括ORM，对于开发人员主要带来了如下好处：</p>
+<ul>
+<li>实现了数据模型与数据库的解耦，通过简单的配置就可以轻松更换数据库，而不需要修改代码。</li>
+<li>只需要面向对象编程，不需要面向数据库编写代码。</li>
+<li>在MVC中Model中定义的类，通过ORM与关系型数据库中的表对应，对象的属性体现对象间的关系，这种关系也被映射到数据表中。</li>
+</ul>
+<h3 id="ORM示意图"><a href="#ORM示意图" class="headerlink" title="ORM示意图"></a>ORM示意图</h3><p><img src="https://s1.ax1x.com/2018/08/13/Pgp8yR.png" alt="ORM示意图"></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/13/Django入门基础之模型/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    
+    <div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/08/10/Django基础入门/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2227,210 +2428,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/05/27/如何提升你的记忆力/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/27/如何提升你的记忆力/" itemprop="url">如何提升你的记忆力</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-27T13:36:57+08:00">
-                2018-05-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/生活技巧/" itemprop="url" rel="index">
-                    <span itemprop="name">生活技巧</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/05/27/如何提升你的记忆力/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/05/27/如何提升你的记忆力/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,113
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>刚放在手里的东西，转身就找不到了。明明话就在嘴边，但怎么都想不起来，别人一次就能记住的事情，你却要默背好多遍。别埋怨自己记性不好，其实记忆力也可以通过锻炼提高的。下面介绍这20个方法，挽救一下你的记忆力！</p>
-</blockquote>
-<h3 id="1-经常大笑"><a href="#1-经常大笑" class="headerlink" title="1. 经常大笑"></a>1. 经常大笑</h3><p>笑能保持大脑活力，让思维更明捷。定期与亲友聚会，给老友打个电话，晚餐后与家人聊天，都能让大脑感觉快乐。</p>
-<h3 id="2-听不同类型的歌曲"><a href="#2-听不同类型的歌曲" class="headerlink" title="2. 听不同类型的歌曲"></a>2. 听不同类型的歌曲</h3><p>积极的接受不熟悉的音乐，听歌时除了关注旋律，还要认真琢磨歌词，这样不仅可以锻炼右脑，还会用到掌管语言的左脑。</p>
-<h3 id="3-学习新技能"><a href="#3-学习新技能" class="headerlink" title="3. 学习新技能"></a>3. 学习新技能</h3><p>学习任何一项新技能都能促进大脑健康，例如学习新乐器、做手工、下棋等。</p>
-<h3 id="4-多和他人交流"><a href="#4-多和他人交流" class="headerlink" title="4.多和他人交流"></a>4.多和他人交流</h3><p>与朋友交往，彼此分享经历、沟通情感、增加信任，思路变得更广，新想法也会更多，这些都是大脑的润滑剂。</p>
-<h3 id="5-保证充足的睡眠"><a href="#5-保证充足的睡眠" class="headerlink" title="5.保证充足的睡眠"></a>5.保证充足的睡眠</h3><p>睡觉时，脑脊液在脑细胞间的循环比清醒时快很多，帮助大脑排出 “垃圾”,因为尽量避免熬夜，让大脑充分休息。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/27/如何提升你的记忆力/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    
-    <div>
-  
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2480,7 +2482,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2590,7 +2592,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">123.9k</span>
+    <span title="Site words total count">130.1k</span>
   
 </div>
 
