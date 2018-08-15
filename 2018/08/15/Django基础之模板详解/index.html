@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Django," />
 
 
 
@@ -107,16 +107,46 @@
 
 
 
-<meta name="description" content="Life is short,I need Python!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="陈凡的个人站点">
-<meta property="og:url" content="http://www.chenfanlinux.org/index.html">
+<meta name="description" content="创建模板范例 作为Web框架，Django提供了模板，用于编写html代码，还可以嵌入模板代码更快更方便的完成页面开发，再通过在视图中渲染模板，将生成最终的html字符串返回给客户端浏览器。模版致力于表达外观，而不是程序逻辑。模板的设计实现了业务逻辑view与显示内容template的分离，一个视图可以使用任意一个模板">
+<meta name="keywords" content="Django">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django基础之模板详解">
+<meta property="og:url" content="http://www.chenfanlinux.org/2018/08/15/Django基础之模板详解/index.html">
 <meta property="og:site_name" content="陈凡的个人站点">
-<meta property="og:description" content="Life is short,I need Python!">
+<meta property="og:description" content="创建模板范例 作为Web框架，Django提供了模板，用于编写html代码，还可以嵌入模板代码更快更方便的完成页面开发，再通过在视图中渲染模板，将生成最终的html字符串返回给客户端浏览器。模版致力于表达外观，而不是程序逻辑。模板的设计实现了业务逻辑view与显示内容template的分离，一个视图可以使用任意一个模板，一个模板可以供多个视图使用。  模板包含两部分：  静态部分，包含html、c">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRZcKf.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRZIGn.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRZbrT.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRZjIJ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRePsK.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PReYJs.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRedyV.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRm16x.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRmBct.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRm4cq.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRmTBT.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRmbEF.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRmj3R.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRmxjx.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRu3dO.png">
+<meta property="og:image" content="file://I:/itcast2018/03-Django/Django%E6%96%B0%E8%AF%BE%E4%BB%B6/part4/images/p4_1.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRu4mV.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRuHfJ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRux0K.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRKpkD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRKnAS.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRKl1s.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRKGn0.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRKsnx.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRK2ND.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRMDPg.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/PRM5iF.png">
+<meta property="og:updated_time" content="2018-08-15T10:03:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="陈凡的个人站点">
-<meta name="twitter:description" content="Life is short,I need Python!">
+<meta name="twitter:title" content="Django基础之模板详解">
+<meta name="twitter:description" content="创建模板范例 作为Web框架，Django提供了模板，用于编写html代码，还可以嵌入模板代码更快更方便的完成页面开发，再通过在视图中渲染模板，将生成最终的html字符串返回给客户端浏览器。模版致力于表达外观，而不是程序逻辑。模板的设计实现了业务逻辑view与显示内容template的分离，一个视图可以使用任意一个模板，一个模板可以供多个视图使用。  模板包含两部分：  静态部分，包含html、c">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/08/15/PRZcKf.png">
 
 
 
@@ -146,13 +176,13 @@
 
 
 
-  <link rel="canonical" href="http://www.chenfanlinux.org/"/>
+  <link rel="canonical" href="http://www.chenfanlinux.org/2018/08/15/Django基础之模板详解/"/>
 
 
 
 
 
-  <title> Hexo, NexT - 陈凡的个人站点Life is short,I need Python! </title>
+  <title>Django基础之模板详解 | 陈凡的个人站点</title>
   
 
 
@@ -182,8 +212,7 @@
   
  
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -324,9 +353,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -356,9 +385,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/15/Django基础之模板详解/" itemprop="url">Django基础之模板详解</a></h2>
+          <h2 class="post-title" itemprop="name headline">Django基础之模板详解</h2>
         
 
         <div class="post-meta">
@@ -424,6 +451,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
 
           
             <div class="post-wordcount">
@@ -473,9 +505,7 @@
       
 
       
-        
-          
-            <h2 id="创建模板范例"><a href="#创建模板范例" class="headerlink" title="创建模板范例"></a>创建模板范例</h2><blockquote>
+        <h2 id="创建模板范例"><a href="#创建模板范例" class="headerlink" title="创建模板范例"></a>创建模板范例</h2><blockquote>
 <p>作为Web框架，Django提供了模板，用于编写html代码，还可以嵌入模板代码更快更方便的完成页面开发，再通过在视图中渲染模板，将生成最终的html字符串返回给客户端浏览器。模版致力于表达外观，而不是程序逻辑。模板的设计实现了业务逻辑view与显示内容template的分离，一个视图可以使用任意一个模板，一个模板可以供多个视图使用。</p>
 </blockquote>
 <p>模板包含两部分：</p>
@@ -743,8 +773,6 @@
 <p>使用重定向传递关键字参数格式如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">return</span> redirect(reverse(<span class="string">'booktest:fan2'</span>, kwargs=&#123;<span class="string">'id'</span>:100,<span class="string">'age'</span>:18&#125;))</span><br></pre></td></tr></table></figure>
 
-          
-        
       
     </div>
     
@@ -754,637 +782,82 @@
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏2块钱,帮我买杯咖啡,继续创作,谢谢大家！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="陈凡 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliyipay.jpg" alt="陈凡 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
     
     <div>
   
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
+    <div>
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/08/15/Django基础之视图详解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/15/Django基础之视图详解/" itemprop="url">Django基础之视图详解</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-15T10:51:38+08:00">
-                2018-08-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django入门/" itemprop="url" rel="index">
-                    <span itemprop="name">Django入门</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/15/Django基础之视图详解/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/08/15/Django基础之视图详解/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  5,484
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  22
-                </span>
-              
-            </div>
-          
-
-          
-
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+        -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
         </div>
-      </header>
     
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="视图简单应用"><a href="#视图简单应用" class="headerlink" title="视图简单应用"></a>视图简单应用</h2><h3 id="创建示例项目"><a href="#创建示例项目" class="headerlink" title="创建示例项目"></a>创建示例项目</h3><p>1) 创建项目test3</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> django-admin startproject test3</span></span><br></pre></td></tr></table></figure>
-<p>2) 进入项目目录，创建应用booktest。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> test3</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> python manage.py startapp booktest</span></span><br></pre></td></tr></table></figure>
-<p>3) 在test3/settings.py中INSTALLED_APPS项安装应用</p>
-<p><img src="https://s1.ax1x.com/2018/08/14/PgHSrF.png" alt="django_app"></p>
-<p>4) 在test3/settings.py中DATABASES项配置使用MySQL数据库chenfanlinux，数据库在上一篇文章已经创建。</p>
-<p>5) 在test3/settings.py中TEMPLATES项配置模板查找路径。</p>
-<p><img src="https://s1.ax1x.com/2018/08/14/PgHVxK.png" alt="templates"></p>
-<p>6）创建模板目录结构如下。</p>
-<p><img src="https://s1.ax1x.com/2018/08/14/PgHNqg.png" alt="模板目录"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/15/Django基础之视图详解/#meer" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    
-    <div>
+</div>
   
   </div> 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/08/13/Django入门基础之模型/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/13/Django入门基础之模型/" itemprop="url">Django入门基础之模型</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-13T12:16:56+08:00">
-                2018-08-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django入门/" itemprop="url" rel="index">
-                    <span itemprop="name">Django入门</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+         
+            <a href="/tags/Django/" rel="tag"><i class="fa fa-tag"></i>Django</a>
           
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/13/Django入门基础之模型/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/08/13/Django入门基础之模型/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  6,234
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  25
-                </span>
-              
-            </div>
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <h2 id="ORM简介"><a href="#ORM简介" class="headerlink" title="ORM简介"></a>ORM简介</h2><blockquote>
-<p>ORM，全拼Object-Relation Mapping，中文意为对象-关系映射，是随着面向对象的软件开发方法发展而产生的。面向对象的开发方法是当今企业级应用开发环境中的主流开发方法，关系数据库是企业级应用环境中永久存放数据的主流数据存储系统。对象和关系数据是业务实体的两种表现形式，业务实体在内存中表现为对象，在数据库中表现为关系数据。内存中的对象之间存在关联和继承关系，而在数据库中，关系数据无法直接表达多对多关联和继承关系。因此，对象-关系映射ORM系统一般以中间件的形式存在，主要实现程序对象到关系数据库数据的映射。面向对象是从软件工程基本原则(如耦合、聚合、封装)的基础上发展起来的，而关系数据库则是从数学理论发展而来的，两套理论存在显著的区别。为了解决这个不匹配的现象,对象关系映射技术应运而生。O/R中字母O起源于”对象”(Object),而R则来自于”关系”(Relational)。几乎所有的程序里面，都存在对象和关系数据库。在业务逻辑层和用户界面层中，我们是面向对象的。当对象信息发生变化的时候，我们需要把对象的信息保存在关系数据库中。</p>
-</blockquote>
-<h3 id="ORM的好处"><a href="#ORM的好处" class="headerlink" title="ORM的好处"></a>ORM的好处</h3><p>在MVC框架中的Model模块中都包括ORM，对于开发人员主要带来了如下好处：</p>
-<ul>
-<li>实现了数据模型与数据库的解耦，通过简单的配置就可以轻松更换数据库，而不需要修改代码。</li>
-<li>只需要面向对象编程，不需要面向数据库编写代码。</li>
-<li>在MVC中Model中定义的类，通过ORM与关系型数据库中的表对应，对象的属性体现对象间的关系，这种关系也被映射到数据表中。</li>
-</ul>
-<h3 id="ORM示意图"><a href="#ORM示意图" class="headerlink" title="ORM示意图"></a>ORM示意图</h3><p><img src="https://s1.ax1x.com/2018/08/13/Pgp8yR.png" alt="ORM示意图"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/13/Django入门基础之模型/#meer" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/15/Django基础之视图详解/" rel="next" title="Django基础之视图详解">
+                <i class="fa fa-chevron-left"></i> Django基础之视图详解
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-    
-    <div>
-  
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/08/10/Django基础入门/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/10/Django基础入门/" itemprop="url">Django基础入门</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-10T10:47:14+08:00">
-                2018-08-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django入门/" itemprop="url" rel="index">
-                    <span itemprop="name">Django入门</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/10/Django基础入门/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/08/10/Django基础入门/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  5,848
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  23
-                </span>
-              
-            </div>
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h2 id="认识Django"><a href="#认识Django" class="headerlink" title="认识Django"></a>认识Django</h2><h3 id="Django简介"><a href="#Django简介" class="headerlink" title="Django简介"></a>Django简介</h3><p>Django，发音为[`dʒæŋɡəʊ]，是用python语言写的开源web开发框架，并遵循MVC设计。劳伦斯出版集团为了开发以新闻内容为主的网站，而开发出来了这个框架，于2005年7月在BSD许可证下发布。这个名称来源于比利时的爵士音乐家DjangoReinhardt，他是一个吉普赛人，主要以演奏吉它为主，还演奏过小提琴等。由于Django在近年来的迅速发展，应用越来越广泛，被著名IT开发杂志SDTimes评选为2013SDTimes100，位列”API、库和框架”分类第6位，被认为是该领域的佼佼者。Django的主要目的是简便、快速的开发数据库驱动的网站。它强调代码复用，多个组件可以很方便的以”插件”形式服务于整个框架，Django有许多功能强大的第三方插件，你甚至可以很方便的开发出自己的工具包。这使得Django具有很强的可扩展性。它还强调快速开发和DRY(DoNotRepeatYourself)原则。</p>
-<blockquote>
-<p>点击查看<a href="https://www.djangoproject.com/" target="_blank" rel="noopener">django官方网站</a></p>
-<p>点击查看<a href="https://github.com/django/django" target="_blank" rel="noopener">django源码</a></p>
-<p>点击查看<a href="https://yiyibooks.cn/xx/django_182/index.html" target="_blank" rel="noopener">1.8.2官方中文文档</a></p>
-</blockquote>
-<h3 id="MVC简介"><a href="#MVC简介" class="headerlink" title="MVC简介"></a>MVC简介</h3><p>MVC的全拼为Model-View-Controller，最早由TrygveReenskaug在1978年提出，是施乐帕罗奥多研究中心(Xerox PARC)在20世纪80年代为程序语言Smalltalk发明的一种软件设计模式，是为了将传统的输入（input）、处理（processing）、输出（output）任务运用到图形化用户交互模型中而设计的。随着标准输入输出设备的出现，开发人员只需要将精力集中在业务逻辑的分析与实现上。后来被推荐为Oracle旗下Sun公司Java EE平台的设计模式，并且受到越来越多的使用ColdFusion和PHP的开发者的欢迎。现在虽然不再使用原来的分工方式，但是这种<strong>分工的思想</strong>被沿用下来，广泛应用于软件工程中，是一种典型并且应用广泛的软件架构模式。后来，MVC的思想被应用在了Ｗeb开发方面，被称为Ｗeb MVC框架。</p>
-<p>MVC框架的核心思想是：<strong>解耦</strong>，让不同的代码块之间降低耦合，增强代码的可扩展性和可移植性，实现向后兼容。当前主流的开发语言如Java、PHP、Python中都有MVC框架。</p>
-<h3 id="Web-MVC各部分的功能"><a href="#Web-MVC各部分的功能" class="headerlink" title="Ｗeb MVC各部分的功能"></a>Ｗeb MVC各部分的功能</h3><ul>
-<li>M全拼为Model，主要封装对数据库层的访问，对数据库中的数据进行增、删、改、查操作。</li>
-<li>V全拼为View，用于封装结果，生成页面展示的html内容。</li>
-<li>C全拼为Controller，用于接收请求，处理业务逻辑，与Model和View交互，返回结果。</li>
-</ul>
-<p><img src="https://s1.ax1x.com/2018/08/09/PyriXF.png" alt="mvc"></p>
-<h3 id="MVT各部分的功能"><a href="#MVT各部分的功能" class="headerlink" title="MVT各部分的功能"></a>MVT各部分的功能</h3><p>Django框架遵循MVC设计，并且有一个专有名词：MVT</p>
-<ul>
-<li>M全拼为Model，与MVC中的M功能相同，负责和数据库交互，进行数据处理。</li>
-<li>V全拼为View，与MVC中的C功能相同，接收请求，进行业务处理，返回应答。</li>
-<li>T全拼为Template，与MVC中的V功能相同，负责封装构造要返回的html。</li>
-</ul>
-<p><img src="https://s1.ax1x.com/2018/08/09/PyrA0J.png" alt="mvt"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/10/Django基础入门/#meer" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    
-    <div>
-  
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -1394,1306 +867,53 @@
   </article>
 
 
-    
+
+    <div class="post-spread">
       
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/06/22/Python网络编程-tcp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/22/Python网络编程-tcp/" itemprop="url">Python网络编程-tcp</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-22T16:43:44+08:00">
-                2018-06-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python网络编程/" itemprop="url" rel="index">
-                    <span itemprop="name">Python网络编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/06/22/Python网络编程-tcp/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/06/22/Python网络编程-tcp/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2,477
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  10
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="TCP简介"><a href="#TCP简介" class="headerlink" title="TCP简介"></a>TCP简介</h2><h3 id="TCP介绍"><a href="#TCP介绍" class="headerlink" title="TCP介绍"></a>TCP介绍</h3><p><strong>TCP协议，传输控制协议（英语：Transmission Control Protocol，缩写为TCP）</strong>是一种面向连接的、可靠的、基于字节流的传输层通信协议 。TCP通信需要经过<strong>创建连接、数据传送、终止连接</strong>三个步骤。TCP通信模型中，在通信开始之前，一定要先建立相关的链接，才能发送数据，类似于生活中，”打电话”” 。</p>
-<h3 id="TCP特点"><a href="#TCP特点" class="headerlink" title="TCP特点"></a>TCP特点</h3><h4 id="1-面向连接"><a href="#1-面向连接" class="headerlink" title="1. 面向连接"></a>1. 面向连接</h4><p>通信双方必须先建立连接才能进行数据的传输，双方都必须为该连接分配必要的系统内核资源，以管理连接的状态和连接上的传输。双方间的数据传输都可以通过这一个连接进行。完成数据交换后，双方必须断开此连接，以释放系统资源。<strong>这种连接是一对一的，因此TCP不适用于广播的应用程序，基于广播的应用程序请使用UDP协议。</strong></p>
-<h4 id="2-可靠传输"><a href="#2-可靠传输" class="headerlink" title="2. 可靠传输"></a>2. 可靠传输</h4><p>1）<strong>TCP采用发送应答机制</strong></p>
-<p>TCP发送的每个报文段都必须得到接收方的应答才认为这个TCP报文段传输成功</p>
-<p>2）<strong>超时重传</strong></p>
-<p>发送端发出一个报文段之后就启动定时器，如果在定时时间内没有收到应答就重新发送这个报文段。</p>
-<p>TCP为了保证不发生丢包，就给每个包一个序号，同时序号也保证了传送到接收端实体的包的按序接收。然后接收端实体对已成功收到的包发回一个相应的确认（ACK）；如果发送端实体在合理的往返时延（RTT）内未收到确认，那么对应的数据包就被假设为已丢失将会被进行重传。</p>
-<p>3）<strong>错误校验</strong></p>
-<p>TCP用一个校验和函数来检验数据是否有错误；在发送和接收时都要计算校验和。</p>
-<p>4) <strong>流量控制和阻塞管理</strong></p>
-<p>流量控制用来避免主机发送得过快而使接收方来不及完全收下。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/22/Python网络编程-tcp/#meer" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    
-    <div>
-  
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
 
 
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/06/22/Python网络编程-udp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/22/Python网络编程-udp/" itemprop="url">Python网络编程-udp</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-22T11:46:03+08:00">
-                2018-06-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python网络编程/" itemprop="url" rel="index">
-                    <span itemprop="name">Python网络编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/06/22/Python网络编程-udp/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/06/22/Python网络编程-udp/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2,989
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  12
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="网络编程中的重要概念"><a href="#网络编程中的重要概念" class="headerlink" title="网络编程中的重要概念"></a>网络编程中的重要概念</h2><blockquote>
-<p>所谓的网络编程就是，让在不同的电脑上的软件能够进行数据传递，即进程之间的通信。</p>
-</blockquote>
-<h3 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h3><ul>
-<li>使用网络能够把多方链接在一起，然后可以进行数据传递</li>
-<li>所谓的网络编程就是，让在不同的电脑上的软件能够进行数据传递，即进程之间的通信</li>
-</ul>
-<h3 id="ip地址"><a href="#ip地址" class="headerlink" title="ip地址"></a>ip地址</h3><p><strong>用来在网络中标记一台电脑，比如192.168.1.1；在本地局域网上是唯一的。每一个IP地址包括两部分：网络地址和主机地址。</strong></p>
-<ul>
-<li><p>一个A类IP地址由1字节的网络地址和3字节主机地址组成，网络地址的最高位必须是“0”，</p>
-<p>地址范围1.0.0.1-126.255.255.254。</p>
-</li>
-<li><p>一个B类IP地址由2个字节的网络地址和2个字节的主机地址组成，网络地址的最高位必须是“10”，</p>
-<p>地址范围128.1.0.1-191.255.255.254。</p>
-</li>
-<li><p>一个C类IP地址由3字节的网络地址和1字节的主机地址组成，网络地址的最高位必须是“110”</p>
-<p>范围192.0.1.1-223.255.255.254。</p>
-</li>
-<li><p>D类IP地址第一个字节以“1110”开始，它是一个专门保留的地址。</p>
-</li>
-<li><p>E类地址保留，仅作实验和开发用 。</p>
-</li>
-<li><p>在这么多网络IP中，国际规定有一部分IP地址是用于我们的局域网使用，也就</p>
-<p>是属于私网IP。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 私网ip的地址</span></span><br><span class="line">10.0.0.0～10.255.255.255</span><br><span class="line">172.16.0.0～172.31.255.255</span><br><span class="line">192.168.0.0～192.168.255.255</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/22/Python网络编程-udp/#meer" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-          <!--/noindex-->
-        
-      
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    
-    <div>
-  
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
-  
-  
-  
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/06/07/运维自动化工具Ansible/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/07/运维自动化工具Ansible/" itemprop="url">运维自动化工具Ansible</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-07T16:46:07+08:00">
-                2018-06-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/运维自动化工具/" itemprop="url" rel="index">
-                    <span itemprop="name">运维自动化工具</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/06/07/运维自动化工具Ansible/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/06/07/运维自动化工具Ansible/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  4,062
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  18
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Ansible简介"><a href="#Ansible简介" class="headerlink" title="Ansible简介"></a>Ansible简介</h2><h3 id="Ansible-是什么？"><a href="#Ansible-是什么？" class="headerlink" title="Ansible 是什么？"></a>Ansible 是什么？</h3><p><strong>Ansible</strong> 简单的说是一个配置管理系统(configuration management system)。你只需要可以使用 ssh 访问你的服务器或设备就行。它也不同于其他工具，因为它使用推送的方式，而不是像 puppet 等 那样使用拉取安装agent的方式。你可以将代码部署到任意数量的服务器上!</p>
-<h3 id="Ansible能做什么？"><a href="#Ansible能做什么？" class="headerlink" title="Ansible能做什么？"></a>Ansible能做什么？</h3><blockquote>
-<p>ansible可以帮助我们完成一些批量任务，或者完成一些需要经常重复的工作，这些场景中我们都可以使用到ansible。</p>
-</blockquote>
-<ul>
-<li>同时在100台服务器上安装nginx服务，并在安装后启动它们</li>
-<li>将某个文件一次性拷贝到100台服务器上。</li>
-<li>每当有新服务器加入工作环境时，你都要为新服务器部署某个服务，也就是说你需要经常重复的完成相同的工作。</li>
-</ul>
-<h3 id="Ansible特性"><a href="#Ansible特性" class="headerlink" title="Ansible特性"></a>Ansible特性</h3><ul>
-<li>模块化：调用特定的模块，完成特定的任务。</li>
-<li>有Paramiko, PyYAMl, Jinja2(模板语言)  三个关键模块</li>
-<li>支持自定义模块</li>
-<li>基于Python语言实现</li>
-<li>部署简单，基于python和SSH(默认已安装), agentless</li>
-<li>安全，基于OpenSSH</li>
-<li>支持playbook任务编排</li>
-<li>幂等性：一次任务执行一遍和执行n遍效果一样，不会重复执行带来意外情况</li>
-<li>无需代理不依赖PKI(无需ssl)</li>
-<li>可使用任何编程语言写模块</li>
-<li>YAML格式，编排任务，丰富的数据结构</li>
-<li>较强大的多层解决方案</li>
-</ul>
-<h3 id="Ansible架构"><a href="#Ansible架构" class="headerlink" title="Ansible架构"></a>Ansible架构</h3><p><img src="https://s1.ax1x.com/2018/06/07/CHJYMF.png" alt="ansible"></p>
-<h3 id="Ansible主要组成部分功能说明"><a href="#Ansible主要组成部分功能说明" class="headerlink" title="Ansible主要组成部分功能说明"></a>Ansible主要组成部分功能说明</h3><ul>
-<li><strong>PLAYBOOKS</strong>：任务剧本（任务集），编排定义Ansible任务集的配置文件，由Ansible顺序依次执行，通常是JSON格式的YAML文件。</li>
-<li><strong>INVENTORY</strong>： Ansible管理主机的清单/etc/anaible/hosts。</li>
-<li><strong>MODULES</strong>： Ansible执行命令的功能模块，多数为内置的核心模块，也可自定义,ansible-doc –l 可查看模块。</li>
-<li><strong>PLUGINS</strong>： 模块功能的补充，如连接类型插件、循环插件、变量插件、过滤插件等，该功能不常用。</li>
-<li><strong>API</strong>：供第三方程序调用的应用程序编程接口。</li>
-<li><strong>ANSIBLE</strong>：组合INVENTORY、 API、 MODULES、PLUGINS的绿框，可以理解为是ansible命令工具，其为核心执行工具。</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/07/运维自动化工具Ansible/#meer" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    
-    <div>
-  
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/06/06/Python变量进阶/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/06/Python变量进阶/" itemprop="url">Python变量进阶</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-06T10:27:46+08:00">
-                2018-06-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python基础知识/" itemprop="url" rel="index">
-                    <span itemprop="name">python基础知识</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/06/06/Python变量进阶/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/06/06/Python变量进阶/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2,032
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  8
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><ul>
-<li>变量的引用</li>
-<li>可变和不可变类型</li>
-<li>局部变量和全局变量</li>
-</ul>
-<h2 id="变量的引用"><a href="#变量的引用" class="headerlink" title="变量的引用"></a>变量的引用</h2><blockquote>
-<ul>
-<li>变量 和 数据 都是保存在 <strong>内存</strong> 中的</li>
-<li>在 <code>Python</code> 中 <strong>函数 的 参数传递</strong> 以及 <strong>返回值</strong> 都是靠 <strong>引用</strong> 传递的</li>
-</ul>
-</blockquote>
-<h3 id="引用的概念"><a href="#引用的概念" class="headerlink" title="引用的概念"></a>引用的概念</h3><p>在 <code>Python</code> 中</p>
-<ul>
-<li><strong>变量</strong> 和 <strong>数据</strong> 是分开存储的</li>
-<li><strong>数据</strong> 保存在内存中的一个位置</li>
-<li><strong>变量</strong> 中保存着数据在内存中的地址</li>
-<li><strong>变量</strong> 中 <strong>记录数据的地址</strong>，就叫做 <strong>引用</strong></li>
-<li>使用 <code>id()</code> 函数可以查看变量中保存数据所在的 <strong>内存地址</strong></li>
-</ul>
-<blockquote>
-<p>注意：如果变量已经被定义，当给一个变量赋值的时候，本质上是 <strong>修改了数据的引用</strong></p>
-<ul>
-<li>变量 <strong>不再</strong> 对之前的数据引用</li>
-<li>变量 <strong>改为</strong> 对新赋值的数据引用</li>
-</ul>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/06/Python变量进阶/#meer" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    
-    <div>
-  
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/06/04/Python操作Redis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/04/Python操作Redis/" itemprop="url">Python操作Redis</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-04T17:36:30+08:00">
-                2018-06-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/NoSQL/" itemprop="url" rel="index">
-                    <span itemprop="name">NoSQL</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/06/04/Python操作Redis/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/06/04/Python操作Redis/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3,089
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  13
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Redis-简介"><a href="#Redis-简介" class="headerlink" title="Redis 简介"></a>Redis 简介</h2><h3 id="Redis-特点"><a href="#Redis-特点" class="headerlink" title="Redis 特点"></a>Redis 特点</h3><blockquote>
-<p>Redis 是完全开源免费的，遵守BSD协议，是一个高性能的key-value数据库。</p>
-</blockquote>
-<p>Redis 与其他 key - value 缓存产品有以下三个特点：</p>
-<ul>
-<li>Redis支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。</li>
-<li>Redis不仅仅支持简单的key-value类型的数据，同时还提供string, list，set，zset，hash等数据结构的存储。</li>
-<li>Redis支持数据的备份，即master-slave模式的数据备份。</li>
-</ul>
-<h3 id="Redis-优势"><a href="#Redis-优势" class="headerlink" title="Redis 优势"></a>Redis 优势</h3><ul>
-<li>性能极高 – Redis能读的速度是110000次/s,写的速度是81000次/s 。</li>
-<li>丰富的数据类型 – Redis支持二进制案例的 Strings, Lists, Hashes, Sets 及 Ordered Sets 数据类型操作。</li>
-<li>原子 – Redis的所有操作都是原子性的，意思就是要么成功执行要么失败完全不执行。单个操作是原子性的。多个操作也支持事务，即原子性，通过MULTI和EXEC指令包起来。</li>
-<li>丰富的特性 – Redis还支持 publish/subscribe, 通知, key 过期等等特性。</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/04/Python操作Redis/#meer" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    
-    <div>
-  
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/06/03/Python内建函数/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/03/Python内建函数/" itemprop="url">Python内建函数</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-03T13:53:40+08:00">
-                2018-06-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python基础知识/" itemprop="url" rel="index">
-                    <span itemprop="name">python基础知识</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/06/03/Python内建函数/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/06/03/Python内建函数/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  7,310
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  33
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="内建函数引言"><a href="#内建函数引言" class="headerlink" title="内建函数引言"></a>内建函数引言</h2><blockquote>
-<p>Python内建函数按分类可以分为系统内建函数和内置对象(字符串,列表,字典,set,文件对象)的方法，下面我们将带您认识系统内建函数和内置数据对象的方法。</p>
-</blockquote>
-<ul>
-<li>系统内建函数</li>
-<li>内置对象方法<ul>
-<li>str字符</li>
-<li>list列表</li>
-<li>tuple元组</li>
-<li>dict字典</li>
-<li>set集合</li>
-</ul>
-</li>
-</ul>
-<h2 id="系统内建函数"><a href="#系统内建函数" class="headerlink" title="系统内建函数"></a>系统内建函数</h2><blockquote>
-<p>查看官方文档:  <a href="https://docs.python.org/3/library/functions.html" target="_blank" rel="noopener">python系统内建函数</a></p>
-</blockquote>
-<p><img src="https://s1.ax1x.com/2018/05/19/Cc0kKP.png" alt="Python系统内建函数图"></p>
-<h3 id="dir"><a href="#dir" class="headerlink" title="dir()"></a>dir()</h3><ul>
-<li><p>作用：返回一个对象中中的所有方法 </p>
-</li>
-<li><p>使用方法：dir([object])  </p>
-</li>
-<li><p>返回值：list of strings  </p>
-</li>
-</ul>
-<p>实例说明：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dir(str) <span class="comment"># 查找str类型对象所对应的方法</span></span><br><span class="line">[<span class="string">'__add__'</span>, <span class="string">'__class__'</span>, <span class="string">'__contains__'</span>, <span class="string">'__delattr__'</span>, <span class="string">'__dir__'</span>, <span class="string">'__doc__'</span>, <span class="string">'__eq__'</span>, <span class="string">'__format__'</span>, <span class="string">'__ge__'</span>, <span class="string">'__getattribute__'</span>, <span class="string">'__getitem__'</span>, <span class="string">'__getnewargs__'</span>, <span class="string">'__gt__'</span>, <span class="string">'__hash__'</span>, <span class="string">'__init__'</span>, <span class="string">'__iter__'</span>, <span class="string">'__le__'</span>, <span class="string">'__len__'</span>, <span class="string">'__lt__'</span>, <span class="string">'__mod__'</span>, <span class="string">'__mul__'</span>, <span class="string">'__ne__'</span>, <span class="string">'__new__'</span>, <span class="string">'__reduce__'</span>, <span class="string">'__reduce_ex__'</span>, <span class="string">'__repr__'</span>, <span class="string">'__rmod__'</span>, <span class="string">'__rmul__'</span>, <span class="string">'__setattr__'</span>, <span class="string">'__sizeof__'</span>, <span class="string">'__str__'</span>, <span class="string">'__subclasshook__'</span>, <span class="string">'capitalize'</span>, <span class="string">'casefold'</span>, <span class="string">'center'</span>, <span class="string">'count'</span>, <span class="string">'encode'</span>, <span class="string">'endswith'</span>, <span class="string">'expandtabs'</span>, <span class="string">'find'</span>, <span class="string">'format'</span>, <span class="string">'format_map'</span>, <span class="string">'index'</span>, <span class="string">'isalnum'</span>, <span class="string">'isalpha'</span>, <span class="string">'isdecimal'</span>, <span class="string">'isdigit'</span>, <span class="string">'isidentifier'</span>, <span class="string">'islower'</span>, <span class="string">'isnumeric'</span>, <span class="string">'isprintable'</span>, <span class="string">'isspace'</span>, <span class="string">'istitle'</span>, <span class="string">'isupper'</span>, <span class="string">'join'</span>, <span class="string">'ljust'</span>, <span class="string">'lower'</span>, <span class="string">'lstrip'</span>, <span class="string">'maketrans'</span>, <span class="string">'partition'</span>, <span class="string">'replace'</span>, <span class="string">'rfind'</span>, <span class="string">'rindex'</span>, <span class="string">'rjust'</span>, <span class="string">'rpartition'</span>, <span class="string">'rsplit'</span>, <span class="string">'rstrip'</span>, <span class="string">'split'</span>, <span class="string">'splitlines'</span>, <span class="string">'startswith'</span>, <span class="string">'strip'</span>, <span class="string">'swapcase'</span>, <span class="string">'title'</span>, <span class="string">'translate'</span>, <span class="string">'upper'</span>, <span class="string">'zfill'</span>]</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/03/Python内建函数/#meer" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    
-    <div>
-  
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-
-          
 
         </div>
         
@@ -2714,8 +934,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -2814,6 +1043,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建模板范例"><span class="nav-number">1.</span> <span class="nav-text">创建模板范例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模板简介"><span class="nav-number">1.1.</span> <span class="nav-text">模板简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建示例项目"><span class="nav-number">1.2.</span> <span class="nav-text">创建示例项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板语言"><span class="nav-number">2.</span> <span class="nav-text">模板语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模板变量"><span class="nav-number">2.1.</span> <span class="nav-text">模板变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标签"><span class="nav-number">2.2.</span> <span class="nav-text">标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过滤器"><span class="nav-number">2.3.</span> <span class="nav-text">过滤器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义过滤器"><span class="nav-number">2.4.</span> <span class="nav-text">自定义过滤器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注释"><span class="nav-number">2.5.</span> <span class="nav-text">注释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板继承"><span class="nav-number">3.</span> <span class="nav-text">模板继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#父模板"><span class="nav-number">3.1.</span> <span class="nav-text">父模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子模板"><span class="nav-number">3.2.</span> <span class="nav-text">子模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-number">3.3.</span> <span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML转义"><span class="nav-number">4.</span> <span class="nav-text">HTML转义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#转义字符"><span class="nav-number">4.1.</span> <span class="nav-text">转义字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-1"><span class="nav-number">4.2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭转义"><span class="nav-number">4.3.</span> <span class="nav-text">关闭转义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串字面值"><span class="nav-number">4.4.</span> <span class="nav-text">字符串字面值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反向解析"><span class="nav-number">5.</span> <span class="nav-text">反向解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#未使用反向解析"><span class="nav-number">5.1.</span> <span class="nav-text">未使用反向解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反向解析-1"><span class="nav-number">5.2.</span> <span class="nav-text">反向解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL的参数"><span class="nav-number">5.3.</span> <span class="nav-text">URL的参数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#情况一：位置参数"><span class="nav-number">5.3.0.1.</span> <span class="nav-text">情况一：位置参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#情况二：关键字参数"><span class="nav-number">5.3.0.2.</span> <span class="nav-text">情况二：关键字参数</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=ipZXdvME3sKg6viC20OoTCYATcaOJ6SQH2wdaJEUHfc"></script>
 
@@ -2993,6 +1238,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
@@ -3016,6 +1265,8 @@
 
 		_hcwp.push({widget:"Bloggerstream", widget_id: 98812, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
+		
+		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2018/08/15/Django基础之模板详解/"});
 		
 
 		(function() {
