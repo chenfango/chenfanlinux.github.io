@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Django," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="陈凡的个人站点" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="视图简单应用创建示例项目1) 创建项目test3 1$ django-admin startproject test3 2) 进入项目目录，创建应用booktest。 12$ cd test3$ python manage.py startapp booktest 3) 在test3/settings.py中INSTA">
+<meta name="keywords" content="Django">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django基础之视图详解">
+<meta property="og:url" content="http://www.chenfanlinux.org/2018/08/15/Django基础之视图详解/index.html">
+<meta property="og:site_name" content="陈凡的个人站点">
+<meta property="og:description" content="视图简单应用创建示例项目1) 创建项目test3 1$ django-admin startproject test3 2) 进入项目目录，创建应用booktest。 12$ cd test3$ python manage.py startapp booktest 3) 在test3/settings.py中INSTALLED_APPS项安装应用  4) 在test3/settings.py中DA">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/PgHSrF.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/PgHVxK.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/PgHNqg.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/PgHcsU.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/PgHoz6.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/PgHLee.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/PgbGk9.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/Pgbskd.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/Pgb6fI.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/PgbR6f.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/Pgbokj.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/Pgb7hn.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/PgbLcV.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/PgbOXT.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/PgqnNd.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/Pgq1jf.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/PgqNNj.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/Pgqw3q.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/PgqBvV.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/PgqybF.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/PgqgUJ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/Pgqq5d.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/PgqOPA.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/PgLKZF.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/PgLQIJ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/14/PgLReS.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/P2OgxI.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/P2O5dS.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/P2OLMq.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/P2XPzR.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/P2XFQ1.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/P2XAL6.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/P2XYTS.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/P2XwSs.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/P2XByq.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/08/15/P2XXpd.png">
+<meta property="og:updated_time" content="2018-08-15T02:59:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django基础之视图详解">
+<meta name="twitter:description" content="视图简单应用创建示例项目1) 创建项目test3 1$ django-admin startproject test3 2) 进入项目目录，创建应用booktest。 12$ cd test3$ python manage.py startapp booktest 3) 在test3/settings.py中INSTALLED_APPS项安装应用  4) 在test3/settings.py中DA">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/08/14/PgHSrF.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'X18Q8YOK7R',
+      apiKey: '4cf6f4ea962b4c633859ca376c0d6ae9',
+      indexName: 'chenfanlinux',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfanlinux.org/2018/08/15/Django基础之视图详解/"/>
+
+
+
+
+
+  <title>Django基础之视图详解 | 陈凡的个人站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?your-analytics-id";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+ 
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">陈凡的个人站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">chenfanlinux.org</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/08/15/Django基础之视图详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Django基础之视图详解</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-15T10:51:38+08:00">
+                2018-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django入门/" itemprop="url" rel="index">
+                    <span itemprop="name">Django入门</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/15/Django基础之视图详解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/08/15/Django基础之视图详解/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  5,484
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  22
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="视图简单应用"><a href="#视图简单应用" class="headerlink" title="视图简单应用"></a>视图简单应用</h2><h3 id="创建示例项目"><a href="#创建示例项目" class="headerlink" title="创建示例项目"></a>创建示例项目</h3><p>1) 创建项目test3</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> django-admin startproject test3</span></span><br></pre></td></tr></table></figure>
+<p>2) 进入项目目录，创建应用booktest。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> test3</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> python manage.py startapp booktest</span></span><br></pre></td></tr></table></figure>
+<p>3) 在test3/settings.py中INSTALLED_APPS项安装应用</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/PgHSrF.png" alt="django_app"></p>
+<p>4) 在test3/settings.py中DATABASES项配置使用MySQL数据库chenfanlinux，数据库在上一篇文章已经创建。</p>
+<p>5) 在test3/settings.py中TEMPLATES项配置模板查找路径。</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/PgHVxK.png" alt="templates"></p>
+<p>6）创建模板目录结构如下。</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/PgHNqg.png" alt="模板目录"></p>
+<a id="more"></a>
+<h3 id="使用视图的过程"><a href="#使用视图的过程" class="headerlink" title="使用视图的过程"></a>使用视图的过程</h3><p>视图就是一个python函数，被定义在”应用/views.py”文件中。 使用视图时需要进行两方面操作，两个操作不分先后。</p>
+<p>1）<strong>在”应用/views.py”中定义视图</strong>。</p>
+<p>在booktest/views.py中定义视图函数index：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">  <span class="keyword">return</span> HttpResponse(<span class="string">"视图函数index"</span>)</span><br></pre></td></tr></table></figure>
+<p>2）<strong>配置URLconf，将视图函数和url对应起来</strong>。</p>
+<p>在test3/urls.py中编辑加入如下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> include, url</span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^admin/'</span>, include(admin.site.urls)),</span><br><span class="line">    url(<span class="string">r'^'</span>, include(<span class="string">'booktest.urls'</span>)), <span class="comment">#这句代码是新加入的，包含booktest应用中的urls文件</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>在booktest目录下创建urls.py文件并编辑其内容如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url <span class="comment">#导入url函数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> booktest <span class="keyword">import</span> views <span class="comment">#导入视图模块</span></span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^$'</span>, views.index), <span class="comment">#建立url和views.index视图函数的关联</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h3><p>启动服务器，并通过浏览器访问 <a href="http://127.0.0.1:8000，" target="_blank" rel="noopener">http://127.0.0.1:8000，</a> 页面显示如下：</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/PgHcsU.png" alt="启动服务器"></p>
+<h2 id="URLconf"><a href="#URLconf" class="headerlink" title="URLconf"></a>URLconf</h2><blockquote>
+<p>用户通过在浏览器的地址栏中输入网址请求网站，对于Django开发的网站，由哪一个视图进行处理请求，是由url匹配找到的。</p>
+</blockquote>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>1）在test3/settings.py中通过ROOT_URLCONF指定url配置，默认已经有此配置。</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/PgHoz6.png" alt="视图"></p>
+<p>2）打开test3/urls.py可以看到默认配置。</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/PgHLee.png" alt="视图2"></p>
+<p><strong>注意点：</strong></p>
+<ul>
+<li>在test3/urls.py中进行包含配置，在各自应用中创建具体配置。</li>
+<li>定义urlpatterns列表，存储url()对象，这个名称是固定的。</li>
+</ul>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>url()对象，被定义在django.conf.urls包中，有两种语法结构：</p>
+<p><strong>语法一</strong>：包含，一般在自定义应用中创建一个urls.py来定义url。</p>
+<p>这种语法用于test3/urls.py中，目的是将应用的urls配置到应用内部，数据更清晰并且易于维护。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(正则,include(<span class="string">'应用.urls'</span>))</span><br></pre></td></tr></table></figure>
+<p>1）如示例在test3/urls.py文件，包含booktest中的urls。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(r&apos;^&apos;,include(&apos;booktest.urls&apos;)),</span><br></pre></td></tr></table></figure>
+<p>2) 如示例在booktest目录下创建urls.py文件。</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/PgbGk9.png" alt="urls"></p>
+<p><strong>语法二</strong>：定义，指定URL和视图函数的对应关系。</p>
+<p>在应用内部创建urls.py文件，指定请求地址与视图的对应关系。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(正则,<span class="string">'视图函数名称'</span>)</span><br></pre></td></tr></table></figure>
+<p>1）如示例在booktest/urls.py中创建首页的url，代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"><span class="keyword">from</span> booktest <span class="keyword">import</span> views</span><br><span class="line">urlpatterns=[</span><br><span class="line">    url(<span class="string">r'^$'</span>,views.index),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>2）如示例在booktest/views.py中创建视图index</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">  <span class="keyword">return</span> HttpResponse(<span class="string">"视图函数index"</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>说明1：正则部分推荐使用r，表示字符串不转义，这样在正则表达式中使用\只写一个就可以。</p>
+<p> 说明2：不能在开始加反斜杠，推荐在结束加反斜杠。</p>
+</blockquote>
+<h3 id="获取值"><a href="#获取值" class="headerlink" title="获取值"></a>获取值</h3><p>请求的url被看做是一个普通的python字符串，进行匹配时不包括域名、get或post参数。 如请求地址如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8000/delete1/?a=10</span><br></pre></td></tr></table></figure>
+<p>1）去除掉域名和参数部分，并将最前面的/去除后，只剩下如下部分与正则匹配。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete1/</span><br></pre></td></tr></table></figure>
+<p>2）打开booktest/urls.py文件，定义与这个地址匹配的url如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(r<span class="string">'^delete\d+/$'</span>,views.show_arg),</span><br></pre></td></tr></table></figure>
+<p>3）在booktest/views.py中创建视图show_arg。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_arg</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">'show_arg'</span>)</span><br></pre></td></tr></table></figure>
+<p>4）启动服务器，输入上面的网址，浏览器中效果如下图。</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/Pgbskd.png" alt="qidongfuwuqi"></p>
+<p>可以在匹配过程中从url中捕获参数，每个捕获的参数都作为一个普通的python字符串传递给视图。</p>
+<p>获取值需要在正则表达式中使用小括号，分为两种方式：</p>
+<ul>
+<li>位置参数</li>
+<li>关键字参数</li>
+</ul>
+<blockquote>
+<p>注意：两种参数的方式不要混合使用，在一个正则表达式中只能使用一种参数方式。</p>
+</blockquote>
+<p><strong>方式一：位置参数</strong></p>
+<p>直接使用小括号，通过位置参数传递给视图。</p>
+<p>1）为了提取参数，修改上面的正则表达式如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(r<span class="string">'^delete(\d+)/$'</span>,views.show_arg),</span><br></pre></td></tr></table></figure>
+<p>2）修改视图show_arg如下：</p>
+<blockquote>
+<p>注意：参数的名字是任意的如a1、b8，尽量做到见名知意。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def show_arg(request,id):</span><br><span class="line">    return HttpResponse(&apos;show arg %s&apos;%id)</span><br></pre></td></tr></table></figure>
+<p>3）刷新浏览器页面，效果如下图：</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/Pgb6fI.png" alt="show_arg1"></p>
+<p> 4）在地址栏输入如下地址：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8000/2/?a=10</span><br></pre></td></tr></table></figure>
+<p>5）浏览器页面效果如下图</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/PgbR6f.png" alt="arg2"></p>
+<p><strong>方式二：关键字参数</strong></p>
+<p>在正则表达式部分为组命名。</p>
+<p>1）修改正则表达式如下：</p>
+<blockquote>
+<p>其中?P部分表示为这个参数定义的名称为id，可以是其它名称，起名做到见名知意。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(r<span class="string">'^delete(?P&lt;id1&gt;\d+)/$'</span>,views.show_arg),</span><br></pre></td></tr></table></figure>
+<p>2）修改视图show_arg如下：</p>
+<blockquote>
+<p>注意：视图show_arg此时必须要有一个参数名为id1，否则报错。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_arg</span><span class="params">(request,id1)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">'show %s'</span>%id1)</span><br></pre></td></tr></table></figure>
+<p>3）刷新浏览器页面，效果如下图</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/Pgbokj.png" alt="argsid"></p>
+<h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><blockquote>
+<p>视图就是python中的函数，视图一般被定义在”应用/views.py”文件中，此例中为”booktest/views.py”文件。视图必须返回一个HttpResponse对象或子对象作为响应。响应可以是一张网页的HTML内容，一个重定向，一个404错误等。</p>
+</blockquote>
+<p>视图的第一个参数必须为HttpRequest实例，还可能包含下参数如：</p>
+<ul>
+<li>通过正则表达式组获得的关键字参数。</li>
+<li>通过正则表达式组获取的位置参数。</li>
+</ul>
+<p>Django内置处理HTTP错误的视图，主要错误及视图包括：</p>
+<ul>
+<li>404错误：page not found视图</li>
+<li>500错误：server error视图</li>
+</ul>
+<p>如果想看到错误视图而不是调试信息，需要修改test3/setting.py文件的DEBUG项。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DEBUG = False</span><br><span class="line">ALLOWED_HOSTS = [<span class="string">'*'</span>, ]  <span class="comment"># 允许所有主机</span></span><br></pre></td></tr></table></figure>
+<h3 id="404错误及视图"><a href="#404错误及视图" class="headerlink" title="404错误及视图"></a>404错误及视图</h3><blockquote>
+<p>将请求地址进行url匹配后，没有找到匹配的正则表达式，则调用404视图，这个视图会调用404.html的模板进行渲染。视图传递变量request_path给模板，表示导致错误的URL。</p>
+</blockquote>
+<p>1）在templates中创建404.html。</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/Pgb7hn.png" alt="404"></p>
+<p>2）定义代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">找不到了</span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>/&gt;</span></span><br><span class="line">&#123;&#123;request_path&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>3）在浏览器中输入如下网址：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8000/<span class="built_in">test</span>/</span><br></pre></td></tr></table></figure>
+<p>4）运行效果如下图：</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/PgbLcV.png" alt="404page"></p>
+<h3 id="500错误及视图"><a href="#500错误及视图" class="headerlink" title="500错误及视图"></a>500错误及视图</h3><p>在视图中代码运行报错会发生500错误，调用内置错误视图，使用templates/500.html模板渲染。</p>
+<p>视图处理过程如下图：</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/PgbOXT.png" alt="505"></p>
+<h2 id="HttpReqeust对象"><a href="#HttpReqeust对象" class="headerlink" title="HttpReqeust对象"></a>HttpReqeust对象</h2><blockquote>
+<p>服务器接收到http协议的请求后，会根据报文创建HttpRequest对象，这个对象不需要我们创建，直接使用服务器构造好的对象就可以。<strong>视图的第一个参数必须是HttpRequest对象</strong>，在django.http模块中定义了HttpRequest对象的API。</p>
+</blockquote>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><ul>
+<li>path：一个字符串，表示请求的页面的完整路径，不包含域名和参数部分。</li>
+<li>method：一个字符串，表示请求使用的HTTP方法，常用值包括：’GET’、’POST’。<ul>
+<li>在浏览器中给出地址发出请求采用get方式，如超链接。</li>
+<li>在浏览器中点击表单的提交按钮发起请求，如果表单的method设置为post则为post请求。</li>
+</ul>
+</li>
+<li>encoding：一个字符串，表示提交的数据的编码方式。<ul>
+<li>如果为None则表示使用浏览器的默认设置，一般为utf-8。</li>
+<li>这个属性是可写的，可以通过修改它来修改访问表单数据使用的编码，接下来对属性的任何访问将使用新的encoding值。</li>
+</ul>
+</li>
+<li>GET：QueryDict类型对象，类似于字典，包含get请求方式的所有参数。</li>
+<li>POST：QueryDict类型对象，类似于字典，包含post请求方式的所有参数。</li>
+<li>FILES：一个类似于字典的对象，包含所有的上传文件。</li>
+<li>COOKIES：一个标准的Python字典，包含所有的cookie，键和值都为字符串。</li>
+<li>session：一个既可读又可写的类似于字典的对象，表示当前的会话，只有当Django 启用会话的支持时才可用，详细内容见”状态保持”。</li>
+</ul>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p><strong>path</strong></p>
+<p>1）打开booktest/views.py文件，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">    str=<span class="string">'%s,%s'</span>%(request.path,request.encoding)</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">'booktest/index.html'</span>, &#123;<span class="string">'str'</span>:str&#125;)</span><br></pre></td></tr></table></figure>
+<p>2）在templates/booktest/下创建index.html文件，代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>首页<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">1. request对象的path,encoding属性：<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">&#123;&#123; str &#125;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>3）打开浏览器请求，运行效果如下图：</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/PgqnNd.png" alt="liulanqi"></p>
+<p>4）以chrome浏览器为例，设置编码如下图，默认为utf-8编码</p>
+<p><strong>method</strong></p>
+<p>1）打开booktest/views.py文件，编写视图method_show，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">method_show</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(request.method)</span><br></pre></td></tr></table></figure>
+<p>2）打开booktest/urls.py文件，新增配置如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(r<span class="string">'^method_show/$'</span>, views.method_show),</span><br></pre></td></tr></table></figure>
+<p>3）修改templates/booktest/下创建index.html文件，添加代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;首页&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">2.request对象的method属性：&lt;br/&gt;</span><br><span class="line">&lt;a href=<span class="string">'/method_show/'</span>&gt;get方式&lt;/a&gt;&lt;br/&gt;</span><br><span class="line">&lt;form method=<span class="string">"post"</span> action=<span class="string">"/method_show/"</span>&gt;</span><br><span class="line">    &lt;input <span class="built_in">type</span>=<span class="string">"submit"</span> value=<span class="string">"post方式"</span>&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;br/&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>4）打开浏览器，输入如下网址：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8000/</span><br></pre></td></tr></table></figure>
+<p>5）浏览效果如下图：</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/Pgq1jf.png" alt="shouye"></p>
+<p>6）点击链接，转到method_show，浏览效果如下图:</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/PgqNNj.png" alt="get"></p>
+<p>7) 回到method_test页面，点击按钮，转到method_post，浏览效果如下图，报错了。</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/Pgqw3q.png" alt="method_test"></p>
+<p>8）打开test3/settings.py文件，将MIDDLEWARE_CLASSES项的csrf注释。</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/PgqBvV.png" alt="6"></p>
+<p>9）回到浏览器中刷新，浏览效果如下图，点击“继续”按钮。</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/PgqybF.png" alt="9"></p>
+<p>10）最终浏览效果如下图</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/PgqgUJ.png" alt="10"></p>
+<h2 id="HttpResponse对象"><a href="#HttpResponse对象" class="headerlink" title="HttpResponse对象"></a>HttpResponse对象</h2><blockquote>
+<p>视图在接收请求并处理后，必须返回HttpResponse对象或子对象。在django.http模块中定义了HttpResponse对象的API。HttpRequest对象由Django创建，HttpResponse对象由开发人员创建。</p>
+</blockquote>
+<h3 id="属性和方法"><a href="#属性和方法" class="headerlink" title="属性和方法"></a>属性和方法</h3><p><strong>属性</strong></p>
+<ul>
+<li>content：表示返回的内容。</li>
+<li>charset：表示response采用的编码字符集，默认为utf-8。</li>
+<li>status_code：返回的HTTP响应状态码。</li>
+<li>content-type：指定返回数据的的MIME类型，默认为’text/html’。</li>
+</ul>
+<p><strong>方法</strong></p>
+<ul>
+<li><em>*init</em>*：创建HttpResponse对象后完成返回内容的初始化。</li>
+<li>set_cookie：设置Cookie信息。 set_cookie(key, value=’’, max_age=None, expires=None)</li>
+<li>cookie是网站以键值对格式存储在浏览器中的一段纯文本信息，用于实现用户跟踪。<ul>
+<li>max_age是一个整数，表示在指定秒数后过期。</li>
+<li>expires是一个datetime或timedelta对象，会话将在这个指定的日期/时间过期。</li>
+<li>max_age与expires二选一。</li>
+<li>如果不指定过期时间，在关闭浏览器时cookie会过期。</li>
+</ul>
+</li>
+<li>delete_cookie(key)：删除指定的key的Cookie，如果key不存在则什么也不发生。</li>
+<li>write：向响应体中写数据。</li>
+</ul>
+<h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><h4 id="直接返回数据"><a href="#直接返回数据" class="headerlink" title="直接返回数据"></a>直接返回数据</h4><p>1）打开booktest/views.py文件，定义视图index2如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index2</span><span class="params">(request)</span>:</span></span><br><span class="line">    str=<span class="string">'&lt;h1&gt;hello world&lt;/h1&gt;'</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(str)</span><br></pre></td></tr></table></figure>
+<p>2）打开booktest/urls.py文件，配置url。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(r<span class="string">'^index2/$'</span>,views.index2),</span><br></pre></td></tr></table></figure>
+<p>3）运行服务器，在浏览器中打开如下网址。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8000/index2/</span><br></pre></td></tr></table></figure>
+<p>运行效果如下图：</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/Pgqq5d.png" alt="直接返回数据"></p>
+<p><strong>如果使用这种方式构造一个漂亮丰富的页面，对于开发人员真是会发疯，于是就有了下面的方式：</strong></p>
+<h4 id="调用模板"><a href="#调用模板" class="headerlink" title="调用模板"></a>调用模板</h4><p>可以将html、css、js定义到一个html文件中，然后由视图来调用。</p>
+<p>1）打开booktest/views.py文件，定义视图index3如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.template <span class="keyword">import</span> RequestContext, loader</span><br><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index3</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="comment">#加载模板</span></span><br><span class="line">    t1=loader.get_template(<span class="string">'booktest/index3.html'</span>)</span><br><span class="line">    <span class="comment">#构造上下文</span></span><br><span class="line">    context=RequestContext(request,&#123;<span class="string">'h1'</span>:<span class="string">'hello'</span>&#125;)</span><br><span class="line">    <span class="comment">#使用上下文渲染模板，生成字符串后返回响应对象</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(t1.render(context))</span><br></pre></td></tr></table></figure>
+<p>2）打开booktest/urls.py文件，配置url。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(r<span class="string">'^index3/$'</span>,views.index3),</span><br></pre></td></tr></table></figure>
+<p>3）在templates/booktest/目录下创建index3.html，代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>使用模板<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;h1&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>4）运行服务器，在浏览器中打开如下网址。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8000/index3/</span><br></pre></td></tr></table></figure>
+<p>运行效果如下图：</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/PgqOPA.png" alt="4"></p>
+<h4 id="调用模板简写函数render"><a href="#调用模板简写函数render" class="headerlink" title="调用模板简写函数render"></a>调用模板简写函数render</h4><p>每次调用模板时都要执行加载、上下文、渲染三个步骤，为了简化操作，Django定义了render()函数封装了以上三个步骤的代码，定义在django.shortcuts模块中。</p>
+<p>1）打开booktest/views.py文件，定义视图index3如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index3</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">'booktest/index3.html'</span>, &#123;<span class="string">'h1'</span>: <span class="string">'hello'</span>&#125;)</span><br></pre></td></tr></table></figure>
+<p><strong>是不是用render()函数调用模板比上面简单多了？</strong></p>
+<h3 id="子类JsonResponse"><a href="#子类JsonResponse" class="headerlink" title="子类JsonResponse"></a>子类JsonResponse</h3><blockquote>
+<p>在浏览器中使用javascript发起ajax请求时，返回json格式的数据，此处以jquery的get()方法为例。类JsonResponse继承自HttpResponse对象，被定义在django.http模块中，创建对象时接收字典作为参数。</p>
+</blockquote>
+<p><strong>示例</strong></p>
+<p>1）在booktest/views.py文件中定义视图json1、json2，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> JsonResponse</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">json1</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> render(request,<span class="string">'booktest/json1.html'</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">json2</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> JsonResponse(&#123;<span class="string">'h1'</span>:<span class="string">'hello'</span>,<span class="string">'h2'</span>:<span class="string">'world'</span>&#125;)</span><br></pre></td></tr></table></figure>
+<p>2）在booktest/urls.py文件中配置url。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">url(r<span class="string">'^json1/$'</span>, views.json1),</span><br><span class="line">url(r<span class="string">'^json2/$'</span>, views.json2),</span><br></pre></td></tr></table></figure>
+<p>3）创建目录static/js/，把jquery文件拷贝到这个目录下。</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/PgLKZF.png" alt="jquery"></p>
+<p>4）打开test3/settings.py文件，在文件最底部，配置静态文件查找路径，并且要求开启调试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DEBUG = True</span><br><span class="line">...</span><br><span class="line">STATICFILES_DIRS = [</span><br><span class="line">    os.path.join(BASE_DIR, <span class="string">'static'</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>5）在templates/booktest/目录下创建json1.html，代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>json<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/static/js/jquery-1.12.4.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">        $(function () &#123;</span></span><br><span class="line"><span class="undefined">            $('#btnJson').click(function () &#123;</span></span><br><span class="line"><span class="undefined">                $.get('/json2/',function (data) &#123;</span></span><br><span class="line"><span class="undefined">                    ul=$('#jsonList');</span></span><br><span class="line"><span class="xml">                    ul.append('<span class="tag">&lt;<span class="name">li</span>&gt;</span>'+data['h1']+'<span class="tag">&lt;/<span class="name">li</span>&gt;</span>')</span></span><br><span class="line"><span class="xml">                    ul.append('<span class="tag">&lt;<span class="name">li</span>&gt;</span>'+data['h2']+'<span class="tag">&lt;/<span class="name">li</span>&gt;</span>')</span></span><br><span class="line"><span class="undefined">                &#125;)</span></span><br><span class="line"><span class="undefined">            &#125;);</span></span><br><span class="line"><span class="undefined">        &#125;);</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"btnJson"</span> <span class="attr">value</span>=<span class="string">"获取json数据"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"jsonList"</span>&gt;</span><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>6）运行服务器，在浏览器中输入如下地址。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8000/json1/</span><br></pre></td></tr></table></figure>
+<p>7）点击按钮”获取json数据”后浏览如下图。</p>
+<p><img src="https://s1.ax1x.com/2018/08/14/PgLQIJ.png" alt="json"></p>
+<p>ajax代码执行过程如下：</p>
+<ul>
+<li>1.发起请求。</li>
+<li>2.服务器端视图函数执行。</li>
+<li>3.执行回调函数。</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2018/08/14/PgLReS.png" alt="jsonresponse"></p>
+<h2 id="状态保持"><a href="#状态保持" class="headerlink" title="状态保持"></a>状态保持</h2><blockquote>
+<p>浏览器请求服务器是无状态的。无状态指一次用户请求时，浏览器、服务器无法知道之前这个用户做过什么，每次请求都是一次新的请求。无状态的应用层面的原因是：浏览器和服务器之间的通信都遵守HTTP协议。根本原因是：浏览器与服务器是使用Socket套接字进行通信的，服务器将请求结果返回给浏览器之后，会关闭当前的Socket连接，而且服务器也会在处理页面完毕之后销毁页面对象。</p>
+</blockquote>
+<p>有时需要保存下来用户浏览的状态，比如用户是否登录过，浏览过哪些商品等。 实现状态保持主要有两种方式：</p>
+<ul>
+<li>在客户端存储信息使用Cookie。</li>
+<li>在服务器端存储信息使用Session。</li>
+</ul>
+<h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><blockquote>
+<p>Cookie，有时也用其复数形式Cookies，指某些网站为了辨别用户身份、进行session跟踪而储存在用户本地终端上的数据（通常经过加密）。Cookie最早是网景公司的前雇员Lou Montulli在1993年3月的发明。Cookie是由服务器端生成，发送给User-Agent（一般是浏览器），浏览器会将Cookie的key/value保存到某个目录下的文本文件内，下次请求同一网站时就发送该Cookie给服务器（前提是浏览器设置为启用cookie）。Cookie名称和值可以由服务器端开发自己定义，这样服务器可以知道该用户是否是合法用户以及是否需要重新登录等。服务器可以利用Cookies包含信息的任意性来筛选并经常性维护这些信息，以判断在HTTP传输中的状态。Cookies最典型记住用户名。</p>
+</blockquote>
+<h4 id="Cookie的特点"><a href="#Cookie的特点" class="headerlink" title="Cookie的特点"></a>Cookie的特点</h4><ul>
+<li>Cookie以键值对的格式进行信息的存储。</li>
+<li>Cookie基于域名安全，不同域名的Cookie是不能互相访问的，如访问itcast.cn时向浏览器中写了Cookie信息，使用同一浏览器访问baidu.com时，无法访问到itcast.cn写的Cookie信息。</li>
+<li>当浏览器请求某网站时，会将浏览器存储的跟网站相关的所有Cookie信息提交给网站服务器。</li>
+</ul>
+<h4 id="设置Cookie"><a href="#设置Cookie" class="headerlink" title="设置Cookie"></a>设置Cookie</h4><p>1）打开booktest/views.py文件，创建视图cookie_set。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cookie可以设置到HttpResponse类及其子类对象中</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cookie_set</span><span class="params">(request)</span>:</span></span><br><span class="line">    response = HttpResponse(<span class="string">"&lt;h1&gt;设置Cookie，请查看响应报文头&lt;/h1&gt;"</span>)</span><br><span class="line">    response.set_cookie(<span class="string">'h1'</span>, <span class="string">'你好'</span>)</span><br><span class="line">    <span class="keyword">return</span> response</span><br></pre></td></tr></table></figure>
+<p>2）打开booktest/urls.py文件，配置url。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(r<span class="string">'^cookie_set/$'</span>,views.cookie_set),</span><br></pre></td></tr></table></figure>
+<p>3）在浏览器输入如下网址。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8000/cookie_set/</span><br></pre></td></tr></table></figure>
+<p>在”开发者工具”中可以在响应头中查看到设置的Cookie信息。</p>
+<p><img src="https://s1.ax1x.com/2018/08/15/P2OgxI.png" alt="设置cookie"></p>
+<h4 id="读取Cookie"><a href="#读取Cookie" class="headerlink" title="读取Cookie"></a>读取Cookie</h4><p>Cookie信息被包含在请求头中，使用request对象的COOKIES属性访问。</p>
+<p>1）打开booktest/views.py文件，创建视图cookie_get。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cookie_get</span><span class="params">(request)</span>:</span></span><br><span class="line">    response = HttpResponse(<span class="string">"读取Cookie，数据如下：&lt;br&gt;"</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">'h1'</span> <span class="keyword">in</span> request.COOKIES:</span><br><span class="line">        response.write(<span class="string">'&lt;h1&gt;'</span> + request.COOKIES[<span class="string">'h1'</span>] + <span class="string">'&lt;/h1&gt;'</span>)</span><br><span class="line">    <span class="keyword">return</span> response</span><br></pre></td></tr></table></figure>
+<p>2）打开booktest/urls.py文件，配置url。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(r<span class="string">'^cookie_get/$'</span>,views.cookie_get),</span><br></pre></td></tr></table></figure>
+<p>3）在浏览器输入如下网址。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8000/cookie_get/</span><br></pre></td></tr></table></figure>
+<p>4）打开“开发者工具”，在请求头中可以查看Cookie信息，浏览效果如下图：</p>
+<p><img src="https://s1.ax1x.com/2018/08/15/P2O5dS.png" alt="设置cookie"></p>
+<h3 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h3><p>对于敏感、重要的信息，建议要储在服务器端，不能存储在浏览器中，如用户名、余额、等级、验证码等信息。</p>
+<blockquote>
+<p>在服务器端进行状态保持的方案就是Session。</p>
+</blockquote>
+<h4 id="启用Session"><a href="#启用Session" class="headerlink" title="启用Session"></a>启用Session</h4><p>Django项目默认启用Session。</p>
+<p>打开test3/settings.py文件，在项MIDDLEWARE_CLASSES中启用Session中间件。</p>
+<p><img src="https://s1.ax1x.com/2018/08/15/P2OLMq.md.png" alt="qiyongsession"></p>
+<h4 id="存储方式"><a href="#存储方式" class="headerlink" title="存储方式"></a>存储方式</h4><p>打开test3/settings.py文件，设置SESSION_ENGINE项指定Session数据存储的方式，可以存储在数据库、缓存、Redis等。</p>
+<p>1）存储在数据库中，如下设置可以写，也可以不写，这是默认存储方式。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SESSION_ENGINE=<span class="string">'django.contrib.sessions.backends.db'</span></span><br></pre></td></tr></table></figure>
+<p>2）存储在缓存中：存储在本机内存中，如果丢失则不能找回，比数据库的方式读写更快。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SESSION_ENGINE=<span class="string">'django.contrib.sessions.backends.cache'</span></span><br></pre></td></tr></table></figure>
+<p>3）混合存储：优先从本机内存中存取，如果没有则从数据库中存取。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SESSION_ENGINE=<span class="string">'django.contrib.sessions.backends.cached_db'</span></span><br></pre></td></tr></table></figure>
+<p>4）如果存储在数据库中，需要在项INSTALLED_APPS中安装Session应用。</p>
+<p><img src="https://s1.ax1x.com/2018/08/15/P2XPzR.png" alt="session"></p>
+<p>5）迁移后会在数据库中创建出存储Session的表。</p>
+<p><img src="https://s1.ax1x.com/2018/08/15/P2XFQ1.png" alt="session"></p>
+<p>6）表结构如下图。</p>
+<p><img src="https://s1.ax1x.com/2018/08/15/P2XAL6.png" alt="biaojiegou"></p>
+<blockquote>
+<p>由表结构可知，操作Session包括三个数据：键，值，过期时间</p>
+</blockquote>
+<h4 id="依赖于Cookie"><a href="#依赖于Cookie" class="headerlink" title="依赖于Cookie"></a>依赖于Cookie</h4><p>所有请求者的Session都会存储在服务器中，服务器如何区分请求者和Session数据的对应关系呢？</p>
+<p>答：在使用Session后，会在Cookie中存储一个sessionid的数据，每次请求时浏览器都会将这个数据发给服务器，服务器在接收到sessionid后，会根据这个值找出这个请求者的Session。</p>
+<p>结果：如果想使用Session，浏览器必须支持Cookie，否则就无法使用Session了。</p>
+<p>存储Session时，键与Cookie中的sessionid相同，值是开发人员设置的键值对信息，进行了base64编码，过期时间由开发人员设置。</p>
+<h4 id="对象及方法"><a href="#对象及方法" class="headerlink" title="对象及方法"></a>对象及方法</h4><p>通过HttpRequest对象的session属性进行会话的读写操作</p>
+<p>1） 以键值对的格式写session。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.session[<span class="string">'键'</span>]=值</span><br></pre></td></tr></table></figure>
+<p>2）根据键读取值。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.session.get(<span class="string">'键'</span>,默认值)</span><br></pre></td></tr></table></figure>
+<p>3）清除所有session，在存储中删除值部分。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.session.clear()</span><br></pre></td></tr></table></figure>
+<p>4）清除session数据，在存储中删除session的整条数据。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.session.flush()</span><br></pre></td></tr></table></figure>
+<p>5）删除session中的指定键及值，在存储中只删除某个键及对应的值。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">del request.session[<span class="string">'键'</span>]</span><br></pre></td></tr></table></figure>
+<p>6）设置会话的超时时间，如果没有指定过期时间则两个星期后过期。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.session.set_expiry(value)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果value是一个整数，会话将在value秒没有活动后过期。</li>
+<li>如果value为0，那么用户会话的Cookie将在用户的浏览器关闭时过期。</li>
+<li>如果value为None，那么会话永不过期。</li>
+</ul>
+<h4 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h4><p><strong>写session </strong></p>
+<p>1）打开booktest/views.py文件，创建视图session_test，代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def session_test(request):</span><br><span class="line">    request.session[<span class="string">'h1'</span>]=<span class="string">'hello'</span></span><br><span class="line">    <span class="built_in">return</span> HttpResponse(<span class="string">'写session'</span>)</span><br></pre></td></tr></table></figure>
+<p>2）打开booktest/urls.py文件，配置url。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(r<span class="string">'^session_test/$'</span>,views.session_test),</span><br></pre></td></tr></table></figure>
+<p>3）运行服务器，打开浏览器请求如下网址。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8000/session_test/</span><br></pre></td></tr></table></figure>
+<p>4）浏览效果如下图，在”开发者工具”中可以查看到响应头中创建了Cookie，里面有个键为sessionid。</p>
+<p><img src="https://s1.ax1x.com/2018/08/15/P2XYTS.png" alt="session"></p>
+<p>5）打开MySQL数据库命令行，查询数据如下图。</p>
+<p>查看Cookie中的sessionid值为”l48euizwnd0u1vrq401rwc9yqxkj4ip4”，数据表中session的键为“l48euizwnd0u1vrq401rwc9yqxkj4ip4”，是一样的，这样，服务器就可以在众多的请求者中找到对应的Session数据。</p>
+<p><img src="https://s1.ax1x.com/2018/08/15/P2XwSs.png" alt="mysql"></p>
+<p><strong>读session </strong></p>
+<p>1）打开booktest/views.py文件，修改session_test视图如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">session_test</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="comment"># request.session['h1']='hello'</span></span><br><span class="line">    h1=request.session.get(<span class="string">'h1'</span>)</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(h1)</span><br></pre></td></tr></table></figure>
+<p>2）刷新浏览器效果如下图。</p>
+<p><img src="https://s1.ax1x.com/2018/08/15/P2XByq.png" alt="shuaxin"></p>
+<h4 id="使用Redis存储Session"><a href="#使用Redis存储Session" class="headerlink" title="使用Redis存储Session"></a>使用Redis存储Session</h4><p>会话还支持文件、纯cookie、Memcached、Redis等方式存储，下面演示使用redis存储。</p>
+<p>1）安装包。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install django-redis-sessions==<span class="number">0.5</span><span class="number">.6</span></span><br></pre></td></tr></table></figure>
+<p>2）修改test3/settings文件，增加如下项：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SESSION_ENGINE = <span class="string">'redis_sessions.session'</span></span><br><span class="line">SESSION_REDIS_HOST = <span class="string">'localhost'</span></span><br><span class="line">SESSION_REDIS_PORT = 6379</span><br><span class="line">SESSION_REDIS_DB = 2</span><br><span class="line">SESSION_REDIS_PASSWORD = <span class="string">''</span></span><br><span class="line">SESSION_REDIS_PREFIX = <span class="string">'session'</span></span><br></pre></td></tr></table></figure>
+<p>3）打开booktest/views.py文件，修改session_test视图如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">session_test</span><span class="params">(request)</span>:</span></span><br><span class="line">    request.session[<span class="string">'h1'</span>]=<span class="string">'hello'</span></span><br><span class="line">    <span class="comment"># h1=request.session.get('h1')</span></span><br><span class="line">    <span class="comment"># del request.session['h1']</span></span><br><span class="line">    <span class="comment"># request.session.flush()</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">'ok'</span>)</span><br></pre></td></tr></table></figure>
+<p>4）管理redis的命令，需要保证redis服务被开启。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">查看：ps ajx|grep redis</span><br><span class="line">启动：sudo service redis start</span><br><span class="line">停止：sudo service redis stop</span><br><span class="line">使用客户端连接服务器：redis-cli</span><br><span class="line">切换数据库：select <span class="number">2</span></span><br><span class="line">查看所有的键：keys *</span><br><span class="line">获取指定键的值：get name</span><br></pre></td></tr></table></figure>
+<p>5）刷新浏览器，在redis客户端中查看数据如下。</p>
+<p><img src="https://s1.ax1x.com/2018/08/15/P2XXpd.png" alt="redis"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏2块钱,帮我买杯咖啡,继续创作,谢谢大家！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="陈凡 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliyipay.jpg" alt="陈凡 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+        -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+         
+            <a href="/tags/Django/" rel="tag"><i class="fa fa-tag"></i>Django</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/13/Django入门基础之模型/" rel="next" title="Django入门基础之模型">
+                <i class="fa fa-chevron-left"></i> Django入门基础之模型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/upload/avatar.gif"
+                alt="陈凡" />
+            
+              <p class="site-author-name" itemprop="name">陈凡</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/chenfanlinux" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:chenfan216@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/3942411590" target="_blank" title="微博">
+                    
+                      <i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/love-hero-80" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#视图简单应用"><span class="nav-number">1.</span> <span class="nav-text">视图简单应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建示例项目"><span class="nav-number">1.1.</span> <span class="nav-text">创建示例项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用视图的过程"><span class="nav-number">1.2.</span> <span class="nav-text">使用视图的过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动服务器"><span class="nav-number">1.3.</span> <span class="nav-text">启动服务器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#URLconf"><span class="nav-number">2.</span> <span class="nav-text">URLconf</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">2.1.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">2.2.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取值"><span class="nav-number">2.3.</span> <span class="nav-text">获取值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图"><span class="nav-number">3.</span> <span class="nav-text">视图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#404错误及视图"><span class="nav-number">3.1.</span> <span class="nav-text">404错误及视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#500错误及视图"><span class="nav-number">3.2.</span> <span class="nav-text">500错误及视图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HttpReqeust对象"><span class="nav-number">4.</span> <span class="nav-text">HttpReqeust对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#属性"><span class="nav-number">4.1.</span> <span class="nav-text">属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-number">4.2.</span> <span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HttpResponse对象"><span class="nav-number">5.</span> <span class="nav-text">HttpResponse对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#属性和方法"><span class="nav-number">5.1.</span> <span class="nav-text">属性和方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-1"><span class="nav-number">5.2.</span> <span class="nav-text">示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#直接返回数据"><span class="nav-number">5.2.1.</span> <span class="nav-text">直接返回数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调用模板"><span class="nav-number">5.2.2.</span> <span class="nav-text">调用模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调用模板简写函数render"><span class="nav-number">5.2.3.</span> <span class="nav-text">调用模板简写函数render</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子类JsonResponse"><span class="nav-number">5.3.</span> <span class="nav-text">子类JsonResponse</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态保持"><span class="nav-number">6.</span> <span class="nav-text">状态保持</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie"><span class="nav-number">6.1.</span> <span class="nav-text">Cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie的特点"><span class="nav-number">6.1.1.</span> <span class="nav-text">Cookie的特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置Cookie"><span class="nav-number">6.1.2.</span> <span class="nav-text">设置Cookie</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#读取Cookie"><span class="nav-number">6.1.3.</span> <span class="nav-text">读取Cookie</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session"><span class="nav-number">6.2.</span> <span class="nav-text">Session</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#启用Session"><span class="nav-number">6.2.1.</span> <span class="nav-text">启用Session</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存储方式"><span class="nav-number">6.2.2.</span> <span class="nav-text">存储方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#依赖于Cookie"><span class="nav-number">6.2.3.</span> <span class="nav-text">依赖于Cookie</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象及方法"><span class="nav-number">6.2.4.</span> <span class="nav-text">对象及方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#示例-2"><span class="nav-number">6.2.5.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Redis存储Session"><span class="nav-number">6.2.6.</span> <span class="nav-text">使用Redis存储Session</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+<script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=ipZXdvME3sKg6viC20OoTCYATcaOJ6SQH2wdaJEUHfc"></script>
+
+<div id="music163player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=525241230&auto=0&height=66"></iframe>
+</div>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈凡</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">135.6k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div> 
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+ <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 98812, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2018/08/15/Django基础之视图详解/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/98812/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+<!--页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>  
+
+
+
+<!-- 
+<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-1 count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script> -->
+
+
+</body>
+</html>
