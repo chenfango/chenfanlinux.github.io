@@ -339,6 +339,225 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/06/03/Python内建函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/03/Python内建函数/" itemprop="url">Python内建函数</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-03T13:53:40+08:00">
+                2018-06-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python基础知识/" itemprop="url" rel="index">
+                    <span itemprop="name">python基础知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/03/Python内建函数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/06/03/Python内建函数/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  7,310
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  33
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="内建函数引言"><a href="#内建函数引言" class="headerlink" title="内建函数引言"></a>内建函数引言</h2><blockquote>
+<p>Python内建函数按分类可以分为系统内建函数和内置对象(字符串,列表,字典,set,文件对象)的方法，下面我们将带您认识系统内建函数和内置数据对象的方法。</p>
+</blockquote>
+<ul>
+<li>系统内建函数</li>
+<li>内置对象方法<ul>
+<li>str字符</li>
+<li>list列表</li>
+<li>tuple元组</li>
+<li>dict字典</li>
+<li>set集合</li>
+</ul>
+</li>
+</ul>
+<h2 id="系统内建函数"><a href="#系统内建函数" class="headerlink" title="系统内建函数"></a>系统内建函数</h2><blockquote>
+<p>查看官方文档:  <a href="https://docs.python.org/3/library/functions.html" target="_blank" rel="noopener">python系统内建函数</a></p>
+</blockquote>
+<p><img src="https://s1.ax1x.com/2018/05/19/Cc0kKP.png" alt="Python系统内建函数图"></p>
+<h3 id="dir"><a href="#dir" class="headerlink" title="dir()"></a>dir()</h3><ul>
+<li><p>作用：返回一个对象中中的所有方法 </p>
+</li>
+<li><p>使用方法：dir([object])  </p>
+</li>
+<li><p>返回值：list of strings  </p>
+</li>
+</ul>
+<p>实例说明：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dir(str) <span class="comment"># 查找str类型对象所对应的方法</span></span><br><span class="line">[<span class="string">'__add__'</span>, <span class="string">'__class__'</span>, <span class="string">'__contains__'</span>, <span class="string">'__delattr__'</span>, <span class="string">'__dir__'</span>, <span class="string">'__doc__'</span>, <span class="string">'__eq__'</span>, <span class="string">'__format__'</span>, <span class="string">'__ge__'</span>, <span class="string">'__getattribute__'</span>, <span class="string">'__getitem__'</span>, <span class="string">'__getnewargs__'</span>, <span class="string">'__gt__'</span>, <span class="string">'__hash__'</span>, <span class="string">'__init__'</span>, <span class="string">'__iter__'</span>, <span class="string">'__le__'</span>, <span class="string">'__len__'</span>, <span class="string">'__lt__'</span>, <span class="string">'__mod__'</span>, <span class="string">'__mul__'</span>, <span class="string">'__ne__'</span>, <span class="string">'__new__'</span>, <span class="string">'__reduce__'</span>, <span class="string">'__reduce_ex__'</span>, <span class="string">'__repr__'</span>, <span class="string">'__rmod__'</span>, <span class="string">'__rmul__'</span>, <span class="string">'__setattr__'</span>, <span class="string">'__sizeof__'</span>, <span class="string">'__str__'</span>, <span class="string">'__subclasshook__'</span>, <span class="string">'capitalize'</span>, <span class="string">'casefold'</span>, <span class="string">'center'</span>, <span class="string">'count'</span>, <span class="string">'encode'</span>, <span class="string">'endswith'</span>, <span class="string">'expandtabs'</span>, <span class="string">'find'</span>, <span class="string">'format'</span>, <span class="string">'format_map'</span>, <span class="string">'index'</span>, <span class="string">'isalnum'</span>, <span class="string">'isalpha'</span>, <span class="string">'isdecimal'</span>, <span class="string">'isdigit'</span>, <span class="string">'isidentifier'</span>, <span class="string">'islower'</span>, <span class="string">'isnumeric'</span>, <span class="string">'isprintable'</span>, <span class="string">'isspace'</span>, <span class="string">'istitle'</span>, <span class="string">'isupper'</span>, <span class="string">'join'</span>, <span class="string">'ljust'</span>, <span class="string">'lower'</span>, <span class="string">'lstrip'</span>, <span class="string">'maketrans'</span>, <span class="string">'partition'</span>, <span class="string">'replace'</span>, <span class="string">'rfind'</span>, <span class="string">'rindex'</span>, <span class="string">'rjust'</span>, <span class="string">'rpartition'</span>, <span class="string">'rsplit'</span>, <span class="string">'rstrip'</span>, <span class="string">'split'</span>, <span class="string">'splitlines'</span>, <span class="string">'startswith'</span>, <span class="string">'strip'</span>, <span class="string">'swapcase'</span>, <span class="string">'title'</span>, <span class="string">'translate'</span>, <span class="string">'upper'</span>, <span class="string">'zfill'</span>]</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/03/Python内建函数/#далее" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    
+    <div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/05/31/自动化运维工具Fabric/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -482,7 +701,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ yum install python-pip</span><br><span class="line">$ pip install --upgrade pip</span><br><span class="line">$ pip install fabric==<span class="number">1.14</span><span class="number">.0</span>   <span class="comment"># 指定版本安装，这里如果不指定的话，安装最新版本</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/31/自动化运维工具Fabric/#more" rel="contents">
+            <a class="btn" href="/2018/05/31/自动化运维工具Fabric/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -689,7 +908,7 @@
 <p>实际上，在PyMongo 3.x版本中，官方已经不推荐使用<code>insert()</code>方法了。当然，继续使用也没有什么问题。官方推荐使用<code>insert_one()</code>和<code>insert_many()</code>方法来分别插入单条记录和多条记录 。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/28/Python操作MongoDB/#more" rel="contents">
+            <a class="btn" href="/2018/05/28/Python操作MongoDB/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -888,7 +1107,7 @@
 <h3 id="5-保证充足的睡眠"><a href="#5-保证充足的睡眠" class="headerlink" title="5.保证充足的睡眠"></a>5.保证充足的睡眠</h3><p>睡觉时，脑脊液在脑细胞间的循环比清醒时快很多，帮助大脑排出 “垃圾”,因为尽量避免熬夜，让大脑充分休息。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/27/如何提升你的记忆力/#more" rel="contents">
+            <a class="btn" href="/2018/05/27/如何提升你的记忆力/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1091,7 +1310,7 @@
 </code></pre><p>由于我们没有为数据指定索引，于是会自动创建一个0到N-1（N为数据的长度）的整数型索引。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/01/Python数据分析之Pandas入门修订版-四/#more" rel="contents">
+            <a class="btn" href="/2018/05/01/Python数据分析之Pandas入门修订版-四/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1294,7 +1513,7 @@
 <h3 id="创建-Series数据类型"><a href="#创建-Series数据类型" class="headerlink" title="创建 Series数据类型"></a>创建 Series数据类型</h3><p>创建 Series 语法： <code>s = pd.Series(data, index=index)</code>，可以通过多种方式进行创建, 这里的data的数据类型只要是序列都可以。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/26/Python数据分析之Pandas入门-三/#more" rel="contents">
+            <a class="btn" href="/2018/04/26/Python数据分析之Pandas入门-三/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1501,7 +1720,7 @@
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/25/Python数据分析之Numpy-二/#more" rel="contents">
+            <a class="btn" href="/2018/04/25/Python数据分析之Numpy-二/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1699,7 +1918,7 @@ $ conda config --set show_channel_urls yes
 </code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/18/Python数据分析之开发工具Anaconda-一/#more" rel="contents">
+            <a class="btn" href="/2018/04/18/Python数据分析之开发工具Anaconda-一/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1910,7 +2129,7 @@ $ conda config --set show_channel_urls yes
 </code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/13/python时间处理模块/#more" rel="contents">
+            <a class="btn" href="/2018/04/13/python时间处理模块/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2111,211 +2330,7 @@ $ conda config --set show_channel_urls yes
 </code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/11/python版本管理工具-pyenv/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    
-    <div>
-  
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/04/06/Kubernetes-1-9-1-HA生产环境实践/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/06/Kubernetes-1-9-1-HA生产环境实践/" itemprop="url">Kubernetes-1.9.1-HA生产环境实践</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-06T13:41:21+08:00">
-                2018-04-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/k8s/" itemprop="url" rel="index">
-                    <span itemprop="name">k8s</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/06/Kubernetes-1-9-1-HA生产环境实践/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/04/06/Kubernetes-1-9-1-HA生产环境实践/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  7,158
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  39
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="集群环境说明"><a href="#集群环境说明" class="headerlink" title="集群环境说明"></a>集群环境说明</h2><h3 id="服务器信息"><a href="#服务器信息" class="headerlink" title="服务器信息"></a>服务器信息</h3><p>这里配置2Master 2个node, k8s-master01只做 Master, k8s-node01即是Master也是Node, k8s-node02单纯做Node。</p>
-<p><img src="https://s1.ax1x.com/2018/04/02/9z62xH.png" alt="服务器信息"></p>
-<h3 id="集群详情"><a href="#集群详情" class="headerlink" title="集群详情"></a>集群详情</h3><ul>
-<li>Kubernetes 1.9.1</li>
-<li>Docker-17.03.1-ce</li>
-<li>Etcd-v3.2.14</li>
-<li>Flanneld-v0.10.0 vxlan</li>
-<li>TLS 认证通信</li>
-<li>RBAC 授权</li>
-<li>Kublet TLS BootStrapping</li>
-<li>Coredns:1.0.4</li>
-<li>Registry-2.6</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/06/Kubernetes-1-9-1-HA生产环境实践/#more" rel="contents">
+            <a class="btn" href="/2018/04/11/python版本管理工具-pyenv/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2410,7 +2425,7 @@ $ conda config --set show_channel_urls yes
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2421,7 +2436,7 @@ $ conda config --set show_channel_urls yes
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2432,7 +2447,7 @@ $ conda config --set show_channel_urls yes
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2506,7 +2521,7 @@ $ conda config --set show_channel_urls yes
     </main>
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -2520,7 +2535,7 @@ $ conda config --set show_channel_urls yes
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">139.9k</span>
+    <span title="Site words total count">147.8k</span>
   
 </div>
 

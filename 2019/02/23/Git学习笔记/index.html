@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="git," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="陈凡的个人站点" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="一、git安装管理 Git是分布式的版本控制系统，我们只要有了一个原始Git版本仓库，就可以让其他主机克隆走这个原始版本仓库，从而使得一个Git版本仓库可以被同时分布到不同的主机之上，并且每台主机的版本库都是一样的，没有主次之分，极大的保证了数据安全性，并使得用户能够自主选择向那个Git服务器推送文件了，其实部署一个g">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git学习笔记">
+<meta property="og:url" content="http://www.chenfanlinux.org/2019/02/23/Git学习笔记/index.html">
+<meta property="og:site_name" content="陈凡的个人站点">
+<meta property="og:description" content="一、git安装管理 Git是分布式的版本控制系统，我们只要有了一个原始Git版本仓库，就可以让其他主机克隆走这个原始版本仓库，从而使得一个Git版本仓库可以被同时分布到不同的主机之上，并且每台主机的版本库都是一样的，没有主次之分，极大的保证了数据安全性，并使得用户能够自主选择向那个Git服务器推送文件了，其实部署一个git服务器是非常简单的。 1.Git安装部署 1.1 安装Git [root@g">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://cdn-std.dprcdn.net/files/acc_582513/gb3rxN">
+<meta property="og:image" content="https://cdn-std.dprcdn.net/files/acc_582513/YDfaGs">
+<meta property="og:image" content="https://cdn-std.dprcdn.net/files/acc_582513/cggckI">
+<meta property="og:image" content="https://cdn-std.dprcdn.net/files/acc_582513/dnX9wc">
+<meta property="og:image" content="https://cdn-std.dprcdn.net/files/acc_582513/f7NwLN">
+<meta property="og:updated_time" content="2019-02-23T12:23:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git学习笔记">
+<meta name="twitter:description" content="一、git安装管理 Git是分布式的版本控制系统，我们只要有了一个原始Git版本仓库，就可以让其他主机克隆走这个原始版本仓库，从而使得一个Git版本仓库可以被同时分布到不同的主机之上，并且每台主机的版本库都是一样的，没有主次之分，极大的保证了数据安全性，并使得用户能够自主选择向那个Git服务器推送文件了，其实部署一个git服务器是非常简单的。 1.Git安装部署 1.1 安装Git [root@g">
+<meta name="twitter:image" content="https://cdn-std.dprcdn.net/files/acc_582513/gb3rxN">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'X18Q8YOK7R',
+      apiKey: '4cf6f4ea962b4c633859ca376c0d6ae9',
+      indexName: 'chenfanlinux',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfanlinux.org/2019/02/23/Git学习笔记/"/>
+
+
+
+
+
+  <title>Git学习笔记 | 陈凡的个人站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?your-analytics-id";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+ 
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">陈凡的个人站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">chenfanlinux.org</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2019/02/23/Git学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Git学习笔记</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-23T20:15:40+08:00">
+                2019-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/23/Git学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2019/02/23/Git学习笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  7,885
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  36
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、git安装管理"><a href="#一、git安装管理" class="headerlink" title="一、git安装管理"></a>一、git安装管理</h2><blockquote>
+<p>Git是分布式的版本控制系统，我们只要有了一个原始Git版本仓库，就可以让其他主机克隆走这个原始版本仓库，从而使得一个Git版本仓库可以被同时分布到不同的主机之上，并且每台主机的版本库都是一样的，没有主次之分，极大的保证了数据安全性，并使得用户能够自主选择向那个Git服务器推送文件了，其实部署一个git服务器是非常简单的。</p>
+<h3 id="1-Git安装部署"><a href="#1-Git安装部署" class="headerlink" title="1.Git安装部署"></a>1.Git安装部署</h3></blockquote>
+<p>1.1 <strong>安装Git</strong></p>
+<pre><code>[root@git-node1 ~]# yum install git -y
+</code></pre><p>1.2 <strong>配置git全局用户以及邮箱</strong></p>
+<pre><code>[root@git-node1 ~]# git config --global user.name &quot;chenfan&quot;  
+[root@git-node1 ~]# git config --global user.email &quot;1144102576@qq.com&quot;  
+[root@git-node1 ~]# git config --global color.ui true
+</code></pre><p>1.3 <strong>检查git相关配置</strong></p>
+<pre><code>[root@git-node1 ~]# git config --list
+user.name=chenfan
+user.email=1144102576@qq.com
+color.ui=true
+</code></pre><a id="more"></a>
+<h2 id="二、git数据管理"><a href="#二、git数据管理" class="headerlink" title="二、git数据管理"></a>二、git数据管理</h2><h3 id="概要"><a href="#概要" class="headerlink" title="概要"></a><em>概要</em></h3><ol>
+<li>提交数据</li>
+<li>移除数据</li>
+<li>移动数据</li>
+<li>历史数据</li>
+<li>还原数据</li>
+<li>基础操作小结</li>
+</ol>
+<h3 id="1-提交数据"><a href="#1-提交数据" class="headerlink" title="1. 提交数据"></a>1. 提交数据</h3><blockquote>
+<p>我们可以简单的把工作目录理解成是一个被Git服务程序管理的目录，Git会时刻的追踪目录内文件的改动，另外在安装好了Git服务程序后，默认就会创建好了一个叫做master的分支，我们直接可以提交数据。</p>
+</blockquote>
+<h4 id="1-1-创建本地工作目录demo，并初始化为git工作目录"><a href="#1-1-创建本地工作目录demo，并初始化为git工作目录" class="headerlink" title="1.1 创建本地工作目录demo，并初始化为git工作目录"></a>1.1 创建本地工作目录demo，并初始化为git工作目录</h4><pre><code>[root@git-node1 ~]# mkdir demo
+[root@git-node1 ~]# cd demo/
+[root@git-node1 git-demo]# git init
+Initialized empty Git repository in /root/demo/.git/
+</code></pre><h4 id="1-2-创建readme-txt文件"><a href="#1-2-创建readme-txt文件" class="headerlink" title="1.2 创建readme.txt文件"></a>1.2 创建readme.txt文件</h4><pre><code>[root@git-node1 demo]# touch readme.txt
+</code></pre><h4 id="1-3-查看git状态"><a href="#1-3-查看git状态" class="headerlink" title="1.3 查看git状态"></a>1.3 查看git状态</h4><pre><code>[root@git-node1 demo]# git status
+# 位于分支 master
+#
+# 初始提交
+#
+# 未跟踪的文件:
+#   （使用 &quot;git add &lt;file&gt;...&quot; 以包含要提交的内容）
+#
+#   readme.txt
+提交为空，但是存在尚未跟踪的文件（使用 &quot;git add&quot; 建立跟踪）
+</code></pre><h4 id="1-4-提示使用git-add添加文件至暂存区"><a href="#1-4-提示使用git-add添加文件至暂存区" class="headerlink" title="1.4 提示使用git add添加文件至暂存区"></a>1.4 提示使用git add添加文件至暂存区</h4><pre><code>[root@git-node1 demo]# git add readme.txt
+[root@git-node1 demo]# git status  //查看变更状态
+# 位于分支 master
+#
+# 初始提交
+#
+# 要提交的变更：
+#   （使用 &quot;git rm --cached &lt;file&gt;...&quot; 撤出暂存区）
+#
+#   新文件：    
+</code></pre><p>####1.5 使用git commit提交暂存区文件至git版本仓库<br>-m:提交描述信息(提交至远程需添加远程仓库) </p>
+<pre><code>[root@git-node1 demo]# git commit -m &quot;the first commit readme.txt&quot;
+[master（根提交） 85bd268] the first commit readme.txt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 readme.txt
+</code></pre><h3 id="2-移除数据"><a href="#2-移除数据" class="headerlink" title="2. 移除数据"></a>2. 移除数据</h3><blockquote>
+<p>有些时候会将已经添加到暂存区的文件移除，但仍然希望文件在工作目录中不丢失，换句话说，就是把文件从追踪清单中删除。</p>
+</blockquote>
+<h4 id="2-1-建立新文件"><a href="#2-1-建立新文件" class="headerlink" title="2.1 建立新文件"></a>2.1 建立新文件</h4><pre><code>[root@git-node1 demo]# touch index.php
+</code></pre><h4 id="2-2-添加新文件至暂存区"><a href="#2-2-添加新文件至暂存区" class="headerlink" title="2.2 添加新文件至暂存区"></a>2.2 添加新文件至暂存区</h4><pre><code>[root@git-node1 demo]# git add index.php
+[root@git-node1 demo]# git status
+# 位于分支 master
+# 要提交的变更：
+#   （使用 &quot;git reset HEAD &lt;file&gt;...&quot; 撤出暂存区）
+#
+#   新文件：    index.php
+</code></pre><h4 id="2-3-将新文件从暂存区撤出-并不会删除工作目录内的数据"><a href="#2-3-将新文件从暂存区撤出-并不会删除工作目录内的数据" class="headerlink" title="2.3 将新文件从暂存区撤出(并不会删除工作目录内的数据)"></a>2.3 将新文件从暂存区撤出(并不会删除工作目录内的数据)</h4><pre><code>[root@git-node1 demo]# git reset HEAD index.php
+[root@git-node1 demo]# git status  //index.php文件状态为未跟踪
+# 位于分支 master
+# 未跟踪的文件:
+#   （使用 &quot;git add &lt;file&gt;...&quot; 以包含要提交的内容）
+#
+#   index.php
+提交为空，但是存在尚未跟踪的文件（使用 &quot;git add&quot; 建立跟踪）
+如果想将文件数据从git暂存区和工作目录一起删除，可以做如下操作。
+[root@git-node1 demo]# git add index.php
+[root@git-node1 demo]# git rm index.php //文件存已经放入暂存区域,防止误删
+error: &apos;index.php&apos; 有变更已暂存至索引中
+（使用 --cached 保存文件，或用 -f 强制删除）
+[root@git-node1 demo]# git rm -f index.php  //使用追加强制删除-f参数。或者—cache保存
+rm &apos;index.php&apos;
+[root@git-node1 demo]# git status //查看当前状态
+# 位于分支 master
+无文件要提交，干净的工作区
+[root@git-node1 demo]# ls  //index.php文件已经被删除
+index.html
+</code></pre><h4 id="2-4-丢弃工作目录中的更改"><a href="#2-4-丢弃工作目录中的更改" class="headerlink" title="2.4 丢弃工作目录中的更改"></a>2.4 丢弃工作目录中的更改</h4><blockquote>
+<p>这里举例readme.txt文件已经提交，然后在工作区对readme.txt文件进行修改，在没有add添加到缓存区时，如何进行版本回退。</p>
+</blockquote>
+<pre><code>[root@Centos-6 test]# cat readme.txt 
+1 hehe
+2 hehe
+2 woshihehe
+3 hehe
+
+
+#增加一行内容变为
+[root@Centos-6 test]# cat readme.txt 
+1 hehe
+2 hehe
+2 woshihehe
+3 hehe
+4 testhehe
+
+#git状态发生变化 
+[root@Centos-6 test]# git status 
+# On branch master
+# Changed but not updated:
+#   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+#   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+#
+#    modified:   readme.txt
+#
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+
+#这样可以丢弃工作目录中的更改 
+[root@Centos-6 test]# git checkout -- readme.txt 
+[root@Centos-6 test]# cat readme.txt 
+1 hehe
+2 hehe
+2 woshihehe
+3 hehe
+</code></pre><h4 id="2-5-删除远程仓库（比如GitHub）的目录或文件"><a href="#2-5-删除远程仓库（比如GitHub）的目录或文件" class="headerlink" title="2.5 删除远程仓库（比如GitHub）的目录或文件"></a>2.5 删除远程仓库（比如GitHub）的目录或文件</h4><blockquote>
+<p>这来我们想删除远程仓库中的deploy.sh </p>
+</blockquote>
+<pre><code>#从提交状态到缓存区状态 
+[root@Centos-6 test]# git rm -f deploy.sh 
+rm &apos;deploy.sh&apos;
+[root@Centos-6 test]# 
+[root@Centos-6 test]# 
+[root@Centos-6 test]# git status 
+# On branch master
+# Changes to be committed:
+#   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+#
+#    deleted:    deploy.sh
+#
+
+#从缓存区提交本地仓库
+[root@Centos-6 test]# git commit -m &quot;delete deploy.sh&quot;
+[master 20c31fe] delete deploy.sh
+ 1 files changed, 0 insertions(+), 1 deletions(-)
+ delete mode 100644 deploy.sh
+[root@Centos-6 test]# 
+[root@Centos-6 test]# 
+[root@Centos-6 test]# git status 
+# On branch master
+nothing to commit (working directory clean)
+
+#开始推送到远程仓库
+[root@Centos-6 test]# git push origin master 
+Counting objects: 3, done.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 221 bytes, done.
+Total 2 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To git@github.com:chenfanfanfan/demo.git
+   5b832d4..20c31fe  master -&gt; master
+</code></pre><h3 id="3-移动数据"><a href="#3-移动数据" class="headerlink" title="3. 移动数据"></a>3. 移动数据</h3><blockquote>
+<p>有些时候会将已经添加到暂存区的文件重新修改名称，可使用如下操作完成。 </p>
+</blockquote>
+<h4 id="3-1-git重新命名文件名称，使用git-mv操作。"><a href="#3-1-git重新命名文件名称，使用git-mv操作。" class="headerlink" title="3.1 git重新命名文件名称，使用git mv操作。"></a>3.1 git重新命名文件名称，使用git mv操作。</h4><pre><code>[root@git-node1 demo]# git mv index.html index.php
+</code></pre><h4 id="3-2-使用git-status查看更改状态"><a href="#3-2-使用git-status查看更改状态" class="headerlink" title="3.2 使用git status查看更改状态"></a>3.2 使用git status查看更改状态</h4><pre><code>[root@git-node1 demo]# git status
+# 位于分支 master
+# 要提交的变更：
+#   （使用 &quot;git reset HEAD &lt;file&gt;...&quot; 撤出暂存区）
+#
+#   重命名：    index.html -&gt; index.php
+#
+</code></pre><h4 id="3-3-使用git-commit-提交git仓库-并描述提交信息"><a href="#3-3-使用git-commit-提交git仓库-并描述提交信息" class="headerlink" title="3.3 使用git commit 提交git仓库,并描述提交信息"></a>3.3 使用git commit 提交git仓库,并描述提交信息</h4><pre><code>[root@git-node1 demo]# git commit -m &quot;chnged name index.html-&gt;index.php&quot;
+[master 9573413] chnged name index.html-&gt;index.php
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename index.html =&gt; index.php (100%)
+</code></pre><h3 id="4-历史数据"><a href="#4-历史数据" class="headerlink" title="4. 历史数据"></a>4. 历史数据</h3><blockquote>
+<p>在提交了若干更新之后，想回顾下提交历史，可以使用 git log 命令查看提交历史记录。 </p>
+</blockquote>
+<h4 id="4-1-查看提交历史记录"><a href="#4-1-查看提交历史记录" class="headerlink" title="4.1 查看提交历史记录"></a>4.1 查看提交历史记录</h4><pre><code>[root@git-node1 demo]# git log
+commit 95734131860ef7c9078b8a208ff6437d0952380b
+Author: chenfan &lt;1144102576&gt;
+Date:   Sun Nov 6 02:15:35 2016 +0800
+chnged name index.html-&gt;index.php
+commit 85bd2680bd4b70aeded9dbd230c07ab086712ff9
+Author: chenfan &lt;1144102576@qq.com&gt;
+Date:   Sun Nov 6 01:51:22 2016 +0800
+the first commit index.html
+</code></pre><h4 id="4-2-查看历史2次提交记录"><a href="#4-2-查看历史2次提交记录" class="headerlink" title="4.2 查看历史2次提交记录"></a>4.2 查看历史2次提交记录</h4><pre><code>[root@git-node1 demo]# git log -10
+commit 95734131860ef7c9078b8a208ff6437d0952380b
+Author: chenfan &lt;1144102576@qq.com&gt;
+Date:   Sun Nov 6 02:15:35 2016 +0800
+chnged name index.html-&gt;index.php
+commit 85bd2680bd4b70aeded9dbd230c07ab086712ff9
+Author:chenfan &lt;1144102576@qq.com&gt;
+Date:   Sun Nov 6 01:51:22 2016 +0800
+the first commit index.html
+</code></pre><h4 id="4-3-显示提交的内容差异-例如仅查看最近一次差异"><a href="#4-3-显示提交的内容差异-例如仅查看最近一次差异" class="headerlink" title="4.3 显示提交的内容差异,例如仅查看最近一次差异"></a>4.3 显示提交的内容差异,例如仅查看最近一次差异</h4><pre><code>[root@git-node1 demo]# git log -p -2
+commit 95734131860ef7c9078b8a208ff6437d0952380b
+Author: chenfan &lt;1144102576@qq.com&gt;
+Date:   Sun Nov 6 02:15:35 2016 +0800
+chnged name index.html-&gt;index.php
+diff --git a/index.html b/index.html
+deleted file mode 100644
+index e69de29..0000000
+diff --git a/index.php b/index.php
+new file mode 100644
+index 0000000..e69de29
+commit 85bd2680bd4b70aeded9dbd230c07ab086712ff9
+Author: chenfan &lt;1144102576@qq.com&gt;
+Date:   Sun Nov 6 01:51:22 2016 +0800
+the first commit index.html
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000..e69de29
+</code></pre><h4 id="4-4-根据不同的格式展示提交的历史信息"><a href="#4-4-根据不同的格式展示提交的历史信息" class="headerlink" title="4.4 根据不同的格式展示提交的历史信息"></a>4.4 根据不同的格式展示提交的历史信息</h4><pre><code>[root@git-node1 demo]# git log --pretty=oneline
+95734131860ef7c9078b8a208ff6437d0952380b chnged name index.html-&gt;index.php
+85bd2680bd4b70aeded9dbd230c07ab086712ff9 the first commit index.htm
+可以使用format参数来指定具体的输出格式，这样非常便于后期编程的提取分析哦，常用的格式有：
+%s  提交说明。
+%cd 提交日期。
+%an 作者的名字。
+%cn 提交者的姓名。
+%ce 提交者的电子邮件。
+%H  提交对象的完整SHA-1哈希字串。
+%h  提交对象的简短SHA-1哈希字串。
+%T  树对象的完整SHA-1哈希字串。
+%t  树对象的简短SHA-1哈希字串。
+%P  父对象的完整SHA-1哈希字串。
+%p  父对象的简短SHA-1哈希字串。
+%ad 作者的修订时间。
+定制详细的日志输出
+
+[root@git-node1 demo]# git log --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %cn&quot;&apos; --abbrev-commit --date=relative
+*   5f3f588 - (HEAD, origin/master, –r, tt, master) merge branch linux readme.txt (68 分钟之前) xulia
+|\  
+| * 4580c3b - (linux) touch readme.txt (80 分钟之前) xuliangwei&quot;
+* | 4c7a145 - touch readme.txt (72 分钟之前) xuliangwei&quot;
+|/ 
+* 9573413 - (tag: v1.0.0) chnged name index.html-&gt;index.php (5 小时之前) xuliangwei&quot;
+* 85bd268 - the first commit index.html (5 小时之前) xuliangwei&quot;
+配置.git/config文件，增加如下2行，以后即可使用 git hlog代替如上复杂命令
+[root@git-node1 demo]# tail -2 .git/config
+    [alias]
+    hlog = log --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %cn&apos; --abbrev-commit --date=relative
+    //以后使用git hlog即可实现复杂的命令
+</code></pre><h3 id="5-还原数据"><a href="#5-还原数据" class="headerlink" title="5. 还原数据"></a>5. 还原数据</h3><blockquote>
+<p>将文件boss good写成了boss dou，但是已经提交至远程仓库，现在想要撤回重新提交。<br>（本小结涉及远程仓库,可先学习后面章节，在回头学习本章节） </p>
+</blockquote>
+<h4 id="5-1-查看index-html文件"><a href="#5-1-查看index-html文件" class="headerlink" title="5.1 查看index.html文件"></a>5.1 查看index.html文件</h4><pre><code>[root@git-node1 demo]# git checkout -b dev //内容存在dev分支
+[root@git-node1 demo]# cat index.html
+hello boss
+</code></pre><h4 id="5-2-追加内容至index-html，并提交至远程仓库"><a href="#5-2-追加内容至index-html，并提交至远程仓库" class="headerlink" title="5.2 追加内容至index.html，并提交至远程仓库"></a>5.2 追加内容至index.html，并提交至远程仓库</h4><pre><code>[root@git-node1 demo]# echo &quot;boos  doubi&quot; &gt;&gt; index.html    
+[root@git-node1 demo]# git add index.html
+[root@git-node1 demo]# git commit -m &quot;boss dou&quot;
+[master 1941990] boss dou
+ 1 file changed, 1 insertion(+)
+[root@git-node1 demo]#  git push origin dev
+Counting objects: 5, done.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 298 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To git@git-node1:root/git_demo.git
+   507bf99..1941990  dev -&gt; dev
+</code></pre><h4 id="5-3-此时觉得写的不妥，想还原上一次提交的文件快照，找出历史信息"><a href="#5-3-此时觉得写的不妥，想还原上一次提交的文件快照，找出历史信息" class="headerlink" title="5.3 此时觉得写的不妥，想还原上一次提交的文件快照，找出历史信息"></a>5.3 此时觉得写的不妥，想还原上一次提交的文件快照，找出历史信息</h4><pre><code>[root@git-node1 demo]# git hlog -2
+* 1941990 - (HEAD, origin/dev, dev) boss dou (2 分钟之前) xuliangwei
+* 507bf99 - hello (30 分钟之前) xuliangwei
+</code></pre><h4 id="5-4-找到历史还原点的值后，就可以还原-值不写全-系统会自动匹配"><a href="#5-4-找到历史还原点的值后，就可以还原-值不写全-系统会自动匹配" class="headerlink" title="5.4 找到历史还原点的值后，就可以还原(值不写全,系统会自动匹配)"></a>5.4 找到历史还原点的值后，就可以还原(值不写全,系统会自动匹配)</h4><pre><code>[root@git-node1 demo]# git reset --hard 507bf99
+HEAD 现在位于 507bf99 hello
+[root@git-node1 xuliangwei]# git push origin dev -f  //强制推送至dev分支
+[root@git-node1 demo]# cat index.html
+hello boss
+</code></pre><p>工作区—-缓存区—-本地仓库—-远程仓库</p>
+<p>工作区—-&gt;缓存区  git add filename  </p>
+<p>缓存区—-&gt;工作区  git reset HEAD filename</p>
+<p>缓存区—-&gt;本地仓库  git commit -m “add filename”</p>
+<p>本地仓库—-&gt;缓存区 git rm  filename </p>
+<p>本地仓库—-&gt;工作区 git rm -f filename  git commit -m “delete filename” </p>
+<p>远程仓库—-&gt;本地仓库 git pull origin master</p>
+<p>本地仓库—-&gt;远程仓库 git push origin master -f </p>
+<h3 id="6-git基本命令操作小结"><a href="#6-git基本命令操作小结" class="headerlink" title="6. git基本命令操作小结"></a>6. git基本命令操作小结</h3><blockquote>
+<p>相信大家对Git的基本操作有一定的了解，下面进行一下简单的梳理总结：</p>
+</blockquote>
+<p>命令 git config –global user.name “name”  #配置git使用用户</p>
+<p>git config –global user.email “mail”  #配置git使用邮箱</p>
+<p>git config –global color.ui true #配置颜色</p>
+<p>git config –list #查看当前配置</p>
+<p>git init  #初始为git工作目录</p>
+<p>git status  #查看git状态</p>
+<p>git reflog  #查看未来历史更新点</p>
+<p>git reset –hard 4bf5b29  #找到历史还原点的SHA-1值，就可以还原(值不写全,系统会自动匹配)</p>
+<p>git checkout – file #恢复暂存区至上一版本</p>
+<p>git add [file1] [file2] … #添加指定文件至暂存区</p>
+<p>git add [dir] #添加指定目录至暂存区,包括子目录(递归添加)</p>
+<p>git add . #添加当前目录所有文件至暂存区</p>
+<p>git rm [file1] [file2] … #删除工作区文件,并将这次删除放入暂存区</p>
+<p>git rm -cached [file] #停止追踪指定文件，但该文件会保留在工作区</p>
+<p>git mv [file-old] [file-new] #重命名文件,修改后放入暂存区</p>
+<h2 id="三、git仓库管理"><a href="#三、git仓库管理" class="headerlink" title="三、git仓库管理"></a>三、git仓库管理</h2><blockquote>
+<p>现在本地已经创建了git仓库，又在gitlab上创建了一个git仓库，并且让这两个仓库进行远程同步，这样gitlab仓库既可以备份也可以与他人协作管理远程仓库以及根据需要推送或拉取数据。<br>管理远程仓库包括了如何添加远程仓库、移除无用远程仓库、查看远程仓库、修改远程仓库等等</p>
+<h3 id="概要-1"><a href="#概要-1" class="headerlink" title="概要"></a><em>概要</em></h3></blockquote>
+<ol>
+<li>部署开源仓库</li>
+<li>添加远程仓库</li>
+<li>修改远程仓库</li>
+<li>查看远程仓库</li>
+<li>推送远程仓库</li>
+<li>克隆远程仓库</li>
+<li>拉取远程仓库</li>
+<li>移除远程仓库</li>
+<li>Git远程仓库小结</li>
+</ol>
+<h3 id="1-部署开源仓库"><a href="#1-部署开源仓库" class="headerlink" title="1. 部署开源仓库"></a>1. 部署开源仓库</h3><blockquote>
+<p>GitLab 是一个用于仓库管理系统的开源项目。</p>
+</blockquote>
+<p>####1.1 安装配置gitlab依赖项 </p>
+<blockquote>
+<p>如想使用Postfix来发送邮件,在安装期间请选择’Internet Site’. 您也可以用sendmai或者 配置SMTP服务并使用SMTP发送邮件.在 Centos7系统上,下面的命令将在系统防火墙里面开放HTTP和SSH端口.</p>
+</blockquote>
+<pre><code>[root@git-node1 ~]# yum -y install curl openssh-server postfix
+[root@git-node1 ~]# /etc/init.d/postfix start 
+</code></pre><h4 id="1-2-添加GitLab仓库-并安装到服务器"><a href="#1-2-添加GitLab仓库-并安装到服务器" class="headerlink" title="1.2 添加GitLab仓库,并安装到服务器"></a>1.2 添加GitLab仓库,并安装到服务器</h4><pre><code>[root@git-node1 ~]# curl -sS http://packages.gitlab.cc/install/gitlab-ce/script.rpm.sh | bash
+[root@git-node1 ~]# nohup yum -y install gitlab-ce &amp; 
+</code></pre><h4 id="1-3-启动GitLab"><a href="#1-3-启动GitLab" class="headerlink" title="1.3 启动GitLab"></a>1.3 启动GitLab</h4><pre><code>gitlab-ctl reconfigure
+</code></pre><h4 id="1-4-配置gitlab主机名"><a href="#1-4-配置gitlab主机名" class="headerlink" title="1.4 配置gitlab主机名"></a>1.4 配置gitlab主机名</h4><blockquote>
+<p>修改配置文件/etc/gitlab/gitlab.rb，修改external_url为部署机器的域名或者主机名</p>
+</blockquote>
+<pre><code>[root@chenfan@gitlab ~]# cat /etc/gitlab/gitlab.rb |grep -v &apos;#&apos;|grep &apos;external_url&apos;
+external_url &apos;http://chenfan.gitlab.com&apos;
+</code></pre><blockquote>
+<p>修改配置文件/var/opt/gitlab/gitlab-rails/etc/gitlab.yml</p>
+</blockquote>
+<pre><code>[root@chenfan@gitlab ~]#cat /var/opt/gitlab/gitlab-rails/etc/gitlab.yml|grep host 
+host: chenfan.gitlab.com
+</code></pre><blockquote>
+<p>修改配置后重新生效</p>
+</blockquote>
+<pre><code>[root@chenfan@gitlab ~]# gitlab-ctl reconfigure
+</code></pre><h4 id="1-5-添加远程仓库"><a href="#1-5-添加远程仓库" class="headerlink" title="1.5  添加远程仓库"></a>1.5  添加远程仓库</h4><p>1.5.1 gitlab创建仓库，进行远程同步，如图所示<br><img src="https://cdn-std.dprcdn.net/files/acc_582513/gb3rxN" alt="gitlab创建远程仓库"></p>
+<p>1.5.2 使用git remote 添加远程仓库地址,选择SSH方式克隆。</p>
+<pre><code>方法1：
+
+[root@chenfan@gitlab test-demo]# git clone git@chenfan.gitlab.com:root/test-demo.git
+[root@chenfan@gitlab test-demo]# touch readme.md
+[root@chenfan@gitlab test-demo]# vim readme.md 
+[root@chenfan@gitlab test-demo]# git status 
+[root@chenfan@gitlab test-demo]# git add readme.md
+[root@chenfan@gitlab test-demo]# git status 
+[root@chenfan@gitlab test-demo]# git commit -m &quot;first commit readme.md&quot;
+
+
+
+
+方法2：
+[root@chenfan@gitlab ~]# mkdir test-gitlab 
+[root@chenfan@gitlab ~]# cd test-gitlab/
+[root@chenfan@gitlab test-gitlab]# git init
+[root@chenfan@gitlab test-gitlab]# git remote add origin git@chenfan.gitlab.com:root/test-demo.git
+</code></pre><h4 id="1-6-推送远程仓库"><a href="#1-6-推送远程仓库" class="headerlink" title="1.6 推送远程仓库"></a>1.6 推送远程仓库</h4><blockquote>
+<p>将本地库更新内容推送至远程，用git push命令，实际上是将当前分支推送至远程仓库。<br>由于远程库是新建立空的，我们在第一次推送时候，git默认是不会把本地master关联至远端的master，所以我们需要加上-u参数，这样git不但会把本地的master分支内容推送至远程仓库的master分支，并且还会将本地的master分支和远程master分支关联起来。在以后推送或者拉取时就可以简化命令。分支 master 设置为跟踪来自 origin 的远程分支 master。</p>
+</blockquote>
+<pre><code>[root@chenfan@gitlab test-demo]# git push -u origin master 
+Counting objects: 3, done.
+Writing objects: 100% (3/3), 230 bytes, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To git@chenfan.gitlab.com:root/test-demo.git
+ * [new branch]      master -&gt; master
+Branch master set up to track remote branch master from origin.
+//分支 master 设置为跟踪来自 origin 的远程分支 master
+</code></pre><blockquote>
+<p>如果推送冲突可以选择–force强行推送</p>
+</blockquote>
+<pre><code>[root@chenfan@gitlab test-demo]# git push origin --force
+如果一次都没有推送数据,可以选择—all一次全部推送至远程服务器
+[root@chenfan@gitlab test-demo]# git push origin --all
+</code></pre><h4 id="1-7-克隆远程仓库"><a href="#1-7-克隆远程仓库" class="headerlink" title="1.7 克隆远程仓库"></a>1.7 克隆远程仓库</h4><blockquote>
+<p>如果现在仓库已经有开发好的项目，需要加入进来开发，可以先clone整个项目。</p>
+</blockquote>
+<pre><code>[root@chenfan@gitlab test-demo]#git clone git@chenfan.gitlab.com:root/test-demo.git
+</code></pre><h4 id="1-8-拉取远程仓库"><a href="#1-8-拉取远程仓库" class="headerlink" title="1.8 拉取远程仓库"></a>1.8 拉取远程仓库</h4><blockquote>
+<p>简单的说,这个命令会访问远程仓库，从中取出你还没有的数据，或者git pull之后还是没有的数据。<br>此前在添加的远程仓库的时候指定了仓库名origin，命令会自动将其添加为远程仓库并默认以origin为简写。 所以，git fetch origin相当于从远程获取最新版本到本地，然后比较本地master分支和远程master分支差别最后进行合并。</p>
+</blockquote>
+<pre><code>[root@chenfan@gitlab test-demo]# git fetch origin  //拉取主分支最新版本(可以拉取其他分支)
+</code></pre><blockquote>
+<p>拉取数据，在生产环境中见到比较多的还是git pull相当于是从远程获取最新版本并merge到本地</p>
+</blockquote>
+<pre><code>[root@chenfan@gitlab test-demo]# git pull origin master 
+From chenfan.gitlab.com:root/test-demo
+ * branch            master     -&gt; FETCH_HEAD
+Already up-to-date.
+</code></pre><blockquote>
+<p>上述命令其实相当于git fetch 和 git merge在实际使用中，git fetch更安全一些，因为在merge前，我们可以查看更新情况，然后再决定是否合并。</p>
+</blockquote>
+<h4 id="1-9-更改远程仓库名"><a href="#1-9-更改远程仓库名" class="headerlink" title="1.9 更改远程仓库名"></a>1.9 更改远程仓库名</h4><blockquote>
+<p>如果想重新命名一个远程仓库名称。将test重命名为rainbow,可以通过git remote rename进行修改。 意：这同时会修改你的远程分支名字。之前引用test/master的现在会引用rainbow/master</p>
+</blockquote>
+<pre><code>[root@chenfan@gitlab test-demo]# git remote add test git@chenfan.gitlab.com:root/test-demo.git
+[root@chenfan@gitlab test-demo]# 
+[root@chenfan@gitlab test-demo]# 
+[root@chenfan@gitlab test-demo]# git remote -v 
+origin    git@chenfan.gitlab.com:root/test-demo.git (fetch)
+origin    git@chenfan.gitlab.com:root/test-demo.git (push)
+test    git@chenfan.gitlab.com:root/test-demo.git (fetch)
+test    git@chenfan.gitlab.com:root/test-demo.git (push)
+</code></pre><blockquote>
+<p>修改test名称为rainbow名称</p>
+</blockquote>
+<pre><code>[root@chenfan@gitlab test-demo]# git remote rename test rainbow 
+[root@chenfan@gitlab test-demo]# git remote -v 
+origin    git@chenfan.gitlab.com:root/test-demo.git (fetch)
+origin    git@chenfan.gitlab.com:root/test-demo.git (push)
+rainbow    git@chenfan.gitlab.com:root/test-demo.git (fetch)
+rainbow    git@chenfan.gitlab.com:root/test-demo.git (push)
+</code></pre><h4 id="1-10-移除远程仓库"><a href="#1-10-移除远程仓库" class="headerlink" title="1.10 移除远程仓库"></a>1.10 移除远程仓库</h4><blockquote>
+<p>因为一些变动不再使用一些特定的镜像，可以通过git remote remove 远程仓库名称，移除远程仓库。</p>
+</blockquote>
+<p><strong>查看远程仓库</strong></p>
+<pre><code>[root@chenfan@gitlab test-demo]# git remote -v 
+origin    git@chenfan.gitlab.com:root/test-demo.git (fetch)
+origin    git@chenfan.gitlab.com:root/test-demo.git (push)
+rainbow    git@chenfan.gitlab.com:root/test-demo.git (fetch)
+rainbow    git@chenfan.gitlab.com:root/test-demo.git (push)
+</code></pre><p><strong>移除不再使用的rainbow远程仓库</strong></p>
+<pre><code>[root@chenfan@gitlab test-demo]# git remote rm  rainbow
+[root@chenfan@gitlab test-demo]# 
+[root@chenfan@gitlab test-demo]# 
+[root@chenfan@gitlab test-demo]# git remote -v 
+origin    git@chenfan.gitlab.com:root/test-demo.git (fetch)
+origin    git@chenfan.gitlab.com:root/test-demo.git (push)
+</code></pre><h4 id="1-11-Git远程仓库小结"><a href="#1-11-Git远程仓库小结" class="headerlink" title="1.11 Git远程仓库小结"></a>1.11 Git远程仓库小结</h4><blockquote>
+<p>要添加一个仓库，首先必须知道仓库的地址，然后使用git remote add 命令添加远程仓库，也可使用git clone命令克隆。（Git支持多种协议，包括http、https，但通过ssh支持的原生git协议速度最佳。）<br>要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git，关联后，使用命令git push -u origin master第一次推送master分支的所有内容，此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改</p>
+</blockquote>
+<pre><code># git remote add [remote] [url]#添加(关联)远程库
+# git remote  set-url  [remote] [url] #修改远程仓库
+# git clone [url] #克隆远程仓库项目
+# git remote #查看指定远程仓库命名简写
+# git remote –v #查看远程仓库详细信息以及名称对应URL
+# git push -u remote master #第一次推送master分支的所有内容
+# git fetch remote [branch/tag] #下载远程仓库的所有变动
+# git pull remote [branch/tag] #拉取主分支最新版本(可以拉取其他分支)
+# git push remote [branch/tag] --force #强行推送当前分支至远程分支,及时冲突
+# git push remote [branch/tag] --all #推送所有分支到远程仓库
+# git remote rename [oldname] [newname] #修改远程仓库名称
+# git remote rm  [name] #删除远程仓库名称以及URL地址
+</code></pre><p>##四.Git分支管理</p>
+<p>###概要</p>
+<ol>
+<li>Git分支管理</li>
+<li>创建本地分支</li>
+<li>切换本地分支</li>
+<li>合并本地分支</li>
+<li>删除本地分支</li>
+<li>查看远程分支</li>
+<li>解决分支冲突</li>
+<li>删除远程分支</li>
+<li>Git分支小结</li>
+</ol>
+<h3 id="1-Git分支管理"><a href="#1-Git分支管理" class="headerlink" title="1.Git分支管理"></a>1.Git分支管理</h3><blockquote>
+<p>分支即是平行空间，假设你在为某个手机系统研发拍照功能，代码已经完成了80%，但如果将这不完整的代码直接提交到git仓库中，又有可能影响到其他人的工作，此时我们便可以在该软件的项目之上创建一个名叫“拍照功能”的分支，这种分支只会属于你自己，而其他人看不到，等代码编写完成后再与原来的项目主分支合并下即可，这样即能保证代码不丢失，又不影响其他人的工作。</p>
+</blockquote>
+<p><img src="https://cdn-std.dprcdn.net/files/acc_582513/YDfaGs" alt="gitlab分支管理" title="gitlab分支管理"><br><strong>gitlab团队合作流程图</strong></p>
+<blockquote>
+<p>一般在实际的项目开发中，我们要尽量保证master分支是非常稳定的，仅用于发布新版本，平时不要随便直接修改里面的数据文件，而工作的时候则可以新建不同的工作分支，等到工作完成后在合并到master分支上面，所以团队的合作分支看起来会像上面图那样。</p>
+</blockquote>
+<p><img src="https://cdn-std.dprcdn.net/files/acc_582513/cggckI" alt="git分支示意图" title="gitlab分支示意图"><br><strong>gitlab分支示意图</strong></p>
+<h3 id="2-创建本地分支"><a href="#2-创建本地分支" class="headerlink" title="2.创建本地分支"></a>2.创建本地分支</h3><blockquote>
+<p>首先创建本地dev分支</p>
+</blockquote>
+<pre><code>[root@chenfan@gitlab test-demo]# git branch dev  //创建dev分支
+[root@chenfan@gitlab test-demo]# git branch      //查看分支
+  dev
+* master
+</code></pre><h3 id="3-切换本地分支"><a href="#3-切换本地分支" class="headerlink" title="3.切换本地分支"></a>3.切换本地分支</h3><blockquote>
+<p>切换分支至刚建立dev分支</p>
+</blockquote>
+<pre><code>[root@chenfan@gitlab test-demo]# git checkout dev //切换分支
+Switched to branch &apos;dev&apos;#         //查看分支情况
+[root@chenfan@gitlab test-demo]# git branch
+* dev
+  master
+</code></pre><blockquote>
+<p>切换分支发生冲突会导致无法切换对应分支，可使用-f强制切换</p>
+</blockquote>
+<pre><code>[root@chenfan@gitlab test-demo]# git checkout -f master  //强制切换分支
+Switched to branch &apos;master&apos;
+[root@chenfan@gitlab test-demo]# git branch 
+  dev
+* master
+</code></pre><h3 id="4-合并本地分支"><a href="#4-合并本地分支" class="headerlink" title="4.合并本地分支"></a>4.合并本地分支</h3><blockquote>
+<p>现在，我们想把linux的工作成果合并到master分支上了，则可以使用”git merge”命令来将指定的的分支与当前分支合并 。</p>
+</blockquote>
+<p><img src="https://cdn-std.dprcdn.net/files/acc_582513/dnX9wc" alt="合并分支"><br><strong>合并分支示意图</strong></p>
+<pre><code>[root@chenfan@gitlab test-demo]# git branch 
+  dev
+* master
+[root@chenfan@gitlab test-demo]# git checkout dev 
+Switched to branch &apos;dev&apos;
+[root@chenfan@gitlab test-demo]# git branch
+* dev
+  master
+[root@chenfan@gitlab test-demo]# echo &quot;create branch dev&quot;&gt;index.html
+[root@chenfan@gitlab test-demo]# git add index.html
+[root@chenfan@gitlab test-demo]# git commit -m &quot;new branch dev&quot;
+[root@chenfan@gitlab test-demo]# git checkout master
+[root@chenfan@gitlab test-demo]# git merge  dev 
+Updating 27759b5..230c227
+Fast-forward
+ index.html |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+ create mode 100644 index.html
+</code></pre><h3 id="5-删除本地分支"><a href="#5-删除本地分支" class="headerlink" title="5.删除本地分支"></a>5.删除本地分支</h3><blockquote>
+<p>合并完成dev分支后，可以放心的删除。</p>
+</blockquote>
+<pre><code>[root@chenfan@gitlab test-demo]# git branch -d dev 
+[root@chenfan@gitlab test-demo]# git branch //查看本地分支 
+* master
+</code></pre><h3 id="6-查看远程分支"><a href="#6-查看远程分支" class="headerlink" title="6. 查看远程分支"></a>6. 查看远程分支</h3><pre><code>[root@chenfan@gitlab test-demo]# git branch -a //查看远程分支
+* master
+  remotes/origin/master
+</code></pre><h3 id="7-解决分支冲突"><a href="#7-解决分支冲突" class="headerlink" title="7.解决分支冲突"></a>7.解决分支冲突</h3><blockquote>
+<p>但是Git并不能每次都为我们自动的合并分支，当遇到了内容冲突比较复杂的情况，则必须手工将差异内容处理点，比如这样的情况：</p>
+</blockquote>
+<p><img src="https://cdn-std.dprcdn.net/files/acc_582513/f7NwLN" alt="gitlab分支冲突"><br><strong>分支冲突情况</strong></p>
+<h4 id="7-1-创建linux分支并切换到linux分支"><a href="#7-1-创建linux分支并切换到linux分支" class="headerlink" title="7.1 创建linux分支并切换到linux分支"></a>7.1 创建linux分支并切换到linux分支</h4><pre><code>[root@chenfan@gitlab test-demo]# git checkout -b linux //创建新的分支并切换到新分支下
+Switched to a new branch &apos;linux&apos;
+</code></pre><h4 id="7-2-添加1行内容，并推送到远程仓库"><a href="#7-2-添加1行内容，并推送到远程仓库" class="headerlink" title="7.2 添加1行内容，并推送到远程仓库"></a>7.2 添加1行内容，并推送到远程仓库</h4><pre><code>[root@chenfan@gitlab test-demo]# echo &apos;1.branch linux&apos;&gt;readme.txt  //创建readme.txt
+[root@chenfan@gitlab test-demo]# git add readme.txt 
+[root@chenfan@gitlab test-demo]# git commit -m &quot;touch readme.txt&quot;
+[root@chenfan@gitlab test-demo]# git push -u origin linux 
+[root@chenfan@gitlab test-demo]# git branch
+* linux
+  master
+</code></pre><h4 id="7-3-切换至master分支，添加readme-txt文件，并和linux分支相同位置，然后尝试合并"><a href="#7-3-切换至master分支，添加readme-txt文件，并和linux分支相同位置，然后尝试合并" class="headerlink" title="7.3 切换至master分支，添加readme.txt文件，并和linux分支相同位置，然后尝试合并"></a>7.3 切换至master分支，添加readme.txt文件，并和linux分支相同位置，然后尝试合并</h4><pre><code>[root@chenfan@gitlab test-demo]# git checkout master  //切换到master分支
+Switched to branch &apos;master&apos;
+Your branch is ahead of &apos;origin/master&apos; by 1 commit.
+[root@chenfan@gitlab test-demo]# echo &quot;1.branch master&quot; &gt; readme.txt //同样创建readme.txt文件 
+[root@chenfan@gitlab test-demo]# git add readme.txt 
+[root@chenfan@gitlab test-demo]# git commit -m &quot;add readme.txt master&quot; //提交
+[root@chenfan@gitlab test-demo]# git merge linux  //合并分支开始出现冲突 
+Auto-merging readme.txt
+CONFLICT (add/add): Merge conflict in readme.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+[root@chenfan@gitlab test-demo]# vim  readme.txt  //需要手动修改文件
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD  //去掉
+1.branch master
+=======       //去掉
+1.branch linux
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; linux  //去掉
+
+[root@chenfan@gitlab test-demo]# cat readme.txt 
+1.branch master
+1.branch linux
+</code></pre><h4 id="7-4-重新提交，推送远程仓库"><a href="#7-4-重新提交，推送远程仓库" class="headerlink" title="7.4 重新提交，推送远程仓库"></a>7.4 重新提交，推送远程仓库</h4><pre><code>[root@chenfan@gitlab test-demo]# git commit -m &quot;add readme.txt&quot; //重新提交
+[root@chenfan@gitlab test-demo]# git push origin master   //推送到远程仓库
+</code></pre><h3 id="8-删除远程分支"><a href="#8-删除远程分支" class="headerlink" title="8.删除远程分支"></a>8.删除远程分支</h3><blockquote>
+<p>删除如上已经被合并过的linux分支。</p>
+</blockquote>
+<pre><code>[root@chenfan@gitlab test-demo]#  git push origin --delete linux //删除远程分支
+To git@chenfan.gitlab.com:root/test-demo.git   
+ - [deleted]         linux
+
+[root@chenfan@gitlab test-demo]# git branch -d linux  //删除本地分支
+Deleted branch linux (was e798757).
+[root@chenfan@gitlab test-demo]# git branch -a 
+* master
+  remotes/origin/master
+</code></pre><h3 id="9-Git分支小结"><a href="#9-Git分支小结" class="headerlink" title="9.Git分支小结"></a>9.Git分支小结</h3><blockquote>
+<p>Git鼓励大量使用分支<br>常见分支结构<br>dev分支<br>bug分支<br>新功能分支  </p>
+</blockquote>
+<pre><code>命令 git branch //列出所有本地分支
+命令git branch –r  //列出所有远程分支
+命令git branch –a  //列出所有本地分支和远程分支
+命令git branch [branch-name]  //创建新分支
+命令git checkout –b [branch-name] //创建新分支，并且切换到该分支
+命令 git branch  --track [branch] [remote-branch]   //创建新分支，与指定的远程分支建立追踪关系
+命令 git checkout [branch-name]      //切换至指定分支
+命令 git branch –set-upstream [branch] [remote-branch] //本地分支与远程分支建立追踪关系
+命令 git merge [branch] //合并指定分支到当前分支
+命令 git cherry-pick [commit] //选择一个commit，合并至当前分支
+命令git branch –d [branch-name]  //删除本地分支
+命令git push origin --delete [branch-name]  //删除远程分支
+命令git branch –dr [remote/branch]   //删除远程分支
+</code></pre><p>##五.Git标签管理</p>
+<blockquote>
+<p>当版本仓库内的数据有个大的改善或者功能更新，我们经常会打一个类似于软件版本号的标签，这样通过标签就可以将版本库中的某个历史版本给记录下来，方便我们随时将特定历史时期的数据取出来用，另外打标签其实只是像某个历史版本做了一个指针，所以一般都是瞬间完成的。</p>
+</blockquote>
+<h3 id="概要-2"><a href="#概要-2" class="headerlink" title="概要"></a>概要</h3><ol>
+<li>创建本地标签</li>
+<li>查看本地标签</li>
+<li>删除本地标签</li>
+<li>推送本地标签</li>
+<li>获取远程标签</li>
+<li>删除远程标签</li>
+<li>Git标签小结</li>
+</ol>
+<h3 id="1-创建本地标签"><a href="#1-创建本地标签" class="headerlink" title="1.创建本地标签"></a>1.创建本地标签</h3><blockquote>
+<p>创建带有说明的标签,-a指定标签名字，-m指定说明文字</p>
+</blockquote>
+<pre><code>[root@chenfan@gitlab test-demo]# git tag -a v1.0.0 -m &quot;version 1.0.0 release &quot;
+</code></pre><h3 id="2-查看本地标签"><a href="#2-查看本地标签" class="headerlink" title="2.查看本地标签"></a>2.查看本地标签</h3><h4 id="2-1-查看当前本地所有标签"><a href="#2-1-查看当前本地所有标签" class="headerlink" title="2.1 查看当前本地所有标签"></a>2.1 查看当前本地所有标签</h4><pre><code>[root@chenfan@gitlab test-demo]# git tag -l v*
+v1.0.0
+</code></pre><h4 id="2-2-查看当前1-0版本的详细信息"><a href="#2-2-查看当前1-0版本的详细信息" class="headerlink" title="2.2 查看当前1.0版本的详细信息"></a>2.2 查看当前1.0版本的详细信息</h4><pre><code>[root@chenfan@gitlab test-demo]# git show v1.0.0
+tag v1.0.0
+Tagger: chenfan &lt;1144102576@qq.com&gt;
+Date:   Tue Oct 3 07:55:29 2017 +0800
+
+version 1.0.0 release
+
+commit 5feef6edad5fa5b6ee9a85a49190527be85172ac
+Merge: 86b832e e798757
+Author: chenfan &lt;1144102576@qq.com&gt;
+Date:   Tue Oct 3 07:32:55 2017 +0800
+
+    add test.txt master
+
+diff --cc test.txt
+index 0bf2c1d,f003201..b5d3ebf
+--- a/test.txt
++++ b/test.txt
+@@@ -1,1 -1,1 +1,2 @@@
+ +test for master
++ test for linux
+</code></pre><h3 id="3-删除本地标签"><a href="#3-删除本地标签" class="headerlink" title="3.删除本地标签"></a>3.删除本地标签</h3><blockquote>
+<p>我们为同一个提交版本设置了两次标签,删除重复性的标签</p>
+</blockquote>
+<pre><code>[root@chenfan@gitlab test-demo]# git tag -l 
+v1.0.0
+v1.0.1
+[root@chenfan@gitlab test-demo]# git tag -d v1.0.1 
+Deleted tag &apos;v1.0.1&apos; (was 5707077)
+</code></pre><h3 id="4-推送本地标签"><a href="#4-推送本地标签" class="headerlink" title="4.推送本地标签"></a>4.推送本地标签</h3><blockquote>
+<p>如上操作都是基于打标签以及删除标签，下面我们来学习下打完标签后如何推送至远端服务器<br>也可以使用git push origin –-tags推送所有本地建立的tag包</p>
+</blockquote>
+<pre><code>[root@chenfan@gitlab test-demo]# git push origin v1.0.0
+Counting objects: 1, done.
+Writing objects: 100% (1/1), 165 bytes, done.
+Total 1 (delta 0), reused 0 (delta 0)
+To git@chenfan.gitlab.com:root/test-demo.git
+ * [new tag]         v1.0.0 -&gt; v1.0.0
+</code></pre><h3 id="5-获取远程标签"><a href="#5-获取远程标签" class="headerlink" title="5.获取远程标签"></a>5.获取远程标签</h3><h3 id="6-删除远程标签"><a href="#6-删除远程标签" class="headerlink" title="6.删除远程标签"></a>6.删除远程标签</h3><pre><code>[root@chenfan@gitlab test-demo]# git push origin --delete tag v1.0.0
+To git@chenfan.gitlab.com:root/test-demo.git
+ - [deleted]         v1.0.0
+也可以先删除本地tag标签,然后推送空标签至于远程进行删除
+[root@chenfan@gitlab test-demo]# git tag -d v1.0.0
+[root@chenfan@gitlab test-demo]# git push origin v1.1.0
+[root@chenfan@gitlab test-demo]# git tag -d v1.1.0
+[root@chenfan@gitlab test-demo]# git push git push origin :refs/tags/v1.0.1
+</code></pre><p>7.Git标签小结<br>&gt;<br>git版本号规则<br>内部版本 B1.1.0<br>外部版本 V1.1.0<br>补丁版本 P1.1.0  </p>
+<p>命令git tag –a <tagname> -m “message” //在当前commit状态新建一个tag<br>命令git tag -l <tagname>   //列出相对应版本号tag<br>命令git push origin <tagname>      //推送一个本地标签<br>命令git push origin –tags //推送全部未推送过的本地标签<br>命令git tag -d <tagname>   //删除一个本地标签<br>命令git push origin –delete tag <tagname> //删除一个远程标签<br>命令git push origin :refs/tags/<tagname>   //删除一个远程标签</tagname></tagname></tagname></tagname></tagname></tagname></p>
+<p>##六.Gitlab备份与恢复、迁移与升级</p>
+<h3 id="概要-3"><a href="#概要-3" class="headerlink" title="概要"></a>概要</h3><ol>
+<li>gitlab备份<br>1.1 gitlab备份目录<br>1.2 gitlab自动备份  </li>
+<li>gitlab恢复</li>
+<li>gitlab迁移</li>
+<li>gitlab升级</li>
+<li>gitlab修改默认nginx </li>
+</ol>
+<h3 id="1-gitlab备份"><a href="#1-gitlab备份" class="headerlink" title="1.gitlab备份"></a>1.gitlab备份</h3><blockquote>
+<p>使用Gitlab一键安装包安装Gitlab非常简单, 同样的备份恢复与迁移也非常简单. 使用一条命令即可创建完整的Gitlab备份:</p>
+</blockquote>
+<pre><code>gitlab-rake gitlab:backup:create
+</code></pre><blockquote>
+<p>使用以上命令会在/var/opt/gitlab/backups目录下创建一个名称类似为1481598919_gitlab_backup.tar的压缩包, 这个压缩包就是Gitlab整个的完整部分, 其中开头的1481598919是备份创建的日期<br>/etc/gitlab/gitlab.rb 配置文件须备份<br>/var/opt/gitlab/nginx/conf nginx配置文件<br>/etc/postfix/main.cfpostfix 邮件配置备份</p>
+</blockquote>
+<h4 id="1-1-Gitlab备份目录"><a href="#1-1-Gitlab备份目录" class="headerlink" title="1.1 Gitlab备份目录"></a>1.1 Gitlab备份目录</h4><blockquote>
+<p>可以通过/etc/gitlab/gitlab.rb配置文件来修改默认存放备份文件的目录<br>    gitlab_rails[‘backup_path’] = “/var/opt/gitlab/backups”<br>/var/opt/gitlab/backups修改为你想存放备份的目录即可, 修改完成之后使用gitlab-ctl reconfigure命令重载配置文件即可.</p>
+</blockquote>
+<h4 id="1-2-Gitlab自动备份"><a href="#1-2-Gitlab自动备份" class="headerlink" title="1.2 Gitlab自动备份"></a>1.2 Gitlab自动备份</h4><blockquote>
+<p>实现每天凌晨2点进行一次自动备份:通过crontab使用备份命令实现</p>
+</blockquote>
+<pre><code>0 2 * * * /opt/gitlab/bin/gitlab-rake gitlab:backup:create
+</code></pre><h3 id="2-Gitlab恢复"><a href="#2-Gitlab恢复" class="headerlink" title="2.Gitlab恢复"></a>2.Gitlab恢复</h3><blockquote>
+<p>Gitlab的从备份恢复也非常简单:</p>
+</blockquote>
+<pre><code># 停止相关数据连接服务
+gitlab-ctl stop unicorn
+gitlab-ctl stop sidekiq
+# 从1481598919编号备份中恢复
+gitlab-rake gitlab:backup:restore BACKUP=1481598919
+# 启动Gitlab
+sudo gitlab-ctl start
+</code></pre><h3 id="3-gitlab迁移"><a href="#3-gitlab迁移" class="headerlink" title="3.gitlab迁移"></a>3.gitlab迁移</h3><blockquote>
+<p>迁移如同备份与恢复的步骤一样, 只需要将老服务器/var/opt/gitlab/backups目录下的备份文件拷贝到新服务器上的/var/opt/gitlab/backups即可(如果你没修改过默认备份目录的话).<br>但是需要注意的是新服务器上的Gitlab的版本必须与创建备份时的Gitlab版本号相同. 比如新服务器安装的是最新的7.60版本的Gitlab, 那么迁移之前, 最好将老服务器的Gitlab 升级为7.60在进行备份.<br>/etc/gitlab/gitlab.rb gitlab配置文件须迁移,迁移后需要调整数据存放目录<br>/var/opt/gitlab/nginx/conf nginx配置文件目录须迁移</p>
+</blockquote>
+<pre><code>[root@linux-node1 ~]# gitlab-ctl stop unicorn
+ok: down: unicorn: 0s, normally up
+[root@linux-node1 ~]# gitlab-ctl stop sidekiq
+ok: down: sidekiq: 0s, normally up
+[root@linux-node1 ~]# chmod 777 /var/opt/gitlab/backups/1481598919_gitlab_backup.tar
+[root@linux-node1 ~]# gitlab-rake gitlab:backup:restore BACKUP=1481598919
+</code></pre><h3 id="4-gitlab升级"><a href="#4-gitlab升级" class="headerlink" title="4.gitlab升级"></a>4.gitlab升级</h3><h4 id="4-1-关闭gitlab服务"><a href="#4-1-关闭gitlab服务" class="headerlink" title="4.1 关闭gitlab服务"></a>4.1 关闭gitlab服务</h4><pre><code>gitlab-ctl stop unicorn
+gitlab-ctl stop sidekiq
+gitlab-ctl stop nginx
+</code></pre><h4 id="4-2-备份gitlab"><a href="#4-2-备份gitlab" class="headerlink" title="4.2 备份gitlab"></a>4.2 备份gitlab</h4><pre><code>gitlab-rake gitlab:backup:create
+</code></pre><h4 id="4-3-下载gitlab的RPM包并进行升级"><a href="#4-3-下载gitlab的RPM包并进行升级" class="headerlink" title="4.3 下载gitlab的RPM包并进行升级"></a>4.3 下载gitlab的RPM包并进行升级</h4><pre><code>curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | sudo bash
+yum update gitlab-ce
+或者直接安装高版本
+yum install gitlab-ce-8.12.13-ce.0.el7.x86_64
+或者上官网下载最新版本 gitlab对应软件包  [gitlab官网](https://packages.gitlab.com/gitlab/gitlab-ce/packages/el/7/gitlab-ce-8.12.13-ce.0.el7.x86_64.rpm)
+使用 rpm -Uvh gitlab-ce-8.12.13-ce.0.el7.x86_64
+报错.
+Error executing action `run` on resource &apos;ruby_block[directory resource: /var/opt/gitlab/git-data/repositories]&apos;
+解决方法:
+sudo chmod 2770 /var/opt/gitlab/git-data/repositories
+</code></pre><h4 id="4-4-启动并查看gitlab版本信息"><a href="#4-4-启动并查看gitlab版本信息" class="headerlink" title="4.4 启动并查看gitlab版本信息"></a>4.4 启动并查看gitlab版本信息</h4><pre><code>gitlab-ctl reconfigure
+gitlab-ctl restart
+# head -1 /opt/gitlab/version-manifest.txt   
+gitlab-ce 8.7.3
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏2块钱,帮我买杯咖啡,继续创作,谢谢大家！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="陈凡 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliyipay.jpg" alt="陈凡 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+        -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+         
+            <a href="/tags/git/" rel="tag"><i class="fa fa-tag"></i>git</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/15/Django基础之模板详解/" rel="next" title="Django基础之模板详解">
+                <i class="fa fa-chevron-left"></i> Django基础之模板详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/upload/avatar.gif"
+                alt="陈凡" />
+            
+              <p class="site-author-name" itemprop="name">陈凡</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/chenfanlinux" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:chenfan216@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/3942411590" target="_blank" title="微博">
+                    
+                      <i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/love-hero-80" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、git安装管理"><span class="nav-number">1.</span> <span class="nav-text">一、git安装管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Git安装部署"><span class="nav-number">1.1.</span> <span class="nav-text">1.Git安装部署</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、git数据管理"><span class="nav-number">2.</span> <span class="nav-text">二、git数据管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概要"><span class="nav-number">2.1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-提交数据"><span class="nav-number">2.2.</span> <span class="nav-text">1. 提交数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-创建本地工作目录demo，并初始化为git工作目录"><span class="nav-number">2.2.1.</span> <span class="nav-text">1.1 创建本地工作目录demo，并初始化为git工作目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-创建readme-txt文件"><span class="nav-number">2.2.2.</span> <span class="nav-text">1.2 创建readme.txt文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-查看git状态"><span class="nav-number">2.2.3.</span> <span class="nav-text">1.3 查看git状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-提示使用git-add添加文件至暂存区"><span class="nav-number">2.2.4.</span> <span class="nav-text">1.4 提示使用git add添加文件至暂存区</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-移除数据"><span class="nav-number">2.3.</span> <span class="nav-text">2. 移除数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-建立新文件"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.1 建立新文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-添加新文件至暂存区"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.2 添加新文件至暂存区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-将新文件从暂存区撤出-并不会删除工作目录内的数据"><span class="nav-number">2.3.3.</span> <span class="nav-text">2.3 将新文件从暂存区撤出(并不会删除工作目录内的数据)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-丢弃工作目录中的更改"><span class="nav-number">2.3.4.</span> <span class="nav-text">2.4 丢弃工作目录中的更改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-删除远程仓库（比如GitHub）的目录或文件"><span class="nav-number">2.3.5.</span> <span class="nav-text">2.5 删除远程仓库（比如GitHub）的目录或文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-移动数据"><span class="nav-number">2.4.</span> <span class="nav-text">3. 移动数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-git重新命名文件名称，使用git-mv操作。"><span class="nav-number">2.4.1.</span> <span class="nav-text">3.1 git重新命名文件名称，使用git mv操作。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-使用git-status查看更改状态"><span class="nav-number">2.4.2.</span> <span class="nav-text">3.2 使用git status查看更改状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-使用git-commit-提交git仓库-并描述提交信息"><span class="nav-number">2.4.3.</span> <span class="nav-text">3.3 使用git commit 提交git仓库,并描述提交信息</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-历史数据"><span class="nav-number">2.5.</span> <span class="nav-text">4. 历史数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-查看提交历史记录"><span class="nav-number">2.5.1.</span> <span class="nav-text">4.1 查看提交历史记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-查看历史2次提交记录"><span class="nav-number">2.5.2.</span> <span class="nav-text">4.2 查看历史2次提交记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-显示提交的内容差异-例如仅查看最近一次差异"><span class="nav-number">2.5.3.</span> <span class="nav-text">4.3 显示提交的内容差异,例如仅查看最近一次差异</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-根据不同的格式展示提交的历史信息"><span class="nav-number">2.5.4.</span> <span class="nav-text">4.4 根据不同的格式展示提交的历史信息</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-还原数据"><span class="nav-number">2.6.</span> <span class="nav-text">5. 还原数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-查看index-html文件"><span class="nav-number">2.6.1.</span> <span class="nav-text">5.1 查看index.html文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-追加内容至index-html，并提交至远程仓库"><span class="nav-number">2.6.2.</span> <span class="nav-text">5.2 追加内容至index.html，并提交至远程仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-此时觉得写的不妥，想还原上一次提交的文件快照，找出历史信息"><span class="nav-number">2.6.3.</span> <span class="nav-text">5.3 此时觉得写的不妥，想还原上一次提交的文件快照，找出历史信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-4-找到历史还原点的值后，就可以还原-值不写全-系统会自动匹配"><span class="nav-number">2.6.4.</span> <span class="nav-text">5.4 找到历史还原点的值后，就可以还原(值不写全,系统会自动匹配)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-git基本命令操作小结"><span class="nav-number">2.7.</span> <span class="nav-text">6. git基本命令操作小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、git仓库管理"><span class="nav-number">3.</span> <span class="nav-text">三、git仓库管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概要-1"><span class="nav-number">3.1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-部署开源仓库"><span class="nav-number">3.2.</span> <span class="nav-text">1. 部署开源仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-添加GitLab仓库-并安装到服务器"><span class="nav-number">3.2.1.</span> <span class="nav-text">1.2 添加GitLab仓库,并安装到服务器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-启动GitLab"><span class="nav-number">3.2.2.</span> <span class="nav-text">1.3 启动GitLab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-配置gitlab主机名"><span class="nav-number">3.2.3.</span> <span class="nav-text">1.4 配置gitlab主机名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-添加远程仓库"><span class="nav-number">3.2.4.</span> <span class="nav-text">1.5  添加远程仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-推送远程仓库"><span class="nav-number">3.2.5.</span> <span class="nav-text">1.6 推送远程仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-7-克隆远程仓库"><span class="nav-number">3.2.6.</span> <span class="nav-text">1.7 克隆远程仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-8-拉取远程仓库"><span class="nav-number">3.2.7.</span> <span class="nav-text">1.8 拉取远程仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-9-更改远程仓库名"><span class="nav-number">3.2.8.</span> <span class="nav-text">1.9 更改远程仓库名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-10-移除远程仓库"><span class="nav-number">3.2.9.</span> <span class="nav-text">1.10 移除远程仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-11-Git远程仓库小结"><span class="nav-number">3.2.10.</span> <span class="nav-text">1.11 Git远程仓库小结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Git分支管理"><span class="nav-number">3.3.</span> <span class="nav-text">1.Git分支管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-创建本地分支"><span class="nav-number">3.4.</span> <span class="nav-text">2.创建本地分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-切换本地分支"><span class="nav-number">3.5.</span> <span class="nav-text">3.切换本地分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-合并本地分支"><span class="nav-number">3.6.</span> <span class="nav-text">4.合并本地分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-删除本地分支"><span class="nav-number">3.7.</span> <span class="nav-text">5.删除本地分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-查看远程分支"><span class="nav-number">3.8.</span> <span class="nav-text">6. 查看远程分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-解决分支冲突"><span class="nav-number">3.9.</span> <span class="nav-text">7.解决分支冲突</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-1-创建linux分支并切换到linux分支"><span class="nav-number">3.9.1.</span> <span class="nav-text">7.1 创建linux分支并切换到linux分支</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-2-添加1行内容，并推送到远程仓库"><span class="nav-number">3.9.2.</span> <span class="nav-text">7.2 添加1行内容，并推送到远程仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-切换至master分支，添加readme-txt文件，并和linux分支相同位置，然后尝试合并"><span class="nav-number">3.9.3.</span> <span class="nav-text">7.3 切换至master分支，添加readme.txt文件，并和linux分支相同位置，然后尝试合并</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-4-重新提交，推送远程仓库"><span class="nav-number">3.9.4.</span> <span class="nav-text">7.4 重新提交，推送远程仓库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-删除远程分支"><span class="nav-number">3.10.</span> <span class="nav-text">8.删除远程分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-Git分支小结"><span class="nav-number">3.11.</span> <span class="nav-text">9.Git分支小结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#概要-2"><span class="nav-number">3.12.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-创建本地标签"><span class="nav-number">3.13.</span> <span class="nav-text">1.创建本地标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-查看本地标签"><span class="nav-number">3.14.</span> <span class="nav-text">2.查看本地标签</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-查看当前本地所有标签"><span class="nav-number">3.14.1.</span> <span class="nav-text">2.1 查看当前本地所有标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-查看当前1-0版本的详细信息"><span class="nav-number">3.14.2.</span> <span class="nav-text">2.2 查看当前1.0版本的详细信息</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-删除本地标签"><span class="nav-number">3.15.</span> <span class="nav-text">3.删除本地标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-推送本地标签"><span class="nav-number">3.16.</span> <span class="nav-text">4.推送本地标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-获取远程标签"><span class="nav-number">3.17.</span> <span class="nav-text">5.获取远程标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-删除远程标签"><span class="nav-number">3.18.</span> <span class="nav-text">6.删除远程标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#概要-3"><span class="nav-number">3.19.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-gitlab备份"><span class="nav-number">3.20.</span> <span class="nav-text">1.gitlab备份</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-Gitlab备份目录"><span class="nav-number">3.20.1.</span> <span class="nav-text">1.1 Gitlab备份目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-Gitlab自动备份"><span class="nav-number">3.20.2.</span> <span class="nav-text">1.2 Gitlab自动备份</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Gitlab恢复"><span class="nav-number">3.21.</span> <span class="nav-text">2.Gitlab恢复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-gitlab迁移"><span class="nav-number">3.22.</span> <span class="nav-text">3.gitlab迁移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-gitlab升级"><span class="nav-number">3.23.</span> <span class="nav-text">4.gitlab升级</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-关闭gitlab服务"><span class="nav-number">3.23.1.</span> <span class="nav-text">4.1 关闭gitlab服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-备份gitlab"><span class="nav-number">3.23.2.</span> <span class="nav-text">4.2 备份gitlab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-下载gitlab的RPM包并进行升级"><span class="nav-number">3.23.3.</span> <span class="nav-text">4.3 下载gitlab的RPM包并进行升级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-启动并查看gitlab版本信息"><span class="nav-number">3.23.4.</span> <span class="nav-text">4.4 启动并查看gitlab版本信息</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+<script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=ipZXdvME3sKg6viC20OoTCYATcaOJ6SQH2wdaJEUHfc"></script>
+
+<div id="music163player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=525241230&auto=0&height=66"></iframe>
+</div>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈凡</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">147.8k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div> 
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+ <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 98812, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2019/02/23/Git学习笔记/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/98812/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+<!--页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>  
+
+
+
+<!-- 
+<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-1 count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script> -->
+
+
+</body>
+</html>
