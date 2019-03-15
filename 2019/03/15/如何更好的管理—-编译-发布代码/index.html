@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="k8s,Git," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="陈凡的个人站点" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="相信每个公司都有自己代码管理策略，如何更好的在团队开发中使用版本控制系统，商定一个统一的工作流程至关重要。将代码根据管理策略进行管理，那么如何更好的编译你的代码，发布你的代码自动发布到测试环境-预发布环境-生产环境，这又是一个亟待解决的重要问题。下面我给大家介绍一下，我们公司的代码管理-编译-发布等系列流程，希望跟大家">
+<meta name="keywords" content="k8s,Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何更好的管理—-编译-发布代码">
+<meta property="og:url" content="http://www.chenfanlinux.org/2019/03/15/如何更好的管理—-编译-发布代码/index.html">
+<meta property="og:site_name" content="陈凡的个人站点">
+<meta property="og:description" content="相信每个公司都有自己代码管理策略，如何更好的在团队开发中使用版本控制系统，商定一个统一的工作流程至关重要。将代码根据管理策略进行管理，那么如何更好的编译你的代码，发布你的代码自动发布到测试环境-预发布环境-生产环境，这又是一个亟待解决的重要问题。下面我给大家介绍一下，我们公司的代码管理-编译-发布等系列流程，希望跟大家一起交流，共同进步。  如何更好的管理代码?当在团队开发中使用版本控制系统时，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/03/15/AEYMUs.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/03/15/AEY82V.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/03/15/AENf3t.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/03/15/AENTHg.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/03/15/AEUSDU.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/03/15/AEUtr8.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/03/15/AEajmT.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/03/15/AEyKVx.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/03/15/AEsIKA.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/03/15/AEyPaV.png">
+<meta property="og:updated_time" content="2019-03-15T15:38:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何更好的管理—-编译-发布代码">
+<meta name="twitter:description" content="相信每个公司都有自己代码管理策略，如何更好的在团队开发中使用版本控制系统，商定一个统一的工作流程至关重要。将代码根据管理策略进行管理，那么如何更好的编译你的代码，发布你的代码自动发布到测试环境-预发布环境-生产环境，这又是一个亟待解决的重要问题。下面我给大家介绍一下，我们公司的代码管理-编译-发布等系列流程，希望跟大家一起交流，共同进步。  如何更好的管理代码?当在团队开发中使用版本控制系统时，">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/03/15/AEYMUs.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'X18Q8YOK7R',
+      apiKey: '4cf6f4ea962b4c633859ca376c0d6ae9',
+      indexName: 'chenfanlinux',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfanlinux.org/2019/03/15/如何更好的管理—-编译-发布代码/"/>
+
+
+
+
+
+  <title>如何更好的管理—-编译-发布代码 | 陈凡的个人站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?your-analytics-id";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+ 
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">陈凡的个人站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">chenfanlinux.org</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2019/03/15/如何更好的管理—-编译-发布代码/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">如何更好的管理—-编译-发布代码</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-15T23:34:53+08:00">
+                2019-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/持续集成-部署/" itemprop="url" rel="index">
+                    <span itemprop="name">持续集成-部署</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/15/如何更好的管理—-编译-发布代码/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2019/03/15/如何更好的管理—-编译-发布代码/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,555
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>相信每个公司都有自己代码管理策略，如何更好的在团队开发中使用版本控制系统，商定一个统一的工作流程至关重要。将代码根据管理策略进行管理，那么如何更好的编译你的代码，发布你的代码自动发布到测试环境-预发布环境-生产环境，这又是一个亟待解决的重要问题。下面我给大家介绍一下，我们公司的代码管理-编译-发布等系列流程，希望跟大家一起交流，共同进步。</p>
+</blockquote>
+<h2 id="如何更好的管理代码"><a href="#如何更好的管理代码" class="headerlink" title="如何更好的管理代码?"></a>如何更好的管理代码?</h2><p>当在团队开发中使用版本控制系统时，商定一个统一的工作流程是至关重要的。Git 的确可以在各个方面做很多事情，然而，如果在你的团队中还没有能形成一个特定有效的工作流程，那么混乱就将是不可避免的。下面我给大家介绍一下我们公司使用的非常流行的工作流程 git-flow。</p>
+<h3 id="在项目中设置git-flow"><a href="#在项目中设置git-flow" class="headerlink" title="在项目中设置git-flow"></a>在项目中设置git-flow</h3><p>当你想把你的项目 “切换” 到 git-flow 上后，Git 还是可以像往常一样工作的。这完全是取决于你在仓库上使用特殊的 git-flow 命令或是普通的 Git 命令。换句话说，git-flow 它不会以任何一种戏剧性的方式来改变你的仓库。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git flow init</span><br><span class="line">Initialized empty Git repository in /Users/tobi/acme-website/.git/</span><br><span class="line">Branch name for production releases: [master]</span><br><span class="line">Branch name for &quot;next release&quot; development: [develop]</span><br><span class="line"></span><br><span class="line">How to name your supporting branch prefixes?</span><br><span class="line">Feature branches? [feature/]</span><br><span class="line">Release branches? [release/]</span><br><span class="line">Hotfix branches? [hotfix/]</span><br></pre></td></tr></table></figure>
+<p>当在项目的根目录执行 “git flow init” 命令时（它是否已经包括了一个 Git 仓库并不重要），一个交互式安装助手将引导您完成这个初始化操作。听起来是不是有点炫，但实际上它只是在你的分支上配置了一些命名规则。</p>
+<a id="more"></a>
+<h3 id="分支的模式"><a href="#分支的模式" class="headerlink" title="分支的模式"></a>分支的模式</h3><p>git-flow 模式会预设两个主分支在仓库中：</p>
+<ul>
+<li><strong>master</strong> 只能用来包括产品代码。你不能直接工作在这个 master 分支上，而是在其他指定的，独立的特性分支中（这方面我们会马上谈到）。不直接提交改动到 <em>master</em> 分支上也是很多工作流程的一个共同的规则。</li>
+<li><strong>develop</strong> 是你进行任何新的开发的基础分支。当你开始一个新的功能分支时，它将是<em>开发</em>的基础。另外，该分支也汇集所有已经完成的功能，并等待被整合到 <em>master</em> 分支中。</li>
+</ul>
+<p><img src="https://s2.ax1x.com/2019/03/15/AEYMUs.png" alt=""></p>
+<p>这两个分支被称作为 <a href="https://www.git-tower.com/learn/git/ebook/cn/command-line/branching-merging/branching-workflows" target="_blank" rel="noopener">长期分支</a>。它们会存活在项目的整个生命周期中。而其他的分支，例如针对功能的分支，针对发行的分支，仅仅只是临时存在的。它们是根据需要来创建的，当它们完成了自己的任务之后就会被删除掉。</p>
+<p><img src="https://s2.ax1x.com/2019/03/15/AEY82V.png" alt="fhfh"></p>
+<h3 id="功能开发"><a href="#功能开发" class="headerlink" title="功能开发"></a>功能开发</h3><p>对于一个开发人员来说，最平常的工作可能就是功能的开发。这就是为什么 git-flow 定义了很多对于功能开发的工作流程，从而来帮助你有组织地完成它。</p>
+<h4 id="开始新功能"><a href="#开始新功能" class="headerlink" title="开始新功能"></a>开始新功能</h4><p>让我们开始开发一个新功能 “rss-feed”, 我们公司按照迭代名称来命令新功能。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git flow feature start rss-feed</span><br><span class="line">Switched to a new branch <span class="string">'feature/rss-feed'</span></span><br><span class="line"></span><br><span class="line">Summary of actions:</span><br><span class="line">- A new branch <span class="string">'feature/rss-feed'</span> was created, based on <span class="string">'develop'</span></span><br><span class="line">- You are now on branch <span class="string">'feature/rss-feed'</span></span><br></pre></td></tr></table></figure>
+<p>正如上面这个新功能一样，git-flow 会创建一个名为 “feature/rss-feed” 的分支（这个 “feature/” 前缀 是一个可配置的选项设置）。你已经知道了，在你做新功能开发时使用一个独立的分支是版本控制中最重要的规则之一。<br>git-flow 也会直接签出这个新的分支，这样你就可以直接进行工作了。</p>
+<h4 id="完成一个功能"><a href="#完成一个功能" class="headerlink" title="完成一个功能"></a>完成一个功能</h4><p>经过一段时间艰苦地工作和一系列的聪明提交，我们的新功能终于完成了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git flow feature finish rss-feed</span><br><span class="line">Switched to branch <span class="string">'develop'</span></span><br><span class="line">Updating 6bcf266..41748ad</span><br><span class="line">Fast-forward</span><br><span class="line">    feed.xml | 0</span><br><span class="line">    1 file changed, 0 insertions(+), 0 deletions(-)</span><br><span class="line">    create mode 100644 feed.xml</span><br><span class="line">Deleted branch feature/rss-feed (was 41748ad).</span><br></pre></td></tr></table></figure>
+<p>最重要的是，这个 “feature finish” 命令会把我们的工作整合到主 “develop” 分支中去。在这里它需要等待：</p>
+<ol>
+<li>一个在更广泛的 “开发” 背景下的全面测试。</li>
+<li>稍后和所有积攒在 “develop” 分支中的其它功能一起进行发布。</li>
+</ol>
+<p>之后，git-flow 也会进行清理操作。它会删除这个当下已经完成的功能分支，并且换到 “develop” 分支。</p>
+<h3 id="管理release"><a href="#管理release" class="headerlink" title="管理release"></a>管理release</h3><p>Release 管理是版本控制处理中的另外一个非常重要的话题。让我们来看看如何利用 git-flow 创建和发布 release。</p>
+<h4 id="创建-release"><a href="#创建-release" class="headerlink" title="创建 release"></a>创建 release</h4><p>当你认为现在在 “develop” 分支的代码已经是一个成熟的 release 版本时，这意味着：第一，它包括所有新的功能和必要的修复；第二，它已经被彻底的测试过了。如果上述两点都满足，那就是时候开始生成一个新的 release 了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git flow release start 1.1.5</span><br><span class="line">Switched to a new branch <span class="string">'release/1.1.5'</span></span><br></pre></td></tr></table></figure>
+<p>请注意，release 分支是使用版本号命名的。这是一个明智的选择，这个命名方案还有一个很好的附带功能，那就是当我们完成了release 后，git-flow 会适当地<em>自动</em>去标记那些 release 提交。有了这个版本后，方便我们后面针对这个版本的代码进行编译和发布工作。</p>
+<h4 id="完成-release"><a href="#完成-release" class="headerlink" title="完成 release"></a>完成 release</h4><p>现在是时候按下那个危险的红色按钮来完成我们的release了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git flow release finish 1.1.5</span><br></pre></td></tr></table></figure>
+<p>这个命令会完成如下一系列的操作：</p>
+<ol>
+<li>首先，git-flow 会拉取远程仓库，以确保目前是最新的版本。</li>
+<li>然后，release 的内容会被合并到 “master” 和 “develop” 两个分支中去，这样不仅产品代码为最新的版本，而且新的功能分支也将基于最新代码。</li>
+<li>为便于识别和做历史参考，release 提交会被标记上这个 release 的名字（在我们的例子里是 “1.1.5”）。</li>
+<li>清理操作，版本分支会被删除，并且回到 “develop”。</li>
+</ol>
+<h3 id="hotfix"><a href="#hotfix" class="headerlink" title="hotfix"></a>hotfix</h3><p>很多时候，仅仅在几个小时或几天之后，当对 release 版本作做全面测试时，可能就会发现一些小错误。<br>在这种情况下，git-flow 提供一个特定的 “hotfix” 工作流程（因为在这里不管使用 “功能” 分支流程，还是 “release” 分支流程都是不恰当的), 我们公司按照当天时间来命令hotfix。</p>
+<h4 id="创建-Hotfixes"><a href="#创建-Hotfixes" class="headerlink" title="创建 Hotfixes"></a>创建 Hotfixes</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git flow hotfix start missing-link</span><br></pre></td></tr></table></figure>
+<p>这个命令会创建一个名为 “hotfix/missing-link” 的分支。因为这是对产品代码进行修复，所以这个 hotfix 分支是基于 “master” 分支。这也是和 release 分支最明显的区别，release 分支都是基于 “develop” 分支的。因为你不应该在一个还不完全稳定的开发分支上对产品代码进行地修复。就像 release 一样，修复这个错误当然也会直接影响到项目的版本号！</p>
+<h4 id="完成-Hotfixes"><a href="#完成-Hotfixes" class="headerlink" title="完成 Hotfixes"></a>完成 Hotfixes</h4><p>在把我们的修复提交到 hotfix 分支之后，就该去完成它了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git flow hotfix finish missing-link</span><br><span class="line"><span class="comment"># 我们会重新生成一个tag号</span></span><br><span class="line">$ git flow hotfix start v3.15.1</span><br><span class="line">$ git flow hotfix finish v3.15.1</span><br></pre></td></tr></table></figure>
+<p>这个过程非常类似于发布一个 release 版本：</p>
+<ul>
+<li>完成的改动会被合并到 “master” 中，同样也会合并到 “develop” 分支中，这样就可以确保这个错误不会再次出现在下一个 release 中。</li>
+<li>这个 hotfix 程序将被标记起来以便于参考。</li>
+<li>这个 hotfix 分支将被删除，然后切换到 “develop” 分支上去。</li>
+<li>我们公司会对这个hotfix再打一个版本号，基于这个版本号，生成一个tag，用于hotfix小版本发布。</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>当feature功能完成后，开发合并代码到develop分支。</li>
+<li>develop代码经过会部署到develop环境，经过测试充分测试。</li>
+<li>测试人员测试develop代码无问题后，会基于这个分支代码打一个release tag号，例如3.15.0。</li>
+<li>基于release tag号，用于正式环境发布服务。</li>
+<li>如果发现线上环境出现问题，会从master分支签出一个hotfix分支，然后基于完成的hotfix，再打一个hotfix tag号，例如3.15.1。</li>
+<li>正式发版基于tag号，测试发版基于分支名。</li>
+</ol>
+<h2 id="如何更好的编译不同分支的代码？"><a href="#如何更好的编译不同分支的代码？" class="headerlink" title="如何更好的编译不同分支的代码？"></a>如何更好的编译不同分支的代码？</h2><p>开发的代码有不同的分支还有不同的tag号，基于这种代码管理策略，我们选择了jenkins中的多分支管理策略。</p>
+<h3 id="Git源部分的配置"><a href="#Git源部分的配置" class="headerlink" title="Git源部分的配置"></a>Git源部分的配置</h3><h4 id="基于release-tag的配置"><a href="#基于release-tag的配置" class="headerlink" title="基于release tag的配置"></a>基于release tag的配置</h4><p>v[0-9]{1,2}.[0-9]{1,3}.[0-9]{1,3}$</p>
+<p><img src="https://s2.ax1x.com/2019/03/15/AENf3t.png" alt="release tag"></p>
+<p>基于上面的分支源，我们可以发现如下Tags</p>
+<p><img src="https://s2.ax1x.com/2019/03/15/AENTHg.png" alt="git tag"></p>
+<h4 id="基于branch的配置"><a href="#基于branch的配置" class="headerlink" title="基于branch的配置"></a>基于branch的配置</h4><p>([A-Z]\d{3}|develop|refactor|hotfix/.<em>|feature/.</em>|release/v[\d.]+)</p>
+<p><img src="https://s2.ax1x.com/2019/03/15/AEUSDU.png" alt="branch"></p>
+<p>基于上面的分支源，我们可以发现如下branches</p>
+<p><img src="https://s2.ax1x.com/2019/03/15/AEUtr8.png" alt=""></p>
+<h3 id="Build配置"><a href="#Build配置" class="headerlink" title="Build配置"></a>Build配置</h3><p>Build部分，我们基于Jenkins语法，完成代码的编译以及代码测试和发布工作。</p>
+<h4 id="jenkinsflie结构如下"><a href="#jenkinsflie结构如下" class="headerlink" title="jenkinsflie结构如下"></a>jenkinsflie结构如下</h4><p>匹配不同的分支，根据条件判断，执行不同的stage。每个stage包括打包，构建，数据迁移，部署，测试，通知发送等步骤。这些步骤如果太复杂可以定义在make.sh脚本中，用于jenkinsfile来调用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br></pre></td><td class="code"><pre><span class="line">stages&#123;</span><br><span class="line">  stage(<span class="string">'feature'</span>)&#123;</span><br><span class="line">    when&#123;</span><br><span class="line">                expression &#123; BRANCH_NAME ==~ /^feature\/.*/ &#125;</span><br><span class="line">            &#125;</span><br><span class="line">    environment &#123;</span><br><span class="line">            def tag = BRANCH_NAME.split(<span class="string">'/'</span>).toList().get(1)</span><br><span class="line">            def namespace = tag.toLowerCase()</span><br><span class="line">            BITBUCKET_COMMON_CREDS = credentials(<span class="string">'f35b4a1e-7673-4bb8-8c00-7acbc37032a9'</span>)</span><br><span class="line">            def TEST_USERNAME = <span class="string">"<span class="variable">$&#123;BITBUCKET_COMMON_CREDS_USR&#125;</span>"</span></span><br><span class="line">            def TEST_PASSWORD = <span class="string">"<span class="variable">$&#123;BITBUCKET_COMMON_CREDS_PSW&#125;</span>"</span></span><br><span class="line">            &#125;</span><br><span class="line">     stages &#123;</span><br><span class="line">        stage(<span class="string">'Package'</span>)&#123;</span><br><span class="line">            steps&#123;</span><br><span class="line">               sh <span class="string">"make.sh package <span class="variable">$&#123;namespace&#125;</span> <span class="variable">$&#123;tag&#125;</span>"</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">           stage(<span class="string">'Build'</span>)&#123;</span><br><span class="line">            steps&#123;</span><br><span class="line">               sh <span class="string">"make.sh bulid <span class="variable">$&#123;tag&#125;</span>"</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          stage(<span class="string">'migrate data'</span>)&#123;</span><br><span class="line">            steps&#123;</span><br><span class="line">               sh <span class="string">"migrate"</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">           stage(<span class="string">'deploy'</span>)&#123;</span><br><span class="line">            steps&#123;</span><br><span class="line">               sh <span class="string">"make.sh deploy <span class="variable">$&#123;namespace&#125;</span> <span class="variable">$&#123;tag&#125;</span>"</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">           stage(<span class="string">'test'</span>)&#123;</span><br><span class="line">            steps&#123;</span><br><span class="line">               sh <span class="string">"make.sh test <span class="variable">$&#123;namespace&#125;</span> <span class="variable">$&#123;tag&#125;</span>"</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          stage(<span class="string">'ding'</span>)&#123;</span><br><span class="line">            steps&#123;</span><br><span class="line">               sh <span class="string">"make.sh test <span class="variable">$&#123;namespace&#125;</span> <span class="variable">$&#123;tag&#125;</span>"</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   stage(<span class="string">'hotfix'</span>) &#123;</span><br><span class="line">    when&#123;</span><br><span class="line">        expression &#123; BRANCH_NAME ==~ /^hotfix\/.*/ &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    environment &#123;</span><br><span class="line">        def tag = BRANCH_NAME.split(<span class="string">'/'</span>)toList().get(1).replaceAll(<span class="string">"\\."</span>,<span class="string">'-'</span>)</span><br><span class="line">        def namespace = tag.toLowerCase()</span><br><span class="line">        BITBUCKET_COMMON_CREDS = credentials(<span class="string">'f35b4a1e-7673-4bb8-8c00-7acbc37032a9'</span>)</span><br><span class="line">        def TEST_USERNAME = <span class="string">"<span class="variable">$&#123;BITBUCKET_COMMON_CREDS_USR&#125;</span>"</span></span><br><span class="line">        def TEST_PASSWORD = <span class="string">"<span class="variable">$&#123;BITBUCKET_COMMON_CREDS_PSW&#125;</span>"</span></span><br><span class="line">    &#125;</span><br><span class="line">    stages&#123;</span><br><span class="line">        stage(<span class="string">'Package'</span>)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        stage(<span class="string">'Build'</span>)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        stage(<span class="string">'migrate data'</span>)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        stage(<span class="string">'deploy'</span>)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        stage(<span class="string">'test'</span>)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        stage(<span class="string">'ding'</span>)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  stage(<span class="string">'develop'</span>) &#123;</span><br><span class="line">    when&#123;</span><br><span class="line">        anyOf&#123;</span><br><span class="line">            branch <span class="string">'develop'</span></span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    environment &#123;</span><br><span class="line">        def tag = BRANCH_NAME.split(<span class="string">'/'</span>)toList().get(1).replaceAll(<span class="string">"\\."</span>,<span class="string">'-'</span>)</span><br><span class="line">        def namespace = tag.toLowerCase()</span><br><span class="line">        BITBUCKET_COMMON_CREDS = credentials(<span class="string">'f35b4a1e-7673-4bb8-8c00-7acbc37032a9'</span>)</span><br><span class="line">        def TEST_USERNAME = <span class="string">"<span class="variable">$&#123;BITBUCKET_COMMON_CREDS_USR&#125;</span>"</span></span><br><span class="line">        def TEST_PASSWORD = <span class="string">"<span class="variable">$&#123;BITBUCKET_COMMON_CREDS_PSW&#125;</span>"</span></span><br><span class="line">    &#125;</span><br><span class="line">    stages&#123;</span><br><span class="line">        stage(<span class="string">'Package'</span>)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        stage(<span class="string">'Build'</span>)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        stage(<span class="string">'migrate data'</span>)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        stage(<span class="string">'deploy'</span>)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        stage(<span class="string">'test'</span>)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        stage(<span class="string">'ding'</span>)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  stage(<span class="string">'release'</span>) &#123;</span><br><span class="line">     when &#123; tag pattern: <span class="string">"v[0-9]&#123;1,2&#125;.[0-9]&#123;1,3&#125;.[0-9]&#123;1,3&#125;"</span>, comparator: <span class="string">"REGEXP"</span> &#125;</span><br><span class="line">     environment &#123;</span><br><span class="line">        def tag = BRANCH_NAME.toLowerCase()</span><br><span class="line">        // def namespace = <span class="string">"product"</span></span><br><span class="line">        def namespace = input message: <span class="string">'Where do you want to deploy to which namespace?'</span>, ok: <span class="string">'commit'</span>, parameters: [choice(choices: [<span class="string">'product'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>], description: <span class="string">'product,blue,green'</span>, name: <span class="string">'namespace'</span>)]</span><br><span class="line">        BITBUCKET_COMMON_CREDS = credentials(<span class="string">'f35b4a1e-7673-4bb8-8c00-7acbc37032a9'</span>)</span><br><span class="line">        def PRODUCTION_USERNAME = <span class="string">"<span class="variable">$&#123;BITBUCKET_COMMON_CREDS_USR&#125;</span>"</span></span><br><span class="line">        def PRODUCTION_PASSWORD = <span class="string">"<span class="variable">$&#123;BITBUCKET_COMMON_CREDS_PSW&#125;</span>"</span></span><br><span class="line">    &#125;</span><br><span class="line">    stages&#123;</span><br><span class="line">        stage(<span class="string">'Package'</span>)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        stage(<span class="string">'Build'</span>)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        stage(<span class="string">'migrate data'</span>)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        stage(<span class="string">'deploy'</span>)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        stage(<span class="string">'test'</span>)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        stage(<span class="string">'ding'</span>)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="make-sh"><a href="#make-sh" class="headerlink" title="make.sh"></a>make.sh</h4><p>这个用于定义函数被jenkins调用。</p>
+<h4 id="jenkins流程图"><a href="#jenkins流程图" class="headerlink" title="jenkins流程图"></a>jenkins流程图</h4><p>stage有feature,hotfix,develop,release等，其中只是显示一个release，用于根据tag发版。</p>
+<p><img src="https://s2.ax1x.com/2019/03/15/AEajmT.png" alt=""></p>
+<h2 id="如何更好的发布代码"><a href="#如何更好的发布代码" class="headerlink" title="如何更好的发布代码"></a>如何更好的发布代码</h2><h3 id="Docker镜像的构建"><a href="#Docker镜像的构建" class="headerlink" title="Docker镜像的构建"></a>Docker镜像的构建</h3><p>目前我们把开发代码中会嵌入我们的Dockerfile和make.sh脚本,将运维脚本嵌入开发代码，为了在jenkins的workspace中mvn代码，获取jar包，并且通过Dockerfile，构建镜像，推送镜像仓库。</p>
+<h3 id="k8s容器编排"><a href="#k8s容器编排" class="headerlink" title="k8s容器编排"></a>k8s容器编排</h3><p>目前我们使用阿里云的容器服务，阿里云的容器服务只收取ecs费用，相对于自建来说，成本更低。所以我们选择阿里云的容器服务，降低手工部署的繁琐性和维护成本。k8s的重点不在于安装部署，而在于容器的编排。目前我们只有一套集群，正式服务和测试服务都部署到一个集群当中，通过节点的亲和性。将测试环境部署到打有测试标记的节点上，让证书服务部署到打有正式服务器标签的节点上。</p>
+<h3 id="Helm发布测试和正式环境应用"><a href="#Helm发布测试和正式环境应用" class="headerlink" title="Helm发布测试和正式环境应用"></a>Helm发布测试和正式环境应用</h3><p>针对测试和生成环境，我们生成了两个helm包。分别用于正式环境和测试环境服务的部署工作。在jenkins容器的内部，我们安装了helm客户端，用于发布应用程序。helm可以—set传入tag号和namespace，将测试服务部署到其namesapce当中。正式环境我们有blue和green环境，通过istio来进行流量切换。发布代码到bule或者green，通过jenkins传入变量来控制。</p>
+<p>目前我们将不同的微服务应用打包成独立的charts, 全局控制chart是否安装，使得部署更加灵活和稳定。</p>
+<p><img src="https://s2.ax1x.com/2019/03/15/AEyKVx.png" alt="helm"></p>
+<p>blue和green为预发布和生成环境的切换，其他都是根据不同特性分支命名的部署release, 分别位于不同的名称空间中。</p>
+<p><img src="https://s2.ax1x.com/2019/03/15/AEsIKA.png" alt=""></p>
+<h3 id="Istio用于蓝绿部署"><a href="#Istio用于蓝绿部署" class="headerlink" title="Istio用于蓝绿部署"></a>Istio用于蓝绿部署</h3><p>istio后面我会总结相应的文档进行说明。目前我们用istio 中gateway和virtualservice将正式流量指向blue或者green环境，来控制我们的代码版本。正式上线的时候，我们会先通过jenkins将代码部署到预发布环境，测试人员对预发布环境进行测试，当测试通过时，我们会切换流量到预发布环境，此时预发布环境变成正式环境。istio的功能远远不止如此</p>
+<p><img src="https://s2.ax1x.com/2019/03/15/AEyPaV.png" alt="istio"></p>
+<p>virtualservie 7层用于流量的转发，可以通过header匹配不同’blue’或者’green’进入到不同的环境。生产环境通过weight流量权重控制，将流量导入到blue或者green环境当中。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏2块钱,帮我买杯咖啡,继续创作,谢谢大家！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="陈凡 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliyipay.jpg" alt="陈凡 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+        -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+         
+            <a href="/tags/k8s/" rel="tag"><i class="fa fa-tag"></i>k8s</a>
+          
+         
+            <a href="/tags/Git/" rel="tag"><i class="fa fa-tag"></i>Git</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/15/k8s中使用cert-manager玩转证书/" rel="next" title="k8s中使用cert-manager玩转证书">
+                <i class="fa fa-chevron-left"></i> k8s中使用cert-manager玩转证书
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/15/Helm一键部署k8s应用/" rel="prev" title="Helm一键部署k8s应用">
+                Helm一键部署k8s应用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/upload/avatar.gif"
+                alt="陈凡" />
+            
+              <p class="site-author-name" itemprop="name">陈凡</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/chenfanlinux" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:chenfan216@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/3942411590" target="_blank" title="微博">
+                    
+                      <i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/love-hero-80" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何更好的管理代码"><span class="nav-number">1.</span> <span class="nav-text">如何更好的管理代码?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在项目中设置git-flow"><span class="nav-number">1.1.</span> <span class="nav-text">在项目中设置git-flow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支的模式"><span class="nav-number">1.2.</span> <span class="nav-text">分支的模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#功能开发"><span class="nav-number">1.3.</span> <span class="nav-text">功能开发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#开始新功能"><span class="nav-number">1.3.1.</span> <span class="nav-text">开始新功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完成一个功能"><span class="nav-number">1.3.2.</span> <span class="nav-text">完成一个功能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管理release"><span class="nav-number">1.4.</span> <span class="nav-text">管理release</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建-release"><span class="nav-number">1.4.1.</span> <span class="nav-text">创建 release</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完成-release"><span class="nav-number">1.4.2.</span> <span class="nav-text">完成 release</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hotfix"><span class="nav-number">1.5.</span> <span class="nav-text">hotfix</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建-Hotfixes"><span class="nav-number">1.5.1.</span> <span class="nav-text">创建 Hotfixes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完成-Hotfixes"><span class="nav-number">1.5.2.</span> <span class="nav-text">完成 Hotfixes</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.6.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何更好的编译不同分支的代码？"><span class="nav-number">2.</span> <span class="nav-text">如何更好的编译不同分支的代码？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Git源部分的配置"><span class="nav-number">2.1.</span> <span class="nav-text">Git源部分的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基于release-tag的配置"><span class="nav-number">2.1.1.</span> <span class="nav-text">基于release tag的配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于branch的配置"><span class="nav-number">2.1.2.</span> <span class="nav-text">基于branch的配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Build配置"><span class="nav-number">2.2.</span> <span class="nav-text">Build配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#jenkinsflie结构如下"><span class="nav-number">2.2.1.</span> <span class="nav-text">jenkinsflie结构如下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#make-sh"><span class="nav-number">2.2.2.</span> <span class="nav-text">make.sh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jenkins流程图"><span class="nav-number">2.2.3.</span> <span class="nav-text">jenkins流程图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何更好的发布代码"><span class="nav-number">3.</span> <span class="nav-text">如何更好的发布代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker镜像的构建"><span class="nav-number">3.1.</span> <span class="nav-text">Docker镜像的构建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k8s容器编排"><span class="nav-number">3.2.</span> <span class="nav-text">k8s容器编排</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Helm发布测试和正式环境应用"><span class="nav-number">3.3.</span> <span class="nav-text">Helm发布测试和正式环境应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Istio用于蓝绿部署"><span class="nav-number">3.4.</span> <span class="nav-text">Istio用于蓝绿部署</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+<script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=ipZXdvME3sKg6viC20OoTCYATcaOJ6SQH2wdaJEUHfc"></script>
+
+<div id="music163player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=525241230&auto=0&height=66"></iframe>
+</div>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈凡</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">154.2k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div> 
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+ <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 98812, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2019/03/15/如何更好的管理—-编译-发布代码/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/98812/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+<!--页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>  
+
+
+
+<!-- 
+<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-1 count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script> -->
+
+
+</body>
+</html>
