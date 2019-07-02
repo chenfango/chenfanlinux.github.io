@@ -339,6 +339,224 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/06/22/Python网络编程-udp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/22/Python网络编程-udp/" itemprop="url">Python网络编程-udp</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-22T11:46:03+08:00">
+                2018-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python网络编程/" itemprop="url" rel="index">
+                    <span itemprop="name">Python网络编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/22/Python网络编程-udp/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/06/22/Python网络编程-udp/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,989
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="网络编程中的重要概念"><a href="#网络编程中的重要概念" class="headerlink" title="网络编程中的重要概念"></a>网络编程中的重要概念</h2><blockquote>
+<p>所谓的网络编程就是，让在不同的电脑上的软件能够进行数据传递，即进程之间的通信。</p>
+</blockquote>
+<h3 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h3><ul>
+<li>使用网络能够把多方链接在一起，然后可以进行数据传递</li>
+<li>所谓的网络编程就是，让在不同的电脑上的软件能够进行数据传递，即进程之间的通信</li>
+</ul>
+<h3 id="ip地址"><a href="#ip地址" class="headerlink" title="ip地址"></a>ip地址</h3><p><strong>用来在网络中标记一台电脑，比如192.168.1.1；在本地局域网上是唯一的。每一个IP地址包括两部分：网络地址和主机地址。</strong></p>
+<ul>
+<li><p>一个A类IP地址由1字节的网络地址和3字节主机地址组成，网络地址的最高位必须是“0”，</p>
+<p>地址范围1.0.0.1-126.255.255.254。</p>
+</li>
+<li><p>一个B类IP地址由2个字节的网络地址和2个字节的主机地址组成，网络地址的最高位必须是“10”，</p>
+<p>地址范围128.1.0.1-191.255.255.254。</p>
+</li>
+<li><p>一个C类IP地址由3字节的网络地址和1字节的主机地址组成，网络地址的最高位必须是“110”</p>
+<p>范围192.0.1.1-223.255.255.254。</p>
+</li>
+<li><p>D类IP地址第一个字节以“1110”开始，它是一个专门保留的地址。</p>
+</li>
+<li><p>E类地址保留，仅作实验和开发用 。</p>
+</li>
+<li><p>在这么多网络IP中，国际规定有一部分IP地址是用于我们的局域网使用，也就</p>
+<p>是属于私网IP。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 私网ip的地址</span></span><br><span class="line">10.0.0.0～10.255.255.255</span><br><span class="line">172.16.0.0～172.31.255.255</span><br><span class="line">192.168.0.0～192.168.255.255</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/22/Python网络编程-udp/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    
+    <div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/06/07/运维自动化工具Ansible/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -508,7 +726,7 @@
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/06/07/运维自动化工具Ansible/#espandi" rel="contents">
+            <a class="btn" href="/2018/06/07/运维自动化工具Ansible/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -725,7 +943,7 @@
 </blockquote>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/06/06/Python变量进阶/#espandi" rel="contents">
+            <a class="btn" href="/2018/06/06/Python变量进阶/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -931,7 +1149,7 @@
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/06/04/Python操作Redis/#espandi" rel="contents">
+            <a class="btn" href="/2018/06/04/Python操作Redis/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1150,7 +1368,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dir(str) <span class="comment"># 查找str类型对象所对应的方法</span></span><br><span class="line">[<span class="string">'__add__'</span>, <span class="string">'__class__'</span>, <span class="string">'__contains__'</span>, <span class="string">'__delattr__'</span>, <span class="string">'__dir__'</span>, <span class="string">'__doc__'</span>, <span class="string">'__eq__'</span>, <span class="string">'__format__'</span>, <span class="string">'__ge__'</span>, <span class="string">'__getattribute__'</span>, <span class="string">'__getitem__'</span>, <span class="string">'__getnewargs__'</span>, <span class="string">'__gt__'</span>, <span class="string">'__hash__'</span>, <span class="string">'__init__'</span>, <span class="string">'__iter__'</span>, <span class="string">'__le__'</span>, <span class="string">'__len__'</span>, <span class="string">'__lt__'</span>, <span class="string">'__mod__'</span>, <span class="string">'__mul__'</span>, <span class="string">'__ne__'</span>, <span class="string">'__new__'</span>, <span class="string">'__reduce__'</span>, <span class="string">'__reduce_ex__'</span>, <span class="string">'__repr__'</span>, <span class="string">'__rmod__'</span>, <span class="string">'__rmul__'</span>, <span class="string">'__setattr__'</span>, <span class="string">'__sizeof__'</span>, <span class="string">'__str__'</span>, <span class="string">'__subclasshook__'</span>, <span class="string">'capitalize'</span>, <span class="string">'casefold'</span>, <span class="string">'center'</span>, <span class="string">'count'</span>, <span class="string">'encode'</span>, <span class="string">'endswith'</span>, <span class="string">'expandtabs'</span>, <span class="string">'find'</span>, <span class="string">'format'</span>, <span class="string">'format_map'</span>, <span class="string">'index'</span>, <span class="string">'isalnum'</span>, <span class="string">'isalpha'</span>, <span class="string">'isdecimal'</span>, <span class="string">'isdigit'</span>, <span class="string">'isidentifier'</span>, <span class="string">'islower'</span>, <span class="string">'isnumeric'</span>, <span class="string">'isprintable'</span>, <span class="string">'isspace'</span>, <span class="string">'istitle'</span>, <span class="string">'isupper'</span>, <span class="string">'join'</span>, <span class="string">'ljust'</span>, <span class="string">'lower'</span>, <span class="string">'lstrip'</span>, <span class="string">'maketrans'</span>, <span class="string">'partition'</span>, <span class="string">'replace'</span>, <span class="string">'rfind'</span>, <span class="string">'rindex'</span>, <span class="string">'rjust'</span>, <span class="string">'rpartition'</span>, <span class="string">'rsplit'</span>, <span class="string">'rstrip'</span>, <span class="string">'split'</span>, <span class="string">'splitlines'</span>, <span class="string">'startswith'</span>, <span class="string">'strip'</span>, <span class="string">'swapcase'</span>, <span class="string">'title'</span>, <span class="string">'translate'</span>, <span class="string">'upper'</span>, <span class="string">'zfill'</span>]</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/06/03/Python内建函数/#espandi" rel="contents">
+            <a class="btn" href="/2018/06/03/Python内建函数/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1347,7 +1565,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ yum install python-pip</span><br><span class="line">$ pip install --upgrade pip</span><br><span class="line">$ pip install fabric==<span class="number">1.14</span><span class="number">.0</span>   <span class="comment"># 指定版本安装，这里如果不指定的话，安装最新版本</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/31/自动化运维工具Fabric/#espandi" rel="contents">
+            <a class="btn" href="/2018/05/31/自动化运维工具Fabric/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1554,7 +1772,7 @@
 <p>实际上，在PyMongo 3.x版本中，官方已经不推荐使用<code>insert()</code>方法了。当然，继续使用也没有什么问题。官方推荐使用<code>insert_one()</code>和<code>insert_many()</code>方法来分别插入单条记录和多条记录 。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/28/Python操作MongoDB/#espandi" rel="contents">
+            <a class="btn" href="/2018/05/28/Python操作MongoDB/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1753,7 +1971,7 @@
 <h3 id="5-保证充足的睡眠"><a href="#5-保证充足的睡眠" class="headerlink" title="5.保证充足的睡眠"></a>5.保证充足的睡眠</h3><p>睡觉时，脑脊液在脑细胞间的循环比清醒时快很多，帮助大脑排出 “垃圾”,因为尽量避免熬夜，让大脑充分休息。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/27/如何提升你的记忆力/#espandi" rel="contents">
+            <a class="btn" href="/2018/05/27/如何提升你的记忆力/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1956,7 +2174,7 @@
 </code></pre><p>由于我们没有为数据指定索引，于是会自动创建一个0到N-1（N为数据的长度）的整数型索引。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/01/Python数据分析之Pandas入门修订版-四/#espandi" rel="contents">
+            <a class="btn" href="/2018/05/01/Python数据分析之Pandas入门修订版-四/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2159,214 +2377,7 @@
 <h3 id="创建-Series数据类型"><a href="#创建-Series数据类型" class="headerlink" title="创建 Series数据类型"></a>创建 Series数据类型</h3><p>创建 Series 语法： <code>s = pd.Series(data, index=index)</code>，可以通过多种方式进行创建, 这里的data的数据类型只要是序列都可以。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/04/26/Python数据分析之Pandas入门-三/#espandi" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    
-    <div>
-  
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/04/25/Python数据分析之Numpy-二/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/25/Python数据分析之Numpy-二/" itemprop="url">Python数据分析之Numpy(二)</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-25T17:16:24+08:00">
-                2018-04-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python数据分析/" itemprop="url" rel="index">
-                    <span itemprop="name">python数据分析</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/25/Python数据分析之Numpy-二/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/04/25/Python数据分析之Numpy-二/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,381
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  7
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>NumPy 是 Python 语言的一个扩充程序库。支持大量高维度数组与矩阵运算，此外也针对数组运算提供大量的数学函数库。机器学习涉及到大量对数组的变换和运算，NumPy 就成了必不可少的工具之一。</p>
-</blockquote>
-<h2 id="矩阵的基本概念"><a href="#矩阵的基本概念" class="headerlink" title="矩阵的基本概念"></a>矩阵的基本概念</h2><ul>
-<li>矩阵：矩形的数组，即二维数组，其中向量和标量都是矩阵的特例</li>
-<li>向量: 是指1 x n或n x 1的矩阵</li>
-<li>标量：是指1 x 1的矩阵</li>
-<li>数组：N维的数组，是矩阵的延伸</li>
-<li>特殊的矩阵: 全0全1的矩阵,单位矩阵</li>
-<li>矩阵的运算:<ul>
-<li>相加或相减的两个矩阵必须有相同的行和列</li>
-<li>矩阵元素间乘法运算 A * B</li>
-<li>矩阵乘法运算 np.dot(A, B)</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/25/Python数据分析之Numpy-二/#espandi" rel="contents">
+            <a class="btn" href="/2018/04/26/Python数据分析之Pandas入门-三/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2461,7 +2472,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2472,7 +2483,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2571,7 +2582,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">154.2k</span>
+    <span title="Site words total count">157.3k</span>
   
 </div>
 

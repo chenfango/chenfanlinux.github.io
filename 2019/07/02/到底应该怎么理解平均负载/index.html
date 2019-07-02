@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="linux," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="陈凡的个人站点" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="1、如何了解系统的平均负载  每次发现系统变慢时，我们通常做的第一件事，就是执行 top，或者 uptime 命令，来了解系统的负载情况。比如像下面这样，我在命令行里输入了 uptime 命令，系统负载情况。  12[root@bogon ~]# uptime 15:20:35 up  3:44,  4 users, ">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="到底应该怎么理解平均负载">
+<meta property="og:url" content="http://www.chenfanlinux.org/2019/07/02/到底应该怎么理解平均负载/index.html">
+<meta property="og:site_name" content="陈凡的个人站点">
+<meta property="og:description" content="1、如何了解系统的平均负载  每次发现系统变慢时，我们通常做的第一件事，就是执行 top，或者 uptime 命令，来了解系统的负载情况。比如像下面这样，我在命令行里输入了 uptime 命令，系统负载情况。  12[root@bogon ~]# uptime 15:20:35 up  3:44,  4 users,  load average: 0.00, 0.01, 0.05 我相信你对前面的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-02T08:46:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="到底应该怎么理解平均负载">
+<meta name="twitter:description" content="1、如何了解系统的平均负载  每次发现系统变慢时，我们通常做的第一件事，就是执行 top，或者 uptime 命令，来了解系统的负载情况。比如像下面这样，我在命令行里输入了 uptime 命令，系统负载情况。  12[root@bogon ~]# uptime 15:20:35 up  3:44,  4 users,  load average: 0.00, 0.01, 0.05 我相信你对前面的">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'X18Q8YOK7R',
+      apiKey: '4cf6f4ea962b4c633859ca376c0d6ae9',
+      indexName: 'chenfanlinux',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.chenfanlinux.org/2019/07/02/到底应该怎么理解平均负载/"/>
+
+
+
+
+
+  <title>到底应该怎么理解平均负载 | 陈凡的个人站点</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?your-analytics-id";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+ 
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">陈凡的个人站点</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">chenfanlinux.org</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2019/07/02/到底应该怎么理解平均负载/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">到底应该怎么理解平均负载</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-02T16:43:38+08:00">
+                2019-07-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux性能优化/" itemprop="url" rel="index">
+                    <span itemprop="name">linux性能优化</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/07/02/到底应该怎么理解平均负载/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2019/07/02/到底应该怎么理解平均负载/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,116
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>1、如何了解系统的平均负载</p>
+<blockquote>
+<p>每次发现系统变慢时，我们通常做的第一件事，就是执行 top，或者 uptime 命令，来了解系统的负载情况。比如像下面这样，我在命令行里输入了 uptime 命令，系统负载情况。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon ~]<span class="comment"># uptime</span></span><br><span class="line"> 15:20:35 up  3:44,  4 users,  load average: 0.00, 0.01, 0.05</span><br></pre></td></tr></table></figure>
+<p>我相信你对前面的几列比较熟悉，它们分别是当前时间、系统运行时、以及正在登录用户数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> 15:20:35     // 当前时间</span><br><span class="line"> up  3:44     // 系统运行时间</span><br><span class="line"> 4 users      // 当前登录用户数</span><br><span class="line">load average: 0.00, 0.01, 0.05   // 过去1分钟、5分钟、15分钟的负载数</span><br></pre></td></tr></table></figure>
+<h4 id="2、什么是平均负载？"><a href="#2、什么是平均负载？" class="headerlink" title="2、什么是平均负载？"></a>2、什么是平均负载？</h4><p>它是最常见也是最重要的系统指标。简单来说，平均负载时是单位时间内，系统处于<strong>可运行</strong>及<strong>不可中断</strong>状态的平均进程数，也就是<strong>平均活跃进程数</strong>。所以，它不仅包括了<strong>正在使用CPU的进程</strong>，还包括了<strong>等待CPU</strong>和<strong>等待I/O</strong>的进程。和CPU使用率没有直接关系。</p>
+<ul>
+<li><strong>可运行状态的进程：</strong> 是指正在使用CPU或者正在等待CPU的进程。也就是我们用ps命令看到处于R状态的进程。 </li>
+<li><strong>不可中断状态的进程：</strong> 是指哪些处于内核态关键流程中的进程，并且这些流程是不可打断的，比如最常见的是等待硬件设备的I/O响应，也就说我们用ps看到处于D状态(Uninterruptible Sleep，也称为  Disk Sleep) 的进程。这其实是系统对进程和硬件设备的一种保护机制。</li>
+</ul>
+<a id="more"></a>
+<h4 id="3、平均负载为多少时合理"><a href="#3、平均负载为多少时合理" class="headerlink" title="3、平均负载为多少时合理"></a>3、平均负载为多少时合理</h4><p>我们知道，平均负载最理想的情况是等于 CPU 个数。所以在评判平均负载时，首先你要知道系统有几个 CPU核心数，这可以这可以通过 top 命令或者从文件 /proc/cpuinfo中获取，比如</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep <span class="string">'model name'</span> /proc/cpuinfo |wc -l     <span class="comment"># 获取逻辑核心数</span></span><br></pre></td></tr></table></figure>
+<p>有了 CPU 个数，我们就可以判断出，当平均负载比 CPU 个数还大的时候，系统已经出现了过载。不过，且慢，新的问题又来了。我们在例子中可以看到，平均负载有三个数值，到底该参考哪一个呢？</p>
+<p>实际上，都要看。三个不同时间间隔的平均值，其实给我们提供了，分析系统负载趋势的数据来源，让我们能更全面和更立体地理解目前的负载状况。</p>
+<ul>
+<li>如果 1 分钟、5 分钟、15 分钟的三个值基本相同，或者相相差不大，那就说明系统负载很平稳。</li>
+<li>但如果 1 分钟的值远小于 15 分钟的值，就说明系统最近 1 分钟的负载在减少，而过去 15 分钟内却有很大的负载。</li>
+<li>反过来，如果 1 分钟的值远大于 15 分钟的值，就说明最近就说明最近 1 分钟的负载在增加，这种增加有可能只是临时性的也有可能还会持续增加下去，所以就需要持续观察。一旦 1 分钟的平均负载接近或超过了 CPU 的个数，就意味着系统正在发生过载的问题，这时就得分析调查是哪里导致的。</li>
+</ul>
+<p>那么，在实际生产环境中，平均负载多高时，需要我们重点关注呢？</p>
+<p>在我看来，当平均负载高于 CPU 数量 70% 的时候，你就应该分析排查负载高的问题了。一旦负载过高，就可能导致进程响应变慢，进而影响服务的正常功能。</p>
+<p>但 70% 这个数字并不是绝对的，最推荐的方法，还是把系统的还是把系统的平均负载监控起来，然后根据更多的历史数据，判断负载的变化趋势。当发现负载有明显升高趋势时，比如说负载翻倍了，你再去做分析和调查。</p>
+<p>####4.平均负载与 CPU 使用率</p>
+<p>现实工作中，我们经常容易把平均负载和 CPU 使用率混淆，所以在这里，我也做一个区分。可能你会疑惑，既然平均负载代表的是活跃进程数，那平均负载高了。不就意味着 CPU 使用率高吗？</p>
+<p>我们还是要回到平均负载的含义上来，平均负载是指单位时间内，处于<strong>可运行状态</strong>和<strong>不可中断状态</strong>的进程数。所以，它不仅包括了正在使用 CPU 的进程，还包括<strong>等待 CPU</strong> 和<strong>等待IO</strong>的进程。</p>
+<p>而 CPU 使用率，是单位时间内 CPU 繁忙情况的统计，跟平均负载并不一定完全对应。比如：</p>
+<ul>
+<li>CPU 密集型进程，使用大量 CPU 会导致平均负载升高，此时这两者是一致的；</li>
+<li>I/O 密集型进程，等待 I/O 也会导致平均负载升高，但 CPU 使用率不一定很高；</li>
+<li>大量等待 CPU 的进程调度也会导致平均负载升高，此时的 CPU 使用率也会比较高。</li>
+</ul>
+<h4 id="5-平均负载案例分析"><a href="#5-平均负载案例分析" class="headerlink" title="5. 平均负载案例分析"></a>5. 平均负载案例分析</h4><h5 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h5><ul>
+<li>机器配置：centos 7.x   2 CPU，8GB 内存（ 这个根据个人机器配置来）。</li>
+<li>预先安装 stress和stress-ng 和 sysstat  1.5.5版本以后</li>
+<li>sysstat工具介绍<ul>
+<li>而 sysstat 包含了常用的 Linux 性能工具，用来用来监控和分析系统的性能。我们的案例会用到这个包的两个命令mpstat 和 pidstat。</li>
+<li>mpstat 是一个常用的多核 CPU 性能分析工具，用来实时查看每个 CPU 的性能指标，以及所有 CPU 的平均指标。</li>
+<li>pidstat 是一个常用的进程性能分析工具，用来实时查看进程的 CPU、内存、I/O 以及上下文切换等性能指标。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># stress 压测工具</span></span><br><span class="line">yum install stress stress-ng -y </span><br><span class="line"></span><br><span class="line"><span class="comment"># systat 12.1.5 性能测试工具</span></span><br><span class="line">gcc -v</span><br><span class="line">rpm -e --nodeps sysstat</span><br><span class="line">wget http://pagesperso-orange.fr/sebastien.godard/sysstat-12.1.5.tar.gz</span><br><span class="line">tar xf sysstat-12.1.5.tar.gz</span><br><span class="line"><span class="built_in">cd</span> sysstat-12.1.5/</span><br><span class="line">./configure</span><br><span class="line">sa_lib_dir=/usr/lib/sa    sa_dir=/var/<span class="built_in">log</span>/sa        conf_dir=/etc/sysconfig   ./configure --prefix=/usr --<span class="built_in">disable</span>-file-attr &amp;&amp; make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h5 id="场景一：CPU-密集型进程"><a href="#场景一：CPU-密集型进程" class="headerlink" title="场景一：CPU 密集型进程"></a>场景一：CPU 密集型进程</h5><p>首先，我们在第一个终端运行 stress 命令，模拟一个 CPU 使用率 100% 的场景</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ stress --cpu 1 --timeout 600</span><br></pre></td></tr></table></figure>
+<p>接着，在第二个终端运行 uptime 查看平均负载的变化情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -d 参数表示高亮显示变化的区域</span></span><br><span class="line">$ watch -d uptime</span><br><span class="line">load average: 1.00, 0.75, 0.39</span><br></pre></td></tr></table></figure>
+<p>最后，在第三个终端运行 mpstat 查看 CPU 使用情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -P ALL 表示监控所有 CPU，后面数字 5 表示间隔 5 秒后输出一组数据</span></span><br><span class="line">$ mpstat -P ALL 5</span><br><span class="line">Linux 3.10.0-957.1.3.el7.x86_64 (bogon) 	2019年07月02日 	_x86_64_	(1 CPU)</span><br><span class="line"></span><br><span class="line">15时52分06秒  CPU    %usr   %nice    %sys   %iowait    %irq   %soft  %steal  %guest  %gnice   %idle</span><br><span class="line">15时52分11秒  all  100.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00</span><br><span class="line">15时52分11秒    0  100.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00</span><br></pre></td></tr></table></figure>
+<p>从终端二中可以看到，1 分钟的平均负载会慢慢增加到 1.00, 而从终端三中还可以看到，正好有一个 CPU 的使用率为 10.一个 CPU 的使用率为 100%，但它的 iowait 但它的 iowait 只有 0。这说明，平均负载的升高正是由于 CPU 使用率为 100% 。</p>
+<p>那么，到底是哪个进程导致了 CPU 使用率为 100% 呢？你可以使用 pidstat 来查询：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -u 5 间隔5秒， 20 输出20次结果</span></span><br><span class="line">$ pidstat -u 5 20</span><br><span class="line">Linux 3.10.0-957.1.3.el7.x86_64 (bogon) 	2019年07月02日 	_x86_64_	(1 CPU)</span><br><span class="line"></span><br><span class="line">15时56分10秒   UID       PID    %usr %system  %guest   %<span class="built_in">wait</span>    %CPU   CPU  Command</span><br><span class="line">15时56分15秒     0      9075   99.40    0.00    0.00    0.40   99.40     0  stress</span><br><span class="line">15时56分15秒     0      9231    0.00    0.20    0.00    0.00    0.20     0  pidstat</span><br></pre></td></tr></table></figure>
+<p>从这里可以明显看到，stress 进程的 CPU 使用率为 100%</p>
+<h5 id="场景二：I-O-密集型进程"><a href="#场景二：I-O-密集型进程" class="headerlink" title="场景二：I/O 密集型进程"></a>场景二：I/O 密集型进程</h5><p>首先还是运行 stress-ng 命令，但这次模拟 I/O。即不停地执行 sync</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># --hdd表示读写临时文件</span></span><br><span class="line">$ stress-ng -i 1 --hdd 1 --timeout 600</span><br></pre></td></tr></table></figure>
+<p>接着，在第二个终端运行 uptime 查看平均负载的变化情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ watch -d uptime</span><br><span class="line">Every 2.0s: uptime                                                                  Tue Jul  2 16:01:43 2019</span><br><span class="line"></span><br><span class="line"> 16:01:43 up  4:25,  4 users,  load average: 0.91, 0.78, 0.48</span><br></pre></td></tr></table></figure>
+<p>然后，第三个终端运行 mpstat 查看 CPU 使用率.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -P ALL 表示监控所有 CPU，后面数字 5 表示间隔 5 秒后输出一组数据</span></span><br><span class="line">$ mpstat -P ALL 5</span><br><span class="line">Linux 3.10.0-957.1.3.el7.x86_64 (bogon) 	2019年07月02日 	_x86_64_	(1 CPU)</span><br><span class="line">16时01分57秒  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle</span><br><span class="line">16时02分02秒  all    0.21    0.00    9.13   90.46    0.00    0.21    0.00    0.00    0.00    0.00</span><br><span class="line">16时02分02秒    0    0.21    0.00    9.13   90.46    0.00    0.21    0.00    0.00    0.00    0.00</span><br></pre></td></tr></table></figure>
+<p>从这里可以看到，1 分钟的平均负载会慢慢增加到 1点左右 , 其中一个 CPU 的系统 CPU 使用率升高到了 23.87, 而 iowait 高达 90.46%。这说明，平均负载的升高是由于 iowait 的升高。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$  pidstat -d  5 20   <span class="comment"># 注意这里是-d 是磁盘指标</span></span><br><span class="line">16时10分51秒   UID       PID   kB_rd/s   kB_wr/s kB_ccwr/s iodelay  Command</span><br><span class="line">16时10分56秒     0      9588      0.00      0.00      0.00     540  kworker/u256:1</span><br><span class="line">16时10分56秒     0     10105      0.00 398758.40  26171.20       0  stress-ng</span><br><span class="line">16时10分56秒     0     10107      0.00      0.00      0.00     218  stress-ng-io</span><br></pre></td></tr></table></figure>
+<p>可以发现，还是 stress-ng-hdd 进程导致的。</p>
+<h5 id="场景三：大量进程的场景"><a href="#场景三：大量进程的场景" class="headerlink" title="场景三：大量进程的场景"></a>场景三：大量进程的场景</h5><p>当系统中运行进程超出 CPU 运行能力时，就会出现等待 CPU</p>
+<p>比如，我们还是使用 stress，但这次模拟的是 8 个进程。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ stress -c 8 --timeout 600</span><br></pre></td></tr></table></figure>
+<p>由于系统只有 1 个 CPU，明显比 8 个进程要少得多，因而，系统的 CPU 处于严重过载状态.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ watch -d uptime</span><br><span class="line">Every 2.0s: uptime                                                                  Tue Jul  2 16:18:23 2019</span><br><span class="line"></span><br><span class="line"> 16:18:23 up  4:41,  4 users,  load average: 2.93, 1.74, 1.07</span><br></pre></td></tr></table></figure>
+<p>可以看到cpu使用率增加到很快100%。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mpstat -P ALL 5</span><br><span class="line">16时19分00秒  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle</span><br><span class="line">16时19分05秒  all   99.60    0.00    0.40    0.00    0.00    0.00    0.00    0.00    0.00    0.00</span><br><span class="line">16时19分05秒    0   99.60    0.00    0.40    0.00    0.00    0.00    0.00    0.00    0.00    0.00</span><br></pre></td></tr></table></figure>
+<p>接着再运行 pidstat 来看一下进程的情况：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 间隔 5 秒后输出一组数据，-u 表示 CPU 指标</span></span><br><span class="line">$ pidstat -u 5 20</span><br><span class="line">Linux 3.10.0-957.1.3.el7.x86_64 (bogon) 	2019年07月02日 	_x86_64_	(1 CPU)</span><br><span class="line"></span><br><span class="line">16时20分09秒   UID       PID    %usr %system  %guest   %<span class="built_in">wait</span>    %CPU   CPU  Command</span><br><span class="line">16时20分14秒     0     10603   12.35    0.00    0.00   87.06   12.35     0  stress</span><br><span class="line">16时20分14秒     0     10604   12.35    0.00    0.00   87.45   12.35     0  stress</span><br><span class="line">16时20分14秒     0     10605   12.35    0.00    0.00   86.67   12.35     0  stress</span><br><span class="line">16时20分14秒     0     10606   12.35    0.00    0.00   87.25   12.35     0  stress</span><br><span class="line">16时20分14秒     0     10607   12.35    0.00    0.00   86.27   12.35     0  stress</span><br><span class="line">16时20分14秒     0     10608   12.35    0.00    0.00   86.86   12.35     0  stress</span><br><span class="line">16时20分14秒     0     10609   12.16    0.00    0.00   85.49   12.16     0  stress</span><br><span class="line">16时20分14秒     0     10610   12.35    0.00    0.00   86.27   12.35     0  stress</span><br><span class="line">16时20分14秒     0     10679    0.00    0.20    0.00    0.00    0.20     0  pidstat</span><br></pre></td></tr></table></figure>
+<p>可以看出，8 个进程在争抢 1 个 CPU，每个进程等待，每个进程等待 CPU 的时间（也就是代码块中的 %wait）高达 87%。这些超出 CPU 计算能力的进程， 最终导致 CPU 过载。</p>
+<h4 id="6-小结"><a href="#6-小结" class="headerlink" title="6.小结"></a>6.小结</h4><p>平均负载提供了一个快速查看系统整体性能的手段，反映了整体的负载情况。但只看平均负载本身，我们并不能直接发，到底是哪里出现了瓶颈。所以，在理解平均负载时，也要注意：</p>
+<ul>
+<li>平均负载高有可能是 CPU 密集型进程导致的；</li>
+<li>平均负载高并不一定代表 CPU 使用率高，还有可能是 I/O</li>
+<li>当发现负载高的时候，你可以使用 mpstat、pidstat等工具，辅助分析负载的来源。</li>
+<li></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>打赏2块钱,帮我买杯咖啡,继续创作,谢谢大家！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="陈凡 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/aliyipay.jpg" alt="陈凡 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+        -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+        </div>
+    
+</div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+         
+            <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"></i>linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/15/Helm一键部署k8s应用/" rel="next" title="Helm一键部署k8s应用">
+                <i class="fa fa-chevron-left"></i> Helm一键部署k8s应用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/upload/avatar.gif"
+                alt="陈凡" />
+            
+              <p class="site-author-name" itemprop="name">陈凡</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/chenfanlinux" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:chenfan216@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/3942411590" target="_blank" title="微博">
+                    
+                      <i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.zhihu.com/people/love-hero-80" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#2、什么是平均负载？"><span class="nav-number">1.</span> <span class="nav-text">2、什么是平均负载？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、平均负载为多少时合理"><span class="nav-number">2.</span> <span class="nav-text">3、平均负载为多少时合理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-平均负载案例分析"><span class="nav-number">3.</span> <span class="nav-text">5. 平均负载案例分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#准备"><span class="nav-number">3.1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#场景一：CPU-密集型进程"><span class="nav-number">3.2.</span> <span class="nav-text">场景一：CPU 密集型进程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#场景二：I-O-密集型进程"><span class="nav-number">3.3.</span> <span class="nav-text">场景二：I/O 密集型进程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#场景三：大量进程的场景"><span class="nav-number">3.4.</span> <span class="nav-text">场景三：大量进程的场景</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-小结"><span class="nav-number">4.</span> <span class="nav-text">6.小结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+<script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=ipZXdvME3sKg6viC20OoTCYATcaOJ6SQH2wdaJEUHfc"></script>
+
+<div id="music163player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=525241230&auto=0&height=66"></iframe>
+</div>
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈凡</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">157.3k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div> 
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+ <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 98812, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 98812, xid: "2019/07/02/到底应该怎么理解平均负载/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/98812/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+<!--页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>  
+
+
+
+<!-- 
+<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-1 count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script> -->
+
+
+</body>
+</html>

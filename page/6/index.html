@@ -339,6 +339,234 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/10/Docker入门之Dockerfile最佳实践-三/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/10/Docker入门之Dockerfile最佳实践-三/" itemprop="url">Docker入门之Dockerfile最佳实践(三)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T17:21:22+08:00">
+                2018-01-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker系列/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker系列</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/10/Docker入门之Dockerfile最佳实践-三/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/10/Docker入门之Dockerfile最佳实践-三/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,485
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="认识Dockerfile"><a href="#认识Dockerfile" class="headerlink" title="认识Dockerfile"></a>认识Dockerfile</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Dockerfile是一个文本格式的配置文件，用户可以使用Dockerfile快速构建自定义的镜像。 下面展示一个规范的DockerFile文件。</p>
+<pre><code>#
+# DOCKER-VERSION    1.12.6
+# Dockerizing ubuntu14.04: Dockerfile for building ubuntu images
+#
+
+# 非注释首行必须指定基础镜像
+FROM ubuntu:14.04
+# 维护者信息
+MAINTAINER chenfan &lt;1144102576@qq.com&gt;
+
+# 指定环境变量
+ENV TZ &quot;Asia/Shanghai&quot;
+ENV TERM xterm
+
+# 拷贝文件(Dockerfile所在目录的相对路径)到容器中
+ADD sources.list /etc/apt/sources.list
+COPY .bash_aliases /root/.bash_aliases
+
+# 在当前镜像的基础上执行指定命令并提交为新的镜像
+RUN \
+    apt-get update &amp;&amp; \
+    apt-get -y upgrade &amp;&amp; \
+    apt-get install -y build-essential &amp;&amp; \
+    apt-get install -y software-properties-common &amp;&amp; \
+    apt-get install -y curl htop unzip vim wget &amp;&amp; \
+    rm -rf /var/lib/apt/lists/*
+
+# 指定工作目录
+WORKDIR /root
+
+# 暴露的端口号(映射端口)
+EXPOSE 22
+
+# 指定容器启动时，默认运行的命令
+CMD [&quot;/bin/bash&quot;]
+</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/10/Docker入门之Dockerfile最佳实践-三/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    
+    <div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/01/10/Docker入门之镜像基础概念与管理-二/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -514,7 +742,7 @@ CMD [&quot;/hello&quot;]
 <li><p>第三条CMD指令用来指示当运行 docker run 命令运行该镜像时要执行的命令，这里执行 /hello，就是执行第二步拷贝到根目录下的 hello 文件。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/10/Docker入门之镜像基础概念与管理-二/#espandi" rel="contents">
+            <a class="btn" href="/2018/01/10/Docker入门之镜像基础概念与管理-二/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -733,7 +961,7 @@ CMD [&quot;/hello&quot;]
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/05/Bash特性汇总/#espandi" rel="contents">
+            <a class="btn" href="/2018/01/05/Bash特性汇总/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -942,7 +1170,7 @@ CMD [&quot;/hello&quot;]
 <p><img src="https://cdn-std.dprcdn.net/files/acc_582513/6RGWHJ" alt="性能对比"></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/28/Docker入门之基础概念与架构-一/#espandi" rel="contents">
+            <a class="btn" href="/2017/12/28/Docker入门之基础概念与架构-一/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1245,7 +1473,7 @@ CMD [&quot;/hello&quot;]
 </table>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/24/编辑器之神-vim/#espandi" rel="contents">
+            <a class="btn" href="/2017/12/24/编辑器之神-vim/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1469,7 +1697,7 @@ Negative changed to zero
 </code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/19/python基础之流程控制/#espandi" rel="contents">
+            <a class="btn" href="/2017/12/19/python基础之流程控制/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1693,7 +1921,7 @@ CentOS Linux release 7.4.1708 (Core)
 </code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/11/zabbx基础安装/#espandi" rel="contents">
+            <a class="btn" href="/2017/12/11/zabbx基础安装/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1933,7 +2161,7 @@ $ hexo new page &quot;pageName&quot; //新建页面
 </code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/04/my-first-article/#espandi" rel="contents">
+            <a class="btn" href="/2017/12/04/my-first-article/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2028,7 +2256,7 @@ $ hexo new page &quot;pageName&quot; //新建页面
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2039,7 +2267,7 @@ $ hexo new page &quot;pageName&quot; //新建页面
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2138,7 +2366,7 @@ $ hexo new page &quot;pageName&quot; //新建页面
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">154.2k</span>
+    <span title="Site words total count">157.3k</span>
   
 </div>
 

@@ -339,6 +339,209 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2019/07/02/到底应该怎么理解平均负载/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈凡">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈凡的个人站点">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/02/到底应该怎么理解平均负载/" itemprop="url">到底应该怎么理解平均负载</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-02T16:43:38+08:00">
+                2019-07-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux性能优化/" itemprop="url" rel="index">
+                    <span itemprop="name">linux性能优化</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+  
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/07/02/到底应该怎么理解平均负载/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2019/07/02/到底应该怎么理解平均负载/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,116
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>1、如何了解系统的平均负载</p>
+<blockquote>
+<p>每次发现系统变慢时，我们通常做的第一件事，就是执行 top，或者 uptime 命令，来了解系统的负载情况。比如像下面这样，我在命令行里输入了 uptime 命令，系统负载情况。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon ~]<span class="comment"># uptime</span></span><br><span class="line"> 15:20:35 up  3:44,  4 users,  load average: 0.00, 0.01, 0.05</span><br></pre></td></tr></table></figure>
+<p>我相信你对前面的几列比较熟悉，它们分别是当前时间、系统运行时、以及正在登录用户数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> 15:20:35     // 当前时间</span><br><span class="line"> up  3:44     // 系统运行时间</span><br><span class="line"> 4 users      // 当前登录用户数</span><br><span class="line">load average: 0.00, 0.01, 0.05   // 过去1分钟、5分钟、15分钟的负载数</span><br></pre></td></tr></table></figure>
+<h4 id="2、什么是平均负载？"><a href="#2、什么是平均负载？" class="headerlink" title="2、什么是平均负载？"></a>2、什么是平均负载？</h4><p>它是最常见也是最重要的系统指标。简单来说，平均负载时是单位时间内，系统处于<strong>可运行</strong>及<strong>不可中断</strong>状态的平均进程数，也就是<strong>平均活跃进程数</strong>。所以，它不仅包括了<strong>正在使用CPU的进程</strong>，还包括了<strong>等待CPU</strong>和<strong>等待I/O</strong>的进程。和CPU使用率没有直接关系。</p>
+<ul>
+<li><strong>可运行状态的进程：</strong> 是指正在使用CPU或者正在等待CPU的进程。也就是我们用ps命令看到处于R状态的进程。 </li>
+<li><strong>不可中断状态的进程：</strong> 是指哪些处于内核态关键流程中的进程，并且这些流程是不可打断的，比如最常见的是等待硬件设备的I/O响应，也就说我们用ps看到处于D状态(Uninterruptible Sleep，也称为  Disk Sleep) 的进程。这其实是系统对进程和硬件设备的一种保护机制。</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/02/到底应该怎么理解平均负载/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    
+    <div>
+  
+  </div> 
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2019/03/15/Helm一键部署k8s应用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -483,7 +686,7 @@
 <p>这将把Tiller安装到您在kubectl配置当前上下文中看到的Kubernetes集群中。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/03/15/Helm一键部署k8s应用/#espandi" rel="contents">
+            <a class="btn" href="/2019/03/15/Helm一键部署k8s应用/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -681,7 +884,7 @@
 <p>当在项目的根目录执行 “git flow init” 命令时（它是否已经包括了一个 Git 仓库并不重要），一个交互式安装助手将引导您完成这个初始化操作。听起来是不是有点炫，但实际上它只是在你的分支上配置了一些命名规则。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/03/15/如何更好的管理—-编译-发布代码/#espandi" rel="contents">
+            <a class="btn" href="/2019/03/15/如何更好的管理—-编译-发布代码/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -882,7 +1085,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">helm install \</span><br><span class="line">    --name cert-manager \</span><br><span class="line">    --namespace kube-system \</span><br><span class="line">    stable/cert-manager</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/03/15/k8s中使用cert-manager玩转证书/#espandi" rel="contents">
+            <a class="btn" href="/2019/03/15/k8s中使用cert-manager玩转证书/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1088,7 +1291,7 @@ color.ui=true
 </code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/02/23/Git学习笔记/#espandi" rel="contents">
+            <a class="btn" href="/2019/02/23/Git学习笔记/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1289,7 +1492,7 @@ color.ui=true
 <p><img src="https://s1.ax1x.com/2018/08/15/PRZcKf.png" alt="模板位置"></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/15/Django基础之模板详解/#espandi" rel="contents">
+            <a class="btn" href="/2018/08/15/Django基础之模板详解/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1491,7 +1694,7 @@ color.ui=true
 <p><img src="https://s1.ax1x.com/2018/08/14/PgHNqg.png" alt="模板目录"></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/15/Django基础之视图详解/#espandi" rel="contents">
+            <a class="btn" href="/2018/08/15/Django基础之视图详解/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1692,7 +1895,7 @@ color.ui=true
 <h3 id="ORM示意图"><a href="#ORM示意图" class="headerlink" title="ORM示意图"></a>ORM示意图</h3><p><img src="https://s1.ax1x.com/2018/08/13/Pgp8yR.png" alt="ORM示意图"></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/13/Django入门基础之模型/#espandi" rel="contents">
+            <a class="btn" href="/2018/08/13/Django入门基础之模型/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1904,7 +2107,7 @@ color.ui=true
 <p><img src="https://s1.ax1x.com/2018/08/09/PyrA0J.png" alt="mvt"></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/10/Django基础入门/#espandi" rel="contents">
+            <a class="btn" href="/2018/08/10/Django基础入门/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2106,225 +2309,7 @@ color.ui=true
 <p>流量控制用来避免主机发送得过快而使接收方来不及完全收下。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/06/22/Python网络编程-tcp/#espandi" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-    
-    <div>
-  
-  </div> 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenfanlinux.org/2018/06/22/Python网络编程-udp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈凡">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈凡的个人站点">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/22/Python网络编程-udp/" itemprop="url">Python网络编程-udp</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-22T11:46:03+08:00">
-                2018-06-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python网络编程/" itemprop="url" rel="index">
-                    <span itemprop="name">Python网络编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-  
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/06/22/Python网络编程-udp/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/06/22/Python网络编程-udp/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2,989
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  12
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="网络编程中的重要概念"><a href="#网络编程中的重要概念" class="headerlink" title="网络编程中的重要概念"></a>网络编程中的重要概念</h2><blockquote>
-<p>所谓的网络编程就是，让在不同的电脑上的软件能够进行数据传递，即进程之间的通信。</p>
-</blockquote>
-<h3 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h3><ul>
-<li>使用网络能够把多方链接在一起，然后可以进行数据传递</li>
-<li>所谓的网络编程就是，让在不同的电脑上的软件能够进行数据传递，即进程之间的通信</li>
-</ul>
-<h3 id="ip地址"><a href="#ip地址" class="headerlink" title="ip地址"></a>ip地址</h3><p><strong>用来在网络中标记一台电脑，比如192.168.1.1；在本地局域网上是唯一的。每一个IP地址包括两部分：网络地址和主机地址。</strong></p>
-<ul>
-<li><p>一个A类IP地址由1字节的网络地址和3字节主机地址组成，网络地址的最高位必须是“0”，</p>
-<p>地址范围1.0.0.1-126.255.255.254。</p>
-</li>
-<li><p>一个B类IP地址由2个字节的网络地址和2个字节的主机地址组成，网络地址的最高位必须是“10”，</p>
-<p>地址范围128.1.0.1-191.255.255.254。</p>
-</li>
-<li><p>一个C类IP地址由3字节的网络地址和1字节的主机地址组成，网络地址的最高位必须是“110”</p>
-<p>范围192.0.1.1-223.255.255.254。</p>
-</li>
-<li><p>D类IP地址第一个字节以“1110”开始，它是一个专门保留的地址。</p>
-</li>
-<li><p>E类地址保留，仅作实验和开发用 。</p>
-</li>
-<li><p>在这么多网络IP中，国际规定有一部分IP地址是用于我们的局域网使用，也就</p>
-<p>是属于私网IP。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 私网ip的地址</span></span><br><span class="line">10.0.0.0～10.255.255.255</span><br><span class="line">172.16.0.0～172.31.255.255</span><br><span class="line">192.168.0.0～192.168.255.255</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/22/Python网络编程-udp/#espandi" rel="contents">
+            <a class="btn" href="/2018/06/22/Python网络编程-tcp/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2419,7 +2404,7 @@ color.ui=true
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2430,7 +2415,7 @@ color.ui=true
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2529,7 +2514,7 @@ color.ui=true
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">154.2k</span>
+    <span title="Site words total count">157.3k</span>
   
 </div>
 
