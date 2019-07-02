@@ -107,18 +107,18 @@
 
 
 
-<meta name="description" content="1、如何了解系统的平均负载  每次发现系统变慢时，我们通常做的第一件事，就是执行 top，或者 uptime 命令，来了解系统的负载情况。比如像下面这样，我在命令行里输入了 uptime 命令，系统负载情况。  12[root@bogon ~]# uptime 15:20:35 up  3:44,  4 users, ">
+<meta name="description" content="1、如何了解系统的平均负载 每次发现系统变慢时，我们通常做的第一件事，就是执行 top，或者 uptime 命令，来了解系统的负载情况。比如像下面这样，我在命令行里输入了 uptime 命令，系统负载情况。  12[root@bogon ~]# uptime 15:20:35 up  3:44,  4 users,  ">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="到底应该怎么理解平均负载">
 <meta property="og:url" content="http://www.chenfanlinux.org/2019/07/02/到底应该怎么理解平均负载/index.html">
 <meta property="og:site_name" content="陈凡的个人站点">
-<meta property="og:description" content="1、如何了解系统的平均负载  每次发现系统变慢时，我们通常做的第一件事，就是执行 top，或者 uptime 命令，来了解系统的负载情况。比如像下面这样，我在命令行里输入了 uptime 命令，系统负载情况。  12[root@bogon ~]# uptime 15:20:35 up  3:44,  4 users,  load average: 0.00, 0.01, 0.05 我相信你对前面的">
+<meta property="og:description" content="1、如何了解系统的平均负载 每次发现系统变慢时，我们通常做的第一件事，就是执行 top，或者 uptime 命令，来了解系统的负载情况。比如像下面这样，我在命令行里输入了 uptime 命令，系统负载情况。  12[root@bogon ~]# uptime 15:20:35 up  3:44,  4 users,  load average: 0.00, 0.01, 0.05 我相信你对前面的几">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-02T08:46:19.000Z">
+<meta property="og:updated_time" content="2019-07-02T10:46:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="到底应该怎么理解平均负载">
-<meta name="twitter:description" content="1、如何了解系统的平均负载  每次发现系统变慢时，我们通常做的第一件事，就是执行 top，或者 uptime 命令，来了解系统的负载情况。比如像下面这样，我在命令行里输入了 uptime 命令，系统负载情况。  12[root@bogon ~]# uptime 15:20:35 up  3:44,  4 users,  load average: 0.00, 0.01, 0.05 我相信你对前面的">
+<meta name="twitter:description" content="1、如何了解系统的平均负载 每次发现系统变慢时，我们通常做的第一件事，就是执行 top，或者 uptime 命令，来了解系统的负载情况。比如像下面这样，我在命令行里输入了 uptime 命令，系统负载情况。  12[root@bogon ~]# uptime 15:20:35 up  3:44,  4 users,  load average: 0.00, 0.01, 0.05 我相信你对前面的几">
 
 
 
@@ -477,8 +477,7 @@
       
 
       
-        <p>1、如何了解系统的平均负载</p>
-<blockquote>
+        <h4 id="1、如何了解系统的平均负载"><a href="#1、如何了解系统的平均负载" class="headerlink" title="1、如何了解系统的平均负载"></a>1、如何了解系统的平均负载</h4><blockquote>
 <p>每次发现系统变慢时，我们通常做的第一件事，就是执行 top，或者 uptime 命令，来了解系统的负载情况。比如像下面这样，我在命令行里输入了 uptime 命令，系统负载情况。</p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon ~]<span class="comment"># uptime</span></span><br><span class="line"> 15:20:35 up  3:44,  4 users,  load average: 0.00, 0.01, 0.05</span><br></pre></td></tr></table></figure>
@@ -502,8 +501,7 @@
 <p>那么，在实际生产环境中，平均负载多高时，需要我们重点关注呢？</p>
 <p>在我看来，当平均负载高于 CPU 数量 70% 的时候，你就应该分析排查负载高的问题了。一旦负载过高，就可能导致进程响应变慢，进而影响服务的正常功能。</p>
 <p>但 70% 这个数字并不是绝对的，最推荐的方法，还是把系统的还是把系统的平均负载监控起来，然后根据更多的历史数据，判断负载的变化趋势。当发现负载有明显升高趋势时，比如说负载翻倍了，你再去做分析和调查。</p>
-<p>####4.平均负载与 CPU 使用率</p>
-<p>现实工作中，我们经常容易把平均负载和 CPU 使用率混淆，所以在这里，我也做一个区分。可能你会疑惑，既然平均负载代表的是活跃进程数，那平均负载高了。不就意味着 CPU 使用率高吗？</p>
+<h4 id="4-平均负载与-CPU-使用率"><a href="#4-平均负载与-CPU-使用率" class="headerlink" title="4.平均负载与 CPU 使用率"></a>4.平均负载与 CPU 使用率</h4><p>现实工作中，我们经常容易把平均负载和 CPU 使用率混淆，所以在这里，我也做一个区分。可能你会疑惑，既然平均负载代表的是活跃进程数，那平均负载高了。不就意味着 CPU 使用率高吗？</p>
 <p>我们还是要回到平均负载的含义上来，平均负载是指单位时间内，处于<strong>可运行状态</strong>和<strong>不可中断状态</strong>的进程数。所以，它不仅包括了正在使用 CPU 的进程，还包括<strong>等待 CPU</strong> 和<strong>等待IO</strong>的进程。</p>
 <p>而 CPU 使用率，是单位时间内 CPU 繁忙情况的统计，跟平均负载并不一定完全对应。比如：</p>
 <ul>
@@ -839,7 +837,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#2、什么是平均负载？"><span class="nav-number">1.</span> <span class="nav-text">2、什么是平均负载？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、平均负载为多少时合理"><span class="nav-number">2.</span> <span class="nav-text">3、平均负载为多少时合理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-平均负载案例分析"><span class="nav-number">3.</span> <span class="nav-text">5. 平均负载案例分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#准备"><span class="nav-number">3.1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#场景一：CPU-密集型进程"><span class="nav-number">3.2.</span> <span class="nav-text">场景一：CPU 密集型进程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#场景二：I-O-密集型进程"><span class="nav-number">3.3.</span> <span class="nav-text">场景二：I/O 密集型进程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#场景三：大量进程的场景"><span class="nav-number">3.4.</span> <span class="nav-text">场景三：大量进程的场景</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-小结"><span class="nav-number">4.</span> <span class="nav-text">6.小结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、如何了解系统的平均负载"><span class="nav-number">1.</span> <span class="nav-text">1、如何了解系统的平均负载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、什么是平均负载？"><span class="nav-number">2.</span> <span class="nav-text">2、什么是平均负载？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、平均负载为多少时合理"><span class="nav-number">3.</span> <span class="nav-text">3、平均负载为多少时合理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-平均负载与-CPU-使用率"><span class="nav-number">4.</span> <span class="nav-text">4.平均负载与 CPU 使用率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-平均负载案例分析"><span class="nav-number">5.</span> <span class="nav-text">5. 平均负载案例分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#准备"><span class="nav-number">5.1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#场景一：CPU-密集型进程"><span class="nav-number">5.2.</span> <span class="nav-text">场景一：CPU 密集型进程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#场景二：I-O-密集型进程"><span class="nav-number">5.3.</span> <span class="nav-text">场景二：I/O 密集型进程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#场景三：大量进程的场景"><span class="nav-number">5.4.</span> <span class="nav-text">场景三：大量进程的场景</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-小结"><span class="nav-number">6.</span> <span class="nav-text">6.小结</span></a></li></ol></div>
             
 
           </div>
